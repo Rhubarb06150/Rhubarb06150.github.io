@@ -1,8 +1,29 @@
-body
-{
-	background: url("bg.png");
-	background-position: center
-	background-repeat: repeat-x;
-	background-attacement: fixed;
-	background-size: 100%;
+}
+@font-face{
+	font-family: myFont;
+	src:url(extrabold.ttf);
+}
+
+h1{
+	font-family: myFont;
+}
+
+a:link {
+  color: white;
+}
+
+a:visited {
+  color: white;
+}
+
+a:hover {
+  color: white;
+}
+
+a:active {
+  color: white;
+}
+
+a:link, a:visited {
+  text-decoration: none;
 }
