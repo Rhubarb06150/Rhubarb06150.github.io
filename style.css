@@ -1,0 +1,8 @@
+body
+{
+	background: url("bg.png");
+	background-position: center
+	background-repeat: repeat-x;
+	background-attacement: fixed;
+	background-size: 100%;
+}
