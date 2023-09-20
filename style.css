@@ -2,8 +2,8 @@ body
 {
 	background: url("bg.png");
 	background-position: center
-	background-repeat: repeat-x;
-	background-attacement: fixed;
+	background-repeat: no-repeat;
+	background-attachment: scroll;
 	background-size: 100%;
 }
 
