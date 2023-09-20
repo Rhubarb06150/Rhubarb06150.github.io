@@ -3,7 +3,7 @@ body
 	background: url("bg.png");
 	background-position: center
 	background-repeat: no-repeat;
-	background-attachment: scroll;
+	background-attachment: fixed;
 	background-size: 100%;
 }
 
