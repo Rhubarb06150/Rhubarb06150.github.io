@@ -69,8 +69,13 @@
 		<font size="5"><br><br>
 		<div class="Container">
 			Formulaire pour rejoindre un clan:<br><br>
-			<form action="https://formsubmit.co/rhubarb06150@gmail.com" method="POST">
-			<form>
+			<form class="row-g-3" action="https://formsubmit.co/rhubarb06150@gmail.com" method="POST">
+			<!-- Honeypot -->
+			<input type="text" name="_honey" style="display: none;">
+			<!--Disable Captcha -->
+			<input type="hidden" name="_captcha" value="false">
+
+			<input type="hidden" name="_next" value="https://mcrhubarb.net/emailenvoye.html">
 			<font size="3">
 				Votre pseudo Minecraft<br>
 				<input type="text" name="Pseudo Minecraft" placeholder="Pseudo Minecraft" required><br>
