@@ -11,7 +11,7 @@ body
 
 @font-face{
 	font-family: myFont;
-	src:url(https://mcrhubarb.net/extrabold.ttf);
+	src:url(extrabold.ttf);
 }
 
 h1{
