@@ -94,6 +94,20 @@ a:hover {
         flex-direction: column;
         box-shadow: rgb(0, 0, 0, .95) 0px 45px 40px -24px;
     }
+
+    .div_flou {
+
+        border-radius: 5px;
+        background-color: rgba(150, 150, 150, .5);
+        backdrop-filter: blur(4px);
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 5%;
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 
 .div_flou {
@@ -132,4 +146,15 @@ a:hover {
     margin-top: 10px;
     margin-bottom: 10px;
     width: 50%;
+}
+
+.photo_rhb{
+    width: 10vw;
+    margin-left: 5vw;
+    transition-duration: 0ms;
+}
+
+.photo_rhb:hover{
+    width: 15vw;
+    transition-duration: 0ms;
 }
