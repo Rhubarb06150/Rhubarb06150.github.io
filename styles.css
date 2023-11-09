@@ -1,68 +1,90 @@
 * {
-margin: 0px;
-padding: 0px;
+    margin: 0px;
+    padding: 0px;
 }
 
-body{
-background-image: url('images/bg/bg.png');
-background-size: cover;
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-position: center;
+body {
+    background-image: url('images/bg/bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
-.barre_titre{
-padding: 10px;
-background-color: rgb(0,0,0,.75);
-backdrop-filter: blur(4px);
-display: flex;
-justify-content: center;
+.barre_titre {
+    padding: 10px;
+    background-color: rgb(0, 0, 0, .75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
 }
 
-.barre_sous_titre{
-padding: 10px;
-background-color: rgba(0, 0, 0, 0.5);
-backdrop-filter: blur(4px);
-display: flex;
-justify-content: space-around;
-align-items: center;
-box-shadow: rgb(0, 0, 0,.95) 0px 45px 40px -24px;
+.barre_sous_titre {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-shadow: rgb(0, 0, 0, .95) 0px 45px 40px -24px;
 }
 
-.lien_st{
-display: flex;
-padding: 10px;
-flex:1;
-justify-content: center;
-align-items: center;
+.lien_st {
+    display: flex;
+    padding: 10px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.lien_st_compte {
+    display: flex;
+    padding: 10px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
 }
 
 @font-face {
-font-family: Minecraft;
-src:url(fonts/Minecraft.ttf);
+    font-family: Minecraft;
+    src: url(fonts/Minecraft.ttf);
 }
 
-h1{
-font-family: Minecraft;
-font-size: 150%;
-color:rgb(250, 250, 250,1);
+h1 {
+
+    font-family: Minecraft;
+    font-size: 150%;
+    color: rgb(250, 250, 250, 1);
+
 }
 
-a:link, a:visited{
-text-decoration: none;
-color:rgb(0,0,0,.75);
-color:rgb(100, 100, 100,1);
-transition-duration: 500ms;
+h2 {
+    margin-top: 10px;
+    font-family: Minecraft;
+    font-size: 200%;
+    color: rgb(250, 250, 250, 1);
 }
 
-a:hover{
-color:rgb(250, 250, 250,1);
-transition-duration: 500ms;
-font-size: 150%;
+.lien_st a {
+    text-decoration: none;
+    color: rgb(100, 100, 100, 1);
+    transition-duration: 500ms;
+}
+
+.lien_st_compte a {
+    text-decoration: none;
+    color: rgb(0, 132, 133);
+    transition-duration: 500ms;
+}
+
+a:hover {
+    color: rgb(250, 250, 250, 1);
+    transition-duration: 500ms;
+    font-size: 130%;
 }
 
 @media only screen and (max-width: 768px) {
-    .barre_sous_titre{
+    .barre_sous_titre {
         padding: 10px;
         background-color: rgba(0, 0, 0, 0.5);
         backdrop-filter: blur(4px);
@@ -70,6 +92,44 @@ font-size: 150%;
         justify-content: space-around;
         align-items: center;
         flex-direction: column;
-        box-shadow: rgb(0, 0, 0,.95) 0px 45px 40px -24px;
-        }
+        box-shadow: rgb(0, 0, 0, .95) 0px 45px 40px -24px;
+    }
+}
+
+.div_flou {
+
+    border-radius: 5px;
+    background-color: rgba(150, 150, 150, .5);
+    backdrop-filter: blur(4px);
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 5%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formulaire {
+
+    border: solid 2px color(rgb(0, 0, 0, .95));
+    border-radius: 5px;
+    font-family: Minecraft;
+    font-size: 150%;
+    resize: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 90%;
+}
+
+.formulaire_btn {
+
+    border: solid 2px color(rgb(0, 0, 0, .95));
+    border-radius: 5px;
+    font-family: Minecraft;
+    font-size: 150%;
+    resize: none;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 50%;
 }
