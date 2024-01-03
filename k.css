@@ -56,8 +56,8 @@ h1 {
 .box_blue {
   color: beige;
   border: 32px solid transparent;
-  border-image: url(images/box/border_blue.png) 32 repeat;
-  background-image: url(images/box/mid_blue.png);
+  border-image: url(images/box/box_smw_1.png) 32 repeat;
+  background-image: url(images/box/mid_smw_1.png);
   background-clip: padding-box;
   image-rendering: pixelated;
   margin: 5px;
@@ -108,8 +108,8 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   color: beige;
   border: 32px solid transparent;
-  border-image: url(images/box/border_red.png) 32 repeat;
-  background-image: url(images/box/mid_red.png);
+  border-image: url(images/box/box_smw_2.png) 32 repeat;
+  background-image: url(images/box/mid_smw_2.png);
   background-clip: padding-box;
   width: max-content;
   image-rendering: pixelated;
