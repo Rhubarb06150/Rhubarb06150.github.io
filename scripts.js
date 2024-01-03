@@ -1,5 +1,5 @@
 function smw(){
-  document.getElementById("logo_img").src="images/logos/logo_smw.png";
+  document.getElementById("logo_img").src="https://mcrhubarb.net/images/logos/logo_smw.png";
   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
     document.getElementById("logo_img").style.height="33px";
     document.getElementById("logo_img").style.width="249px";
@@ -27,7 +27,7 @@ function smw(){
   localStorage.setItem('ui', 'smw')
   }
 function smb3(){
-  document.getElementById("logo_img").src="images/logos/logo.png";
+  document.getElementById("logo_img").src="https://mcrhubarb.net/ images/logos/logo.png";
   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
     document.getElementById("logo_img").style.height="35px";
     document.getElementById("logo_img").style.width="271px";
