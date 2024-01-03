@@ -27,8 +27,13 @@ function smw(){
   }
 function smb3(){
   document.getElementById("logo_img").src="images/logos/logo.png";
-  document.getElementById("logo_img").style.height="70px";
-  document.getElementById("logo_img").style.width="542px";
+  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    document.getElementById("logo_img").style.height="35px";
+    document.getElementById("logo_img").style.width="271px";
+  }else{
+    document.getElementById("logo_img").style.height="70px";
+    document.getElementById("logo_img").style.width="542px";
+  }
   document.getElementById("hills_bg").style.backgroundImage = "url(images/bg/bg.png)";
   document.getElementById("hills_bg").style.height = "300px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(images/bg/clouds.png)";
@@ -51,6 +56,13 @@ function smb3(){
 
 function smb(){
   document.getElementById("logo_img").src="images/logos/logo_smb.png";
+  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    document.getElementById("logo_img").style.height="40px";
+  document.getElementById("logo_img").style.width="209px";
+  }else{
+    document.getElementById("logo_img").style.height="80px";
+  document.getElementById("logo_img").style.width="418px";
+  }
   document.getElementById("logo_img").style.height="80px";
   document.getElementById("logo_img").style.width="418px";
   document.getElementById("hills_bg").style.backgroundImage = "url(images/bg/hills_smb.png)";
