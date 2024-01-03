@@ -280,7 +280,7 @@ footer {
 
 a:link{
   text-decoration: none;
-  color: none;
+  color: inherit;
 }
 
 a:visited{
