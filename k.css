@@ -16,7 +16,7 @@ html {
 
 .clouds {
   overflow: hidden;
-  background-image: url(images/bg/clouds_smw.png);
+  background-image: url(https://mcrhubarb.net/images/bg/clouds_smw.png);
   background-repeat: repeat-x;
   image-rendering: pixelated;
   z-index: -98;
@@ -56,8 +56,8 @@ h1 {
 .box_blue {
   color: beige;
   border: 32px solid transparent;
-  border-image: url(images/box/box_smw_1.png) 32 repeat;
-  background-image: url(images/box/mid_smw_1.png);
+  border-image: url(https://mcrhubarb.net/images/box/box_smw_1.png) 32 repeat;
+  background-image: url(https://mcrhubarb.net/images/box/mid_smw_1.png);
   background-clip: padding-box;
   image-rendering: pixelated;
   margin: 5px;
@@ -69,8 +69,8 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   color: beige;
   border: 32px solid transparent;
-  border-image: url(images/box/border_orange.png) 32 repeat;
-  background-image: url(images/box/mid_orange.png);
+  border-image: url(https://mcrhubarb.net/images/box/border_orange.png) 32 repeat;
+  background-image: url(https://mcrhubarb.net/images/box/mid_orange.png);
   background-clip: padding-box;
   width: max-content;
   image-rendering: pixelated;
@@ -82,8 +82,8 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   color: beige;
   border: 32px solid transparent;
-  border-image: url(images/box/border_green.png) 32 repeat;
-  background-image: url(images/box/mid_green.png);
+  border-image: url(https://mcrhubarb.net/images/box/border_green.png) 32 repeat;
+  background-image: url(https://mcrhubarb.net/images/box/mid_green.png);
   background-clip: padding-box;
   width: max-content;
   image-rendering: pixelated;
@@ -95,8 +95,8 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   color: black;
   border: 32px solid transparent;
-  border-image: url(images/box/border_white.png) 32 repeat;
-  background-image: url(images/box/mid_white.png);
+  border-image: url(https://mcrhubarb.net/images/box/border_white.png) 32 repeat;
+  background-image: url(https://mcrhubarb.net/images/box/mid_white.png);
   background-clip: padding-box;
   width: max-content;
   image-rendering: pixelated;
@@ -108,8 +108,8 @@ h1 {
   font-family: Arial, Helvetica, sans-serif;
   color: beige;
   border: 32px solid transparent;
-  border-image: url(images/box/box_smw_2.png) 32 repeat;
-  background-image: url(images/box/mid_smw_2.png);
+  border-image: url(https://mcrhubarb.net/images/box/box_smw_2.png) 32 repeat;
+  background-image: url(https://mcrhubarb.net/images/box/mid_smw_2.png);
   background-clip: padding-box;
   width: max-content;
   image-rendering: pixelated;
@@ -119,7 +119,7 @@ h1 {
 
 .top {
   border-bottom: 32px solid transparent;
-  border-image: url(images/bg/cloud_top_smw.png) 32 repeat;
+  border-image: url(https://mcrhubarb.net/images/bg/cloud_top_smw.png) 32 repeat;
   background-clip: content-box;
   image-rendering: pixelated;
   background-color: #e8f0f8;
@@ -127,7 +127,7 @@ h1 {
 
 footer {
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url(images/bg/bottom_smw.png);
+  background-image: url(https://mcrhubarb.net/images/bg/bottom_smw.png);
   image-rendering: pixelated;
   z-index: -96;
   height: 96px;
@@ -155,7 +155,7 @@ footer {
   margin: 0px;
   padding: 0px;
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url(images/bg/bottom_smw.png);
+  background-image: url(https://mcrhubarb.net/images/bg/bottom_smw.png);
   image-rendering: pixelated;
   position: absolute;
   z-index: -100;
@@ -169,7 +169,7 @@ footer {
 }
 
 .hills {
-  background-image: url(images/bg/hills_smw.png);
+  background-image: url(https://mcrhubarb.net/images/bg/hills_smw.png);
   image-rendering: pixelated;
   z-index: -2;
   height: 262px;
