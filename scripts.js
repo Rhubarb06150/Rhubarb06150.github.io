@@ -24,6 +24,7 @@ function smw(){
     box.style.borderImage = "url(images/box/box_smw_2.png) 32 repeat";
     box.style.backgroundImage = "url(images/box/mid_smw_2.png)"
   });
+  localStorage.setItem('ui', 'smw')
   }
 function smb3(){
   document.getElementById("logo_img").src="images/logos/logo.png";
@@ -52,6 +53,7 @@ function smb3(){
     box.style.borderImage = "url(images/box/border_red.png) 32 repeat";
     box.style.backgroundImage = "url(images/box/mid_red.png)"
   });
+  localStorage.setItem('ui', 'smb3')
 }
 
 function smb(){
@@ -83,4 +85,16 @@ function smb(){
     box.style.borderImage = "url(images/box/box_smb_2.png) 32 repeat";
     box.style.backgroundImage = "url(images/box/mid_smb_2.png)"
   });
+  localStorage.setItem('ui', 'smb')
+}
+
+function ui_start(){
+  var x = localStorage.getItem('ui')
+  if (x == 'smw'){
+    smw()
+  } else if (x == 'smb'){
+    smb()
+  } else{
+    smb3()
+  }
 }
