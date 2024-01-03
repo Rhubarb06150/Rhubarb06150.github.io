@@ -1,7 +1,12 @@
 function smw(){
   document.getElementById("logo_img").src="images/logos/logo_smw.png";
-  document.getElementById("logo_img").style.height="66px";
-  document.getElementById("logo_img").style.width="498px";
+  if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+    document.getElementById("logo_img").style.height="33px";
+    document.getElementById("logo_img").style.width="249px";
+  }else{
+    document.getElementById("logo_img").style.height="66px";
+    document.getElementById("logo_img").style.width="498px";
+  }
   document.getElementById("hills_bg").style.backgroundImage = "url(images/bg/hills_smw.png)";
   document.getElementById("hills_bg").style.height = "262px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(images/bg/clouds_smw.png)";
