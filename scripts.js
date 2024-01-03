@@ -60,10 +60,10 @@ function smb(){
   document.getElementById("logo_img").src="images/logos/logo_smb.png";
   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
     document.getElementById("logo_img").style.height="40px";
-  document.getElementById("logo_img").style.width="209px";
+    document.getElementById("logo_img").style.width="209px";
   }else{
     document.getElementById("logo_img").style.height="80px";
-  document.getElementById("logo_img").style.width="418px";
+    document.getElementById("logo_img").style.width="418px";
   }
   document.getElementById("logo_img").style.height="80px";
   document.getElementById("logo_img").style.width="418px";
