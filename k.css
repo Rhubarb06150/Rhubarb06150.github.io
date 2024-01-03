@@ -1,0 +1,293 @@
+body {
+  margin: 0px;
+  padding: 0px;
+  min-height: 100vh;
+  background-attachment: scroll;
+  position: relative;
+  background: linear-gradient(0deg, rgba(160, 208, 248, 1) 10%, rgba(214, 160, 255, 1) 90%);
+}
+
+html {
+  min-height: 100%;
+  background-attachment: scroll;
+  margin: 0px;
+  padding: 0px;
+}
+
+.clouds {
+  overflow: hidden;
+  background-image: url(images/bg/clouds_smw.png);
+  background-repeat: repeat-x;
+  image-rendering: pixelated;
+  z-index: -98;
+  height: 542px;
+  width: 100%;
+  position: absolute;
+  bottom: 96px;
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  animation: slide 500S linear infinite;
+  animation-iteration-count: infinite;
+  z-index: -95;
+  filter: drop-shadow(6px 2px 0px rgba(0, 0, 0, 0.1))
+}
+
+button {
+  border: none;
+  cursor: pointer;
+  appearance: none;
+  background-color: inherit;
+}
+
+h1 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 100%;
+  color: beige;
+}
+
+.logo {
+  padding: 16px;
+  filter: drop-shadow(4px 4px 0px #000000);
+
+}
+
+.box_blue {
+  color: beige;
+  border: 32px solid transparent;
+  border-image: url(images/box/border_blue.png) 32 repeat;
+  background-image: url(images/box/mid_blue.png);
+  background-clip: padding-box;
+  image-rendering: pixelated;
+  margin: 5px;
+  width: max-content;
+  filter: drop-shadow(2px 2px 0px #000000)
+}
+
+.box_orange {
+  font-family: Arial, Helvetica, sans-serif;
+  color: beige;
+  border: 32px solid transparent;
+  border-image: url(images/box/border_orange.png) 32 repeat;
+  background-image: url(images/box/mid_orange.png);
+  background-clip: padding-box;
+  width: max-content;
+  image-rendering: pixelated;
+  margin: 5px;
+  filter: drop-shadow(2px 2px 0px #000000)
+}
+
+.box_green {
+  font-family: Arial, Helvetica, sans-serif;
+  color: beige;
+  border: 32px solid transparent;
+  border-image: url(images/box/border_green.png) 32 repeat;
+  background-image: url(images/box/mid_green.png);
+  background-clip: padding-box;
+  width: max-content;
+  image-rendering: pixelated;
+  margin: 5px;
+  filter: drop-shadow(2px 2px 0px #000000)
+}
+
+.box_white {
+  font-family: Arial, Helvetica, sans-serif;
+  color: black;
+  border: 32px solid transparent;
+  border-image: url(images/box/border_white.png) 32 repeat;
+  background-image: url(images/box/mid_white.png);
+  background-clip: padding-box;
+  width: max-content;
+  image-rendering: pixelated;
+  margin: 5px;
+  filter: drop-shadow(2px 2px 0px #000000)
+}
+
+.box_red {
+  font-family: Arial, Helvetica, sans-serif;
+  color: beige;
+  border: 32px solid transparent;
+  border-image: url(images/box/border_red.png) 32 repeat;
+  background-image: url(images/box/mid_red.png);
+  background-clip: padding-box;
+  width: max-content;
+  image-rendering: pixelated;
+  margin: 5px;
+  filter: drop-shadow(2px 2px 0px #000000)
+}
+
+.top {
+  border-bottom: 32px solid transparent;
+  border-image: url(images/bg/cloud_top_smw.png) 32 repeat;
+  background-clip: content-box;
+  image-rendering: pixelated;
+  background-color: #e8f0f8;
+}
+
+footer {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url(images/bg/bottom_smw.png);
+  image-rendering: pixelated;
+  z-index: -96;
+  height: 96px;
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  justify-content: space-around;
+  color: white;
+}
+
+.footer_content {
+  height: 96px;
+  margin-top: 96px;
+}
+
+.columns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sun {
+  margin: 0px;
+  padding: 0px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url(images/bg/bottom_smw.png);
+  image-rendering: pixelated;
+  position: absolute;
+  z-index: -100;
+  height: 96px;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  color: white;
+  filter: drop-shadow(0px 0px 200px #ffae00);
+}
+
+.hills {
+  background-image: url(images/bg/hills_smw.png);
+  image-rendering: pixelated;
+  z-index: -2;
+  height: 262px;
+  width: 100%;
+  bottom: 96px;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  color: white;
+}
+
+@keyframes slide {
+  0% {
+    background-position: 100vw;
+  }
+
+  50% {
+    background-position: 0;
+  }
+
+  100% {
+    background-position: 100vw;
+  }
+}
+
+.block {
+  width: 32px;
+  height: 32px;
+  background-image: url(block.png);
+  animation-name: marche;
+  animation-duration: 0.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(4);
+  filter: drop-shadow(2px 2px 0px #000000)
+}
+
+@keyframes marche {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 -128px;
+  }
+}
+
+.div_goomba {
+  z-index: -92;
+  height: 32px;
+  width: 32px;
+  bottom: 94px;
+  position: absolute;
+  background-position: bottom;
+  display: flex;
+  justify-content: center;
+  animation: slide_goomba 40S linear infinite;
+  animation-iteration-count: infinite;
+}
+
+.goomba {
+  z-index: -92;
+  height: 32px;
+  width: 32px;
+  left: 0px;
+  right: 0px;
+  position: absolute;
+  background-position: bottom;
+  display: flex;
+  justify-content: center;
+  background-image: url(goomba.png);
+  animation-name: goomba_walk;
+  animation-duration: 0.25s;
+  animation-iteration-count: infinite;
+  animation-timing-function: steps(2);
+}
+
+@keyframes goomba_walk {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 0 -64px;
+  }
+}
+
+@keyframes slide_goomba {
+  0% {
+    right: 50vw;
+  }
+
+  25% {
+    right: 0vw;
+  }
+
+  50% {
+    right: 50vw;
+  }
+
+  75% {
+    right: 100vw;
+  }
+
+  100% {
+    right: 50vw;
+  }
+}
+
+a:link{
+  text-decoration: none;
+  color: none;
+}
+
+a:visited{
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover{
+  color:rgb(255, 174, 0);
+}
