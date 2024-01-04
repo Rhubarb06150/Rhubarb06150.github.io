@@ -7,6 +7,7 @@
         function init() {
             ui_start();
             load_acc_index();
+            check_height();
         }
         window.onload = init;
     </script>
@@ -33,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="box_red">
+    <div class="box_red" id ="profile_box">
         <div class="profile_status">
             <a href="https://mcrhubarb.net/profile/">
                 <p id="profile_name"></p>

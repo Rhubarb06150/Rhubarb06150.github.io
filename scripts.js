@@ -176,3 +176,13 @@ function readURL(input) {
     reader.readAsDataURL(input.files[0]); 
   }
 }
+
+function check_height(){
+  var hei = document.getElementById("profile_box").clientHeight;
+  document.getElementById('profile_name').innerHTML = hei;
+  while ((hei % 64) != 0) {
+    hei++;
+  }
+  document.getElementById('profile_box').style.height = hei;
+  document.getElementById('profile_name').innerHTML = hei;
+}
