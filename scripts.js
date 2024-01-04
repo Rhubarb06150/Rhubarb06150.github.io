@@ -239,3 +239,23 @@ function check_dim() {
     box.style.width = wid;
   });
 }
+
+function time_set(){
+  var select = document.getElementById("time_select");
+  var time = select.value;
+  localStorage.setItem('time',time)
+  document.getElementById("time_select").value = time;
+  time_switch();
+}
+function time_switch(){
+  var time = localStorage.getItem('time')
+  if (time == 'night'){
+    document.body.style.backgroundImage = "url('../images/bg/stars.gif')";
+    document.getElementById("clouds_bg").style.opacity = "50%";
+  } else {
+    document.body.style.backgroundImage = "none";
+    document.body.style.background = "linear-gradient(0deg, rgba(160, 208, 248, 1) 10%, rgba(214, 160, 255, 1) 90%)";
+    document.getElementById("clouds_bg").style.opacity = "100%";
+  }
+  document.getElementById("time_select").value = time;
+}

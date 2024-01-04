@@ -4,7 +4,6 @@ body {
   min-height: 100vh;
   background-attachment: scroll;
   position: relative;
-  background: linear-gradient(0deg, rgba(160, 208, 248, 1) 10%, rgba(214, 160, 255, 1) 90%);
 }
 
 html {
@@ -19,6 +18,7 @@ html {
   background-repeat: repeat-x;
   image-rendering: pixelated;
   z-index: -98;
+  opacity: 50%;
   height: 542px;
   width: 100%;
   position: absolute;
@@ -32,7 +32,7 @@ html {
   filter: drop-shadow(6px 2px 0px rgba(0, 0, 0, 0.1))
 }
 
-button {
+.buttons_style {
   border: none;
   cursor: pointer;
   appearance: none;
