@@ -146,6 +146,7 @@ footer {
   bottom: 0px;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   color: white;
 }
 
@@ -166,6 +167,18 @@ footer {
   background-color: white;
   width: 64px;
   height: 64px;
+}
+
+
+.profile_status{
+  display: flex;
+  flex-direction: row;
+  color: rgb(255, 255, 255);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 100%;
+  align-items: center;
+  justify-content: center;
 }
 
 .rows {
@@ -305,6 +318,7 @@ footer {
 a:link{
   text-decoration: none;
   color: inherit;
+  z-index: 1;
 }
 
 a:visited{

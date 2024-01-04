@@ -137,6 +137,21 @@ function load_acc(){
   }
 }
 
+function load_acc_index(){
+  var username = localStorage.getItem('username')
+  var pfp = localStorage.getItem('profile_picture')
+  if (username == null){
+    document.getElementById('profile_name').innerHTML = 'No profile';
+  }else{
+    document.getElementById('profile_name').innerHTML = username;
+  }
+  if (pfp==null){
+    document.getElementById("pfp_pr_index").src = 'images/head/default.png';
+  }else{
+    document.getElementById("pfp_pr_index").src = pfp;
+  }
+}
+
 function readURL(input) {
   if (input.files && input.files[0]) {
   

@@ -22,11 +22,14 @@
             <div class="columns">
                 <h1>Profile settings<br><br>Username: <input type="text" id="username" required minlength="3"
                         maxlength="25" size="20" placeholder="3 letters min. username"><br>
-                    <div class="username_not_enough_long" id="username_alert"><br>Username empty or not long enough</div><br>
-                    Profile picture: <input type="file" id="pfp" name="pfp" accept="image/png, image/jpeg" onchange="readURL(this)"/><br><br>
-                    <div class="pfp"><img src="../images/head/default.png" height="64px" width="64px" id="pfp_pr"></div><br>
-                    <button onclick="upload_acc()">Submit preferences</button>
-                    <div class="preferences_uploaded" id="pref_up"><br>Preferences were successfully uploaded!</div>
+                    <div class="username_not_enough_long" id="username_alert"><br>Username empty or not long enough
+                    </div><br>
+                    Profile picture: <input type="file" id="pfp" name="pfp" accept="image/png, image/jpeg"
+                        onchange="readURL(this)" /><br><br>
+                    <div class="pfp"><img src="../images/head/default.png" height="64px" width="64px" id="pfp_pr"></div>
+                    <br>
+                    <button onclick="upload_acc()">Modify profile</button>
+                    <div class="preferences_uploaded" id="pref_up"><br>Profile was successfully modified!</div>
                     <br><br>Website style:
                 </h1>
                 <div class="row">
