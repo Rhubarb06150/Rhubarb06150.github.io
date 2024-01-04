@@ -1,3 +1,16 @@
+document.addEventListener("DOMContentLoaded", theDomHasLoaded, false);
+window.addEventListener("load", pageFullyLoaded, false);
+
+function theDomHasLoaded(e) {
+    ui_start();
+    load_acc_index();
+}
+
+function pageFullyLoaded(e) {
+  ui_start();
+  load_acc_index();
+}
+
 function smw(){
   document.getElementById("logo_img").src="https://mcrhubarb.net/images/logos/logo_smw.png";
   if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){

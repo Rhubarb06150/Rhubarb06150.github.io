@@ -2,15 +2,23 @@
 <html lang="en">
 
 <head>
+    <script src="../scripts.js"></script>
+    <script type="text/javascript">
+        function preloadFunc()
+        {
+            ui_start();
+            load_acc_index();
+        }
+        window.onpaint = preloadFunc();
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCRhubarb</title>
     <link href="../k.css" rel="stylesheet">
     <link href="../images/head/icon.png" rel="icon">
-    <script src="../scripts.js"></script>
 </head>
 
-<body onload="ui_start(),load_acc()">
+<body>
     <div class="top" id="top_id">
         <div class="logo">
             <center><a href="../index.html"><img src="../images/logos/logo_smw.png" alt="Website's logo" id="logo_img" width="498"
