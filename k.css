@@ -45,6 +45,12 @@ h1 {
   font-size: 100%;
   color: black;
 }
+h2 {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: bold;
+  font-size: 100%;
+  color: white;
+}
 
 .logo {
   padding: 16px;
