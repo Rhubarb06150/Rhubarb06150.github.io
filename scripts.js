@@ -255,7 +255,7 @@ function time_set() {
 function time_switch() {
   var time = localStorage.getItem('time')
   if (time == 'night') {
-    document.body.style.backgroundImage = "url('../images/bg/stars.gif')";
+    document.body.style.backgroundImage = "url(https://mcrhubarb.net/images/bg/stars.gif)";
     document.getElementById("clouds_bg").style.opacity = "50%";
   } else {
     document.body.style.backgroundImage = "none";
@@ -291,8 +291,11 @@ function language() {
       document.getElementById('bg_time').textContent = "Temps du fond:";
       document.getElementById('day').innerHTML = "Jour";
       document.getElementById('night').innerHTML = "Nuit";
-    } catch (error) { }
+    } catch (error) {}
     try {
-    } catch (error) { }
+      document.getElementById('error404').innerHTML = "Erreur 404";
+      document.getElementById('page_404').textContent = "Cette page n'existe pas ou plus :/";
+      document.getElementById('back_to_main').textContent = "Retour à l'accueil";
+    } catch (error) {}
   }
 }
