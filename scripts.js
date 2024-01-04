@@ -98,3 +98,49 @@ function ui_start(){
     smb3()
   }
 }
+
+function getBase64Image(img) {
+  var canvas = document.createElement("canvas");
+  canvas.width = img.width;
+  canvas.height = img.height;
+
+  var ctx = canvas.getContext("2d");
+  ctx.drawImage(img, 0, 0);
+
+  var dataURL = canvas.toDataURL("image/png");
+
+  return dataURL.replace(/^data:image\/(png|jpg);base64,/, "");
+}
+
+function upload_acc(){
+  const photo_sel = document.getElementById("selectAvatar");
+  var username = document.getElementById('username').value;
+  if (username.length < 3){
+  document.getElementById("username_alert").style.display = "flex";
+  } else {
+    localStorage.setItem('username',username);
+    var pfp_img = document.getElementById("pfp_pr").src;
+    localStorage.setItem('profile_picture',pfp_img)
+    document.getElementById("pref_up").style.display = "flex";
+    document.getElementById("username_alert").style.display = "none";
+  }
+}
+
+function load_acc(){
+  var username = localStorage.getItem('username')
+  var pfp = localStorage.getItem('profile_picture')
+  document.getElementById('username').value= username;
+  document.getElementById("pfp_pr").src = pfp;
+}
+
+function readURL(input) {
+  if (input.files && input.files[0]) {
+  
+    var reader = new FileReader();
+    reader.onload = function (e) { 
+      document.querySelector("#pfp_pr").setAttribute("src",e.target.result);
+    };
+
+    reader.readAsDataURL(input.files[0]); 
+  }
+}
