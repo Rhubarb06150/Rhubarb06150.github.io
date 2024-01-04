@@ -176,12 +176,3 @@ function readURL(input) {
     reader.readAsDataURL(input.files[0]); 
   }
 }
-
-function hour_bg(){
-  var date = new Date()
-  if (date.getHours()>=0){
-  document.body.style.background = "linear-gradient(0deg, rgba(63,47,73,1) 0%, rgba(11,0,31,1) 100%)";
-  } else if (date.getHours()>=3){
-  document.body.style.background = "linear-gradient(0deg, rgba(65,111,150,1) 0%, rgba(122,157,186,1) 100%)";
-  }
-}
