@@ -54,7 +54,7 @@ h1 {
 
 .box_blue {
   color: beige;
-  border: 32px solid transparent;at;
+  border: 32px solid transparent;
   background-clip: padding-box;
   image-rendering: pixelated;
   margin: 5px;

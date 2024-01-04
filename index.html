@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<script src="scripts.js"></script>
 
 <head>
+    <script src="scripts.js"></script>
+    <script type="text/javascript">
+        function init() {
+            ui_start();
+            load_acc_index();
+        }
+        window.onload = init;
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCRhubarb</title>
@@ -10,7 +17,7 @@
     <link href="images/head/icon.png" rel="icon">
 </head>
 
-<body>
+<body oninit="ui_start(),load_acc_index()">
     <div class="top" id="top_id">
         <div class="logo">
             <center><img src="images/logos/logo_smw.png" alt="Website's logo" id="logo_img" width="498"
@@ -29,7 +36,7 @@
     <div class="box_red">
         <div class="profile_status">
             <a href="profile/index.html">
-                <p id="profile_name"></p>
+                <p id="profile_name">No profile</p>
             </a>
             <p>&nbsp&nbsp&nbsp</p>
             <img src="images/head/default.png" width="32px" height="32px" id="pfp_pr_index">
