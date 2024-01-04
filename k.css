@@ -125,6 +125,8 @@ h1 {
 .preferences_uploaded{
   display: none;
   color: rgb(0, 255, 0);
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .top {
