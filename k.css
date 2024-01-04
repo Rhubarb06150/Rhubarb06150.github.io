@@ -65,7 +65,11 @@ h2 {
   image-rendering: pixelated;
   margin: 5px;
   width: max-content;
-  filter: drop-shadow(2px 2px 0px #000000)
+  filter: drop-shadow(2px 2px 0px #000000);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .box_orange {
@@ -76,7 +80,11 @@ h2 {
   width: max-content;
   image-rendering: pixelated;
   margin: 5px;
-  filter: drop-shadow(2px 2px 0px #000000)
+  filter: drop-shadow(2px 2px 0px #000000);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .box_green {
@@ -87,7 +95,11 @@ h2 {
   width: max-content;
   image-rendering: pixelated;
   margin: 5px;
-  filter: drop-shadow(2px 2px 0px #000000)
+  filter: drop-shadow(2px 2px 0px #000000);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .box_white {
@@ -98,7 +110,11 @@ h2 {
   width: max-content;
   image-rendering: pixelated;
   margin: 5px;
-  filter: drop-shadow(2px 2px 0px #000000)
+  filter: drop-shadow(2px 2px 0px #000000);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .box_red {
@@ -109,7 +125,11 @@ h2 {
   width: max-content;
   image-rendering: pixelated;
   margin: 5px;
-  filter: drop-shadow(2px 2px 0px #000000)
+  filter: drop-shadow(2px 2px 0px #000000);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .username_not_enough_long{
