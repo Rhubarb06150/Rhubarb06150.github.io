@@ -65,8 +65,6 @@ function smb() {
     document.getElementById("logo_img").style.height = "80px";
     document.getElementById("logo_img").style.width = "418px";
   }
-  document.getElementById("logo_img").style.height = "80px";
-  document.getElementById("logo_img").style.width = "418px";
   document.getElementById("hills_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
   document.getElementById("hills_bg").style.height = "432px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smb.png)";
