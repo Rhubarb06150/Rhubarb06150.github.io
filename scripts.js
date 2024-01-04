@@ -130,7 +130,11 @@ function load_acc(){
   var username = localStorage.getItem('username')
   var pfp = localStorage.getItem('profile_picture')
   document.getElementById('username').value= username;
-  document.getElementById("pfp_pr").src = pfp;
+  if (pfp==null){
+    document.getElementById("pfp_pr").src = '../images/head/default.png';
+  }else{
+    document.getElementById("pfp_pr").src = pfp;
+  }
 }
 
 function readURL(input) {
