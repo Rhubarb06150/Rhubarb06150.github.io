@@ -28,37 +28,41 @@
     <center>
         <div class="box_blue">
             <div class="columns">
-                <h1>Profile settings<br><br>Username: <input type="text" id="username" required minlength="3"
+                <h1>
+                    <span id="profile_settings">Profile settings</span><br><br>
+                    <span id="usrname_input">Username: </span><input type="text" id="username" required minlength="3"
                         maxlength="25" size="20" placeholder="3 letters min. username"><br>
-                    <div class="username_not_enough_long" id="username_alert"><br>Username empty or not long enough
+                    <div class="username_not_enough_long" id="username_alert"><br><span id="acc_error">Username empty or
+                            not long enough</span>
                     </div><br>
-                    Profile picture: <input type="file" id="pfp" name="pfp" accept="image/png, image/jpeg"
-                        onchange="readURL(this)" /><br><br>
+                    <span id="pfp_span">Profile picture: </span><input type="file" id="pfp" name="pfp"
+                        accept="image/png, image/jpeg" onchange="readURL(this)" /><br><br>
                     <div class="pfp"><img src="" height="64px" width="64px" id="pfp_pr"></div>
                     <br>
-                    <button onclick="upload_acc()">Modify profile</button>
+                    <button onclick="upload_acc()" id="modify">Modify profile</button>
                     <div class="preferences_uploaded" id="pref_up">
                         <br>
-                        <div>Profile was successfully modified!</div>
+                        <div><span id="acc_modify_succes">Profile was successfully modified!</span></div>
                         <br>
-                        <div><a href="https://mcrhubarb.net/">Go back to main page</a></div>
+                        <div><a href="https://mcrhubarb.net/"><span id="back_to_main">Go back to main page</span></a>
+                        </div>
                     </div>
 
-                    <br><br>Website style:
-                <br><br>
-                <div class="row">
-                    <button class="buttons_style" tabindex="-1" onclick='smb()'><img src="../images/bg/smb.png"
-                            tilte="Super Mario Bros. (Super Mario All-Stars) design"></button>
-                    <button class="buttons_style" tabindex="-1" onclick='smb3()'><img src="../images/bg/smb3.png"
-                            tilte="Super Mario Bros. 3 (Super Mario All-Stars) design"></button>
-                    <button class="buttons_style" tabindex="-1" onclick='smw()'><img src="../images/bg/smw.png"
-                            tilte="Super Mario World design"></button>
-                </div><br>Background time:
-                <select name="time" id="time_select" onchange="time_set()">
-                    <option value="day">Day</option>
-                    <option value="night">Night</option>
-                </select>
-            </h1>
+                    <br><br><span id="website_style">Website style:</span>
+                    <br><br>
+                    <div class="row">
+                        <button class="buttons_style" tabindex="-1" onclick='smb()'><img src="../images/bg/smb.png"
+                                tilte="Super Mario Bros. (Super Mario All-Stars) design"></button>
+                        <button class="buttons_style" tabindex="-1" onclick='smb3()'><img src="../images/bg/smb3.png"
+                                tilte="Super Mario Bros. 3 (Super Mario All-Stars) design"></button>
+                        <button class="buttons_style" tabindex="-1" onclick='smw()'><img src="../images/bg/smw.png"
+                                tilte="Super Mario World design"></button>
+                    </div><br><span id="bg_time">Background time:</span>
+                    <select name="time" id="time_select" onchange="time_set()">
+                        <option value="day" id="day">Day</option>
+                        <option value="night" id="night">Night</option>
+                    </select>
+                </h1>
             </div>
         </div>
     </center>
@@ -70,5 +74,8 @@
 <div class="hills" id="hills_bg"></div>
 <div class="sun"></div>
 <div class="clouds" id="clouds_bg"></div>
+<script>
+    language();
+</script>
 
 </html>

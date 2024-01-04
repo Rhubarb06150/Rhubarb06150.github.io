@@ -136,10 +136,15 @@ function load_acc() {
 }
 
 function load_acc_index() {
+  var usrlang = navigator.language || navigator.userLanguage;
   var username = localStorage.getItem('username')
   var pfp = localStorage.getItem('profile_picture')
   if (username == null) {
-    document.getElementById('profile_name').innerHTML = 'No profile';
+    if (usrlang == 'fr-FR') {
+      document.getElementById('profile_name').innerHTML = 'Pas de profil';
+    } else {
+      document.getElementById('profile_name').innerHTML = 'No profile';
+    }
   } else {
     document.getElementById('profile_name').innerHTML = username;
   }
@@ -240,16 +245,16 @@ function check_dim() {
   });
 }
 
-function time_set(){
+function time_set() {
   var select = document.getElementById("time_select");
   var time = select.value;
-  localStorage.setItem('time',time)
+  localStorage.setItem('time', time)
   document.getElementById("time_select").value = time;
   time_switch();
 }
-function time_switch(){
+function time_switch() {
   var time = localStorage.getItem('time')
-  if (time == 'night'){
+  if (time == 'night') {
     document.body.style.backgroundImage = "url('../images/bg/stars.gif')";
     document.getElementById("clouds_bg").style.opacity = "50%";
   } else {
@@ -258,4 +263,36 @@ function time_switch(){
     document.getElementById("clouds_bg").style.opacity = "100%";
   }
   document.getElementById("time_select").value = time;
+}
+
+function language() {
+  var sPath = window.location.pathname;
+  var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
+  var usrlang = navigator.language || navigator.userLanguage;
+  if (usrlang == 'fr-FR') {
+    try {
+      document.getElementById('useful_links').textContent = "Liens utiles";
+    } catch (error) { }
+    try {
+      if (document.URL.includes("/profile")) {
+        document.title="Modifier le profil"
+      }
+      if (sPage == '404.html'){
+        document.title="MCRhubarb - Erreur 404"
+      }
+      document.getElementById('profile_settings').textContent = "Modifier le profil";
+      document.getElementById('usrname_input').textContent = "Nom d'utilisateur: ";
+      document.getElementById('pfp_span').textContent = "Photo de profil: ";
+      document.getElementById('acc_modify_succes').textContent = "Le profil à bien été mis à jour!";
+      document.getElementById('back_to_main').textContent = "Retour a l'accueil";
+      document.getElementById('acc_error').textContent = "Nom d'utilisateur vide ou pas assez long";
+      document.getElementById('modify').innerHTML = "Modifier le profil";
+      document.getElementById('website_style').textContent = "Style graphique:";
+      document.getElementById('bg_time').textContent = "Temps du fond:";
+      document.getElementById('day').innerHTML = "Jour";
+      document.getElementById('night').innerHTML = "Nuit";
+    } catch (error) { }
+    try {
+    } catch (error) { }
+  }
 }
