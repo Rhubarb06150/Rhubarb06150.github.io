@@ -54,9 +54,9 @@ function smw() {
     box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smw_5.png)"
   });
   localStorage.setItem('ui', 'smw')
-  try{
+  try {
     bg_buttons();
-  }catch(error){}
+  } catch (error) { }
   bg_check();
 
 }
@@ -118,9 +118,9 @@ function smb3() {
     box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_white.png)"
   });
   localStorage.setItem('ui', 'smb3')
-  try{
+  try {
     bg_buttons();
-  }catch(error){}
+  } catch (error) { }
   bg_check();
 
 }
@@ -185,9 +185,9 @@ function smb() {
   });
 
   localStorage.setItem('ui', 'smb')
-  try{
+  try {
     bg_buttons();
-  }catch(error){}
+  } catch (error) { }
   bg_check();
 
 }
@@ -217,13 +217,13 @@ function bg_buttons() {
   }
 }
 
-function bg_check(){
+function bg_check() {
   var x = localStorage.getItem('bg')
-  if (x==1 || x == null){
+  if (x == 1 || x == null) {
     bg1();
-  } else if (x==2){
+  } else if (x == 2) {
     bg2();
-  } else{
+  } else {
     bg3();
   }
 }
@@ -254,7 +254,7 @@ function bg2() {
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bonus_smw.png)";
-    document.getElementById("top_layer_bg").style.height = "864px";
+    document.getElementById("top_layer_bg").style.height = "100%";
     document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw_2.png)";
     time_set();
   } else if (x == 'smb') {
@@ -287,6 +287,7 @@ function bg3() {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb3.png)";
     document.getElementById("top_layer_bg").style.height = "704px";
     document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_3.png)";
+    document.getElementById("footer_bg").style.backgroundPosition = "0px 0px";
   }
 }
 
@@ -346,11 +347,7 @@ function load_acc_index() {
   var username = localStorage.getItem('username')
   var pfp = localStorage.getItem('profile_picture')
   if (username == null) {
-    if (usrlang == 'fr-FR') {
-      document.getElementById('profile_name').innerHTML = 'Pas de profil';
-    } else {
-      document.getElementById('profile_name').innerHTML = 'No profile';
-    }
+    document.getElementById('profile_name').innerHTML = 'No profile';
   } else {
     document.getElementById('profile_name').innerHTML = username;
   }
@@ -452,11 +449,13 @@ function check_dim() {
 }
 
 function time_set() {
-  var select = document.getElementById("time_select");
-  var time = select.value;
-  localStorage.setItem('time', time)
-  document.getElementById("time_select").value = time;
-  time_switch();
+  try {
+    var select = document.getElementById("time_select");
+    var time = select.value;
+    localStorage.setItem('time', time)
+    document.getElementById("time_select").value = time;
+    time_switch();
+  } catch (error) { }
 }
 function time_switch() {
   var time = localStorage.getItem('time')
@@ -468,11 +467,13 @@ function time_switch() {
     document.body.style.background = "linear-gradient(0deg, rgba(160, 208, 248, 1) 10%, rgba(214, 160, 255, 1) 90%)";
     document.getElementById("clouds_bg").style.opacity = "100%";
   }
-  if (time != null) {
-    document.getElementById("time_select").value = time;
-  } else {
-    document.getElementById("time_select").value = 'day';
-  }
+  try {
+    if (time != null) {
+      document.getElementById("time_select").value = time;
+    } else {
+      document.getElementById("time_select").value = 'day';
+    }
+  } catch (error) { }
 
 }
 
@@ -524,12 +525,14 @@ function cloud_button() {
 }
 
 function set_clouds() {
-  var moving = localStorage.getItem('moving')
-  if (moving == "yes" || moving == null) {
-    document.getElementById('clouds_moving_button').checked = true;
-  } else {
-    document.getElementById('clouds_moving_button').checked = false;
-  }
+  try {
+    var moving = localStorage.getItem('moving')
+    if (moving == "yes" || null) {
+      document.getElementById('clouds_moving_button').checked = true;
+    } else {
+      document.getElementById('clouds_moving_button').checked = false;
+    }
+  } catch (error) { }
 }
 
 function clouds_shift() {
