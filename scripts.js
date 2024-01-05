@@ -182,15 +182,45 @@ function smb() {
 function bg1() {
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
+    document.getElementById("top_layer_bg").style.height = "262px";
+  } else if (x == 'smb') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
     document.getElementById("top_layer_bg").style.height = "432px";
-  } else if (x == 'smb') {
-    smb()
   } else {
-    smb3()
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
+    document.getElementById("top_layer_bg").style.height = "300px";
   }
 }
+
+function bg2() {
+  var x = localStorage.getItem('ui')
+  if (x == 'smw') {
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/forest_smw.png)";
+    document.getElementById("top_layer_bg").style.height = "864px";
+  } else if (x == 'smb') {
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/mountains.png)";
+    document.getElementById("top_layer_bg").style.height = "480px";
+  } else {
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/waterfalls.gif)";
+    document.getElementById("top_layer_bg").style.height = "384px";
+  }
 }
+
+function bg2() {
+  var x = localStorage.getItem('ui')
+  if (x == 'smw') {
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
+    document.getElementById("top_layer_bg").style.height = "262px";
+  } else if (x == 'smb') {
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
+    document.getElementById("top_layer_bg").style.height = "432px";
+  } else {
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
+    document.getElementById("top_layer_bg").style.height = "300px";
+  }
+}
+
 
 function ui_start() {
   var x = localStorage.getItem('ui')
