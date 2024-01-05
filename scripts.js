@@ -201,14 +201,14 @@ function bg_buttons() {
     document.getElementById("bg1b").title = "Overworld hills";
     document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/bonus_icon.png";
     document.getElementById("bg2b").title = "Bonus Aera";
-    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/waterfalls_icon.png";
+    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/castle_icon.png";
     document.getElementById("bg3b").title = "Castle";
   } else if (ui == 'smb') {
     document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_smb_icon.png";
     document.getElementById("bg1b").title = "Overworld hills";
     document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/mountains_icon.png";
     document.getElementById("bg2b").title = "Bonus aera";
-    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/castle_icon.png";
+    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/castle_smb_icon.png";
     document.getElementById("bg3b").title = "Bowser Castle";
   } else if (ui == 'smw') {
     document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_icon.png";
