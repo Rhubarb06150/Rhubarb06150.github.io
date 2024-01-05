@@ -179,7 +179,15 @@ function smb() {
   localStorage.setItem('ui', 'smb')
 }
 
+function bg_buttons(){
+  var ui = localStorage.getItem('ui')
+  if (ui == 'smb3' || null){
+    document.getElementById("bg1b").src="url()";
+  }
+}
+
 function bg1() {
+  localStorage.setItem('bg',1)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
@@ -194,13 +202,14 @@ function bg1() {
 }
 
 function bg2() {
+  localStorage.setItem('bg',2)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/forest_smw.png)";
     document.getElementById("top_layer_bg").style.height = "864px";
   } else if (x == 'smb') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
-    document.getElementById("top_layer_bg").style.height = "432px";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/mountains.png)";
+    document.getElementById("top_layer_bg").style.height = "480px";
   } else {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/dungeon.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
@@ -208,13 +217,14 @@ function bg2() {
 }
 
 function bg3() {
+  localStorage.setItem('bg',3)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/ship_smw.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
   } else if (x == 'smb') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
-    document.getElementById("top_layer_bg").style.height = "432px";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle.png)";
+    document.getElementById("top_layer_bg").style.height = "416px";
   } else {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/waterfalls.gif)";
     document.getElementById("top_layer_bg").style.height = "208px";
