@@ -185,6 +185,10 @@ function bg_buttons(){
     document.getElementById("bg1b").src="url(https://mcrhubarb.net/images/bg/bg_icon.png)";
     document.getElementById("bg2b").src="url(https://mcrhubarb.net/images/bg/dungeon_icon.png)";
     document.getElementById("bg3b").src="url(https://mcrhubarb.net/images/bg/waterfalls_icon.png)";
+  } else if (ui == 'smb'){
+    document.getElementById("bg1b").src="url(https://mcrhubarb.net/images/bg/hills_icon.png)";
+    document.getElementById("bg2b").src="url(https://mcrhubarb.net/images/bg/dungeon_icon.png)";
+    document.getElementById("bg3b").src="url(https://mcrhubarb.net/images/bg/waterfalls_icon.png)";
   }
 }
 
