@@ -24,6 +24,11 @@ function smw() {
     box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smw_2.png) 32 repeat";
     box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smw_2.png)"
   });
+  const boxes__ = document.querySelectorAll('.box_orange');
+  boxes__.forEach(box => {
+    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smw_5.png) 32 repeat";
+    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smw_5.png)"
+  });
   localStorage.setItem('ui', 'smw')
 }
 function smb3() {
@@ -52,6 +57,11 @@ function smb3() {
   boxes_.forEach(box => {
     box.style.borderImage = "url(https://mcrhubarb.net/images/box/border_red.png) 32 repeat";
     box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_red.png)"
+  });
+  const boxes__ = document.querySelectorAll('.box_orange');
+  boxes__.forEach(box => {
+    box.style.borderImage = "url(https://mcrhubarb.net/images/box/border_orange.png) 32 repeat";
+    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_orange.png)"
   });
   localStorage.setItem('ui', 'smb3')
 }
@@ -115,6 +125,7 @@ function upload_acc() {
   var username = document.getElementById('username').value;
   if (username.length < 3) {
     document.getElementById("username_alert").style.display = "flex";
+    document.getElementById("pref_up").style.display = "none";
   } else {
     localStorage.setItem('username', username);
     var pfp_img = document.getElementById("pfp_pr").src;
