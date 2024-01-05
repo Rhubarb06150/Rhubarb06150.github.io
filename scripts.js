@@ -200,15 +200,23 @@ function bg_buttons() {
     document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/bg_icon.png";
     document.getElementById("bg1b").title = "Overworld hills";
     document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/dungeon_icon.png";
+    document.getElementById("bg2b").title = "Dungeon";
     document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/waterfalls_icon.png";
+    document.getElementById("bg3b").title = "Waterfalls";
   } else if (ui == 'smb') {
     document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_smb_icon.png";
+    document.getElementById("bg1b").title = "Overworld hills";
     document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/mountains_icon.png";
+    document.getElementById("bg2b").title = "Mountains";
     document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/castle_icon.png";
+    document.getElementById("bg3b").title = "Castle exterior";
   } else if (ui == 'smw') {
     document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_icon.png";
+    document.getElementById("bg1b").title = "Overworld hills";
     document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/forest_icon.png";
+    document.getElementById("bg2b").title = "Forest";
     document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/ship_icon.png";
+    document.getElementById("bg3b").title = "Sunken ghost ship";
   }
 }
 
@@ -239,10 +247,7 @@ function bg1() {
 }
 
 function bg2() {
-<<<<<<< HEAD
-=======
   localStorage.setItem('bg', 2)
->>>>>>> 4376511ecc3461812499042459871b4550c00ea3
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/forest_smw.png)";
@@ -251,10 +256,6 @@ function bg2() {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/mountains.png)";
     document.getElementById("top_layer_bg").style.height = "480px";
   } else {
-<<<<<<< HEAD
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/waterfalls.gif)";
-    document.getElementById("top_layer_bg").style.height = "384px";
-=======
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/dungeon.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
   }
@@ -272,24 +273,90 @@ function bg3() {
   } else {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/waterfalls.gif)";
     document.getElementById("top_layer_bg").style.height = "208px";
->>>>>>> 4376511ecc3461812499042459871b4550c00ea3
   }
 }
 
-function bg2() {
+function bottom_buttons() {
+  var ui = localStorage.getItem('ui')
+  if (ui == 'smb3' || null) {
+    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/bg_icon.png";
+    document.getElementById("bg1b").title = "Overworld hills";
+    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/dungeon_icon.png";
+    document.getElementById("bg2b").title = "Dungeon";
+    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/waterfalls_icon.png";
+    document.getElementById("bg3b").title = "Waterfalls";
+  } else if (ui == 'smb') {
+    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_smb_icon.png";
+    document.getElementById("bg1b").title = "Overworld hills";
+    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/mountains_icon.png";
+    document.getElementById("bg2b").title = "Mountains";
+    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/castle_icon.png";
+    document.getElementById("bg3b").title = "Castle exterior";
+  } else if (ui == 'smw') {
+    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_icon.png";
+    document.getElementById("bg1b").title = "Overworld hills";
+    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/forest_icon.png";
+    document.getElementById("bg2b").title = "Forest";
+    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/ship_icon.png";
+    document.getElementById("bg3b").title = "Sunken ghost ship";
+  }
+}
+
+function bottom_check(){
+  var x = localStorage.getItem('bottom')
+  if (x==1 || x == null){
+    bottom1();
+  } else if (x==2){
+    bottom2();
+  } else{
+    bottom3();
+  }
+}
+
+function bottom1() {
+  localStorage.setItem('bottom', 1)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
-    document.getElementById("top_layer_bg").style.height = "262px";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
+    document.getElementById("footer_bg").style.height = "262px";
   } else if (x == 'smb') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
-    document.getElementById("top_layer_bg").style.height = "432px";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
+    document.getElementById("footer_bg").style.height = "432px";
   } else {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
-    document.getElementById("top_layer_bg").style.height = "300px";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
+    document.getElementById("footer_bg").style.height = "300px";
   }
 }
 
+function bottom2() {
+  localStorage.setItem('bottom', 2)
+  var x = localStorage.getItem('ui')
+  if (x == 'smw') {
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/forest_smw.png)";
+    document.getElementById("footer_bg").style.height = "864px";
+  } else if (x == 'smb') {
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/mountains.png)";
+    document.getElementById("footer_bg").style.height = "480px";
+  } else {
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/dungeon.png)";
+    document.getElementById("footer_bg").style.height = "100%";
+  }
+}
+
+function bottom3() {
+  localStorage.setItem('bottom', 3)
+  var x = localStorage.getItem('ui')
+  if (x == 'smw') {
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/ship_smw.png)";
+    document.getElementById("footer_bg").style.height = "100%";
+  } else if (x == 'smb') {
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle.png)";
+    document.getElementById("footer_bg").style.height = "416px";
+  } else {
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/waterfalls.gif)";
+    document.getElementById("footer_bg").style.height = "208px";
+  }
+}
 
 function ui_start() {
   var x = localStorage.getItem('ui')
