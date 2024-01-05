@@ -194,25 +194,25 @@ function smb() {
 function bg_buttons() {
   var ui = localStorage.getItem('ui')
   if (ui == 'smb3' || null) {
-    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/bg_icon.png";
+    document.getElementById("bg1b").src = "../images/bg/bg_icon.png";
     document.getElementById("bg1b").title = "Overworld hills";
-    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/bonus_icon.png";
-    document.getElementById("bg2b").title = "Bonus Aera";
-    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/castle_icon.png";
+    document.getElementById("bg2b").src = "../images/bg/bonus_icon.png";
+    document.getElementById("bg2b").title = "Cave";
+    document.getElementById("bg3b").src = "../images/bg/castle_icon.png";
     document.getElementById("bg3b").title = "Castle";
   } else if (ui == 'smb') {
-    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_smb_icon.png";
+    document.getElementById("bg1b").src = "../images/bg/hills_smb_icon.png";
     document.getElementById("bg1b").title = "Overworld hills";
-    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/mountains_icon.png";
+    document.getElementById("bg2b").src = "../images/bg/cave_icon.png";
     document.getElementById("bg2b").title = "Bonus aera";
-    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/castle_smb_icon.png";
+    document.getElementById("bg3b").src = "../images/bg/castle_smb_icon.png";
     document.getElementById("bg3b").title = "Bowser Castle";
   } else if (ui == 'smw') {
-    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_icon.png";
+    document.getElementById("bg1b").src = "../images/bg/hills_icon.png";
     document.getElementById("bg1b").title = "Overworld hills";
-    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/forest_icon.png";
+    document.getElementById("bg2b").src = "../images/bg/bonus_smw_icon.png";
     document.getElementById("bg2b").title = "Bonus aera";
-    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/ship_icon.png";
+    document.getElementById("bg3b").src = "../images/bg/castle_smw_icon.png";
     document.getElementById("bg3b").title = "Castle";
   }
 }
