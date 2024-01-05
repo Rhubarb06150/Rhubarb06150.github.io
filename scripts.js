@@ -26,6 +26,16 @@ function smw() {
   });
   const boxes__ = document.querySelectorAll('.box_orange');
   boxes__.forEach(box => {
+    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smw_3.png) 32 repeat";
+    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smw_3.png)"
+  });
+  const boxes___ = document.querySelectorAll('.box_green');
+  boxes___.forEach(box => {
+    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smw_4.png) 32 repeat";
+    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smw_4.png)"
+  });
+  const boxes____ = document.querySelectorAll('.box_white');
+  boxes____.forEach(box => {
     box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smw_5.png) 32 repeat";
     box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smw_5.png)"
   });
@@ -63,6 +73,16 @@ function smb3() {
     box.style.borderImage = "url(https://mcrhubarb.net/images/box/border_orange.png) 32 repeat";
     box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_orange.png)"
   });
+  const boxes___ = document.querySelectorAll('.box_green');
+  boxes___.forEach(box => {
+    box.style.borderImage = "url(https://mcrhubarb.net/images/box/border_green.png) 32 repeat";
+    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_green.png)"
+  });
+  const boxes____ = document.querySelectorAll('.box_white');
+  boxes____.forEach(box => {
+    box.style.borderImage = "url(https://mcrhubarb.net/images/box/border_white.png) 32 repeat";
+    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_white.png)"
+  });
   localStorage.setItem('ui', 'smb3')
 }
 
@@ -83,6 +103,7 @@ function smb() {
   document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb.png)";
   document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smb.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(255,255,255)";
+
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
     box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smb_1.png) 32 repeat";
@@ -93,6 +114,22 @@ function smb() {
     box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smb_2.png) 32 repeat";
     box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smb_2.png)"
   });
+  const boxes__ = document.querySelectorAll('.box_orange');
+  boxes__.forEach(box => {
+    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smb_3.png) 32 repeat";
+    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smb_3.png)"
+  });
+  const boxes___ = document.querySelectorAll('.box_green');
+  boxes___.forEach(box => {
+    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smb_4.png) 32 repeat";
+    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smb_4.png)"
+  });
+  const boxes____ = document.querySelectorAll('.box_white');
+  boxes____.forEach(box => {
+    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smb_5.png) 32 repeat";
+    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smb_5.png)"
+  });
+
   localStorage.setItem('ui', 'smb')
 }
 
