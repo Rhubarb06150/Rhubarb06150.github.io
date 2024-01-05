@@ -62,6 +62,8 @@
                         <option value="day" id="day">Day</option>
                         <option value="night" id="night">Night</option>
                     </select>
+                    <br>
+        <span id="moving_clouds">Moving clouds</span><input type="checkbox" id="clouds_moving_button" onclick="cloud_button();">
                 </h1>
             </div>
         </div>
@@ -77,6 +79,8 @@
 <script>
     language();
     check_dim();
+    clouds_shift();
+    set_clouds();
 </script>
 
 </html>

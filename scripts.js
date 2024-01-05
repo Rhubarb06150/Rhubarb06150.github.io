@@ -169,6 +169,7 @@ function upload_acc() {
     localStorage.setItem('profile_picture', pfp_img)
     document.getElementById("pref_up").style.display = "flex";
     document.getElementById("username_alert").style.display = "none";
+    check_dim();
   }
 }
 
@@ -222,13 +223,13 @@ function check_dim() {
     while ((hei % 32) != 0) {
       hei++;
     }
-    hei = (hei + 32).toString() + "px";
+    hei = (hei + 64).toString() + "px";
     box.style.height = hei;
     var wid = box.clientWidth;
     while ((wid % 32) != 0) {
       wid++;
     }
-    wid = (wid + 32).toString() + "px";
+    wid = (wid + 64).toString() + "px";
     box.style.width = wid;
   });
   const blue_box = document.querySelectorAll("div.box_blue");
@@ -237,13 +238,13 @@ function check_dim() {
     while ((hei % 32) != 0) {
       hei++;
     }
-    hei = (hei + 32).toString() + "px";
+    hei = (hei + 64).toString() + "px";
     box.style.height = hei;
     var wid = box.clientWidth;
     while ((wid % 32) != 0) {
       wid++;
     }
-    wid = (wid + 32).toString() + "px";
+    wid = (wid + 64).toString() + "px";
     box.style.width = wid;
   });
   const orange_box = document.querySelectorAll("div.box_orange");
@@ -252,13 +253,13 @@ function check_dim() {
     while ((hei % 32) != 0) {
       hei++;
     }
-    hei = (hei + 32).toString() + "px";
+    hei = (hei + 64).toString() + "px";
     box.style.height = hei;
     var wid = box.clientWidth;
     while ((wid % 32) != 0) {
       wid++;
     }
-    wid = (wid + 32).toString() + "px";
+    wid = (wid + 64).toString() + "px";
     box.style.width = wid;
   });
   const white_box = document.querySelectorAll("div.box_white");
@@ -267,13 +268,13 @@ function check_dim() {
     while ((hei % 32) != 0) {
       hei++;
     }
-    hei = (hei + 32).toString() + "px";
+    hei = (hei + 64).toString() + "px";
     box.style.height = hei;
     var wid = box.clientWidth;
     while ((wid % 32) != 0) {
       wid++;
     }
-    wid = (wid + 32).toString() + "px";
+    wid = (wid + 64).toString() + "px";
     box.style.width = wid;
   });
   const green_box = document.querySelectorAll("div.box_green");
@@ -282,13 +283,13 @@ function check_dim() {
     while ((hei % 32) != 0) {
       hei++;
     }
-    hei = (hei + 32).toString() + "px";
+    hei = (hei + 64).toString() + "px";
     box.style.height = hei;
     var wid = box.clientWidth;
     while ((wid % 32) != 0) {
       wid++;
     }
-    wid = (wid + 32).toString() + "px";
+    wid = (wid + 64).toString() + "px";
     box.style.width = wid;
   });
 }
@@ -310,12 +311,12 @@ function time_switch() {
     document.body.style.background = "linear-gradient(0deg, rgba(160, 208, 248, 1) 10%, rgba(214, 160, 255, 1) 90%)";
     document.getElementById("clouds_bg").style.opacity = "100%";
   }
-  if (time != null){
+  if (time != null) {
     document.getElementById("time_select").value = time;
   } else {
     document.getElementById("time_select").value = 'day';
   }
-  
+
 }
 
 function language() {
@@ -328,10 +329,10 @@ function language() {
     } catch (error) { }
     try {
       if (document.URL.includes("/profile")) {
-        document.title="Modifier le profil"
+        document.title = "Modifier le profil"
       }
-      if (sPage == '404.html'){
-        document.title="MCRhubarb - Erreur 404"
+      if (sPage == '404.html') {
+        document.title = "MCRhubarb - Erreur 404"
       }
       document.getElementById('profile_settings').textContent = "Modifier le profil";
       document.getElementById('usrname_input').textContent = "Nom d'utilisateur: ";
@@ -344,11 +345,41 @@ function language() {
       document.getElementById('bg_time').textContent = "Temps du fond:";
       document.getElementById('day').innerHTML = "Jour";
       document.getElementById('night').innerHTML = "Nuit";
-    } catch (error) {}
+      document.getElementById('moving_clouds').textContent = "Mouvement des nuages";
+    } catch (error) { }
     try {
       document.getElementById('error404').innerHTML = "Erreur 404";
       document.getElementById('page_404').textContent = "Cette page n'existe pas ou plus :/";
       document.getElementById('back_to_main').textContent = "Retour à l'accueil";
-    } catch (error) {}
+    } catch (error) { }
+  }
+}
+
+function cloud_button(){
+  if (document.getElementById("clouds_moving_button").checked) {
+    localStorage.setItem('moving', 'yes')
+  } else {
+    localStorage.setItem('moving', 'no')
+  }
+  document.getElementById('clouds_bg').style.animationPlayState = "paused";
+  clouds_shift();
+}
+
+function set_clouds(){
+  var moving = localStorage.getItem('moving')
+  if (moving == "yes" || moving == null) {
+    document.getElementById('clouds_moving_button').checked = true;
+  } else {
+    document.getElementById('clouds_moving_button').checked = false;
+  }
+}
+
+function clouds_shift(){
+  var clouds = document.getElementById('clouds_bg')
+  var moving = localStorage.getItem('moving')
+  if (moving == "yes" || moving == null) {
+    document.getElementById('clouds_bg').style.animationPlayState = "running";
+  } else {
+    document.getElementById('clouds_bg').style.animationPlayState = "paused";
   }
 }
