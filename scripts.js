@@ -199,24 +199,24 @@ function bg_buttons() {
   if (ui == 'smb3' || null) {
     document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/bg_icon.png";
     document.getElementById("bg1b").title = "Overworld hills";
-    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/dungeon_icon.png";
-    document.getElementById("bg2b").title = "Dungeon";
+    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/bonus_icon.png";
+    document.getElementById("bg2b").title = "Bonus Aera";
     document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/waterfalls_icon.png";
-    document.getElementById("bg3b").title = "Waterfalls";
+    document.getElementById("bg3b").title = "Castle";
   } else if (ui == 'smb') {
     document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_smb_icon.png";
     document.getElementById("bg1b").title = "Overworld hills";
     document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/mountains_icon.png";
-    document.getElementById("bg2b").title = "Mountains";
+    document.getElementById("bg2b").title = "Bonus aera";
     document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/castle_icon.png";
-    document.getElementById("bg3b").title = "Castle exterior";
+    document.getElementById("bg3b").title = "Bowser Castle";
   } else if (ui == 'smw') {
     document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_icon.png";
     document.getElementById("bg1b").title = "Overworld hills";
     document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/forest_icon.png";
-    document.getElementById("bg2b").title = "Forest";
+    document.getElementById("bg2b").title = "Bonus aera";
     document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/ship_icon.png";
-    document.getElementById("bg3b").title = "Sunken ghost ship";
+    document.getElementById("bg3b").title = "Castle";
   }
 }
 
@@ -237,12 +237,15 @@ function bg1() {
   if (x == 'smw') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
     document.getElementById("top_layer_bg").style.height = "262px";
+    time_set();
   } else if (x == 'smb') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
     document.getElementById("top_layer_bg").style.height = "432px";
+    time_set();
   } else {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
     document.getElementById("top_layer_bg").style.height = "300px";
+    time_set();
   }
 }
 
@@ -252,12 +255,15 @@ function bg2() {
   if (x == 'smw') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/forest_smw.png)";
     document.getElementById("top_layer_bg").style.height = "864px";
+    time_set();
   } else if (x == 'smb') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/mountains.png)";
     document.getElementById("top_layer_bg").style.height = "480px";
+    time_set();
   } else {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/dungeon.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
+    time_set();
   }
 }
 
@@ -267,94 +273,15 @@ function bg3() {
   if (x == 'smw') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/ship_smw.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
+    time_set();
   } else if (x == 'smb') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle.png)";
-    document.getElementById("top_layer_bg").style.height = "416px";
+    document.body.style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb_mid.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb.png)";
+    document.getElementById("top_layer_bg").style.height = "704px";
   } else {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/waterfalls.gif)";
     document.getElementById("top_layer_bg").style.height = "208px";
-  }
-}
-
-function bottom_buttons() {
-  var ui = localStorage.getItem('ui')
-  if (ui == 'smb3' || null) {
-    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/bg_icon.png";
-    document.getElementById("bg1b").title = "Overworld hills";
-    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/dungeon_icon.png";
-    document.getElementById("bg2b").title = "Dungeon";
-    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/waterfalls_icon.png";
-    document.getElementById("bg3b").title = "Waterfalls";
-  } else if (ui == 'smb') {
-    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_smb_icon.png";
-    document.getElementById("bg1b").title = "Overworld hills";
-    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/mountains_icon.png";
-    document.getElementById("bg2b").title = "Mountains";
-    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/castle_icon.png";
-    document.getElementById("bg3b").title = "Castle exterior";
-  } else if (ui == 'smw') {
-    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_icon.png";
-    document.getElementById("bg1b").title = "Overworld hills";
-    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/forest_icon.png";
-    document.getElementById("bg2b").title = "Forest";
-    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/ship_icon.png";
-    document.getElementById("bg3b").title = "Sunken ghost ship";
-  }
-}
-
-function bottom_check(){
-  var x = localStorage.getItem('bottom')
-  if (x==1 || x == null){
-    bottom1();
-  } else if (x==2){
-    bottom2();
-  } else{
-    bottom3();
-  }
-}
-
-function bottom1() {
-  localStorage.setItem('bottom', 1)
-  var x = localStorage.getItem('ui')
-  if (x == 'smw') {
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
-    document.getElementById("footer_bg").style.height = "262px";
-  } else if (x == 'smb') {
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
-    document.getElementById("footer_bg").style.height = "432px";
-  } else {
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
-    document.getElementById("footer_bg").style.height = "300px";
-  }
-}
-
-function bottom2() {
-  localStorage.setItem('bottom', 2)
-  var x = localStorage.getItem('ui')
-  if (x == 'smw') {
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/forest_smw.png)";
-    document.getElementById("footer_bg").style.height = "864px";
-  } else if (x == 'smb') {
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/mountains.png)";
-    document.getElementById("footer_bg").style.height = "480px";
-  } else {
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/dungeon.png)";
-    document.getElementById("footer_bg").style.height = "100%";
-  }
-}
-
-function bottom3() {
-  localStorage.setItem('bottom', 3)
-  var x = localStorage.getItem('ui')
-  if (x == 'smw') {
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/ship_smw.png)";
-    document.getElementById("footer_bg").style.height = "100%";
-  } else if (x == 'smb') {
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle.png)";
-    document.getElementById("footer_bg").style.height = "416px";
-  } else {
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/waterfalls.gif)";
-    document.getElementById("footer_bg").style.height = "208px";
+    time_set();
   }
 }
 
