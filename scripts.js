@@ -55,6 +55,11 @@ function smw() {
     box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smw_5.png)"
   });
   localStorage.setItem('ui', 'smw')
+  try{
+    bg_buttons();
+  }catch(error){}
+  bg_check();
+
 }
 function smb3() {
   document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo.png";
@@ -115,6 +120,11 @@ function smb3() {
     box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_white.png)"
   });
   localStorage.setItem('ui', 'smb3')
+  try{
+    bg_buttons();
+  }catch(error){}
+  bg_check();
+
 }
 
 function smb() {
@@ -149,6 +159,7 @@ function smb() {
     h1.forEach(element => {
       element.style.color = 'white';
     });
+
   }
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
@@ -177,23 +188,43 @@ function smb() {
   });
 
   localStorage.setItem('ui', 'smb')
+  try{
+    bg_buttons();
+  }catch(error){}
+  bg_check();
+
+}
+function bg_buttons() {
+  var ui = localStorage.getItem('ui')
+  if (ui == 'smb3' || null) {
+    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/bg_icon.png";
+    document.getElementById("bg1b").title = "Overworld hills";
+    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/dungeon_icon.png";
+    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/waterfalls_icon.png";
+  } else if (ui == 'smb') {
+    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_smb_icon.png";
+    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/mountains_icon.png";
+    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/castle_icon.png";
+  } else if (ui == 'smw') {
+    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_icon.png";
+    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/forest_icon.png";
+    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/ship_icon.png";
+  }
 }
 
-function bg_buttons(){
-  var ui = localStorage.getItem('ui')
-  if (ui == 'smb3' || null){
-    document.getElementById("bg1b").src="url(https://mcrhubarb.net/images/bg/bg_icon.png)";
-    document.getElementById("bg2b").src="url(https://mcrhubarb.net/images/bg/dungeon_icon.png)";
-    document.getElementById("bg3b").src="url(https://mcrhubarb.net/images/bg/waterfalls_icon.png)";
-  } else if (ui == 'smb'){
-    document.getElementById("bg1b").src="url(https://mcrhubarb.net/images/bg/hills_icon.png)";
-    document.getElementById("bg2b").src="url(https://mcrhubarb.net/images/bg/dungeon_icon.png)";
-    document.getElementById("bg3b").src="url(https://mcrhubarb.net/images/bg/waterfalls_icon.png)";
+function bg_check(){
+  var x = localStorage.getItem('bg')
+  if (x==1 || x == null){
+    bg1();
+  } else if (x==2){
+    bg2();
+  } else{
+    bg3();
   }
 }
 
 function bg1() {
-  localStorage.setItem('bg',1)
+  localStorage.setItem('bg', 1)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
@@ -208,7 +239,7 @@ function bg1() {
 }
 
 function bg2() {
-  localStorage.setItem('bg',2)
+  localStorage.setItem('bg', 2)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/forest_smw.png)";
@@ -223,7 +254,7 @@ function bg2() {
 }
 
 function bg3() {
-  localStorage.setItem('bg',3)
+  localStorage.setItem('bg', 3)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/ship_smw.png)";
@@ -449,7 +480,8 @@ function language() {
       document.getElementById('bg_time').textContent = "Temps du fond:";
       document.getElementById('day').innerHTML = "Jour";
       document.getElementById('night').innerHTML = "Nuit";
-      document.getElementById('moving_clouds').textContent = "Mouvement des nuages";
+      document.getElementById('moving_clouds').textContent = "Mouvement des nuages: ";
+      document.getElementById('background').textContent = "Design du fond:";
     } catch (error) { }
     try {
       document.getElementById('error404').innerHTML = "Erreur 404";
