@@ -262,14 +262,19 @@ function time_switch() {
     document.body.style.background = "linear-gradient(0deg, rgba(160, 208, 248, 1) 10%, rgba(214, 160, 255, 1) 90%)";
     document.getElementById("clouds_bg").style.opacity = "100%";
   }
-  document.getElementById("time_select").value = time;
+  if (time != null){
+    document.getElementById("time_select").value = time;
+  } else {
+    document.getElementById("time_select").value = 'day';
+  }
+  
 }
 
 function language() {
   var sPath = window.location.pathname;
   var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
   var usrlang = navigator.language || navigator.userLanguage;
-  if (usrlang == 'fr-FR') {
+  if (usrlang == 'fr-FR' || 'fr-BE' || 'fr-CA' || 'fr-MC' || 'fr-LU' || 'fr-CH') {
     try {
       document.getElementById('useful_links').textContent = "Liens utiles";
     } catch (error) { }
