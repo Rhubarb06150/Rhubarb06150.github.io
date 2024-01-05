@@ -14,6 +14,15 @@ function smw() {
   document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw.png)";
   document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smw.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(240,240,240)";
+  try{
+    const box = document.getElementById("profile_name")
+    box.addEventListener('mouseover', function handleMouseOver() {
+      box.style.color = 'orange';
+    });
+    box.addEventListener('mouseout', function handleMouseOut() {
+      box.style.color = 'white';
+    });
+  }catch(error){}
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
     box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smw_1.png) 32 repeat";
@@ -58,6 +67,17 @@ function smb3() {
   document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom.png)";
   document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(248,248,248)";
+  try {
+    document.getElementById("profile_name").style.color = "rgb(0,0,0)";
+    const box = document.getElementById("profile_name")
+    box.addEventListener('mouseover', function handleMouseOver() {
+      box.style.color = 'orange';
+    });
+    box.addEventListener('mouseout', function handleMouseOut() {
+      box.style.color = 'black';
+    });
+    }catch (error) { }
+
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
     box.style.borderImage = "url(https://mcrhubarb.net/images/box/border_blue.png) 32 repeat";
@@ -103,6 +123,16 @@ function smb() {
   document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb.png)";
   document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smb.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(255,255,255)";
+  try {
+    document.getElementById("profile_name").style.color = "rgb(255,255,255)";
+    const box = document.getElementById("profile_name")
+    box.addEventListener('mouseover', function handleMouseOver() {
+      box.style.color = 'orange';
+    });
+    box.addEventListener('mouseout', function handleMouseOut() {
+      box.style.color = 'white';
+    });
+  } catch (error) { }
 
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
@@ -355,7 +385,7 @@ function language() {
   }
 }
 
-function cloud_button(){
+function cloud_button() {
   if (document.getElementById("clouds_moving_button").checked) {
     localStorage.setItem('moving', 'yes')
   } else {
@@ -365,7 +395,7 @@ function cloud_button(){
   clouds_shift();
 }
 
-function set_clouds(){
+function set_clouds() {
   var moving = localStorage.getItem('moving')
   if (moving == "yes" || moving == null) {
     document.getElementById('clouds_moving_button').checked = true;
@@ -374,7 +404,7 @@ function set_clouds(){
   }
 }
 
-function clouds_shift(){
+function clouds_shift() {
   var clouds = document.getElementById('clouds_bg')
   var moving = localStorage.getItem('moving')
   if (moving == "yes" || moving == null) {
