@@ -50,7 +50,17 @@
 
                     <br><br><span id="website_style">Website style:</span>
                     <br><br>
-                    <div class="row">
+                    <div class="columns">
+                        <div class="row">
+                            <button class="buttons_style" tabindex="-1" onclick='smb()'><img src="../images/bg/smb.png"
+                                    tilte="Super Mario Bros. (Super Mario All-Stars) design"></button>
+                            <button class="buttons_style" tabindex="-1" onclick='smb3()'><img
+                                    src="../images/bg/smb3.png"
+                                    tilte="Super Mario Bros. 3 (Super Mario All-Stars) design"></button>
+                            <button class="buttons_style" tabindex="-1" onclick='smw()'><img src="../images/bg/smw.png"
+                                    tilte="Super Mario World design"></button>
+                        </div>
+                        <div class="row">
                         <button class="buttons_style" tabindex="-1" onclick='smb()'><img src="../images/bg/smb.png"
                                 tilte="Super Mario Bros. (Super Mario All-Stars) design"></button>
                         <button class="buttons_style" tabindex="-1" onclick='smb3()'><img src="../images/bg/smb3.png"
@@ -63,7 +73,8 @@
                         <option value="night" id="night">Night</option>
                     </select>
                     <br>
-        <span id="moving_clouds">Moving clouds</span><input type="checkbox" id="clouds_moving_button" onclick="cloud_button();">
+                    <span id="moving_clouds">Moving clouds</span><input type="checkbox" id="clouds_moving_button"
+                        onclick="cloud_button();">
                 </h1>
             </div>
         </div>
@@ -73,7 +84,7 @@
         </footer>
     </div>
 </body>
-<div class="hills" id="hills_bg"></div>
+<div class="hills" id="top_layer_bg"></div>
 <div class="sun"></div>
 <div class="clouds" id="clouds_bg"></div>
 <script>

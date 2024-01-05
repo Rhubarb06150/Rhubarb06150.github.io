@@ -7,8 +7,8 @@ function smw() {
     document.getElementById("logo_img").style.height = "66px";
     document.getElementById("logo_img").style.width = "498px";
   }
-  document.getElementById("hills_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
-  document.getElementById("hills_bg").style.height = "262px";
+  document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
+  document.getElementById("top_layer_bg").style.height = "262px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smw.png)";
   document.getElementById("clouds_bg").style.height = "542px";
   document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw.png)";
@@ -65,8 +65,8 @@ function smb3() {
     document.getElementById("logo_img").style.height = "70px";
     document.getElementById("logo_img").style.width = "542px";
   }
-  document.getElementById("hills_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
-  document.getElementById("hills_bg").style.height = "300px";
+  document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
+  document.getElementById("top_layer_bg").style.height = "300px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds.png)";
   document.getElementById("clouds_bg").style.height = "532px";
   document.getElementById("clouds_bg").style.bottom = "100px";
@@ -126,8 +126,8 @@ function smb() {
     document.getElementById("logo_img").style.height = "80px";
     document.getElementById("logo_img").style.width = "418px";
   }
-  document.getElementById("hills_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
-  document.getElementById("hills_bg").style.height = "432px";
+  document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
+  document.getElementById("top_layer_bg").style.height = "432px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smb.png)";
   document.getElementById("clouds_bg").style.height = "478px";
   document.getElementById("clouds_bg").style.bottom = "96px";
@@ -177,6 +177,19 @@ function smb() {
   });
 
   localStorage.setItem('ui', 'smb')
+}
+
+function bg1() {
+  var x = localStorage.getItem('ui')
+  if (x == 'smw') {
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
+    document.getElementById("top_layer_bg").style.height = "432px";
+  } else if (x == 'smb') {
+    smb()
+  } else {
+    smb3()
+  }
+}
 }
 
 function ui_start() {
