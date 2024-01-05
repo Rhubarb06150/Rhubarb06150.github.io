@@ -11,7 +11,6 @@ function smw() {
   document.getElementById("top_layer_bg").style.height = "262px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smw.png)";
   document.getElementById("clouds_bg").style.height = "542px";
-  document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw.png)";
   document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smw.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(240,240,240)";
   try {
@@ -75,7 +74,6 @@ function smb3() {
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds.png)";
   document.getElementById("clouds_bg").style.height = "532px";
   document.getElementById("clouds_bg").style.bottom = "100px";
-  document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom.png)";
   document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(248,248,248)";
   try {
@@ -141,7 +139,6 @@ function smb() {
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smb.png)";
   document.getElementById("clouds_bg").style.height = "478px";
   document.getElementById("clouds_bg").style.bottom = "96px";
-  document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb.png)";
   document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smb.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(255,255,255)";
   try {
@@ -237,14 +234,17 @@ function bg1() {
   if (x == 'smw') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
     document.getElementById("top_layer_bg").style.height = "262px";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw.png)";
     time_set();
   } else if (x == 'smb') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
     document.getElementById("top_layer_bg").style.height = "432px";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb.png)";
     time_set();
   } else {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
     document.getElementById("top_layer_bg").style.height = "300px";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom.png)";
     time_set();
   }
 }
@@ -253,12 +253,14 @@ function bg2() {
   localStorage.setItem('bg', 2)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/forest_smw.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bonus.png)";
     document.getElementById("top_layer_bg").style.height = "864px";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw_2.png)";
     time_set();
   } else if (x == 'smb') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/mountains.png)";
     document.getElementById("top_layer_bg").style.height = "480px";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb_2.png)";
     time_set();
   } else {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/dungeon.png)";
@@ -271,8 +273,9 @@ function bg3() {
   localStorage.setItem('bg', 3)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/ship_smw.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bonus_smb.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb_3.png)";
     time_set();
   } else if (x == 'smb') {
     document.body.style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb_mid.png)";
