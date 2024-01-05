@@ -14,7 +14,7 @@ function smw() {
   document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw.png)";
   document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smw.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(240,240,240)";
-  try{
+  try {
     const box = document.getElementById("profile_name")
     box.addEventListener('mouseover', function handleMouseOver() {
       box.style.color = 'orange';
@@ -22,7 +22,13 @@ function smw() {
     box.addEventListener('mouseout', function handleMouseOut() {
       box.style.color = 'white';
     });
-  }catch(error){}
+  } catch (error) { }
+  if (document.URL.includes("/profile")) {
+    const h1 = document.querySelectorAll('h1');
+    h1.forEach(element => {
+      element.style.color = 'black';
+    });
+  }
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
     box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smw_1.png) 32 repeat";
@@ -76,8 +82,13 @@ function smb3() {
     box.addEventListener('mouseout', function handleMouseOut() {
       box.style.color = 'black';
     });
-    }catch (error) { }
-
+  } catch (error) { }
+  if (document.URL.includes("/profile")) {
+    const h1 = document.querySelectorAll('h1');
+    h1.forEach(element => {
+      element.style.color = 'black';
+    });
+  }
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
     box.style.borderImage = "url(https://mcrhubarb.net/images/box/border_blue.png) 32 repeat";
@@ -133,7 +144,12 @@ function smb() {
       box.style.color = 'white';
     });
   } catch (error) { }
-
+  if (document.URL.includes("/profile")) {
+    const h1 = document.querySelectorAll('h1');
+    h1.forEach(element => {
+      element.style.color = 'white';
+    });
+  }
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
     box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smb_1.png) 32 repeat";
