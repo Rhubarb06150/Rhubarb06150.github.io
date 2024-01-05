@@ -11,7 +11,6 @@ function smw() {
   document.getElementById("top_layer_bg").style.height = "262px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smw.png)";
   document.getElementById("clouds_bg").style.height = "542px";
-  document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw.png)";
   document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smw.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(240,240,240)";
   try {
@@ -75,7 +74,6 @@ function smb3() {
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds.png)";
   document.getElementById("clouds_bg").style.height = "532px";
   document.getElementById("clouds_bg").style.bottom = "100px";
-  document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom.png)";
   document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(248,248,248)";
   try {
@@ -141,7 +139,6 @@ function smb() {
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smb.png)";
   document.getElementById("clouds_bg").style.height = "478px";
   document.getElementById("clouds_bg").style.bottom = "96px";
-  document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb.png)";
   document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smb.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(255,255,255)";
   try {
@@ -197,18 +194,26 @@ function smb() {
 function bg_buttons() {
   var ui = localStorage.getItem('ui')
   if (ui == 'smb3' || null) {
-    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/bg_icon.png";
+    document.getElementById("bg1b").src = "../images/bg/bg_icon.png";
     document.getElementById("bg1b").title = "Overworld hills";
-    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/dungeon_icon.png";
-    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/waterfalls_icon.png";
+    document.getElementById("bg2b").src = "../images/bg/bonus_icon.png";
+    document.getElementById("bg2b").title = "Cave";
+    document.getElementById("bg3b").src = "../images/bg/castle_icon.png";
+    document.getElementById("bg3b").title = "Castle";
   } else if (ui == 'smb') {
-    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_smb_icon.png";
-    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/mountains_icon.png";
-    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/castle_icon.png";
+    document.getElementById("bg1b").src = "../images/bg/hills_smb_icon.png";
+    document.getElementById("bg1b").title = "Overworld hills";
+    document.getElementById("bg2b").src = "../images/bg/cave_icon.png";
+    document.getElementById("bg2b").title = "Bonus aera";
+    document.getElementById("bg3b").src = "../images/bg/castle_smb_icon.png";
+    document.getElementById("bg3b").title = "Bowser Castle";
   } else if (ui == 'smw') {
-    document.getElementById("bg1b").src = "https://mcrhubarb.net/images/bg/hills_icon.png";
-    document.getElementById("bg2b").src = "https://mcrhubarb.net/images/bg/forest_icon.png";
-    document.getElementById("bg3b").src = "https://mcrhubarb.net/images/bg/ship_icon.png";
+    document.getElementById("bg1b").src = "../images/bg/hills_icon.png";
+    document.getElementById("bg1b").title = "Overworld hills";
+    document.getElementById("bg2b").src = "../images/bg/bonus_smw_icon.png";
+    document.getElementById("bg2b").title = "Bonus aera";
+    document.getElementById("bg3b").src = "../images/bg/castle_smw_icon.png";
+    document.getElementById("bg3b").title = "Castle";
   }
 }
 
@@ -229,12 +234,18 @@ function bg1() {
   if (x == 'smw') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
     document.getElementById("top_layer_bg").style.height = "262px";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw.png)";
+    time_set();
   } else if (x == 'smb') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
     document.getElementById("top_layer_bg").style.height = "432px";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb.png)";
+    time_set();
   } else {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
     document.getElementById("top_layer_bg").style.height = "300px";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom.png)";
+    time_set();
   }
 }
 
@@ -242,14 +253,19 @@ function bg2() {
   localStorage.setItem('bg', 2)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/forest_smw.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bonus_smw.png)";
     document.getElementById("top_layer_bg").style.height = "864px";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw_2.png)";
+    time_set();
   } else if (x == 'smb') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/mountains.png)";
-    document.getElementById("top_layer_bg").style.height = "480px";
-  } else {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/dungeon.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/cave.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb_2.png)";
+  } else {
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bonus.png)";
+    document.getElementById("top_layer_bg").style.height = "100%";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_2.png)";
+    time_set();
   }
 }
 
@@ -257,14 +273,20 @@ function bg3() {
   localStorage.setItem('bg', 3)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/ship_smw.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/smw_castle.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw_3.png)";
+    time_set();
   } else if (x == 'smb') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle.png)";
+    document.body.style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb_mid.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb.png)";
     document.getElementById("top_layer_bg").style.height = "416px";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb_3.png)";
   } else {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/waterfalls.gif)";
-    document.getElementById("top_layer_bg").style.height = "208px";
+    document.body.style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb3_mid.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb3.png)";
+    document.getElementById("top_layer_bg").style.height = "704px";
+    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_3.png)";
   }
 }
 

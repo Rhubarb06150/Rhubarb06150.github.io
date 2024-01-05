@@ -7,7 +7,6 @@
         function init() {
             ui_start();
             load_acc();
-            time_switch();
         }
         window.onload = init;
     </script>
@@ -61,12 +60,12 @@
                                     title="Super Mario World design"></button>
                         </div><br><span id="background">Background:</span><br>
                         <div class="row">
-                            <button class="buttons_style" tabindex="-1" onclick='bg1()'><img src="../images/bg/smb.png"
-                                    title="Super Mario Bros. (Super Mario All-Stars) design" id="bg1b"></button>
-                            <button class="buttons_style" tabindex="-1" onclick='bg2()'><img src="../images/bg/smb3.png"
-                                    title="Super Mario Bros. 3 (Super Mario All-Stars) design" id="bg2b"></button>
-                            <button class="buttons_style" tabindex="-1" onclick='bg3()'><img src="../images/bg/smw.png"
-                                    title="Super Mario World design" id="bg3b"></button><br>
+                            <button class="buttons_style" id="bg1b_" tabindex="-1" onclick='bg1()'><img src="../images/bg/smb.png"
+                                    title="" id="bg1b" width="32px"></button>
+                            <button class="buttons_style" id="bg2b_" tabindex="-1" onclick='bg2()'><img src="../images/bg/smb3.png"
+                                    title="" id="bg2b" width="32px"></button>
+                            <button class="buttons_style" id="bg3b_" tabindex="-1" onclick='bg3()'><img src="../images/bg/smw.png"
+                                    title="" id="bg3b" width="32px"></button><br>
                             <br><span id="bg_time">Background time:</span>
                             <select name="time" id="time_select" onchange="time_set()">
                                 <option value="day" id="day">Day</option>
