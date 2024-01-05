@@ -253,17 +253,16 @@ function bg2() {
   localStorage.setItem('bg', 2)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bonus.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bonus_smw.png)";
     document.getElementById("top_layer_bg").style.height = "864px";
     document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw_2.png)";
     time_set();
   } else if (x == 'smb') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/mountains.png)";
-    document.getElementById("top_layer_bg").style.height = "480px";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/cave.png)";
+    document.getElementById("top_layer_bg").style.height = "100%";
     document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb_2.png)";
-    document.body.style.backgroundPosition = "center";
   } else {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/dungeon.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bonus.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
     document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_2.png)";
     time_set();
