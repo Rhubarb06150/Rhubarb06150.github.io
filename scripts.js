@@ -182,7 +182,9 @@ function smb() {
 function bg_buttons(){
   var ui = localStorage.getItem('ui')
   if (ui == 'smb3' || null){
-    document.getElementById("bg1b").src="url()";
+    document.getElementById("bg1b").src="url(https://mcrhubarb.net/images/bg/bg_icon.png)";
+    document.getElementById("bg2b").src="url(https://mcrhubarb.net/images/bg/dungeon_icon.png)";
+    document.getElementById("bg3b").src="url(https://mcrhubarb.net/images/bg/waterfalls_icon.png)";
   }
 }
 
