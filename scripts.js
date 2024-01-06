@@ -3,6 +3,26 @@ function smw() {
   if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
     document.getElementById("logo_img").style.height = "33px";
     document.getElementById("logo_img").style.width = "249px";
+    const boxes = document.querySelectorAll('.box_blue');
+    boxes.forEach(box => {
+      box.style.scale="0.5"
+    });
+    const boxes_ = document.querySelectorAll('.box_red');
+    boxes_.forEach(box => {
+      box.style.scale="0.5"
+    });
+    const boxes__ = document.querySelectorAll('.box_orange');
+    boxes__.forEach(box => {
+      box.style.scale="0.5"
+    });
+    const boxes___ = document.querySelectorAll('.box_green');
+    boxes___.forEach(box => {
+      box.style.scale="0.5"
+    });
+    const boxes____ = document.querySelectorAll('.box_white');
+    boxes____.forEach(box => {
+      box.style.scale="0.5"
+    });
   } else {
     document.getElementById("logo_img").style.height = "66px";
     document.getElementById("logo_img").style.width = "498px";
@@ -22,12 +42,6 @@ function smw() {
       box.style.color = 'white';
     });
   } catch (error) { }
-  if (document.URL.includes("/profile")) {
-    const h1 = document.querySelectorAll('h1');
-    h1.forEach(element => {
-      element.style.color = 'black';
-    });
-  }
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
     box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smw_1.png) 32 repeat";
