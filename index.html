@@ -8,6 +8,7 @@
             ui_start();
             load_acc_index();
             check_dim();
+            language();
             var bg = localStorage.getItem('bg')
             var ui = localStorage.getItem('ui')
             if ((bg != 3)&&(ui==('smb3'||'smb'))){
@@ -46,7 +47,7 @@
     <div class="box_white" id="profile_box">
         <div class="profile_status">
             <a href="https://mcrhubarb.net/profile/">
-                <p id="profile_name"></p>
+                <span id="profile_name"></span>
             </a>
             <p>&nbsp&nbsp&nbsp</p>
             <img src="" width="64px" height="64px" id="pfp_pr_index" alt="Your profile picture">
@@ -62,7 +63,6 @@
 <div class="sun"></div>
 <div class="clouds" id="clouds_bg"></div>
 <script>
-    language();
     clouds_shift();
     set_clouds();
 </script>

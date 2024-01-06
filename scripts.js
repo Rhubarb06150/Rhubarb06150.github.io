@@ -347,9 +347,13 @@ function load_acc_index() {
   var username = localStorage.getItem('username')
   var pfp = localStorage.getItem('profile_picture')
   if (username == null) {
-    document.getElementById('profile_name').innerHTML = 'No profile';
+    if (usrlang == 'fr-FR' || 'fr-LU' || 'fr-MC' || 'fr-BE' || 'fr-CA') {
+      document.getElementById('profile_name').textContent = 'Pas de profil';
+    } else {
+      document.getElementById('profile_name').textContent = 'No profile';
+    }
   } else {
-    document.getElementById('profile_name').innerHTML = username;
+    document.getElementById('profile_name').textContent = username;
   }
   if (pfp == null) {
     document.getElementById("pfp_pr_index").src = 'images/head/default.png';
@@ -459,21 +463,27 @@ function time_set() {
 }
 function time_switch() {
   var time = localStorage.getItem('time')
-  if (time == 'night') {
-    document.body.style.backgroundImage = "url(https://mcrhubarb.net/images/bg/stars.gif)";
-    document.getElementById("clouds_bg").style.opacity = "50%";
+  var bg = localStorage.getItem('bg')
+  var ui = localStorage.getItem('ui')
+  if ((bg == 3) && (ui == 'smb' || 'smb3') && (ui != 'smw')) {
+    o = o
   } else {
-    document.body.style.backgroundImage = "none";
-    document.body.style.background = "linear-gradient(0deg, rgba(160, 208, 248, 1) 10%, rgba(214, 160, 255, 1) 90%)";
-    document.getElementById("clouds_bg").style.opacity = "100%";
-  }
-  try {
-    if (time != null) {
-      document.getElementById("time_select").value = time;
+    if (time == 'night') {
+      document.body.style.backgroundImage = "url(https://mcrhubarb.net/images/bg/stars.gif)";
+      document.getElementById("clouds_bg").style.opacity = "50%";
     } else {
-      document.getElementById("time_select").value = 'day';
+      document.body.style.backgroundImage = "none";
+      document.body.style.background = "linear-gradient(0deg, rgba(160, 208, 248, 1) 10%, rgba(214, 160, 255, 1) 90%)";
+      document.getElementById("clouds_bg").style.opacity = "100%";
     }
-  } catch (error) { }
+    try {
+      if (time != null) {
+        document.getElementById("time_select").value = time;
+      } else {
+        document.getElementById("time_select").value = 'day';
+      }
+    } catch (error) { }
+  }
 
 }
 
@@ -481,9 +491,13 @@ function language() {
   var sPath = window.location.pathname;
   var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
   var usrlang = navigator.language || navigator.userLanguage;
+  var usr = localStorage.getItem('username')
   if (usrlang == 'fr-FR' || 'fr-BE' || 'fr-CA' || 'fr-MC' || 'fr-LU' || 'fr-CH') {
     try {
       document.getElementById('useful_links').textContent = "Liens utiles";
+      if (usr == null) {
+        document.getElementById('profil_name').textContent = "Pas de profil";
+      }
     } catch (error) { }
     try {
       if (document.URL.includes("/profile")) {
