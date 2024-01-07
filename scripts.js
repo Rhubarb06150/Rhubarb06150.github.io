@@ -5,23 +5,23 @@ function smw() {
     document.getElementById("logo_img").style.width = "249px";
     const boxes = document.querySelectorAll('.box_blue');
     boxes.forEach(box => {
-      box.style.scale="0.5"
+      box.style.scale = "0.5"
     });
     const boxes_ = document.querySelectorAll('.box_red');
     boxes_.forEach(box => {
-      box.style.scale="0.5"
+      box.style.scale = "0.5"
     });
     const boxes__ = document.querySelectorAll('.box_orange');
     boxes__.forEach(box => {
-      box.style.scale="0.5"
+      box.style.scale = "0.5"
     });
     const boxes___ = document.querySelectorAll('.box_green');
     boxes___.forEach(box => {
-      box.style.scale="0.5"
+      box.style.scale = "0.5"
     });
     const boxes____ = document.querySelectorAll('.box_white');
     boxes____.forEach(box => {
-      box.style.scale="0.5"
+      box.style.scale = "0.5"
     });
   } else {
     document.getElementById("logo_img").style.height = "66px";
@@ -335,12 +335,15 @@ function upload_acc() {
   if (username.length < 3) {
     document.getElementById("username_alert").style.display = "flex";
     document.getElementById("pref_up").style.display = "none";
+    document.getElementById('profile_box').style.height = '576px';
   } else {
     localStorage.setItem('username', username);
     var pfp_img = document.getElementById("pfp_pr").src;
     localStorage.setItem('profile_picture', pfp_img)
     document.getElementById("pref_up").style.display = "flex";
     document.getElementById("username_alert").style.display = "none";
+    var hei = document.getElementById('profile_box').clientHeight;
+    document.getElementById('profile_box').style.height = '640px';
     check_dim();
   }
 }
@@ -570,5 +573,21 @@ function clouds_shift() {
     document.getElementById('clouds_bg').style.animationPlayState = "running";
   } else {
     document.getElementById('clouds_bg').style.animationPlayState = "paused";
+  }
+}
+
+function phone() {
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    const elm = document.querySelectorAll('*');
+    elm.forEach(element => {
+      element.style.display = "none";
+    });
+    const para = document.createElement("p");
+    para.innerText = "This is a paragraph";
+    document.body.appendChild(para);
+  } else {
+    console.log('Not on phone');
+    var msg = document.createElement('span');
+    msg.innerHTML = "oui";
   }
 }

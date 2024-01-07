@@ -7,6 +7,12 @@
         function init() {
             ui_start();
             load_acc();
+            phone();
+            var bg = localStorage.getItem('bg')
+            var ui = localStorage.getItem('ui')
+            if ((bg != 3) && (ui == ('smb3' || 'smb'))) {
+                time_switch();
+            }
         }
         window.onload = init;
     </script>
@@ -25,7 +31,7 @@
         </div>
     </div>
     <center>
-        <div class="box_orange">
+        <div class="box_orange" id="profile_box">
             <div class="columns">
                 <h1>
                     <span id="profile_settings">Profile settings</span><br><br>
@@ -60,17 +66,17 @@
                                     title="Super Mario World design"></button>
                         </div><br><span id="background">Background:</span><br>
                         <div class="row">
-                            <button class="buttons_style" id="bg1b_" tabindex="-1" onclick='bg1()'><img src="../images/bg/smb.png"
-                                    title="" id="bg1b" width="32px"></button>
-                            <button class="buttons_style" id="bg2b_" tabindex="-1" onclick='bg2()'><img src="../images/bg/smb3.png"
-                                    title="" id="bg2b" width="32px"></button>
-                            <button class="buttons_style" id="bg3b_" tabindex="-1" onclick='bg3()'><img src="../images/bg/smw.png"
-                                    title="" id="bg3b" width="32px"></button><br>
+                            <button class="buttons_style" id="bg1b_" tabindex="-1" onclick='bg1()'><img
+                                    src="../images/bg/smb.png" title="" id="bg1b" width="32px"></button>
+                            <button class="buttons_style" id="bg2b_" tabindex="-1" onclick='bg2()'><img
+                                    src="../images/bg/smb3.png" title="" id="bg2b" width="32px"></button>
+                            <button class="buttons_style" id="bg3b_" tabindex="-1" onclick='bg3()'><img
+                                    src="../images/bg/smw.png" title="" id="bg3b" width="32px"></button><br>
                             <br><span id="bg_time">Background time:</span>
                             <select name="time" id="time_select" onchange="time_set()">
                                 <option value="day" id="day">Day</option>
                                 <option value="night" id="night">Night</option>
-                            </select>   
+                            </select>
                             <br><br>
                             <span id="moving_clouds">Moving clouds: </span><input type="checkbox"
                                 id="clouds_moving_button" onclick="cloud_button();">
@@ -94,6 +100,7 @@
     set_clouds();
     bg_buttons();
     bg_check();
+    phone();
 </script>
 
 </html>
