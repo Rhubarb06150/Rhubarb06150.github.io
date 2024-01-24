@@ -8,11 +8,12 @@
             ui_start();
             load_acc();
             phone();
-            time_set();
+            time_switch();
             var bg = localStorage.getItem('bg')
             var ui = localStorage.getItem('ui')
             if ((bg != 3) && (ui == ('smb3' || 'smb'))) {
                 time_switch();
+                console.log('ok')
             }
         }
         window.onload = init;
@@ -101,7 +102,6 @@
     set_clouds();
     bg_buttons();
     bg_check();
-    time_swtch();
     phone();
 </script>
 </html>

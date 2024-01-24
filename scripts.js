@@ -229,7 +229,6 @@ function bg_buttons() {
 }
 
 function bg_check() {
-  time_set();
   var x = localStorage.getItem('bg')
   if (x == 1 || x == null) {
     bg1();
@@ -474,6 +473,7 @@ function check_dim() {
 }
 
 function time_set() {
+  console.log('time_set')
   try {
     var select = document.getElementById("time_select");
     var time = select.value;
@@ -483,6 +483,7 @@ function time_set() {
   } catch (error) { }
 }
 function time_switch() {
+  console.log('time_switch')
   var time = localStorage.getItem('time')
   var bg = localStorage.getItem('bg')
   var ui = localStorage.getItem('ui')
@@ -590,7 +591,6 @@ function phone() {
     para.innerText = "This is a paragraph";
     document.body.appendChild(para);
   } else {
-    console.log('Not on phone');
     var msg = document.createElement('span');
     msg.innerHTML = "oui";
   }
