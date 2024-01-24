@@ -229,6 +229,7 @@ function bg_buttons() {
 }
 
 function bg_check() {
+  time_set();
   var x = localStorage.getItem('bg')
   if (x == 1 || x == null) {
     bg1();
