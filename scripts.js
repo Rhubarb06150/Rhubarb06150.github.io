@@ -156,8 +156,7 @@ function smb() {
   document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smb.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(255,255,255)";
   try {
-    document.getElementById("profile_name").style.color = "rgb(255,255,255)";
-    const box = document.getElementById("profile_name")
+    const box = document.getElementById("#profile_name,#softwares")
     box.addEventListener('mouseover', function handleMouseOver() {
       box.style.color = 'orange';
     });
@@ -165,13 +164,11 @@ function smb() {
       box.style.color = 'white';
     });
   } catch (error) { }
-  if (document.URL.includes("/profile")) {
-    const h1 = document.querySelectorAll('h1');
-    h1.forEach(element => {
-      element.style.color = 'white';
-    });
+  const h1 = document.querySelectorAll('h1');
+  h1.forEach(element => {
+    element.style.color = 'white';
+  });
 
-  }
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
     box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smb_1.png) 32 repeat";
@@ -357,6 +354,12 @@ function load_acc() {
   } else {
     document.getElementById("pfp_pr").src = pfp;
   }
+}
+
+function mc_head(){
+  const input = document.getElementById("mcname");
+  const inputValue = input.value;
+  open('https://render.skinmc.net/3d.php?user='+inputValue+'&vr=-10&hr0&hrh=25&aa=true&headOnly=true&ratio=10')
 }
 
 function load_acc_index() {
