@@ -246,17 +246,17 @@ function bg1() {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
     document.getElementById("top_layer_bg").style.height = "262px";
     document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw.png)";
-    time_set();
+    time_switch();
   } else if (x == 'smb') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
     document.getElementById("top_layer_bg").style.height = "432px";
     document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb.png)";
-    time_set();
+    time_switch();
   } else {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
     document.getElementById("top_layer_bg").style.height = "300px";
     document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom.png)";
-    time_set();
+    time_switch();
   }
 }
 
@@ -267,7 +267,7 @@ function bg2() {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bonus_smw.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
     document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw_2.png)";
-    time_set();
+    time_switch();
   } else if (x == 'smb') {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/cave.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
@@ -276,7 +276,7 @@ function bg2() {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bonus.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
     document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_2.png)";
-    time_set();
+    time_switch();
   }
 }
 
@@ -287,7 +287,7 @@ function bg3() {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/smw_castle.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
     document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw_3.png)";
-    time_set();
+    time_switch();  
   } else if (x == 'smb') {
     document.body.style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb_mid.png)";
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb.png)";
