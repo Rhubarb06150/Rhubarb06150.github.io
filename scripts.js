@@ -1,47 +1,13 @@
 function smw() {
   document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw.png";
-  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    document.getElementById("logo_img").style.height = "33px";
-    document.getElementById("logo_img").style.width = "249px";
-    const boxes = document.querySelectorAll('.box_blue');
-    boxes.forEach(box => {
-      box.style.scale = "0.5"
-    });
-    const boxes_ = document.querySelectorAll('.box_red');
-    boxes_.forEach(box => {
-      box.style.scale = "0.5"
-    });
-    const boxes__ = document.querySelectorAll('.box_orange');
-    boxes__.forEach(box => {
-      box.style.scale = "0.5"
-    });
-    const boxes___ = document.querySelectorAll('.box_green');
-    boxes___.forEach(box => {
-      box.style.scale = "0.5"
-    });
-    const boxes____ = document.querySelectorAll('.box_white');
-    boxes____.forEach(box => {
-      box.style.scale = "0.5"
-    });
-  } else {
-    document.getElementById("logo_img").style.height = "66px";
-    document.getElementById("logo_img").style.width = "498px";
-  }
+  document.getElementById("logo_img").style.height = "66px";
+  document.getElementById("logo_img").style.width = "498px";
   document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
   document.getElementById("top_layer_bg").style.height = "262px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smw.png)";
   document.getElementById("clouds_bg").style.height = "542px";
   document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smw.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(240,240,240)";
-  try {
-    const box = document.getElementById("profile_name")
-    box.addEventListener('mouseover', function handleMouseOver() {
-      box.style.color = 'orange';
-    });
-    box.addEventListener('mouseout', function handleMouseOut() {
-      box.style.color = 'white';
-    });
-  } catch (error) { }
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
     box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smw_1.png) 32 repeat";
@@ -76,13 +42,8 @@ function smw() {
 }
 function smb3() {
   document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo.png";
-  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    document.getElementById("logo_img").style.height = "35px";
-    document.getElementById("logo_img").style.width = "271px";
-  } else {
-    document.getElementById("logo_img").style.height = "70px";
-    document.getElementById("logo_img").style.width = "542px";
-  }
+  document.getElementById("logo_img").style.height = "70px";
+  document.getElementById("logo_img").style.width = "542px";
   document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
   document.getElementById("top_layer_bg").style.height = "300px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds.png)";
@@ -90,21 +51,8 @@ function smb3() {
   document.getElementById("clouds_bg").style.bottom = "100px";
   document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(248,248,248)";
-  try {
-    document.getElementById("profile_name").style.color = "rgb(0,0,0)";
-    const box = document.getElementById("profile_name")
-    box.addEventListener('mouseover', function handleMouseOver() {
-      box.style.color = 'orange';
-    });
-    box.addEventListener('mouseout', function handleMouseOut() {
-      box.style.color = 'black';
-    });
-  } catch (error) { }
   if (document.URL.includes("/profile")) {
     const h1 = document.querySelectorAll('h1');
-    h1.forEach(element => {
-      element.style.color = 'black';
-    });
   }
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
@@ -141,13 +89,8 @@ function smb3() {
 
 function smb() {
   document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb.png";
-  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    document.getElementById("logo_img").style.height = "40px";
-    document.getElementById("logo_img").style.width = "209px";
-  } else {
-    document.getElementById("logo_img").style.height = "80px";
-    document.getElementById("logo_img").style.width = "418px";
-  }
+  document.getElementById("logo_img").style.height = "80px";
+  document.getElementById("logo_img").style.width = "418px";
   document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
   document.getElementById("top_layer_bg").style.height = "432px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smb.png)";
@@ -160,14 +103,8 @@ function smb() {
     box.addEventListener('mouseover', function handleMouseOver() {
       box.style.color = 'orange';
     });
-    box.addEventListener('mouseout', function handleMouseOut() {
-      box.style.color = 'white';
-    });
   } catch (error) { }
   const h1 = document.querySelectorAll('h1');
-  h1.forEach(element => {
-    element.style.color = 'white';
-  });
 
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
@@ -578,20 +515,5 @@ function clouds_shift() {
     document.getElementById('clouds_bg').style.animationPlayState = "running";
   } else {
     document.getElementById('clouds_bg').style.animationPlayState = "paused";
-  }
-}
-
-function phone() {
-  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-    const elm = document.querySelectorAll('*');
-    elm.forEach(element => {
-      element.style.display = "none";
-    });
-    const para = document.createElement("p");
-    para.innerText = "This is a paragraph";
-    document.body.appendChild(para);
-  } else {
-    var msg = document.createElement('span');
-    msg.innerHTML = "oui";
   }
 }
