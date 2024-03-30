@@ -39,8 +39,8 @@ function smw() {
   } catch (error) { }
   bg_check();
   try{
-  document.getElementById('mario').src='url(https://mcrhubarb.net/images/obj/mariosmw.png)'
-  document.getElementById('luigi').src='url(https://mcrhubarb.net/images/obj/luigismw.png)'
+  document.getElementById('mario').src='https://mcrhubarb.net/images/obj/mariosmw.png'
+  document.getElementById('luigi').src='https://mcrhubarb.net/images/obj/luigismw.png'
   }catch (error){};
 
 }
@@ -89,8 +89,8 @@ function smb3() {
   } catch (error) { }
   bg_check();
   try{
-  document.getElementById('mario').src='url(https://mcrhubarb.net/images/obj/mariosmb3.png)'
-  document.getElementById('luigi').src='url(https://mcrhubarb.net/images/obj/luigismb3.png)'
+  document.getElementById('mario').src='https://mcrhubarb.net/images/obj/mariosmb3.png'
+  document.getElementById('luigi').src='https://mcrhubarb.net/images/obj/luigismb3.png'
   }catch (error){};
 }
 
@@ -145,8 +145,8 @@ function smb() {
   } catch (error) { }
   bg_check();
   try{
-  document.getElementById("mario").src="url(https://mcrhubarb.net/images/obj/mariosmb1.png)"
-  document.getElementById("luigi").src="url(https://mcrhubarb.net/images/obj/luigismb1.png)"
+  document.getElementById("mario").src="https://mcrhubarb.net/images/obj/mariosmb1.png"
+  document.getElementById("luigi").src="https://mcrhubarb.net/images/obj/luigismb1.png"
   }catch (error){};
 }
 function bg_buttons() {
@@ -423,7 +423,6 @@ function check_dim() {
 }
 
 function time_set() {
-  console.log('time_set')
   try {
     var select = document.getElementById("time_select");
     var time = select.value;
@@ -433,12 +432,11 @@ function time_set() {
   } catch (error) { }
 }
 function time_switch() {
-  console.log('time_switch')
   var time = localStorage.getItem('time')
   var bg = localStorage.getItem('bg')
   var ui = localStorage.getItem('ui')
   if ((bg == 3) && (ui == 'smb' || 'smb3') && (ui != 'smw')) {
-    o = o
+    //pass
   } else {
     if (time == 'night') {
       document.body.style.backgroundImage = "url(https://mcrhubarb.net/images/bg/stars.gif)";

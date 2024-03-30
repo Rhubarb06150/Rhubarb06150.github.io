@@ -337,6 +337,7 @@ a:link{
   text-decoration: none;
   color: rgb(255,255,150);
   z-index: 1;
+  color:rgb(255, 174, 0);
 }
 
 a:visited{
