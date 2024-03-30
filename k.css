@@ -348,3 +348,22 @@ a:hover{
   color:rgb(229, 255, 0);
   text-decoration: underline;
 }
+
+.softwares_box{
+  width: max-content;
+  margin: 0px;
+  padding: 0px;
+}
+
+.class_mario_luigi{
+  display:flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0px;
+  padding: 0px;
+}
+.no_margin{
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+}

@@ -38,6 +38,10 @@ function smw() {
     bg_buttons();
   } catch (error) { }
   bg_check();
+  try{
+  document.getElementById('mario').src='url(https://mcrhubarb.net/images/obj/mariosmw.png)'
+  document.getElementById('luigi').src='url(https://mcrhubarb.net/images/obj/luigismw.png)'
+  }catch (error){};
 
 }
 function smb3() {
@@ -84,7 +88,10 @@ function smb3() {
     bg_buttons();
   } catch (error) { }
   bg_check();
-
+  try{
+  document.getElementById('mario').src='url(https://mcrhubarb.net/images/obj/mariosmb3.png)'
+  document.getElementById('luigi').src='url(https://mcrhubarb.net/images/obj/luigismb3.png)'
+  }catch (error){};
 }
 
 function smb() {
@@ -137,7 +144,10 @@ function smb() {
     bg_buttons();
   } catch (error) { }
   bg_check();
-
+  try{
+  document.getElementById("mario").src="url(https://mcrhubarb.net/images/obj/mariosmb1.png)"
+  document.getElementById("luigi").src="url(https://mcrhubarb.net/images/obj/luigismb1.png)"
+  }catch (error){};
 }
 function bg_buttons() {
   var ui = localStorage.getItem('ui')
@@ -248,6 +258,9 @@ function ui_start() {
   } else {
     smb3()
   }
+  try{
+    document.getElementById("softwares_box").style.margin=0;
+  } catch (error) {};
 }
 
 function getBase64Image(img) {
