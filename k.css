@@ -204,7 +204,6 @@ footer {
 .rows {
   display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: row ;
 }
 
@@ -337,7 +336,6 @@ a:link{
   text-decoration: none;
   color: rgb(255,255,150);
   z-index: 1;
-  color:rgb(255, 174, 0);
 }
 
 a:visited{
