@@ -150,6 +150,7 @@ h2 {
 }
 
 .top {
+  width: 100%;
   border-bottom: 32px solid transparent;
   background-clip: content-box;
   image-rendering: pixelated;
