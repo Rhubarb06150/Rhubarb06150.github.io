@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="../../../scripts.js"></script>
+    <script type="text/javascript">
+        function init() {
+            ui_start();
+            load_acc();
+            time_switch();
+            var bg = localStorage.getItem('bg')
+            var ui = localStorage.getItem('ui')
+            if ((bg != 3) && (ui == ('smb3' || 'smb'))) {
+                time_switch();
+                console.log('ok')
+            }
+        }
+        window.onload = init;
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tileset Editor Documentation</title>
+    <link href="../../../k.css" rel="stylesheet">
+    <link href="../../../images/head/icon.png" rel="icon">
+</head>
+
+<body>
+    <div class="top" id="top_id">
+        <div class="logo">
+            <center><a href="../../../"><img src="" alt="Website's logo" id="logo_img" width="498"
+                        title="that's the logo :o"></a></center>
+        </div>
+    </div>
+
+    <center>
+        <div class="softwares_box">
+            <div class="class_mario_luigi">
+                <img alt='mario' width="32" height="64" class="no_margin" id="mario">
+                <img alt='luigi' width="32" height="64" class="no_margin" id="luigi">
+            </div>
+            <div class="box_orange" id="softwares_box">
+                <h2>
+                    Tileset Editor Documentation</h2><br>
+                How it works?<br><br>
+                Tileset isopen source and made with Python 3, it uses Tkinter as framework, <br>and PIL and opencv for
+                image
+                manipulating<br><br>
+                What are features?<br><br>
+                With Tileset Editor, you can compile multiples images in one spritesheet, rip an entire tileset,<br>
+                or event some parts of it with a lot of precision.
+                <br><br>Jump to:<br><br>
+                <a href="#tiles_compiling">Tiles compiling</a>
+                <a href="#tileset_ripping">Tileset Ripping</a>
+                <a href="#tc_options">Options for tileset compiling</a>
+                <a href="#tr_options">Options for tileset ripping</a>
+                <a href="#changelog">Changelog</a>
+                <br>
+
+                <span id="tiles_compiling">__________ Tiles compiling __________</span><br><br>
+                When you are in Tileset Editor, you can choose multiple tiles to compile in one tileset/spritesheet,<br>
+                (call it whatever you want), so to do then, click the "Upload images" buttons in the upper <br>part of
+                the window as below:<br><br>
+                <center>
+                    <img alt='Fig 1 (how the software looks like)' src="figs/fig1.png" width="514" height="512"><br><br>
+                    Here are below the sprites I want to compile, it's an animation made on blender<br>
+                    that tries to recreate pre rendered graphics like in Donkey Kong Country.<br><br>
+                    <img alt='Fig 2 (the sprites I want to compile)' src="figs/fig2.png" width="104" height="220">
+                </center><br><br>
+                <div>
+                    Now they're loaded in the software, select the options and the name you want, you can reffer to the
+                    <a href="#tc_options">options</a><br>
+                </div>
+                for see what option stands for. Now I selected my options I just click on "Create spritesheet"
+                button<br>
+                and there, if you have no error message, it means you done everything correctly and than your
+                tileset<br>
+                has been generated without errors. You can go see it by pressing "Open output folder button" or just
+                by<br>
+                going in the output folder that you choosen by yourself.<br><br>
+                So here is the result:<br><br>
+                <center>
+                    <img alt="Fig 3 (result of the spritesheet creation)" src="figs/fig3.png" width="64" height="384/">
+                </center>
+                <br><br>
+
+                <span id="tc_options">__________ Options for tileset compiling __________</span><br><br>
+                <center>
+                    <img src="figs/fig4.png" alt="Fig 4 (upscale combobox)" width="94" height="30">
+                    Upscale: basically, if you select x2, the resolution of the output will be 2 times bigger,<br>and
+                    that's the same thing for all other sizes
+                </center>
+                <br>
+                <center>
+                    <img src="figs/fig5.png" alt="Fig 5 (vertical direction)" width="77" height="21">
+                    <img src="figs/fig6.png" alt="Fig 6 (horizontal direction)" width="77" height="21">
+                    Direction: If you want your sprites compiled vertically of horizontally<br><br>
+                    Vertical:
+                    <img alt="Fig 11 (vertical render)" src="figs/fig11.png" width="32" height="192">
+                    Horizontal:
+                    <img alt="Fig 12 (horizontal render)" src="figs/fig12.png" width="192" height="32"><br>
+                </center>
+                <br>
+                <center>
+                    <img src="figs/fig7.png" alt="Fig 7 (smb3 style option)" width="86" height="25">
+                    SMB3 Style: if enabled, it will compile the spritesheet in two parts, an normal part, <br>
+                    and an horizontally reversed part (used in SMBX for NPCs that looks both sides)<br><br>Example:
+                    <div>
+                        SMB3 style isn't enabled:
+                        <img alt="Fig 8 (smbx3 isn't enabled)" src="figs/fig8.png" width="32" height="192">
+                        SMB3 style is enabled:
+                        <img alt="Fig 9 (smbx3 is enabled)" src="figs/fig9.png" width="32" height="384">
+                    </div>
+                </center>
+                <br>
+                <center>
+                    <img src="figs/fig10.png" alt="Fig 10 (transparent background option)" width="157" height="25">
+                    Transparent background: render the tileset with a transparent background <br>
+                    (it only works if the tiles already have a transparent background!)<br><br>Example:
+                    <img alt="Fig 13 (transparent background tileset)" src="figs/fig13.png" width="192" height="32"><br>
+                </center>
+                <br>
+                <center>
+                    <img src="figs/fig14.png" alt="Fig 14 (background color option)" width="103" height="24">
+                    Background color: render the tileset with a choosen color background<br><br>Example:
+                    <img alt="Fig 15 (red background tileset)" src="figs/fig15.png" width="192" height="32"><br>
+                </center>
+                <br><br>
+
+                <span id="tileset_ripping">__________ Tileset Ripping __________</span><br><br>
+
+                Tileset editor most important part is the tileset ripping, which consists in ripping all tiles in a
+                tileset<br>
+                with a lot of precision thanks to a lot of customisation in the auto ripping.<br><br>
+                Let me show you an example:<br><br>
+                <div>
+                    Below, I have a Super Mario World tileset created by
+                    <a href="https://mfgg.net/index.php?act=user&param=01&uid=112">supernesfreak</a>, that you can
+                    download
+                    <a href="https://mfgg.net/index.php?act=resdb&param=02&c=1&id=4226">here</a>.
+                </div>
+                <br>
+                <center>
+                    <img src="figs/fig16.png" alt="Fig 16 (Super Mario World tileset)" width="354" height="405">
+                </center><br>
+                Now we downloaded this tileset, load it in the software by clicking the "Upload image" button in the<br>
+                lower part of the window. <br><br>(You can choose an output folder by clicking the "Choose output folder" button at top right)
+                <br><br>
+                Now it's done, make sure to enable the "Tile preview" option, so you can edit the tiles size
+                correctly,<br>
+                in my case, the tiles are 16x16 so in the "X & Y" cases, I put 16 and 16.
+                <br><br>
+                As you can see above, each tiles are separed by 1 pixel, so I put 1 in "Tile offset"<br><br>
+                So now, it looks like this:<br><br>
+                <center>
+                    <img src="figs/fig19.png" alt="Fig 19 (how the software looks like)" width="514" height="194">
+                </center><br><br>
+                By modifying the X and the Y value above the tile, I can verify if the offset is set correctly.<br><br>
+                Now I want to remove the dark blue background of tiles so I just click on the "Background remove"
+                button,<br>
+                and it opens me this window:<br><br>
+                <center>
+                    <img src="figs/fig20.png" alt="Fig 20 (color picker window)" width="514" height="288">
+                </center><br><br>
+                Now with my cursor, I pick the color I want to remove and once I selected it, it should appear in
+                the<br>
+                "Color picked" case, if it's the good color, press the "Add color" button and it will add it to the
+                colors list.<br>
+                If you want to zoom, just press the "+" or the "-" button for select colors with
+                precision.<br><br>(Note: you can't add more than 5 colors!)
+                <br>Now I picked my colors it should looks like this:<br><br>
+                <center>
+                    <img src="figs/fig21.png" alt="Fig 21 (color picker window after I picked the color)" width="514"
+                        height="288">
+                </center><br><br>
+                If I'm satisfied with this, I can quit this window, select the name I want for my tiles next to the<br>
+                "Tiles name" options (if it's left empty all tiles will be named tile-(the number of the tile))<br>
+                and press the "Rip in separed tiles" button. During the auto ripping process, the empty tiles<br>
+                will automatically be deleted so your output folder isn't full of transparent tiles.<br><br>
+                If no error has occured, a pop-up like this one below should open:<br><br>
+                <center>
+                    <img src="figs/fig22.png" alt="Fig 22 (succes pop-up)" width="265" height="152">
+                </center><br><br>
+                (Note: every 200 tiles, you get a pop-up that asks you if you want to continue ripping, for prevent
+                flood.)<br><br>
+                Now let's open the output folder and look at our tiles.<br><br>
+                <center>
+                    <img src="figs/fig23.png" alt="Fig 23 (output folder)" width="742" height="560">
+                </center><br><br>
+                As you can see, all tiles were correctly ripped and the dark blue background has been removed.
+                <br><br><br>
+
+                <span id="tr_options">__________ Options for tileset ripping __________</span><br><br>
+                <center>
+                    <img src="figs/fig24.png" width="95" height="23" alt="Fig 24 (tile size options)">
+                    X & Y: Is for defines tile size.
+                </center><br>
+                <center>
+                    <img src="figs/fig25.png" width="94" height="22" alt="Fig 25 (tile offset option)">
+                    Tile offset: space betwen tiles.
+                </center><br>
+                <center>
+                    <div class="rows">
+                        <div>
+                            <img src="figs/fig26.png" width="116" height="48" alt="Fig 26 (begin offsets)">
+                        </div>
+                        <div>
+                            Begin offset x: space between the left of the image and x position of the first
+                            tile.<br><br>
+                            Begin offset y: space between the top of the image and y position of the first tile.
+                        </div>
+                    </div>
+                </center><br>
+                <center>
+                    <img src="figs/fig27.png" alt="Fig 27 (X and Y options)" width="114" height="34">
+                    X and Y: Modify to navigate trough tiles so you can adjust offsets.
+                </center><br>
+                <center>
+                    <img src="figs/fig28.png" alt="Fig 28 (tiles name option)" width="162" height="22">
+                    Tiles name: tiles name at output, tiles are named with this name and the number of the tile.<br>
+                    (Note: if this option is left blank, your tiles will automatically get "tile-" as name)
+                </center><br>
+                <center>
+                    <img src="figs/fig29.png" alt="Fig 29 (upscale option)" width="92" height="24">
+                    Upscale: the resolution will be multiplied by the upscale factor when the tile is being ripped.
+                </center><br>
+                <center>
+                    <img src="figs/fig30.png" alt="Fig 30 (rows option)" width="103" height="28">
+                    Rows: number of rows ripped before the process stops, if "Rows" is set to "All", all rows will be
+                    ripped
+                </center><br>
+                <center>
+                    <img src="figs/fig31.png" alt="Fig 31 (colums option)" width="102" height="24">
+                    Columns: number of columns ripped before the process go to the row below, if if "Columns" is
+                    <br>set to "All", all columns will be ripped.
+                </center><br>
+                <center>
+                    <img src="figs/fig32.png" alt="Fig 32 (starting column option)" width="139" height="24">
+                    Starting column: defines the columns where the process will start to rip, it acts a bit like<br>
+                    the "Begin offset x" option, but you don't have to calculate all the offsets.
+                </center><br>
+
+                <br><br>
+                <span id="changelog">__________ Changelog __________</span><br><br>
+                <center>
+                    <div class="box_blue">0.1<br><br>Added all main features, such as: Tileset compiling, upscaling and
+                        top right buttons</div>
+                    <div class="box_blue">0.11<br><br>Added SMB3 Style, color background, transparent background.</div>
+                    <div class="box_blue">0.2<br><br>Added Tileset Ripping with, preview, size, offset, tile name, begin
+                        offset x, begin offset y,<br> x position in preview, y position in preview, upscaling, number of
+                        rows, <br>columns and starting column, and background removing.</div>
+                </center>
+            </div>
+    </center>
+
+    <div class="footer_content">
+        <footer id="footer_bg">
+        </footer>
+    </div>
+</body>
+<div class="hills" id="top_layer_bg"></div>
+<div class="sun"></div>
+<div class="clouds" id="clouds_bg"></div>
+<script>
+    language();
+    check_dim();
+    clouds_shift();
+    set_clouds();
+    bg_buttons();
+    bg_check();
+</script>
+
+</html>
