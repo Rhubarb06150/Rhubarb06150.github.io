@@ -52,7 +52,7 @@ function smw() {
   document.getElementById('mario').src='https://mcrhubarb.net/images/obj/mariosmw.png'
   document.getElementById('luigi').src='https://mcrhubarb.net/images/obj/luigismw.png'
   }catch (error){};
-
+  check_fav_logo();
 }
 function smb3() {
   if (getRandomInt(255)==0){
@@ -112,6 +112,7 @@ function smb3() {
   document.getElementById('mario').src='https://mcrhubarb.net/images/obj/mariosmb3.png'
   document.getElementById('luigi').src='https://mcrhubarb.net/images/obj/luigismb3.png'
   }catch (error){};
+  check_fav_logo();
 }
 
 function smb() {
@@ -178,6 +179,7 @@ function smb() {
   document.getElementById("mario").src="https://mcrhubarb.net/images/obj/mariosmb1.png"
   document.getElementById("luigi").src="https://mcrhubarb.net/images/obj/luigismb1.png"
   }catch (error){};
+  check_fav_logo();
 }
 
 function set_logo(logo){
@@ -353,6 +355,10 @@ function ui_start() {
   try{
     document.getElementById("softwares_box").style.margin=0;
   } catch (error) {};
+  check_fav_logo();
+}
+
+function check_fav_logo(){
   if (localStorage.getItem('fav_logo')!=null){
     if (localStorage.getItem('fav_logo')=='alt'){
       set_logo('alt')
