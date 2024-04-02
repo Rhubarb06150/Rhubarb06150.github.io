@@ -1,5 +1,5 @@
 function smw() {
-  if (getRandomInt(10)==0){
+  if (getRandomInt(255)==0){
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt.png";
     document.getElementById("logo_img").style.height = "66px";
     document.getElementById("logo_img").style.width = "584px";
@@ -51,9 +51,16 @@ function smw() {
 
 }
 function smb3() {
-  document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo.png";
-  document.getElementById("logo_img").style.height = "70px";
-  document.getElementById("logo_img").style.width = "542px";
+  if (getRandomInt(255)==0){
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt.png";
+    document.getElementById("logo_img").style.height = "70px";
+    document.getElementById("logo_img").style.width = "638px";
+  }else{
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo.png";
+    ocument.getElementById("logo_img").style.height = "70px";
+    ocument.getElementById("logo_img").style.width = "542px";
+
+  }
   document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
   document.getElementById("top_layer_bg").style.height = "300px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds.png)";
@@ -101,9 +108,15 @@ function smb3() {
 }
 
 function smb() {
-  document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb.png";
-  document.getElementById("logo_img").style.height = "80px";
-  document.getElementById("logo_img").style.width = "418px";
+  if (getRandomInt(255)==0){
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb.png";
+    document.getElementById("logo_img").style.height = "80px";
+    document.getElementById("logo_img").style.width = "418px";
+  }else{
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt.png";
+    document.getElementById("logo_img").style.height = "80px";
+    document.getElementById("logo_img").style.width = "508px";
+  }
   document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
   document.getElementById("top_layer_bg").style.height = "432px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smb.png)";
