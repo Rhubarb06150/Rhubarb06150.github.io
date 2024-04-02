@@ -2,24 +2,20 @@
   image-rendering: pixelated;
 }
 
-html,body {
+body {
   margin: 0px;
   padding: 0px;
   min-height: 100vh;
-  height: fit-content;
   background-attachment: scroll;
   background-position: 0px 0px;
   position: relative;
 }
 
 html {
-  min-height: 100vh;
-  height: 100%;
+  min-height: 100%;
   background-attachment: scroll;
   margin: 0px;
   padding: 0px;
-  margin: 0;
-  padding: 0;
 }
 
 .clouds {
@@ -174,14 +170,15 @@ footer {
   z-index: -96;
   height: 96px;
   width: 100%;
-  position: fixed;
+  position: absolute;
   bottom: 0px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   color: white;
-  margin-top: 96;
 }
 
 .footer_content {
-  bottom: 0px;
   height: 96px;
   margin-top: 96px;
 }
@@ -263,7 +260,7 @@ footer {
 .block {
   width: 32px;
   height: 32px;
-  background-image: url(block.png);
+  background-image: url(/web/20240402144708im_/https://mcrhubarb.net/block.png);
   animation-name: marche;
   animation-duration: 0.5s;
   animation-iteration-count: infinite;
@@ -304,7 +301,7 @@ footer {
   background-position: bottom;
   display: flex;
   justify-content: center;
-  background-image: url(goomba.png);
+  background-image: url(/web/20240402144708im_/https://mcrhubarb.net/goomba.png);
   animation-name: goomba_walk;
   animation-duration: 0.25s;
   animation-iteration-count: infinite;
