@@ -5,15 +5,19 @@
 html,body {
   margin: 0px;
   padding: 0px;
-  height: 100%;
+  min-height: 100vh;
+  height: fit-content;
   background-attachment: scroll;
   background-position: 0px 0px;
   position: relative;
 }
 
 html {
+  min-height: 100vh;
   height: 100%;
   background-attachment: scroll;
+  margin: 0px;
+  padding: 0px;
   margin: 0;
   padding: 0;
 }
@@ -170,12 +174,10 @@ footer {
   z-index: -96;
   height: 96px;
   width: 100%;
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  position: fixed;
+  bottom: 0px;
   color: white;
+  margin-top: 96;
 }
 
 .footer_content {
