@@ -57,8 +57,8 @@ function smb3() {
     document.getElementById("logo_img").style.width = "638px";
   }else{
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo.png";
-    ocument.getElementById("logo_img").style.height = "70px";
-    ocument.getElementById("logo_img").style.width = "542px";
+    document.getElementById("logo_img").style.height = "70px";
+    document.getElementById("logo_img").style.width = "542px";
 
   }
   document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
@@ -200,6 +200,7 @@ function getRandomInt(max) {
 
 function bg_check() {
   var x = localStorage.getItem('bg')
+  
   if (x == 1 || x == null) {
     bg1();
   } else if (x == 2) {
@@ -279,11 +280,17 @@ function ui_start() {
   } else if (x == 'smb') {
     smb()
   } else {
+    localStorage.setItem('smb3','ui')
     smb3()
   }
   try{
     document.getElementById("softwares_box").style.margin=0;
   } catch (error) {};
+  try{
+    localStorage.getItem('bg')
+  } catch (error){
+    localStorage.setItem('1','bg')
+  }
 }
 
 function getBase64Image(img) {
