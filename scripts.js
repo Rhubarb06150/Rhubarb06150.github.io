@@ -1,7 +1,13 @@
 function smw() {
+  if (getRandomInt(10)==0){
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt.png";
+    document.getElementById("logo_img").style.height = "66px";
+    document.getElementById("logo_img").style.width = "584px";
+  }else{
   document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw.png";
   document.getElementById("logo_img").style.height = "66px";
   document.getElementById("logo_img").style.width = "498px";
+  }
   document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
   document.getElementById("top_layer_bg").style.height = "262px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smw.png)";
@@ -173,6 +179,10 @@ function bg_buttons() {
     document.getElementById("bg3b").src = "../images/bg/castle_smw_icon.png";
     document.getElementById("bg3b").title = "Castle";
   }
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
 }
 
 function bg_check() {
