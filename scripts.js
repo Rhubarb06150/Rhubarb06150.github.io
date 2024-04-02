@@ -353,7 +353,15 @@ function ui_start() {
   try{
     document.getElementById("softwares_box").style.margin=0;
   } catch (error) {};
-  
+  if (localStorage.getItem('fav_logo')!=null){
+    if (localStorage.getItem('fav_logo')=='alt'){
+      set_logo('alt')
+    }else if (localStorage.getItem('fav_logo')=='bowser'){
+      set_logo('bowser')
+    }else if (localStorage.getItem('fav_logo')=='normal'){
+      set_logo('normal')
+    }
+  }
 }
 
 function getBase64Image(img) {
