@@ -1,7 +1,17 @@
 function smw() {
-  document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw.png";
-  document.getElementById("logo_img").style.height = "66px";
-  document.getElementById("logo_img").style.width = "498px";
+  if (sessionStorage.getItem('index') < 100) {
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt.png";
+    document.getElementById("logo_img").style.height = "66px";
+    document.getElementById("logo_img").style.width = "584px";
+  } else if (sessionStorage.getItem('index') == 3999) {
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt_bowser.png";
+    document.getElementById("logo_img").style.height = "102px";
+    document.getElementById("logo_img").style.width = "590px";
+  } else {
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw.png";
+    document.getElementById("logo_img").style.height = "66px";
+    document.getElementById("logo_img").style.width = "498px";
+  }
   document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
   document.getElementById("top_layer_bg").style.height = "262px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smw.png)";
@@ -38,16 +48,26 @@ function smw() {
     bg_buttons();
   } catch (error) { }
   bg_check();
-  try{
-  document.getElementById('mario').src='https://mcrhubarb.net/images/obj/mariosmw.png'
-  document.getElementById('luigi').src='https://mcrhubarb.net/images/obj/luigismw.png'
-  }catch (error){};
-
+  try {
+    document.getElementById('mario').src = 'https://mcrhubarb.net/images/obj/mariosmw.png'
+    document.getElementById('luigi').src = 'https://mcrhubarb.net/images/obj/luigismw.png'
+  } catch (error) { };
+  check_fav_logo();
 }
 function smb3() {
-  document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo.png";
-  document.getElementById("logo_img").style.height = "70px";
-  document.getElementById("logo_img").style.width = "542px";
+  if (sessionStorage.getItem('index') < 100) {
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt.png";
+    document.getElementById("logo_img").style.height = "70px";
+    document.getElementById("logo_img").style.width = "638px";
+  } else if (sessionStorage.getItem('index') == 3999) {
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt_bowser.png";
+    document.getElementById("logo_img").style.height = "84px";
+    document.getElementById("logo_img").style.width = "590px";
+  } else {
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo.png";
+    document.getElementById("logo_img").style.height = "70px";
+    document.getElementById("logo_img").style.width = "542px";
+  }
   document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
   document.getElementById("top_layer_bg").style.height = "300px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds.png)";
@@ -88,16 +108,27 @@ function smb3() {
     bg_buttons();
   } catch (error) { }
   bg_check();
-  try{
-  document.getElementById('mario').src='https://mcrhubarb.net/images/obj/mariosmb3.png'
-  document.getElementById('luigi').src='https://mcrhubarb.net/images/obj/luigismb3.png'
-  }catch (error){};
+  try {
+    document.getElementById('mario').src = 'https://mcrhubarb.net/images/obj/mariosmb3.png'
+    document.getElementById('luigi').src = 'https://mcrhubarb.net/images/obj/luigismb3.png'
+  } catch (error) { };
+  check_fav_logo();
 }
 
 function smb() {
-  document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb.png";
-  document.getElementById("logo_img").style.height = "80px";
-  document.getElementById("logo_img").style.width = "418px";
+  if (sessionStorage.getItem('index') < 100) {
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt.png";
+    document.getElementById("logo_img").style.height = "80px";
+    document.getElementById("logo_img").style.width = "508px";
+  } else if (sessionStorage.getItem('index') = 3999) {
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt_bowser.png";
+    document.getElementById("logo_img").style.height = "80px";
+    document.getElementById("logo_img").style.width = "514px";
+  } else {
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb.png";
+    document.getElementById("logo_img").style.height = "80px";
+    document.getElementById("logo_img").style.width = "418px";
+  }
   document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
   document.getElementById("top_layer_bg").style.height = "432px";
   document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smb.png)";
@@ -144,11 +175,59 @@ function smb() {
     bg_buttons();
   } catch (error) { }
   bg_check();
-  try{
-  document.getElementById("mario").src="https://mcrhubarb.net/images/obj/mariosmb1.png"
-  document.getElementById("luigi").src="https://mcrhubarb.net/images/obj/luigismb1.png"
-  }catch (error){};
+  try {
+    document.getElementById("mario").src = "https://mcrhubarb.net/images/obj/mariosmb1.png"
+    document.getElementById("luigi").src = "https://mcrhubarb.net/images/obj/luigismb1.png"
+  } catch (error) { };
+  check_fav_logo();
 }
+
+function set_logo(logo) {
+  if (logo == 'normal') {
+    if (localStorage.getItem('ui') == 'smb') {
+      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb.png";
+      document.getElementById("logo_img").style.height = "80px";
+      document.getElementById("logo_img").style.width = "418px";
+    } else if (localStorage.getItem('ui') == 'smb3') {
+      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo.png";
+      document.getElementById("logo_img").style.height = "70px";
+      document.getElementById("logo_img").style.width = "542px";
+    } else if (localStorage.getItem('ui') == 'smw') {
+      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw.png";
+      document.getElementById("logo_img").style.height = "66px";
+      document.getElementById("logo_img").style.width = "498px";
+    }
+  } else if (logo == 'alt') {
+    if (localStorage.getItem('ui') == 'smb') {
+      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt.png";
+      document.getElementById("logo_img").style.height = "80px";
+      document.getElementById("logo_img").style.width = "508px";
+    } else if (localStorage.getItem('ui') == 'smb3') {
+      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt.png";
+      document.getElementById("logo_img").style.height = "70px";
+      document.getElementById("logo_img").style.width = "638px";
+    } else if (localStorage.getItem('ui') == 'smw') {
+      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt.png";
+      document.getElementById("logo_img").style.height = "66px";
+      document.getElementById("logo_img").style.width = "584px";
+    }
+  } else if (logo == 'bowser') {
+    if (localStorage.getItem('ui') == 'smb') {
+      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt_bowser.png";
+      document.getElementById("logo_img").style.height = "80px";
+      document.getElementById("logo_img").style.width = "514px";
+    } else if (localStorage.getItem('ui') == 'smb3') {
+      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt_bowser.png";
+      document.getElementById("logo_img").style.height = "84px";
+      document.getElementById("logo_img").style.width = "590px";
+    } else if (localStorage.getItem('ui') == 'smw') {
+      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt_bowser.png";
+      document.getElementById("logo_img").style.height = "102px";
+      document.getElementById("logo_img").style.width = "590px";
+    }
+  }
+}
+
 function bg_buttons() {
   var ui = localStorage.getItem('ui')
   if (ui == 'smb3' || null) {
@@ -175,8 +254,13 @@ function bg_buttons() {
   }
 }
 
+function getRandomInt(max) {
+  return Math.floor(Math.random() * max);
+}
+
 function bg_check() {
   var x = localStorage.getItem('bg')
+
   if (x == 1 || x == null) {
     bg1();
   } else if (x == 2) {
@@ -234,7 +318,7 @@ function bg3() {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/smw_castle.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
     document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw_3.png)";
-    time_switch();  
+    time_switch();
   } else if (x == 'smb') {
     document.body.style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb_mid.png)";
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb.png)";
@@ -250,17 +334,43 @@ function bg3() {
 }
 
 function ui_start() {
-  var x = localStorage.getItem('ui')
-  if (x == 'smw') {
-    smw()
-  } else if (x == 'smb') {
-    smb()
-  } else {
-    smb3()
+  if (sessionStorage.getItem('index')==null) {
+    sessionStorage.setItem('index', getRandomInt(4000))
+  };
+try {
+  localStorage.getItem('bg')
+} catch (error) {
+  console.log('bg set to 1')
+  localStorage.setItem('1', 'bg')
+};
+if (localStorage.getItem('moving') == null) {
+  localStorage.setItem('moving', 'yes')
+};
+var x = localStorage.getItem('ui')
+if (x == 'smw') {
+  smw()
+} else if (x == 'smb') {
+  smb()
+} else {
+  localStorage.setItem('ui', 'smb3')
+  smb3()
+};
+try {
+  document.getElementById("softwares_box").style.margin = 0;
+} catch (error) { };
+check_fav_logo();
+}
+
+function check_fav_logo() {
+  if (localStorage.getItem('fav_logo') != null) {
+    if (localStorage.getItem('fav_logo') == 'alt') {
+      set_logo('alt')
+    } else if (localStorage.getItem('fav_logo') == 'bowser') {
+      set_logo('bowser')
+    } else if (localStorage.getItem('fav_logo') == 'normal') {
+      set_logo('normal')
+    }
   }
-  try{
-    document.getElementById("softwares_box").style.margin=0;
-  } catch (error) {};
 }
 
 function getBase64Image(img) {
@@ -306,10 +416,10 @@ function load_acc() {
   }
 }
 
-function mc_head(){
+function mc_head() {
   const input = document.getElementById("mcname");
   const inputValue = input.value;
-  open('https://render.skinmc.net/3d.php?user='+inputValue+'&vr=-10&hr0&hrh=25&aa=true&headOnly=true&ratio=10')
+  open('https://render.skinmc.net/3d.php?user=' + inputValue + '&vr=-10&hr0&hrh=25&aa=true&headOnly=true&ratio=10')
 }
 
 function load_acc_index() {
@@ -317,11 +427,7 @@ function load_acc_index() {
   var username = localStorage.getItem('username')
   var pfp = localStorage.getItem('profile_picture')
   if (username == null) {
-    if (usrlang == 'fr-FR' || 'fr-LU' || 'fr-MC' || 'fr-BE' || 'fr-CA') {
-      document.getElementById('profile_name').textContent = 'Pas de profil';
-    } else {
-      document.getElementById('profile_name').textContent = 'No profile';
-    }
+    document.getElementById('profile_name').textContent = 'No profile';
   } else {
     document.getElementById('profile_name').textContent = username;
   }
@@ -457,46 +563,6 @@ function time_switch() {
 
 }
 
-function language() {
-  var sPath = window.location.pathname;
-  var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-  var usrlang = navigator.language || navigator.userLanguage;
-  var usr = localStorage.getItem('username')
-  if (usrlang == 'fr-FR' || 'fr-BE' || 'fr-CA' || 'fr-MC' || 'fr-LU' || 'fr-CH') {
-    try {
-      document.getElementById('useful_links').textContent = "Liens utiles";
-      if (usr == null) {
-        document.getElementById('profil_name').textContent = "Pas de profil";
-      }
-    } catch (error) { }
-    try {
-      if (document.URL.includes("/profile")) {
-        document.title = "Modifier le profil"
-      }
-      if (sPage == '404.html') {
-        document.title = "MCRhubarb - Erreur 404"
-      }
-      document.getElementById('profile_settings').textContent = "Modifier le profil";
-      document.getElementById('usrname_input').textContent = "Nom d'utilisateur: ";
-      document.getElementById('pfp_span').textContent = "Photo de profil: ";
-      document.getElementById('acc_modify_succes').textContent = "Le profil à bien été mis à jour!";
-      document.getElementById('back_to_main').textContent = "Retour a l'accueil";
-      document.getElementById('acc_error').textContent = "Nom d'utilisateur vide ou pas assez long";
-      document.getElementById('modify').innerHTML = "Modifier le profil";
-      document.getElementById('website_style').textContent = "Style graphique:";
-      document.getElementById('bg_time').textContent = "Temps du fond:";
-      document.getElementById('day').innerHTML = "Jour";
-      document.getElementById('night').innerHTML = "Nuit";
-      document.getElementById('moving_clouds').textContent = "Mouvement des nuages: ";
-      document.getElementById('background').textContent = "Design du fond:";
-    } catch (error) { }
-    try {
-      document.getElementById('error404').innerHTML = "Erreur 404";
-      document.getElementById('page_404').textContent = "Cette page n'existe pas ou plus :/";
-      document.getElementById('back_to_main').textContent = "Retour à l'accueil";
-    } catch (error) { }
-  }
-}
 
 function cloud_button() {
   if (document.getElementById("clouds_moving_button").checked) {

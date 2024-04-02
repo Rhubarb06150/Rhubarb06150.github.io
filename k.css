@@ -356,6 +356,10 @@ a:hover{
   text-decoration: underline;
 }
 
+a img:hover:not(#logo_img){
+  box-shadow: #ffae00 0px 0px 20px;
+}
+
 .softwares_box{
   width: max-content;
   margin: 0px;

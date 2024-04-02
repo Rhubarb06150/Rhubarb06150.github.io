@@ -12,7 +12,7 @@
             var ui = localStorage.getItem('ui')
             if ((bg != 3) && (ui == ('smb3' || 'smb'))) {
                 time_switch();
-                console.log('ok')
+
             }
         }
         window.onload = init;
@@ -39,16 +39,21 @@
                 <img alt='luigi' width="32" height="64" class="no_margin" id="luigi">
             </div>
             <div class="box_orange" id="softwares_box">
+                <center>
+                    <img src="../../../images/head/telogo.png" alt="Tileset Editor logo" width="286" height="116">
+                </center>
                 <h2>
                     Tileset Editor Documentation</h2><br>
-                How it works?<br><br>
-                Tileset isopen source and made with Python 3, it uses Tkinter as framework, <br>and PIL and opencv for
+                <h2>How does it works?</h2><br><br>
+                Tileset Editor is open source and made with Python 3, it uses Tkinter as framework, <br>and PIL and
+                opencv for
                 image
-                manipulating<br><br>
-                What are features?<br><br>
+                manipulating.<br><br>
+                <h2>What are features?</h2><br><br>
                 With Tileset Editor, you can compile multiples images in one spritesheet, rip an entire tileset,<br>
                 or event some parts of it with a lot of precision.
-                <br><br>Jump to:<br><br>
+                <br><br>
+                <h2>Jump to:</h2><br><br>
                 <a href="#tiles_compiling">Tiles compiling</a>
                 <a href="#tileset_ripping">Tileset Ripping</a>
                 <a href="#tc_options">Options for tileset compiling</a>
@@ -56,7 +61,9 @@
                 <a href="#changelog">Changelog</a>
                 <br>
 
-                <span id="tiles_compiling">__________ Tiles compiling __________</span><br><br>
+                <span id="tiles_compiling">
+                    <h2>__________ Tiles compiling __________</h2>
+                </span><br><br>
                 When you are in Tileset Editor, you can choose multiple tiles to compile in one tileset/spritesheet,<br>
                 (call it whatever you want), so to do then, click the "Upload images" buttons in the upper <br>part of
                 the window as below:<br><br>
@@ -83,7 +90,9 @@
                 </center>
                 <br><br>
 
-                <span id="tc_options">__________ Options for tileset compiling __________</span><br><br>
+                <span id="tc_options">
+                    <h2>__________ Options for tileset compiling __________</h2>
+                </span><br><br>
                 <center>
                     <img src="figs/fig4.png" alt="Fig 4 (upscale combobox)" width="94" height="30">
                     Upscale: basically, if you select x2, the resolution of the output will be 2 times bigger,<br>and
@@ -126,7 +135,9 @@
                 </center>
                 <br><br>
 
-                <span id="tileset_ripping">__________ Tileset Ripping __________</span><br><br>
+                <span id="tileset_ripping">
+                    <h2>__________ Tileset Ripping __________</h2>
+                </span><br><br>
 
                 Tileset editor most important part is the tileset ripping, which consists in ripping all tiles in a
                 tileset<br>
@@ -143,7 +154,8 @@
                     <img src="figs/fig16.png" alt="Fig 16 (Super Mario World tileset)" width="354" height="405">
                 </center><br>
                 Now we downloaded this tileset, load it in the software by clicking the "Upload image" button in the<br>
-                lower part of the window. <br><br>(You can choose an output folder by clicking the "Choose output folder" button at top right)
+                lower part of the window. <br><br>(You can choose an output folder by clicking the "Choose output
+                folder" button at top right)
                 <br><br>
                 Now it's done, make sure to enable the "Tile preview" option, so you can edit the tiles size
                 correctly,<br>
@@ -189,7 +201,9 @@
                 As you can see, all tiles were correctly ripped and the dark blue background has been removed.
                 <br><br><br>
 
-                <span id="tr_options">__________ Options for tileset ripping __________</span><br><br>
+                <span id="tr_options">
+                    <h2>__________ Options for tileset ripping __________</h2>
+                </span><br><br>
                 <center>
                     <img src="figs/fig24.png" width="95" height="23" alt="Fig 24 (tile size options)">
                     X & Y: Is for defines tile size.
@@ -240,7 +254,9 @@
                 </center><br>
 
                 <br><br>
-                <span id="changelog">__________ Changelog __________</span><br><br>
+                <span id="changelog">
+                    <h2>__________ Changelog __________</h2>
+                </span><br><br>
                 <center>
                     <div class="box_blue">0.1<br><br>Added all main features, such as: Tileset compiling, upscaling and
                         top right buttons</div>
@@ -261,7 +277,7 @@
 <div class="sun"></div>
 <div class="clouds" id="clouds_bg"></div>
 <script>
-    language();
+
     check_dim();
     clouds_shift();
     set_clouds();
