@@ -3,10 +3,14 @@ function smw() {
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt.png";
     document.getElementById("logo_img").style.height = "66px";
     document.getElementById("logo_img").style.width = "584px";
+  }else if (getRandomInt(4000)==0){
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt_bowser.png";
+    document.getElementById("logo_img").style.height = "102px";
+    document.getElementById("logo_img").style.width = "590px";
   }else{
-  document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw.png";
-  document.getElementById("logo_img").style.height = "66px";
-  document.getElementById("logo_img").style.width = "498px";
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw.png";
+    document.getElementById("logo_img").style.height = "66px";
+    document.getElementById("logo_img").style.width = "498px";
   }
   document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
   document.getElementById("top_layer_bg").style.height = "262px";
@@ -55,11 +59,14 @@ function smb3() {
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt.png";
     document.getElementById("logo_img").style.height = "70px";
     document.getElementById("logo_img").style.width = "638px";
+  }else if (getRandomInt(4000)==0){
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt_bowser.png";
+    document.getElementById("logo_img").style.height = "84px";
+    document.getElementById("logo_img").style.width = "590px";
   }else{
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo.png";
     document.getElementById("logo_img").style.height = "70px";
     document.getElementById("logo_img").style.width = "542px";
-
   }
   document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
   document.getElementById("top_layer_bg").style.height = "300px";
@@ -109,13 +116,17 @@ function smb3() {
 
 function smb() {
   if (getRandomInt(255)==0){
-    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb.png";
-    document.getElementById("logo_img").style.height = "80px";
-    document.getElementById("logo_img").style.width = "418px";
-  }else{
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt.png";
     document.getElementById("logo_img").style.height = "80px";
     document.getElementById("logo_img").style.width = "508px";
+  }else if (getRandomInt(4000)==0){
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt_bowser.png";
+    document.getElementById("logo_img").style.height = "80px";
+    document.getElementById("logo_img").style.width = "514px";
+  }else{
+    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb.png";
+    document.getElementById("logo_img").style.height = "80px";
+    document.getElementById("logo_img").style.width = "418px";
   }
   document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
   document.getElementById("top_layer_bg").style.height = "432px";
