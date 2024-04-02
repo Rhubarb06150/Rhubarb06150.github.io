@@ -332,23 +332,28 @@ function bg3() {
 }
 
 function ui_start() {
+  try{
+    localStorage.getItem('bg')
+  } catch (error){
+    console.log('bg set to 1')
+    localStorage.setItem('1','bg')
+  };
+  if (localStorage.getItem('moving')==null){
+    localStorage.setItem('moving','yes')
+  };
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
     smw()
   } else if (x == 'smb') {
     smb()
   } else {
-    localStorage.setItem('smb3','ui')
+    localStorage.setItem('ui','smb3')
     smb3()
-  }
+  };
   try{
     document.getElementById("softwares_box").style.margin=0;
   } catch (error) {};
-  try{
-    localStorage.getItem('bg')
-  } catch (error){
-    localStorage.setItem('1','bg')
-  }
+  
 }
 
 function getBase64Image(img) {
@@ -405,11 +410,7 @@ function load_acc_index() {
   var username = localStorage.getItem('username')
   var pfp = localStorage.getItem('profile_picture')
   if (username == null) {
-    if (usrlang == 'fr-FR' || 'fr-LU' || 'fr-MC' || 'fr-BE' || 'fr-CA') {
-      document.getElementById('profile_name').textContent = 'Pas de profil';
-    } else {
       document.getElementById('profile_name').textContent = 'No profile';
-    }
   } else {
     document.getElementById('profile_name').textContent = username;
   }
@@ -545,46 +546,6 @@ function time_switch() {
 
 }
 
-function language() {
-  var sPath = window.location.pathname;
-  var sPage = sPath.substring(sPath.lastIndexOf('/') + 1);
-  var usrlang = navigator.language || navigator.userLanguage;
-  var usr = localStorage.getItem('username')
-  if (usrlang == 'fr-FR' || 'fr-BE' || 'fr-CA' || 'fr-MC' || 'fr-LU' || 'fr-CH') {
-    try {
-      document.getElementById('useful_links').textContent = "Liens utiles";
-      if (usr == null) {
-        document.getElementById('profil_name').textContent = "Pas de profil";
-      }
-    } catch (error) { }
-    try {
-      if (document.URL.includes("/profile")) {
-        document.title = "Modifier le profil"
-      }
-      if (sPage == '404.html') {
-        document.title = "MCRhubarb - Erreur 404"
-      }
-      document.getElementById('profile_settings').textContent = "Modifier le profil";
-      document.getElementById('usrname_input').textContent = "Nom d'utilisateur: ";
-      document.getElementById('pfp_span').textContent = "Photo de profil: ";
-      document.getElementById('acc_modify_succes').textContent = "Le profil à bien été mis à jour!";
-      document.getElementById('back_to_main').textContent = "Retour a l'accueil";
-      document.getElementById('acc_error').textContent = "Nom d'utilisateur vide ou pas assez long";
-      document.getElementById('modify').innerHTML = "Modifier le profil";
-      document.getElementById('website_style').textContent = "Style graphique:";
-      document.getElementById('bg_time').textContent = "Temps du fond:";
-      document.getElementById('day').innerHTML = "Jour";
-      document.getElementById('night').innerHTML = "Nuit";
-      document.getElementById('moving_clouds').textContent = "Mouvement des nuages: ";
-      document.getElementById('background').textContent = "Design du fond:";
-    } catch (error) { }
-    try {
-      document.getElementById('error404').innerHTML = "Erreur 404";
-      document.getElementById('page_404').textContent = "Cette page n'existe pas ou plus :/";
-      document.getElementById('back_to_main').textContent = "Retour à l'accueil";
-    } catch (error) { }
-  }
-}
 
 function cloud_button() {
   if (document.getElementById("clouds_moving_button").checked) {
