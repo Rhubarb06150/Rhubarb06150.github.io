@@ -1,13 +1,13 @@
 function smw() {
-  if (getRandomInt(255)==0){
+  if (sessionStorage.getItem('index') < 100) {
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt.png";
     document.getElementById("logo_img").style.height = "66px";
     document.getElementById("logo_img").style.width = "584px";
-  }else if (getRandomInt(4000)==0){
+  } else if (sessionStorage.getItem('index') == 3999) {
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt_bowser.png";
     document.getElementById("logo_img").style.height = "102px";
     document.getElementById("logo_img").style.width = "590px";
-  }else{
+  } else {
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw.png";
     document.getElementById("logo_img").style.height = "66px";
     document.getElementById("logo_img").style.width = "498px";
@@ -48,22 +48,22 @@ function smw() {
     bg_buttons();
   } catch (error) { }
   bg_check();
-  try{
-  document.getElementById('mario').src='https://mcrhubarb.net/images/obj/mariosmw.png'
-  document.getElementById('luigi').src='https://mcrhubarb.net/images/obj/luigismw.png'
-  }catch (error){};
+  try {
+    document.getElementById('mario').src = 'https://mcrhubarb.net/images/obj/mariosmw.png'
+    document.getElementById('luigi').src = 'https://mcrhubarb.net/images/obj/luigismw.png'
+  } catch (error) { };
   check_fav_logo();
 }
 function smb3() {
-  if (getRandomInt(255)==0){
+  if (sessionStorage.getItem('index') < 100) {
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt.png";
     document.getElementById("logo_img").style.height = "70px";
     document.getElementById("logo_img").style.width = "638px";
-  }else if (getRandomInt(4000)==0){
+  } else if (sessionStorage.getItem('index') == 3999) {
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt_bowser.png";
     document.getElementById("logo_img").style.height = "84px";
     document.getElementById("logo_img").style.width = "590px";
-  }else{
+  } else {
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo.png";
     document.getElementById("logo_img").style.height = "70px";
     document.getElementById("logo_img").style.width = "542px";
@@ -108,23 +108,23 @@ function smb3() {
     bg_buttons();
   } catch (error) { }
   bg_check();
-  try{
-  document.getElementById('mario').src='https://mcrhubarb.net/images/obj/mariosmb3.png'
-  document.getElementById('luigi').src='https://mcrhubarb.net/images/obj/luigismb3.png'
-  }catch (error){};
+  try {
+    document.getElementById('mario').src = 'https://mcrhubarb.net/images/obj/mariosmb3.png'
+    document.getElementById('luigi').src = 'https://mcrhubarb.net/images/obj/luigismb3.png'
+  } catch (error) { };
   check_fav_logo();
 }
 
 function smb() {
-  if (getRandomInt(255)==0){
+  if (sessionStorage.getItem('index') < 100) {
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt.png";
     document.getElementById("logo_img").style.height = "80px";
     document.getElementById("logo_img").style.width = "508px";
-  }else if (getRandomInt(4000)==0){
+  } else if (sessionStorage.getItem('index') = 3999) {
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt_bowser.png";
     document.getElementById("logo_img").style.height = "80px";
     document.getElementById("logo_img").style.width = "514px";
-  }else{
+  } else {
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb.png";
     document.getElementById("logo_img").style.height = "80px";
     document.getElementById("logo_img").style.width = "418px";
@@ -175,56 +175,56 @@ function smb() {
     bg_buttons();
   } catch (error) { }
   bg_check();
-  try{
-  document.getElementById("mario").src="https://mcrhubarb.net/images/obj/mariosmb1.png"
-  document.getElementById("luigi").src="https://mcrhubarb.net/images/obj/luigismb1.png"
-  }catch (error){};
+  try {
+    document.getElementById("mario").src = "https://mcrhubarb.net/images/obj/mariosmb1.png"
+    document.getElementById("luigi").src = "https://mcrhubarb.net/images/obj/luigismb1.png"
+  } catch (error) { };
   check_fav_logo();
 }
 
-function set_logo(logo){
-  if (logo=='normal'){
-    if (localStorage.getItem('ui')=='smb'){
+function set_logo(logo) {
+  if (logo == 'normal') {
+    if (localStorage.getItem('ui') == 'smb') {
       document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb.png";
       document.getElementById("logo_img").style.height = "80px";
       document.getElementById("logo_img").style.width = "418px";
-    }else if (localStorage.getItem('ui')=='smb3'){
+    } else if (localStorage.getItem('ui') == 'smb3') {
       document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo.png";
       document.getElementById("logo_img").style.height = "70px";
       document.getElementById("logo_img").style.width = "542px";
-    }else if (localStorage.getItem('ui')=='smw'){
+    } else if (localStorage.getItem('ui') == 'smw') {
       document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw.png";
       document.getElementById("logo_img").style.height = "66px";
       document.getElementById("logo_img").style.width = "498px";
     }
-  }else if (logo=='alt'){
-    if (localStorage.getItem('ui')=='smb'){
+  } else if (logo == 'alt') {
+    if (localStorage.getItem('ui') == 'smb') {
       document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt.png";
       document.getElementById("logo_img").style.height = "80px";
       document.getElementById("logo_img").style.width = "508px";
-    }else if (localStorage.getItem('ui')=='smb3'){
+    } else if (localStorage.getItem('ui') == 'smb3') {
       document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt.png";
       document.getElementById("logo_img").style.height = "70px";
       document.getElementById("logo_img").style.width = "638px";
-    }else if (localStorage.getItem('ui')=='smw'){
+    } else if (localStorage.getItem('ui') == 'smw') {
       document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt.png";
       document.getElementById("logo_img").style.height = "66px";
       document.getElementById("logo_img").style.width = "584px";
     }
-  }else if (logo=='bowser'){
-    if (localStorage.getItem('ui')=='smb'){
+  } else if (logo == 'bowser') {
+    if (localStorage.getItem('ui') == 'smb') {
       document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt_bowser.png";
       document.getElementById("logo_img").style.height = "80px";
       document.getElementById("logo_img").style.width = "514px";
-    }else if (localStorage.getItem('ui')=='smb3'){
+    } else if (localStorage.getItem('ui') == 'smb3') {
       document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt_bowser.png";
       document.getElementById("logo_img").style.height = "84px";
       document.getElementById("logo_img").style.width = "590px";
-    }else if (localStorage.getItem('ui')=='smw'){
+    } else if (localStorage.getItem('ui') == 'smw') {
       document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt_bowser.png";
       document.getElementById("logo_img").style.height = "102px";
       document.getElementById("logo_img").style.width = "590px";
-  }
+    }
   }
 }
 
@@ -260,7 +260,7 @@ function getRandomInt(max) {
 
 function bg_check() {
   var x = localStorage.getItem('bg')
-  
+
   if (x == 1 || x == null) {
     bg1();
   } else if (x == 2) {
@@ -318,7 +318,7 @@ function bg3() {
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/smw_castle.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
     document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw_3.png)";
-    time_switch();  
+    time_switch();
   } else if (x == 'smb') {
     document.body.style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb_mid.png)";
     document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb.png)";
@@ -334,37 +334,40 @@ function bg3() {
 }
 
 function ui_start() {
-  try{
-    localStorage.getItem('bg')
-  } catch (error){
-    console.log('bg set to 1')
-    localStorage.setItem('1','bg')
+  if (sessionStorage.getItem('index')==null) {
+    sessionStorage.setItem('index', getRandomInt(4000))
   };
-  if (localStorage.getItem('moving')==null){
-    localStorage.setItem('moving','yes')
-  };
-  var x = localStorage.getItem('ui')
-  if (x == 'smw') {
-    smw()
-  } else if (x == 'smb') {
-    smb()
-  } else {
-    localStorage.setItem('ui','smb3')
-    smb3()
-  };
-  try{
-    document.getElementById("softwares_box").style.margin=0;
-  } catch (error) {};
-  check_fav_logo();
+try {
+  localStorage.getItem('bg')
+} catch (error) {
+  console.log('bg set to 1')
+  localStorage.setItem('1', 'bg')
+};
+if (localStorage.getItem('moving') == null) {
+  localStorage.setItem('moving', 'yes')
+};
+var x = localStorage.getItem('ui')
+if (x == 'smw') {
+  smw()
+} else if (x == 'smb') {
+  smb()
+} else {
+  localStorage.setItem('ui', 'smb3')
+  smb3()
+};
+try {
+  document.getElementById("softwares_box").style.margin = 0;
+} catch (error) { };
+check_fav_logo();
 }
 
-function check_fav_logo(){
-  if (localStorage.getItem('fav_logo')!=null){
-    if (localStorage.getItem('fav_logo')=='alt'){
+function check_fav_logo() {
+  if (localStorage.getItem('fav_logo') != null) {
+    if (localStorage.getItem('fav_logo') == 'alt') {
       set_logo('alt')
-    }else if (localStorage.getItem('fav_logo')=='bowser'){
+    } else if (localStorage.getItem('fav_logo') == 'bowser') {
       set_logo('bowser')
-    }else if (localStorage.getItem('fav_logo')=='normal'){
+    } else if (localStorage.getItem('fav_logo') == 'normal') {
       set_logo('normal')
     }
   }
@@ -413,10 +416,10 @@ function load_acc() {
   }
 }
 
-function mc_head(){
+function mc_head() {
   const input = document.getElementById("mcname");
   const inputValue = input.value;
-  open('https://render.skinmc.net/3d.php?user='+inputValue+'&vr=-10&hr0&hrh=25&aa=true&headOnly=true&ratio=10')
+  open('https://render.skinmc.net/3d.php?user=' + inputValue + '&vr=-10&hr0&hrh=25&aa=true&headOnly=true&ratio=10')
 }
 
 function load_acc_index() {
@@ -424,7 +427,7 @@ function load_acc_index() {
   var username = localStorage.getItem('username')
   var pfp = localStorage.getItem('profile_picture')
   if (username == null) {
-      document.getElementById('profile_name').textContent = 'No profile';
+    document.getElementById('profile_name').textContent = 'No profile';
   } else {
     document.getElementById('profile_name').textContent = username;
   }
