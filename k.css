@@ -12,12 +12,10 @@ body {
 }
 
 html {
-  min-height: 100%;
   background-attachment: scroll;
   margin: 0px;
   padding: 0px;
   min-width: max-content;
-  min-height: max-content;
 }
 
 .documentation_div{
