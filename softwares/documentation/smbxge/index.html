@@ -18,7 +18,9 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SMBXGE Documentation</title>
+    <title>SMBXGE Documentation - MCRhubarb</title>
+    <meta name="description"
+        content="The officiel Graphic Editor documentation is here. In this documentation you can find tutorials example and every informations you need to know about SMBX Graphic Editor">
     <link href="../../../k.css" rel="stylesheet">
     <link href="../../../images/head/icon.png" rel="icon">
 </head>
@@ -31,126 +33,155 @@
         </div>
     </div>
     <center>
-        <div class="softwares_box">
-            <div class="class_mario_luigi">
-                <img alt='mario' width="32" height="64" class="no_margin" id="mario">
-                <img alt='luigi' width="32" height="64" class="no_margin" id="luigi">
-            </div>
-            <div class="box_orange" id="softwares_box">
-                <center>
-                    <img src="../../../images/head/smbxgelogo.png" alt="SMBX GE logo" width="432" height="118">
+        <div class="documentation_div">
+            <div class="softwares_box">
+                <div class="class_mario_luigi">
+                    <img alt='mario' width="32" height="64" class="no_margin" id="mario">
+                    <img alt='luigi' width="32" height="64" class="no_margin" id="luigi">
+                </div>
+                <div class="box_orange" id="softwares_box_id">
+                    <center>
+                        <img src="../../../images/head/smbxgelogo.png" alt="SMBX GE logo" width="432" height="118">
 
-                    <h2>Super Mario Bros. X Graphic Editor Documentation
-                    </h2>
-                </center>
-                <br>
-                <h2>How does it works?</h2><br><br>
+                        <h2>Super Mario Bros. X Graphic Editor Documentation
+                        </h2>
+                    </center>
 
-                SMBX Graphic Editor is open source, it's made with Python 3 and use the
-                Tkinter Framework for GUI,<br>
-                and PIL and opencv for image processing.<br><br>
+                    <h2>How does it works?</h2>
+                    <p>
+                        SMBX Graphic Editor is open source, it's made with Python 3 and use the
+                        Tkinter Framework for GUI,
+                        and PIL and opencv for image processing.
+                    </p>
 
-                <h2>What are features?</h2><br><br>
-                SMBX Graphic Editor permits you to manage, see and modify custom graphics for a<br>SMBX 1 or SMBX 2
-                level, you can even preview animated graphics.<br><br>
-                <h2>Jump to:</h2><br><br>
-                <a href="#example1">Exmaple for non-animated graphic</a>
-                <a href="#help">Help</a>
-                <a href="#changelog">Changelog</a>
-                <br>
+                    <h2>What are features?</h2>
+                    <p>
+                        SMBX Graphic Editor permits you to manage, see and modify custom graphics for a SMBX 1 or SMBX 2
+                        level, you can even preview animated graphics.</p>
 
-                <span id="example1">
-                    <h2>__________ Exmaple for non-animated graphic __________</h2>
-                </span><br><br>
-                Here, I want to edit graphics for my SMBX level:<br><br>
-                <center>
-                    <img src="figs/fig1.png" alt="Fig 1 (a level preview)" width="801" height="601"><br>
-                </center><br>
+                    <h2>Jump to:</h2>
+                    <a href="#example1">Exmaple for non-animated graphic</a>
+                    <a href="#help">Help</a>
+                    <a href="#changelog">Changelog</a>
 
-                In this level, I want to change the bush graphic. So first, before anything,<br>
-                I need to save my level and to create a folder that have the same name as my level like this:<br><br>
-                <center>
-                    <img src="figs/fig2.png" alt="Fig 2 (folder architecture)" width="264" height="154">
-                </center><br>
-                Once it's done, I open SMBX Graphic Editor and open the level folder by clicking the "Choose level
-                folder" button<br>
-                at the top right of the window.<br><br>
-                <center>
-                    <img src="figs/fig3.png" alt="Fig 3 (software as you open it)" width="682" height="512">
-                </center><br>
-                Now it's opened, get the ID of the graphic element you want to change, in my case, I want to change<br>
-                the Bakcground Object 1 graphic, I can see the ID when I'm holding the element in some SMBX 1 versions
-                or by
-                hovering<br>
-                it in SMBX 2.<br><br>Exmaples:<br><br>
-                <div class="rows">
-                    <div>in SMBX 1.4.5<br><br>
-                        <img src="figs/fig4.png" width="314" height="143"
-                            alt="Fig 4 (getting the element id in smbx 1.4.5)">
+
+                    <span id="example1">
+                        <h2>__________ Exmaple for non-animated graphic __________</h2>
+                    </span>
+                    Here, I want to edit graphics for my SMBX level:
+                    <center>
+                        <img src="figs/fig1.png" alt="Fig 1 (a level preview)" width="801" height="601">
+                    </center>
+                    <p>
+                        In this level, I want to change the bush graphic. So first, before anything,
+                        I need to save my level and to create a folder that have the same name as my level like this:
+                    </p>
+                    <center>
+                        <img src="figs/fig2.png" alt="Fig 2 (folder architecture)" width="264" height="154">
+                    </center>
+                    <p>
+                        Once it's done, I open SMBX Graphic Editor and open the level folder by clicking the "Choose
+                        level
+                        folder" button at the top right of the window.</p>
+                    <center>
+                        <img src="figs/fig3.png" alt="Fig 3 (software as you open it)" width="682" height="512">
+                    </center>
+                    <p>
+                        Now it's opened, get the ID of the graphic element you want to change, in my case, I want to
+                        change
+                        the Bakcground Object 1 graphic, I can see the ID when I'm holding the element in some SMBX 1
+                        versions
+                        or by
+                        hovering
+                        it in SMBX 2.</p>Exmaples:
+                    <div class="rows">
+                        <div class="columns">in SMBX 1.4.5
+                            <img src="figs/fig4.png" width="314" height="143"
+                                alt="Fig 4 (getting the element id in smbx 1.4.5)">
+                        </div>
+                        <div class="columns">in SMBX 2
+                            <img src="figs/fig5.png" width="186" height="121"
+                                alt="Fig 5 (getting the element id in smbx 2)">
+                        </div>
                     </div>
-                    <div>in SMBX 2<br><br>
-                        <img src="figs/fig5.png" width="186" height="121"
-                            alt="Fig 5 (getting the element id in smbx 2)">
+                    <div>
+                        <p>
+                            Now I have my custom graphic sheet that I downloaded <a
+                                href="https://mfgg.net/index.php?act=resdb&param=02&c=1&id=35408">here</a>, for any
+                            custom
+                            graphic I recommend you <a href="https://mfgg.net">mfgg.net</a>. So, here is my graphics
+                            sheet:</p>
+                        <img src="figs/fig6.png" alt="Fig 6 (spritesheet)" height="138" width="306">
                     </div>
-                </div><br><br>
-                <div>
-                    Now I have my custom graphic sheet that I downloaded <a
-                        href="https://mfgg.net/index.php?act=resdb&param=02&c=1&id=35408">here</a>, for any custom
-                    graphic I recommend you <a href="https://mfgg.net">mfgg.net</a>.<br><br>
-                    So, here is my graphics sheet:<br><br><img src="figs/fig6.png" alt="Fig 6 (spritesheet)"
-                        height="138" width="306">
-                </div>
-                <br>I'm gonna extract only the part I want thanks to any software like GIMP, in my case, I
-                want the mark sign.
-                <br>
-                <div>I want this tile :<img src="figs/fig7.png" alt="Fig 7 (the part I want in game)" width="32"
-                        height="32">
-                    so in the software, I select the "background-" category and I put "1" then press 'Return/Enter'
-                    <br>on keyboard in the entry next to it
-                    because
-                    as we saw it later, the bush got the ID 1.
-                </div><br><br>
-                <center>
-                    <img src="figs/fig8.png" alt="Fig 8 (how to select the graphic to change)" width="301" height="103">
-                </center><br>Once you see the graphic you want to edit, click the "Select custom graphic" button and
-                load the tile you want.<br><br>
-                (Note: the SMBX tiles textures are by default 32x32, which means than if
-                you have a 16x16 texture<br>
-                like the mark sign we got up there, so we need to upscale it in 32x32 in any software.)<br><br>
-                If everything is done correctly, it should looks like this:<br><br>
-                <center>
-                    <img src="figs/fig9.png" alt="Fig 9 (how its intented to looj if you done everything correctly)"
-                        width="290" height="90">
-                </center><br><br>
-                If you are satisfied with the result, then press Ctrl+S, and reload the smbx level.<br><br>
-                <center>
-                    <img src="figs/fig10.png" alt="Fig 10 (the level now the bushes are replaced with mark sign)"
-                        width="801" height="601">
-                </center><br><br>
-                So, now the graphics are now changed, yes it's ugly but it was for the example.<br><br>
-                And then, you can see, modify and delete your custom level graphics at bottom right of the
-                window.<br><br>
-                <center>
-                    <img src="figs/fig11.png" alt="Fig 11 (the software after you modified graphics)" width="682"
-                        height="512">
-                </center><br><br>
-                <span id="help">
-                    <h2>__________ Help __________</h2>
-                </span>
-                <br><br>Everytime you open a level folder, the .lvl or .lvlx file is backuped in the "backup"
-                folder,<br>
-                located in the root folder of the software, which prevent an sudden file deletion or corruption.<br><br>
-                <span id="changelog">
-                    <h2>__________ Changelog __________</h2>
-                </span><br><br>
-                <div class="box_blue">0.1<br><br>Added all main features, such as: graphic editing, graphics managing
-                    thanks to the frame at bottom right,<br>animation preview and auto level backuping
-                </div>
-                <div class="box_blue">0.11<br><br>Added Open Level in text editor button, tile upscaling abd now when
-                    <br>
-                    you load a tile thats is animated, it show up the size in the animation menu (not very stable yet).
+                    <p>I'm gonna extract only the part I want thanks to any software like GIMP, in my case, I
+                        want the mark sign.
+                    </p>
+                    <p>I want this tile :<img src="figs/fig7.png" alt="Fig 7 (the part I want in game)" width="32"
+                            height="32">
+                        so in the software, I select the "background-" category and I put "1" then press 'Return/Enter'
+                        on keyboard in the entry next to it
+                        because
+                        as we saw it later, the bush got the ID 1.
+                    </p>
+                    <center>
+                        <img src="figs/fig8.png" alt="Fig 8 (how to select the graphic to change)" width="301"
+                            height="103">
+                    </center>
+                    <p>Once you see the graphic you want to edit, click the "Select custom graphic" button and
+                        load the tile you want.
+                        (Note: the SMBX tiles textures are by default 32x32, which means than if
+                        you have a 16x16 texture
+                        like the mark sign we got up there, so we need to upscale it in 32x32 in any software.)
+                        If everything is done correctly, it should looks like this:</p>
+
+                    <center>
+                        <img src="figs/fig9.png" alt="Fig 9 (how its intented to looj if you done everything correctly)"
+                            width="290" height="90">
+                    </center>
+                    <p>If you are satisfied with the result, then press Ctrl+S, and reload the smbx level.</p>
+                    <center>
+                        <img src="figs/fig10.png" alt="Fig 10 (the level now the bushes are replaced with mark sign)"
+                            width="801" height="601">
+                    </center>
+                    <p>
+                        So, now the graphics are changed, yes it's ugly but it was for the example.
+                        And then, you can see, modify and delete your custom level graphics at bottom right of the
+                        window.</p>
+                    <center>
+                        <img src="figs/fig11.png" alt="Fig 11 (the software after you modified graphics)" width="682"
+                            height="512">
+                    </center>
+                    <span id="help">
+                        <h2>__________ Help __________</h2>
+                    </span>
+                    <p>Everytime you open a level folder, the .lvl or .lvlx file is backuped in the "backups"
+                        folder,
+                        located in the root folder of the software, which prevent an sudden file deletion, file
+                        corruption or a bad manipulation.</p>
+                    <span id="changelog">
+                        <h2>__________ Changelog __________</h2>
+                    </span>
+                    <div>
+                        <div class="box_blue"><span>0.1</span>
+                            <p>Added all main features, such as: graphic editing, graphics
+                                managing
+                                thanks to the frame at bottom right,animation preview and auto level backuping
+                            </p>
+                        </div>
+                        <div class="box_blue"><span>0.11</span>
+                            <p>Added Open Level in text editor button, Added tile upscaling and now
+                                when
+                                you load a tile thats is animated, it show up the size in the animation menu (not very
+                                stable
+                                yet).</p>
+                        </div>
+                        <div class="box_blue"><span>0.12</span>
+                            <p>Animation data is now loaded correctly, you can see both tiles dimensions by pressing Ctrl+D, currently working on settings.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
+        </div>
     </center>
     <div class="footer_content">
         <footer id="footer_bg">

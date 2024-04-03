@@ -356,14 +356,17 @@ if (x == 'smw') {
   smb3()
 };
 try {
-  document.getElementById("softwares_box").style.margin = 0;
+  document.getElementById("softwares_box_id").style.margin = 0;
+  document.getElementById("softwares_box_id").style.maxWidth = "1200px";
+  document.getElementById("softwares_box_id").style.height = "max-content";
 } catch (error) { };
+
 check_fav_logo();
 }
 
 function check_fav_logo() {
   if (localStorage.getItem('fav_logo') != null) {
-    if (localStorage.getItem('fav_logo') == 'alt') {
+    if (localStorage.getItem('fav_logo') == 'alt'){
       set_logo('alt')
     } else if (localStorage.getItem('fav_logo') == 'bowser') {
       set_logo('bowser')
@@ -414,12 +417,6 @@ function load_acc() {
   } else {
     document.getElementById("pfp_pr").src = pfp;
   }
-}
-
-function mc_head() {
-  const input = document.getElementById("mcname");
-  const inputValue = input.value;
-  open('https://render.skinmc.net/3d.php?user=' + inputValue + '&vr=-10&hr0&hrh=25&aa=true&headOnly=true&ratio=10')
 }
 
 function load_acc_index() {
