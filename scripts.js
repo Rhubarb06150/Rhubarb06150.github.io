@@ -120,7 +120,7 @@ function smb() {
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt.png";
     document.getElementById("logo_img").style.height = "80px";
     document.getElementById("logo_img").style.width = "508px";
-  } else if (sessionStorage.getItem('index') = 3999) {
+  } else if (sessionStorage.getItem('index') == 3999) {
     document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt_bowser.png";
     document.getElementById("logo_img").style.height = "80px";
     document.getElementById("logo_img").style.width = "514px";
