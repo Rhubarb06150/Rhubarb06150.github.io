@@ -1,47 +1,47 @@
 function smw() {
   if (sessionStorage.getItem('index') < 100) {
-    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt.png";
+    document.getElementById("logo_img").src = "/images/logos/logo_smw_alt.png";
     document.getElementById("logo_img").style.height = "66px";
     document.getElementById("logo_img").style.width = "584px";
   } else if (sessionStorage.getItem('index') == 3999) {
-    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt_bowser.png";
+    document.getElementById("logo_img").src = "/images/logos/logo_smw_alt_bowser.png";
     document.getElementById("logo_img").style.height = "102px";
     document.getElementById("logo_img").style.width = "590px";
   } else {
-    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw.png";
+    document.getElementById("logo_img").src = "/images/logos/logo_smw.png";
     document.getElementById("logo_img").style.height = "66px";
     document.getElementById("logo_img").style.width = "498px";
   }
-  document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
+  document.getElementById("top_layer_bg").style.backgroundImage = "url(/images/bg/hills_smw.png)";
   document.getElementById("top_layer_bg").style.height = "262px";
-  document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smw.png)";
+  document.getElementById("clouds_bg").style.backgroundImage = "url(/images/bg/clouds_smw.png)";
   document.getElementById("clouds_bg").style.height = "542px";
-  document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smw.png) 32 repeat";
+  document.getElementById("top_id").style.borderImage = "url(/images/bg/cloud_top_smw.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(240,240,240)";
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smw_1.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smw_1.png)"
+    box.style.borderImage = "url(/images/box/box_smw_1.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_smw_1.png)"
   });
   const boxes_ = document.querySelectorAll('.box_red');
   boxes_.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smw_2.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smw_2.png)"
+    box.style.borderImage = "url(/images/box/box_smw_2.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_smw_2.png)"
   });
   const boxes__ = document.querySelectorAll('.box_orange');
   boxes__.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smw_3.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smw_3.png)"
+    box.style.borderImage = "url(/images/box/box_smw_3.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_smw_3.png)"
   });
   const boxes___ = document.querySelectorAll('.box_green');
   boxes___.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smw_4.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smw_4.png)"
+    box.style.borderImage = "url(/images/box/box_smw_4.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_smw_4.png)"
   });
   const boxes____ = document.querySelectorAll('.box_white');
   boxes____.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smw_5.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smw_5.png)"
+    box.style.borderImage = "url(/images/box/box_smw_5.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_smw_5.png)"
   });
   localStorage.setItem('ui', 'smw')
   try {
@@ -49,59 +49,59 @@ function smw() {
   } catch (error) { }
   bg_check();
   try {
-    document.getElementById('mario').src = 'https://mcrhubarb.net/images/obj/mariosmw.png'
-    document.getElementById('luigi').src = 'https://mcrhubarb.net/images/obj/luigismw.png'
+    document.getElementById('mario').src = '/images/obj/mariosmw.png'
+    document.getElementById('luigi').src = '/images/obj/luigismw.png'
   } catch (error) { };
   check_fav_logo();
 }
 function smb3() {
   if (sessionStorage.getItem('index') < 100) {
-    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt.png";
+    document.getElementById("logo_img").src = "/images/logos/logo_alt.png";
     document.getElementById("logo_img").style.height = "70px";
     document.getElementById("logo_img").style.width = "638px";
   } else if (sessionStorage.getItem('index') == 3999) {
-    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt_bowser.png";
+    document.getElementById("logo_img").src = "/images/logos/logo_alt_bowser.png";
     document.getElementById("logo_img").style.height = "84px";
     document.getElementById("logo_img").style.width = "590px";
   } else {
-    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo.png";
+    document.getElementById("logo_img").src = "/images/logos/logo.png";
     document.getElementById("logo_img").style.height = "70px";
     document.getElementById("logo_img").style.width = "542px";
   }
-  document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
+  document.getElementById("top_layer_bg").style.backgroundImage = "url(/images/bg/bg.png)";
   document.getElementById("top_layer_bg").style.height = "300px";
-  document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds.png)";
+  document.getElementById("clouds_bg").style.backgroundImage = "url(/images/bg/clouds.png)";
   document.getElementById("clouds_bg").style.height = "532px";
   document.getElementById("clouds_bg").style.bottom = "100px";
-  document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top.png) 32 repeat";
+  document.getElementById("top_id").style.borderImage = "url(/images/bg/cloud_top.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(248,248,248)";
   if (document.URL.includes("/profile")) {
     const h1 = document.querySelectorAll('h1');
   }
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/border_blue.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_blue.png)"
+    box.style.borderImage = "url(/images/box/border_blue.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_blue.png)"
   });
   const boxes_ = document.querySelectorAll('.box_red');
   boxes_.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/border_red.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_red.png)"
+    box.style.borderImage = "url(/images/box/border_red.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_red.png)"
   });
   const boxes__ = document.querySelectorAll('.box_orange');
   boxes__.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/border_orange.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_orange.png)"
+    box.style.borderImage = "url(/images/box/border_orange.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_orange.png)"
   });
   const boxes___ = document.querySelectorAll('.box_green');
   boxes___.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/border_green.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_green.png)"
+    box.style.borderImage = "url(/images/box/border_green.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_green.png)"
   });
   const boxes____ = document.querySelectorAll('.box_white');
   boxes____.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/border_white.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_white.png)"
+    box.style.borderImage = "url(/images/box/border_white.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_white.png)"
   });
   localStorage.setItem('ui', 'smb3')
   try {
@@ -109,32 +109,32 @@ function smb3() {
   } catch (error) { }
   bg_check();
   try {
-    document.getElementById('mario').src = 'https://mcrhubarb.net/images/obj/mariosmb3.png'
-    document.getElementById('luigi').src = 'https://mcrhubarb.net/images/obj/luigismb3.png'
+    document.getElementById('mario').src = '/images/obj/mariosmb3.png'
+    document.getElementById('luigi').src = '/images/obj/luigismb3.png'
   } catch (error) { };
   check_fav_logo();
 }
 
 function smb() {
   if (sessionStorage.getItem('index') < 100) {
-    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt.png";
+    document.getElementById("logo_img").src = "/images/logos/logo_smb_alt.png";
     document.getElementById("logo_img").style.height = "80px";
     document.getElementById("logo_img").style.width = "508px";
   } else if (sessionStorage.getItem('index') == 3999) {
-    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt_bowser.png";
+    document.getElementById("logo_img").src = "/images/logos/logo_smb_alt_bowser.png";
     document.getElementById("logo_img").style.height = "80px";
     document.getElementById("logo_img").style.width = "514px";
   } else {
-    document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb.png";
+    document.getElementById("logo_img").src = "/images/logos/logo_smb.png";
     document.getElementById("logo_img").style.height = "80px";
     document.getElementById("logo_img").style.width = "418px";
   }
-  document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
+  document.getElementById("top_layer_bg").style.backgroundImage = "url(/images/bg/hills_smb.png)";
   document.getElementById("top_layer_bg").style.height = "432px";
-  document.getElementById("clouds_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/clouds_smb.png)";
+  document.getElementById("clouds_bg").style.backgroundImage = "url(/images/bg/clouds_smb.png)";
   document.getElementById("clouds_bg").style.height = "478px";
   document.getElementById("clouds_bg").style.bottom = "96px";
-  document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smb.png) 32 repeat";
+  document.getElementById("top_id").style.borderImage = "url(/images/bg/cloud_top_smb.png) 32 repeat";
   document.getElementById("top_id").style.backgroundColor = "rgb(255,255,255)";
   try {
     const box = document.getElementById("#profile_name,#softwares")
@@ -146,28 +146,28 @@ function smb() {
 
   const boxes = document.querySelectorAll('.box_blue');
   boxes.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smb_1.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smb_1.png)"
+    box.style.borderImage = "url(/images/box/box_smb_1.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_smb_1.png)"
   });
   const boxes_ = document.querySelectorAll('.box_red');
   boxes_.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smb_2.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smb_2.png)"
+    box.style.borderImage = "url(/images/box/box_smb_2.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_smb_2.png)"
   });
   const boxes__ = document.querySelectorAll('.box_orange');
   boxes__.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smb_3.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smb_3.png)"
+    box.style.borderImage = "url(/images/box/box_smb_3.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_smb_3.png)"
   });
   const boxes___ = document.querySelectorAll('.box_green');
   boxes___.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smb_4.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smb_4.png)"
+    box.style.borderImage = "url(/images/box/box_smb_4.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_smb_4.png)"
   });
   const boxes____ = document.querySelectorAll('.box_white');
   boxes____.forEach(box => {
-    box.style.borderImage = "url(https://mcrhubarb.net/images/box/box_smb_5.png) 32 repeat";
-    box.style.backgroundImage = "url(https://mcrhubarb.net/images/box/mid_smb_5.png)"
+    box.style.borderImage = "url(/images/box/box_smb_5.png) 32 repeat";
+    box.style.backgroundImage = "url(/images/box/mid_smb_5.png)"
   });
 
   localStorage.setItem('ui', 'smb')
@@ -176,8 +176,8 @@ function smb() {
   } catch (error) { }
   bg_check();
   try {
-    document.getElementById("mario").src = "https://mcrhubarb.net/images/obj/mariosmb1.png"
-    document.getElementById("luigi").src = "https://mcrhubarb.net/images/obj/luigismb1.png"
+    document.getElementById("mario").src = "/images/obj/mariosmb1.png"
+    document.getElementById("luigi").src = "/images/obj/luigismb1.png"
   } catch (error) { };
   check_fav_logo(); 1
 }
@@ -235,43 +235,43 @@ function ShowStars(stars_nb, prestige) {
 function set_logo(logo) {
   if (logo == 'normal') {
     if (localStorage.getItem('ui') == 'smb') {
-      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb.png";
+      document.getElementById("logo_img").src = "/images/logos/logo_smb.png";
       document.getElementById("logo_img").style.height = "80px";
       document.getElementById("logo_img").style.width = "418px";
     } else if (localStorage.getItem('ui') == 'smb3') {
-      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo.png";
+      document.getElementById("logo_img").src = "/images/logos/logo.png";
       document.getElementById("logo_img").style.height = "70px";
       document.getElementById("logo_img").style.width = "542px";
     } else if (localStorage.getItem('ui') == 'smw') {
-      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw.png";
+      document.getElementById("logo_img").src = "/images/logos/logo_smw.png";
       document.getElementById("logo_img").style.height = "66px";
       document.getElementById("logo_img").style.width = "498px";
     }
   } else if (logo == 'alt') {
     if (localStorage.getItem('ui') == 'smb') {
-      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt.png";
+      document.getElementById("logo_img").src = "/images/logos/logo_smb_alt.png";
       document.getElementById("logo_img").style.height = "80px";
       document.getElementById("logo_img").style.width = "508px";
     } else if (localStorage.getItem('ui') == 'smb3') {
-      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt.png";
+      document.getElementById("logo_img").src = "/images/logos/logo_alt.png";
       document.getElementById("logo_img").style.height = "70px";
       document.getElementById("logo_img").style.width = "638px";
     } else if (localStorage.getItem('ui') == 'smw') {
-      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt.png";
+      document.getElementById("logo_img").src = "/images/logos/logo_smw_alt.png";
       document.getElementById("logo_img").style.height = "66px";
       document.getElementById("logo_img").style.width = "584px";
     }
   } else if (logo == 'bowser') {
     if (localStorage.getItem('ui') == 'smb') {
-      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smb_alt_bowser.png";
+      document.getElementById("logo_img").src = "/images/logos/logo_smb_alt_bowser.png";
       document.getElementById("logo_img").style.height = "80px";
       document.getElementById("logo_img").style.width = "514px";
     } else if (localStorage.getItem('ui') == 'smb3') {
-      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_alt_bowser.png";
+      document.getElementById("logo_img").src = "/images/logos/logo_alt_bowser.png";
       document.getElementById("logo_img").style.height = "84px";
       document.getElementById("logo_img").style.width = "590px";
     } else if (localStorage.getItem('ui') == 'smw') {
-      document.getElementById("logo_img").src = "https://mcrhubarb.net/images/logos/logo_smw_alt_bowser.png";
+      document.getElementById("logo_img").src = "/images/logos/logo_smw_alt_bowser.png";
       document.getElementById("logo_img").style.height = "102px";
       document.getElementById("logo_img").style.width = "590px";
     }
@@ -324,19 +324,19 @@ function bg1() {
   localStorage.setItem('bg', 1)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smw.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(/images/bg/hills_smw.png)";
     document.getElementById("top_layer_bg").style.height = "262px";
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw.png)";
+    document.getElementById("footer_bg").style.backgroundImage = "url(/images/bg/bottom_smw.png)";
     time_switch();
   } else if (x == 'smb') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/hills_smb.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(/images/bg/hills_smb.png)";
     document.getElementById("top_layer_bg").style.height = "432px";
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb.png)";
+    document.getElementById("footer_bg").style.backgroundImage = "url(/images/bg/bottom_smb.png)";
     time_switch();
   } else {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bg.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(/images/bg/bg.png)";
     document.getElementById("top_layer_bg").style.height = "300px";
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom.png)";
+    document.getElementById("footer_bg").style.backgroundImage = "url(/images/bg/bottom.png)";
     time_switch();
   }
 }
@@ -345,18 +345,18 @@ function bg2() {
   localStorage.setItem('bg', 2)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bonus_smw.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(/images/bg/bonus_smw.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw_2.png)";
+    document.getElementById("footer_bg").style.backgroundImage = "url(/images/bg/bottom_smw_2.png)";
     time_switch();
   } else if (x == 'smb') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/cave.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(/images/bg/cave.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb_2.png)";
+    document.getElementById("footer_bg").style.backgroundImage = "url(/images/bg/bottom_smb_2.png)";
   } else {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bonus.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(/images/bg/bonus.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_2.png)";
+    document.getElementById("footer_bg").style.backgroundImage = "url(/images/bg/bottom_2.png)";
     time_switch();
   }
 }
@@ -365,20 +365,20 @@ function bg3() {
   localStorage.setItem('bg', 3)
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/smw_castle.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(/images/bg/smw_castle.png)";
     document.getElementById("top_layer_bg").style.height = "100%";
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smw_3.png)";
+    document.getElementById("footer_bg").style.backgroundImage = "url(/images/bg/bottom_smw_3.png)";
     time_switch();
   } else if (x == 'smb') {
-    document.body.style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb_mid.png)";
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb.png)";
+    document.body.style.backgroundImage = "url(/images/bg/castle_smb_mid.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(/images/bg/castle_smb.png)";
     document.getElementById("top_layer_bg").style.height = "416px";
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_smb_3.png)";
+    document.getElementById("footer_bg").style.backgroundImage = "url(/images/bg/bottom_smb_3.png)";
   } else {
-    document.body.style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb3_mid.png)";
-    document.getElementById("top_layer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/castle_smb3.png)";
+    document.body.style.backgroundImage = "url(/images/bg/castle_smb3_mid.png)";
+    document.getElementById("top_layer_bg").style.backgroundImage = "url(/images/bg/castle_smb3.png)";
     document.getElementById("top_layer_bg").style.height = "704px";
-    document.getElementById("footer_bg").style.backgroundImage = "url(https://mcrhubarb.net/images/bg/bottom_3.png)";
+    document.getElementById("footer_bg").style.backgroundImage = "url(/images/bg/bottom_3.png)";
     document.getElementById("footer_bg").style.backgroundPosition = "0px 0px";
   }
 }
@@ -592,7 +592,7 @@ function time_switch() {
     //pass
   } else {
     if (time == 'night') {
-      document.body.style.backgroundImage = "url(https://mcrhubarb.net/images/bg/stars.gif)";
+      document.body.style.backgroundImage = "url(/images/bg/stars.gif)";
       document.getElementById("clouds_bg").style.opacity = "50%";
     } else {
       document.body.style.backgroundImage = "none";
@@ -612,13 +612,13 @@ function time_switch() {
     document.body.style.backdropFilter = "brightness(50%)"
     document.getElementById("footer_bg").style.filter = "brightness(50%)"
     if (ui == 'smb3') {
-      document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/dark_cloud_top.png) 32 repeat";
+      document.getElementById("top_id").style.borderImage = "url(/images/bg/dark_cloud_top.png) 32 repeat";
       document.getElementById("top_id").style.backgroundColor = "#7c7c7c";
     } else if (ui == 'smb') {
-      document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/dark_cloud_top_smb.png) 32 repeat";
+      document.getElementById("top_id").style.borderImage = "url(/images/bg/dark_cloud_top_smb.png) 32 repeat";
       document.getElementById("top_id").style.backgroundColor = "#74787c";
     } else if (ui == 'smw') {
-      document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/dark_cloud_top_smb.png) 32 repeat";
+      document.getElementById("top_id").style.borderImage = "url(/images/bg/dark_cloud_top_smb.png) 32 repeat";
       document.getElementById("top_id").style.backgroundColor = "#7f7f7f";
     };
   } else {
@@ -626,13 +626,13 @@ function time_switch() {
     document.body.style.backdropFilter = "brightness(100%)"
     document.getElementById("footer_bg").style.filter = "brightness(100%)"
     if (ui == 'smb3') {
-      document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top.png) 32 repeat";
+      document.getElementById("top_id").style.borderImage = "url(/images/bg/cloud_top.png) 32 repeat";
       document.getElementById("top_id").style.backgroundColor = "#f8f8f8";
     } else if (ui == 'smb') {
-      document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smb.png) 32 repeat";
+      document.getElementById("top_id").style.borderImage = "url(/images/bg/cloud_top_smb.png) 32 repeat";
       document.getElementById("top_id").style.backgroundColor = "#ffffff";
     } else if (ui == 'smw') {
-      document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smw.png) 32 repeat";
+      document.getElementById("top_id").style.borderImage = "url(/images/bg/cloud_top_smw.png) 32 repeat";
       document.getElementById("top_id").style.backgroundColor = "#e8f0f8";
     };
   }
