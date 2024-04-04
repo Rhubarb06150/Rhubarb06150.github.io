@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="/scripts.js"></script>
+    <script type="text/javascript">
+        function init() {
+            ui_start();
+            load_acc_index();
+            check_dim();
+            "https://code.jquery.com/jquery-3.2.1.min.js"
+            var bg = localStorage.getItem('bg')
+            var ui = localStorage.getItem('ui')
+            if ((bg != 3) && (ui == ('smb3' || 'smb'))) {
+                time_switch();
+            }
+        }
+        window.onload = init;
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The page where you can upload your SMBX levels">
+    <title>Levels - MCRhubarb</title>
+    <link href="/k.css" rel="stylesheet">
+    <link href="/images/head/icon.png" rel="icon">
+</head>
+
+<body>
+    <div class="top" id="top_id">
+        <div class="logo">
+            <center><a href="/"><img src="" alt="Website's logo" id="logo_img" width="498"
+                        title="that's the logo :o"></a>
+            </center>
+        </div>
+    </div>
+
+    <div class="footer_content">
+        <footer id="footer_bg">
+        </footer>
+    </div>
+
+</body>
+<div class="hills" id="top_layer_bg"></div>
+<div class="sun"></div>
+<div class="clouds" id="clouds_bg"></div>
+<script>
+    clouds_shift();
+    set_clouds();
+    time_switch();
+    LoadLevel();
+</script>
+
+</html>

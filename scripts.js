@@ -1,3 +1,4 @@
+
 function smw() {
   if (sessionStorage.getItem('index') < 100) {
     document.getElementById("logo_img").src = "/images/logos/logo_smw_alt.png";
@@ -182,9 +183,44 @@ function smb() {
   check_fav_logo(); 1
 }
 
+function LoadLevel() {
+
+  queryString = window.location.search
+  urlParams = new URLSearchParams(queryString);
+  id = urlParams.get('lvlid');
+
+  file_path = "/files/levels/" + id + "/index.xml";
+
+  if (id == null) {
+    let url = window.location.href;
+    if (url.indexOf('?') > -1) {
+      url += ''
+    } else {
+      url += '&?lvlid=0'
+    }
+    window.location.href = url;
+  };
+  try {
+    let content;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', file_path);
+    xhr.onload = function () {
+      const xmlString = xhr.responseText;
+      const parser = new DOMParser();
+      const xmlDocument = parser.parseFromString(xmlString, 'application/xml');
+      content = xmlDocument
+      // Now you can access the XML data using the xmlDocument object 
+    };
+    xhr.send();
+    console.log(content)
+  } catch (error) {
+    console.log('not found' + error)
+  };
+}
+
 function ShowStars(stars_nb, prestige) {
-  initial_note=stars_nb
-  stars_nb=Math.round(stars_nb)
+  initial_note = stars_nb
+  stars_nb = Math.round(stars_nb)
   style = localStorage.getItem('ui')
   div = document.createElement("div");
   div.classList.add("stars")
@@ -230,9 +266,9 @@ function ShowStars(stars_nb, prestige) {
     starimg.style.width, starimg.style.height = "32px", "32px";
     div.appendChild(starimg);
   };
-  note=document.createElement("span");
-  note.id="note"
-  note.textContent=initial_note;
+  note = document.createElement("span");
+  note.id = "note"
+  note.textContent = initial_note;
 
   div.appendChild(note);
   document.getElementById("upload_win").appendChild(div);
