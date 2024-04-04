@@ -179,7 +179,57 @@ function smb() {
     document.getElementById("mario").src = "https://mcrhubarb.net/images/obj/mariosmb1.png"
     document.getElementById("luigi").src = "https://mcrhubarb.net/images/obj/luigismb1.png"
   } catch (error) { };
-  check_fav_logo();
+  check_fav_logo(); 1
+}
+
+function ShowStars(stars_nb, prestige) {
+
+  style = localStorage.getItem('ui')
+  div = document.createElement("div");
+  if (prestige == true) {
+    pre = 'prestige_'
+    sh_color = '#14c2ff'
+  } else {
+    pre = ''
+    sh_color = '#f8c810'
+  }
+  if (stars_nb != 1) {
+    for (let i = 0; i < stars_nb; i++) {
+      if (i % 2 == 0) {
+        var starimg = document.createElement("img");
+        starimg.src = "../images/head/" + pre + "star_" + style + ".png";
+        starimg.style.width, starimg.style.height = "32px", "32px";
+
+      } else {
+        var starimg = document.createElement("img");
+        starimg.src = "../images/head/" + pre + "half_star_" + style + ".png";
+        starimg.style.width, starimg.style.height = "32px", "32px";
+      };
+      if (i == stars_nb - 1) {
+        break;
+      }
+      if (i % 2 == 0 || i == stars_nb - 2) {
+        try {
+          starimg.style.setProperty("-webkit-filter", "drop-shadow(0px 0px 2px " + sh_color + ")");
+        } catch { };
+        div.appendChild(starimg);
+      }
+    };
+  } else {
+    var starimg = document.createElement("img");
+    starimg.src = "../images/head/" + pre + "half_star_" + style + ".png";
+    starimg.style.width, starimg.style.height = "32px", "32px";
+    div.appendChild(starimg);
+  };
+
+  for (let j = div.childElementCount; j < 5; j++) {
+    var starimg = document.createElement("img");
+    starimg.src = "../images/head/" + pre + "no_star_" + style + ".png";
+    starimg.style.width, starimg.style.height = "32px", "32px";
+    div.appendChild(starimg);
+    console.log('added no star')
+  };
+  document.getElementById("upload_win").appendChild(div);
 }
 
 function set_logo(logo) {
@@ -334,39 +384,39 @@ function bg3() {
 }
 
 function ui_start() {
-  if (sessionStorage.getItem('index')==null) {
+  if (sessionStorage.getItem('index') == null) {
     sessionStorage.setItem('index', getRandomInt(4000))
   };
-try {
-  localStorage.getItem('bg')
-} catch (error) {
-  console.log('bg set to 1')
-  localStorage.setItem('1', 'bg')
-};
-if (localStorage.getItem('moving') == null) {
-  localStorage.setItem('moving', 'yes')
-};
-var x = localStorage.getItem('ui')
-if (x == 'smw') {
-  smw()
-} else if (x == 'smb') {
-  smb()
-} else {
-  localStorage.setItem('ui', 'smb3')
-  smb3()
-};
-try {
-  document.getElementById("softwares_box_id").style.margin = 0;
-  document.getElementById("softwares_box_id").style.maxWidth = "1200px";
-  document.getElementById("softwares_box_id").style.height = "max-content";
-} catch (error) { };
+  try {
+    localStorage.getItem('bg')
+  } catch (error) {
+    console.log('bg set to 1')
+    localStorage.setItem('1', 'bg')
+  };
+  if (localStorage.getItem('moving') == null) {
+    localStorage.setItem('moving', 'yes')
+  };
+  var x = localStorage.getItem('ui')
+  if (x == 'smw') {
+    smw()
+  } else if (x == 'smb') {
+    smb()
+  } else {
+    localStorage.setItem('ui', 'smb3')
+    smb3()
+  };
+  try {
+    document.getElementById("softwares_box_id").style.margin = 0;
+    document.getElementById("softwares_box_id").style.maxWidth = "1200px";
+    document.getElementById("softwares_box_id").style.height = "max-content";
+  } catch (error) { };
 
-check_fav_logo();
+  check_fav_logo();
 }
 
 function check_fav_logo() {
   if (localStorage.getItem('fav_logo') != null) {
-    if (localStorage.getItem('fav_logo') == 'alt'){
+    if (localStorage.getItem('fav_logo') == 'alt') {
       set_logo('alt')
     } else if (localStorage.getItem('fav_logo') == 'bowser') {
       set_logo('bowser')
@@ -556,6 +606,35 @@ function time_switch() {
         document.getElementById("time_select").value = 'day';
       }
     } catch (error) { }
+  }
+  if (localStorage.getItem('time') == 'night') {
+    document.getElementById("top_layer_bg").style.filter = "brightness(50%)"
+    document.body.style.backdropFilter = "brightness(50%)"
+    document.getElementById("footer_bg").style.filter = "brightness(50%)"
+    if (ui == 'smb3') {
+      document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/dark_cloud_top.png) 32 repeat";
+      document.getElementById("top_id").style.backgroundColor = "#7c7c7c";
+    } else if (ui == 'smb') {
+      document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/dark_cloud_top_smb.png) 32 repeat";
+      document.getElementById("top_id").style.backgroundColor = "#74787c";
+    } else if (ui == 'smw') {
+      document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/dark_cloud_top_smb.png) 32 repeat";
+      document.getElementById("top_id").style.backgroundColor = "#7f7f7f";
+    };
+  } else {
+    document.getElementById("top_layer_bg").style.filter = "brightness(100%)"
+    document.body.style.backdropFilter = "brightness(100%)"
+    document.getElementById("footer_bg").style.filter = "brightness(100%)"
+    if (ui == 'smb3') {
+      document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top.png) 32 repeat";
+      document.getElementById("top_id").style.backgroundColor = "#f8f8f8";
+    } else if (ui == 'smb') {
+      document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smb.png) 32 repeat";
+      document.getElementById("top_id").style.backgroundColor = "#ffffff";
+    } else if (ui == 'smw') {
+      document.getElementById("top_id").style.borderImage = "url(https://mcrhubarb.net/images/bg/cloud_top_smw.png) 32 repeat";
+      document.getElementById("top_id").style.backgroundColor = "#e8f0f8";
+    };
   }
 
 }

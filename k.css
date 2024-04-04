@@ -18,6 +18,13 @@ html {
   min-width: max-content;
 }
 
+.stars{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: max-content;
+}
+
 .documentation_div{
   width: 1200px;
 }
