@@ -183,9 +183,11 @@ function smb() {
 }
 
 function ShowStars(stars_nb, prestige) {
-
+  initial_note=stars_nb
+  stars_nb=Math.round(stars_nb)
   style = localStorage.getItem('ui')
   div = document.createElement("div");
+  div.classList.add("stars")
   if (prestige == true) {
     pre = 'prestige_'
     sh_color = '#14c2ff'
@@ -227,8 +229,12 @@ function ShowStars(stars_nb, prestige) {
     starimg.src = "../images/head/" + pre + "no_star_" + style + ".png";
     starimg.style.width, starimg.style.height = "32px", "32px";
     div.appendChild(starimg);
-    console.log('added no star')
   };
+  note=document.createElement("span");
+  note.id="note"
+  note.textContent=initial_note;
+
+  div.appendChild(note);
   document.getElementById("upload_win").appendChild(div);
 }
 
