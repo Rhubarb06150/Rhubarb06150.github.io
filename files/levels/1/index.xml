@@ -1,9 +1,14 @@
 <infos>
-<file>Castle in the Sky.lvl</file>
-    <!-- "author": "SMBX",
-    "release_date": "04/04/2024",
-    "release_hour":"22:47",
-    "version":"SMBX 1.4",
-    "description":"An script example",
-    "title":"Castle in the sky" -->
+    <id>1</id>
+    <file>Castle in the Sky.lvl</file>
+    <author>SMBX</author>
+    <release_date>04/04/2024</release_date>
+    <release_hour>22:47</release_hour>
+    <version>SMBX 1.4</version>
+    <bbcode>[img]https://mcrhubarb.net/images/head/icon.png[/img]</bbcode>
+    <description>This level is a castle in the sky wooaawaaaaaaaw :o</description>
+    <name>Castle in the sky</name>
+    <size>27 Ko</size>
+    <note>9.4</note>
+    <votes>684</votes>
 </infos>

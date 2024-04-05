@@ -114,6 +114,7 @@ function smb3() {
     document.getElementById('luigi').src = '/images/obj/luigismb3.png'
   } catch (error) { };
   check_fav_logo();
+  
 }
 
 function smb() {
@@ -180,7 +181,205 @@ function smb() {
     document.getElementById("mario").src = "/images/obj/mariosmb1.png"
     document.getElementById("luigi").src = "/images/obj/luigismb1.png"
   } catch (error) { };
-  check_fav_logo(); 1
+  check_fav_logo();
+}
+
+function levelWindow(level) {
+
+  ui = localStorage.getItem('ui')
+
+  div = document.createElement("div");
+  div.classList = "wlg";
+
+  if (ui == 'smw') {
+    div.style.borderImage = "url(/images/box/box_smw_3.png) 32 repeat";
+    div.style.backgroundImage = "url(/images/box/mid_smw_3.png)"
+  } else if (ui == 'smb') {
+    div.style.borderImage = "url(/images/box/box_smb_3.png) 32 repeat";
+    div.style.backgroundImage = "url(/images/box/mid_smb_3.png)"
+  } else {
+    div.style.borderImage = "url(/images/box/border_orange.png) 32 repeat";
+    div.style.backgroundImage = "url(/images/box/mid_orange.png)"
+  };
+
+  top_div = document.createElement("div");
+  top_div.classList = "top_div";
+
+  name_div = document.createElement("div");
+  name_div.classList = "name_div"
+  name_div.id = "name_div"
+
+  span_name = document.createElement("span");
+  span_name.textContent = level.name;
+  span_name.classList = "level_name"
+  span_name.id = "level_name";
+
+  name_div.appendChild(span_name)
+
+  span_author_name = document.createElement("span");
+  span_author_name.textContent = "By: " + level.author;
+  span_author_name.classList = "infos"
+  span_author_name.id = "level_author";
+
+  votes_div = document.createElement("div");
+  votes_div.classList = "rows";
+  votes_div.style.paddingTop = "10px";
+
+  votes_sp = document.createElement("span");
+  votes_sp.innerHTML = "Votes: ";
+  votes_sp.classList = "infos"
+
+  votes_nb = document.createElement("span");
+  votes_nb.innerHTML = level.votes;
+  votes_nb.id = "votes_nb";
+  votes_nb.classList = "infos"
+
+  votes_div.appendChild(votes_sp);
+  votes_div.appendChild(votes_nb);
+
+  top_div.appendChild(name_div);
+  top_div.appendChild(span_author_name);
+
+  th_bbc = document.createElement("div");
+  th_bbc.classList = "th_bbc";
+
+  thumbnail = document.createElement("img");
+  thumbnail.src = "/files/levels/" + level.id + "/thumbnail.png";
+  thumbnail.style.width = "256px";
+  thumbnail.style.heigth = "256px";
+  thumbnail.classList = "thumbnail";
+
+  div.appendChild(top_div);
+
+  bbc = document.createElement("div");
+  bbc.classList = "bbcode_place";
+
+  bbcode = document.createElement("p");
+  bbcode.innerHTML = level.bbcode;
+
+  bbc.appendChild(bbcode);
+  th_bbc.appendChild(thumbnail);
+  th_bbc.appendChild(bbc);
+
+  div.appendChild(th_bbc);
+
+  bottom_div = document.createElement("div");
+  bottom_div.classList = "th_bbc";
+  desc_div = document.createElement("div");
+  desc_div.style.height = "256px";
+  desc_div.style.width = "60%";
+
+  description = document.createElement("div");
+  description.classList = "description";
+
+  actions = document.createElement("div");
+  actions.classList = "actions";
+
+  infos_actions = document.createElement("div");
+  infos_actions.classList = "actions_infos";
+
+  span_description = document.createElement("p");
+  span_description.innerHTML = "Description:";
+  span_description.classList = "spandesc";
+
+  description_content=document.createElement("p");
+  description_content.innerHTML=level.description;
+
+  description.appendChild(description_content)
+  desc_div.appendChild(span_description)
+  desc_div.appendChild(description)
+
+  version_div = document.createElement("div");
+
+  version_label = document.createElement("span");
+  version_label.innerHTML = "SMBX Version: ";
+  version_label.classList = "infos";
+
+  version_span = document.createElement("span");
+  version_span.innerHTML = level.version;
+  version_span.classList = "infos";
+
+  version_div.appendChild(version_label);
+  version_div.appendChild(version_span);
+
+
+  fs_div = document.createElement("div");
+
+  fs_label = document.createElement("span");
+  fs_label.innerHTML = "File size: ";
+  fs_label.classList = "infos";
+
+  fs_span = document.createElement("span");
+  fs_span.innerHTML = level.size;
+  fs_span.classList = "infos";
+
+  fs_div.appendChild(fs_label);
+  fs_div.appendChild(fs_span);
+
+  bottom_div.appendChild(desc_div);
+
+  infos_actions.appendChild(fs_div);
+  infos_actions.appendChild(version_div);
+
+
+  rd_div = document.createElement("div");
+
+  rd_label = document.createElement("span");
+  rd_label.innerHTML = "Release date: ";
+  rd_label.classList = "infos";
+
+  rd_span = document.createElement("span");
+  rd_span.innerHTML = level.release_date;
+  rd_span.classList = "infos";
+
+  rd_div.appendChild(rd_label);
+  rd_div.appendChild(rd_span);
+
+  bottom_div.appendChild(desc_div);
+
+
+  rh_div = document.createElement("div");
+
+  rh_label = document.createElement("span");
+  rh_label.innerHTML = "Release hour: ";
+  rh_label.classList = "infos";
+
+  rh_span = document.createElement("span");
+  rh_span.innerHTML = level.release_hour;
+  rh_span.classList = "infos";
+
+  rh_div.appendChild(rh_label);
+  rh_div.appendChild(rh_span);
+
+  bottom_div.appendChild(desc_div);
+
+  infos_actions.appendChild(fs_div);
+  infos_actions.appendChild(version_div);
+  infos_actions.appendChild(rd_div);
+  infos_actions.appendChild(rh_div);
+
+
+  download_link = document.createElement('a');
+  download_link.id = "download_link";
+  download_link.classList = "download";
+  download_link.textContent = "Download the Level";
+  download_link.href = "/files/levels/" + level.id + "/" + level.file;
+
+  actions.appendChild(infos_actions)
+  actions.appendChild(download_link)
+  bottom_div.appendChild(actions);
+  div.appendChild(bottom_div);
+
+  document.getElementById("wlg").appendChild(div);
+
+  if (level.votes >= 100) {
+    ShowStars(level.note, true, "name_div");
+  } else {
+    ShowStars(level.note, false, "name_div");
+  }
+
+  name_div.appendChild(votes_div);
+
 }
 
 function LoadLevel() {
@@ -194,31 +393,38 @@ function LoadLevel() {
   if (id == null) {
     let url = window.location.href;
     if (url.indexOf('?') > -1) {
-      url += ''
+      window.location = window.location.href.split("?")[0];
     } else {
-      url += '&?lvlid=0'
+      url += '?lvlid=0'
     }
     window.location.href = url;
   };
   try {
-    let content;
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', file_path);
-    xhr.onload = function () {
-      const xmlString = xhr.responseText;
-      const parser = new DOMParser();
-      const xmlDocument = parser.parseFromString(xmlString, 'application/xml');
-      content = xmlDocument
-      // Now you can access the XML data using the xmlDocument object 
-    };
-    xhr.send();
-    console.log(content)
+    let xml_content = {};
+
+    fetch(file_path).then(r => r.text()).then(data => {
+      let parser = new DOMParser();
+      let xmlDoc = parser.parseFromString(data, "text/xml");
+      xml_content.file = (xmlDoc.querySelector("file").textContent)
+      xml_content.author = (xmlDoc.querySelector("author").textContent)
+      xml_content.release_date = (xmlDoc.querySelector("release_date").textContent)
+      xml_content.release_hour = (xmlDoc.querySelector("release_hour").textContent)
+      xml_content.version = (xmlDoc.querySelector("version").textContent)
+      xml_content.description = (xmlDoc.querySelector("description").textContent)
+      xml_content.bbcode = (xmlDoc.querySelector("bbcode").textContent)
+      xml_content.name = (xmlDoc.querySelector("name").textContent)
+      xml_content.id = (xmlDoc.querySelector("id").textContent)
+      xml_content.size = (xmlDoc.querySelector("size").textContent)
+      xml_content.votes = (xmlDoc.querySelector("votes").textContent)
+      xml_content.note = (xmlDoc.querySelector("note").textContent)
+      levelWindow(xml_content)
+    });
   } catch (error) {
     console.log('not found' + error)
   };
 }
 
-function ShowStars(stars_nb, prestige) {
+function ShowStars(stars_nb, prestige, div_id) {
   initial_note = stars_nb
   stars_nb = Math.round(stars_nb)
   style = localStorage.getItem('ui')
@@ -229,18 +435,22 @@ function ShowStars(stars_nb, prestige) {
     sh_color = '#14c2ff'
   } else {
     pre = ''
-    sh_color = '#f8c810'
+    sh_color = '#f8f880'
   }
   if (stars_nb != 1) {
     for (let i = 0; i < stars_nb; i++) {
       if (i % 2 == 0) {
         var starimg = document.createElement("img");
         starimg.src = "../images/head/" + pre + "star_" + style + ".png";
+        starimg.classList = "noselect";
+
         starimg.style.width, starimg.style.height = "32px", "32px";
 
       } else {
         var starimg = document.createElement("img");
         starimg.src = "../images/head/" + pre + "half_star_" + style + ".png";
+        starimg.classList = "noselect";
+
         starimg.style.width, starimg.style.height = "32px", "32px";
       };
       if (i == stars_nb - 1) {
@@ -248,13 +458,14 @@ function ShowStars(stars_nb, prestige) {
       }
       if (i % 2 == 0 || i == stars_nb - 2) {
         try {
-          starimg.style.setProperty("-webkit-filter", "drop-shadow(0px 0px 2px " + sh_color + ")");
+          starimg.style.setProperty("-webkit-filter", "drop-shadow(0px 0px 6px " + sh_color + ")");
         } catch { };
         div.appendChild(starimg);
       }
     };
   } else {
     var starimg = document.createElement("img");
+    starimg.classList = "noselect";
     starimg.src = "../images/head/" + pre + "half_star_" + style + ".png";
     starimg.style.width, starimg.style.height = "32px", "32px";
     div.appendChild(starimg);
@@ -262,16 +473,19 @@ function ShowStars(stars_nb, prestige) {
 
   for (let j = div.childElementCount; j < 5; j++) {
     var starimg = document.createElement("img");
+    starimg.classList = "noselect";
     starimg.src = "../images/head/" + pre + "no_star_" + style + ".png";
     starimg.style.width, starimg.style.height = "32px", "32px";
     div.appendChild(starimg);
   };
   note = document.createElement("span");
-  note.id = "note"
+  note.id = "note";
+  note.style.margin = "10px";
   note.textContent = initial_note;
+  note.classList = "infos";
 
   div.appendChild(note);
-  document.getElementById("upload_win").appendChild(div);
+  document.getElementById(div_id).appendChild(div);
 }
 
 function set_logo(logo) {
@@ -441,19 +655,17 @@ function ui_start() {
   var x = localStorage.getItem('ui')
   if (x == 'smw') {
     smw()
-  } else if (x == 'smb') {
-    smb()
-  } else {
-    localStorage.setItem('ui', 'smb3')
+  } else if (x == 'smb3') {
     smb3()
+  } else {
+    localStorage.setItem('ui', 'smw')
+    smw()
   };
   try {
     document.getElementById("softwares_box_id").style.margin = 0;
     document.getElementById("softwares_box_id").style.maxWidth = "1200px";
     document.getElementById("softwares_box_id").style.height = "max-content";
   } catch (error) { };
-
-  check_fav_logo();
 }
 
 function check_fav_logo() {
@@ -466,6 +678,12 @@ function check_fav_logo() {
       set_logo('normal')
     }
   }
+  try{
+    document.getElementById("start").style.paddingTop = document.getElementById("top_id").offsetHeight+"px";
+  }catch (error){};
+  try{
+    document.getElementById("box_left").style.paddingTop = document.getElementById("top_id").offsetHeight+"px";
+  }catch (error){}
 }
 
 function getBase64Image(img) {
@@ -515,16 +733,18 @@ function load_acc_index() {
   var usrlang = navigator.language || navigator.userLanguage;
   var username = localStorage.getItem('username')
   var pfp = localStorage.getItem('profile_picture')
-  if (username == null) {
-    document.getElementById('profile_name').textContent = 'No profile';
-  } else {
-    document.getElementById('profile_name').textContent = username;
-  }
-  if (pfp == null) {
-    document.getElementById("pfp_pr_index").src = 'images/head/default.png';
-  } else {
-    document.getElementById("pfp_pr_index").src = pfp;
-  }
+  try {
+    if (username == null) {
+      document.getElementById('profile_name').textContent = 'Create a profile';
+    } else {
+      document.getElementById('profile_name').textContent = username;
+    }
+    if (pfp == null) {
+      document.getElementById("pfp_pr_index").src = 'images/head/default.png';
+    } else {
+      document.getElementById("pfp_pr_index").src = pfp;
+    }
+  } catch { }
 }
 
 function readURL(input) {
@@ -678,9 +898,7 @@ function time_switch() {
       document.getElementById("top_id").style.backgroundColor = "#e8f0f8";
     };
   }
-
 }
-
 
 function cloud_button() {
   if (document.getElementById("clouds_moving_button").checked) {
