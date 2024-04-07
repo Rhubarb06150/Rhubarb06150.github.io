@@ -34,7 +34,27 @@
         </div>
     </div>
     <center id="start">
+        <div id="search_bar" class="search_bar">
+            <div class="space_between">
+                <div class="option">
+                    <a href="/lvlupload/">
+                        <img src="/images/obj/upload.png" width="16" height="16">
+                        <span class="infos_lvl_upload" id="lvl_up_button">Upload a level</span>
+                    </a>
+                </div>
+                <form onsubmit="searchLevel(document.getElementById('level_entry').value)">
+                    <div class="option">
+                        <img src="/images/obj/wen.png" width="16" height="16">
+                        <span class="infos_lvl_upload" id="search_span">Search for a level</span>
+                        <input type="text" placeholder="Level name or ID" class="entry" id="level_entry">
+                    </div>
+                    <input type="submit" hidden />
+                </form>
+            </div>
+        </div>
         <div id="wlg" class="wlg"></div>
+        <div id="wlvlsgo" class="wlvlsgo"></div>
+        <div id="commentaries"></div>
     </center>
     <div class="footer_content">
         <footer id="footer_bg">
