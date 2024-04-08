@@ -367,15 +367,9 @@ function removeParamFromURL(url, param) {
   return newSearchParams ? `${path}?${newSearchParams}` : path;
 }
 
-function searchLevel(query) {
-  let url = removeParamFromURL(window.location.href,'lvlid');
-  url+='?lvlid='+query;
-  window.open(url);
-}
-
 function levelWindow(level) {
 
-  ui = localStorage.getItem('ui')
+  ui = localStorage.getItem('ui');
 
   div = document.createElement("div");
   div.classList = "wlg";
@@ -596,6 +590,27 @@ function levelWindow(level) {
   loadComment();
   loadComment();
 
+}
+
+function verifySearch() {
+  queryString = window.location.search;
+  urlParams = new URLSearchParams(queryString);
+  search = urlParams.get('search');
+  lvlid = urlParams.get('lvlid');
+  if (search != null || lvlid == null) {
+    div = document.createElement("div");
+    span_results = document.createElement("span");
+    span_results.innerHTML = 'Results for';
+    span_results.classList = "level_name";
+    span_results.style.marginRight = "10px"
+    div.append(span_results)
+    span_results_params = document.createElement("span");
+    span_results_params.innerHTML = removeParamFromURL(search, 'search')
+    span_results_params.classList = "level_name";
+    div.append(span_results_params)
+
+    document.getElementById("wlg").append(div)
+  }
 }
 
 function LoadLevel() {
