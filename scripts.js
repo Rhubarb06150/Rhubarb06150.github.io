@@ -1067,6 +1067,21 @@ function check_dim() {
   });
 }
 
+function show_description(id,size) {
+  document.getElementById(id).style.height = size+"px";
+  document.getElementById(id).style.filter = "none";
+}
+function hide_description(id) {
+  document.getElementById(id).style.height = "0px";
+  document.getElementById(id).style.filter = "blur(4px)";
+}
+
+function website_hover(id,size) {
+  document.getElementById(id+'_img').addEventListener("mouseover", (event) => show_description(id+'_description',size));
+  document.getElementById(id+'_img').addEventListener("mouseout", (event) => hide_description(id+'_description'));
+  
+}
+
 function time_set() {
   try {
     var select = document.getElementById("time_select");

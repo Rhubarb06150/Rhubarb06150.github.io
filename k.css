@@ -136,16 +136,16 @@ p {
 .box_left {
   font-family: Arial, Helvetica, sans-serif;
   color: beige;
-  border: 32px solid transparent;
   image-rendering: pixelated;
   width: 256px;
-  height: 500px;
+  height: max-content;
   background-color: rgba(75, 75, 75, 0.5);
   backdrop-filter: blur(4px);
   border-bottom-right-radius: 1rem;
   margin: 0px;
   /* filter: drop-shadow(2px 2px 0px #000000); */
   z-index: 1;
+  transition-duration: height 500ms;
 }
 
 /* LEVELS */
@@ -343,6 +343,13 @@ a .infos:hover:not(#lvl_up_button) {
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+}
+
+.website_description{
+  height: 0px;
+  overflow: hidden;
+  filter: blur(4px);
+  transition-duration: 500ms;
 }
 
 .entry {
@@ -836,11 +843,13 @@ a :hover:not(.infos) {
 .websites {
   transition: 500ms;
   filter: contrast(50%);
+  border-radius: 0rem;
 }
 
 a .websites:hover {
   box-shadow: #ffae00 0px 0px 20px;
   filter: contrast(100%);
+  border-radius: 0.5rem;
   transition-duration: 250ms;
 
 }
