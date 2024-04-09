@@ -448,7 +448,7 @@ function levelWindow(level) {
   bbc.classList = "bbcode_place";
 
   bbcode = document.createElement("p");
-  bbcode.innerHTML = level.bbcode;
+  bbcode.innerHTML = BBcodeTranslate(level.bbcode);
 
   bbc.appendChild(bbcode);
   th_bbc.appendChild(thumbnail);
@@ -613,6 +613,14 @@ function verifySearch() {
   }
 }
 
+function BBcodeTranslate(text) {
+  balises=['[img]','[/img]','[youtube]','[/youtube]']
+  balises_b=['<img src=','>','<iframe width="426" height="240" src=','></iframe>']
+  for (i = 0; i < balises.length;i++){
+    text=text.replace(balises[i].replace('<','[').replace('>',']'),balises_b[i])
+  };
+  return text
+}
 function LoadLevel() {
 
   queryString = window.location.search
@@ -646,11 +654,11 @@ function LoadLevel() {
     } catch (error) {
       console.log('not found' + error)
     };
+
   } else {
     levelLink(1);
     levelLink(2);
     levelLink(3);
-
   }
 }
 
@@ -1067,8 +1075,8 @@ function check_dim() {
   });
 }
 
-function show_description(id,size) {
-  document.getElementById(id).style.height = size+"px";
+function show_description(id, size) {
+  document.getElementById(id).style.height = size + "px";
   document.getElementById(id).style.filter = "none";
 }
 function hide_description(id) {
@@ -1076,10 +1084,10 @@ function hide_description(id) {
   document.getElementById(id).style.filter = "blur(4px)";
 }
 
-function website_hover(id,size) {
-  document.getElementById(id+'_img').addEventListener("mouseover", (event) => show_description(id+'_description',size));
-  document.getElementById(id+'_img').addEventListener("mouseout", (event) => hide_description(id+'_description'));
-  
+function website_hover(id, size) {
+  document.getElementById(id + '_img').addEventListener("mouseover", (event) => show_description(id + '_description', size));
+  document.getElementById(id + '_img').addEventListener("mouseout", (event) => hide_description(id + '_description'));
+
 }
 
 function time_set() {
