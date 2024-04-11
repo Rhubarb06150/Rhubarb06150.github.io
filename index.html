@@ -10,56 +10,13 @@
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script>
         $(function () {
-            $("#sidebar").load("sidebar.html");
+            $("#body").load("template.html");
         });
     </script>
     <title>MCRhubarb</title>
 </head>
 
-<body style="display: none;">
-    <div class="header" id="header">
-        <a href="/">
-            <img src="/images/logos/mcrhubarb.png" height="102" width="590" style="margin-left: 32px;"
-                alt="website logo" id="website-logo">
-        </a>
-    </div>
-
-    <div class="page_structure">
-        <div class="sidebar" id="sidebar">
-        </div>
-        <div class="elements" id="elements">
-            <span class="section_title">So, what's new?</span>
-            <div class="line"></div>
-            <div class="element">
-                <div class="element_title">
-                    <span>
-                        Welcome to MCRhuarb!
-                    </span>
-                </div>
-                <div class="element_content">
-                    <p>
-                        Hello user! Welcome to MCRhubarb, a website where you can download and share your SMBX
-                        levels.<br>I'm currently restyling/rebuilding all the website, so it might take some time before
-                        eveerything is like before.<br><br>
-                        So, here is the to do list:<br><br>
-                        - first of all, an login/sign up system for create users profiles<br>
-                        - a fully working level preview/upload system<br>
-                        - a levels list that you can parse as you parse a list of subscriptions<br>
-                        -
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <div class="footer_content">
-            <center>
-                <p>MCRhuarb is not affiliated with Nintendo or any other company. All nintendo content belongs to
-                    Nintendo, all the rest belongs to MCRhubarb.</p>
-            </center>
-        </div>
-    </footer>
+<body style="display: none;" id="body">
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
