@@ -53,7 +53,8 @@
                             <div class="option">
                                 <img src="/images/obj/wen.png" width="16" height="16">
                                 <span class="infos_lvl_upload" id="search_span">Search level by name</span>
-                                <input type="text" placeholder="Level name" class="entry" id="level_name_entry" size="15">
+                                <input type="text" placeholder="Level name" class="entry" id="level_name_entry"
+                                    size="15">
                             </div>
                             <input type="submit" hidden />
                         </form>
@@ -79,16 +80,20 @@
             var form2 = document.getElementById("search_id_form");
 
             function searchLevelByName() {
-                let url = removeParamFromURL(window.location.href, 'lvlid');
-                url = removeParamFromURL(url, 'search');
-                url += '?search=' + document.getElementById("level_name_entry").value;
-                window.location = url;
+                if (document.getElementById("level_name_entry").value != "") {
+                    let url = removeParamFromURL(window.location.href, 'lvlid');
+                    url = removeParamFromURL(url, 'search');
+                    url += '?search=' + document.getElementById("level_name_entry").value;
+                    window.location = url;
+                }
             };
             function goToLevelByID() {
-                let url = removeParamFromURL(window.location.href, 'lvlid');
-                url = removeParamFromURL(url, 'search');
-                url += '?lvlid=' + document.getElementById("level_id_entry").value;
-                window.location = url;
+                if (document.getElementById("level_id_entry").value != "") {
+                    let url = removeParamFromURL(window.location.href, 'lvlid');
+                    url = removeParamFromURL(url, 'search');
+                    url += '?lvlid=' + document.getElementById("level_id_entry").value;
+                    window.location = url;
+                }
             };
 
             form1.addEventListener('submit', searchLevelByName);

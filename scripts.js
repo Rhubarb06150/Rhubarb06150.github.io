@@ -184,6 +184,36 @@ function smb() {
   check_fav_logo();
 }
 
+function saveImageURL() {
+  const fileInput = document.getElementById('thumbnail');
+  const file = fileInput.files[0];
+  if (file.type.match('image.*')) {
+    const reader = new FileReader();
+    reader.addEventListener('load', function (event) {
+      sessionStorage.setItem('thumbnail_url',(event.target.result));
+    });
+  };
+  console.log(sessionStorage.getItem('thumbnail_url'));
+};
+
+function previewLevel() {
+  if (sessionStorage.getItem('thumbnail_url')==null){};
+  sessionStorage.setItem('level_upload_thumbnail', document.getElementById("thumbnail"));
+  sessionStorage.setItem('level_name', document.getElementById("level_name").value);
+  sessionStorage.setItem('level_version', document.getElementById("level_version").value);
+  sessionStorage.setItem('level_description', document.getElementById("description").value);
+  sessionStorage.setItem('level_bbcode', document.getElementById("bbcode").value);
+  sessionStorage.setItem('level_thumbnail', document.getElementById("thumbnail").value);
+  sessionStorage.setItem('level_file', document.getElementById("level_file").value);
+  if (sessionStorage.getItem('level_name') == '') { sessionStorage.setItem('level_name', 'No name') };
+  if (sessionStorage.getItem('level_version') == '') { sessionStorage.setItem('level_version', '1.4') };
+  if (sessionStorage.getItem('level_description') == '') { sessionStorage.setItem('level_description', 'No description') };
+  if (sessionStorage.getItem('level_bbcode') == '') { sessionStorage.setItem('level_bbcode', 'No BBCode') };
+  if (sessionStorage.getItem('level_thumbnail') == '') { sessionStorage.setItem('level_thumbnail', '/images/obj/default.png') };
+  if (sessionStorage.getItem('level_file') == '') { sessionStorage.setItem('level_file', '/images/obj/default.png') };
+  window.location.href = '/levels/?preview=1'
+}
+
 function loadComment() {
 
   div = document.createElement("div");
@@ -289,7 +319,7 @@ function levelLink(id) {
     a.appendChild(span_name);
     lvl_name.appendChild(a);
     smbx_version = document.createElement("span");
-    smbx_version.innerHTML = "(" + level.version + ")";
+    smbx_version.innerHTML = "(SMBX " + level.version + ")";
     smbx_version.classList = "infos";
     smbx_version.style.marginLeft = "5px";
     smbx_version.style.fontSize = "75%";
@@ -338,7 +368,7 @@ function levelLink(id) {
 
     pp = document.createElement("img");
     pp.classList = "thumbnail";
-    pp.src = '/files/levels/' + id + '/thumbnail.png';
+    pp.src = '/files/levels/' + level.id + '/thumbnail.png';
     pp.style.width = "128px";
     pp.style.height = "128px";
     if (level.votes > 99) {
@@ -371,6 +401,17 @@ function levelWindow(level) {
 
   ui = localStorage.getItem('ui');
 
+  if (level.preview == 1) {
+    _a_ = document.createElement("a");
+    _a_.href = "/lvlupload";
+    span = document.createElement("span");
+    span.innerHTML = 'Go back to level editing';
+    span.style.marginBottom = "20px";
+    span.classList = 'level_name_nsh';
+    _a_.appendChild(span)
+    document.getElementById("wlg").appendChild(_a_)
+  }
+
   div = document.createElement("div");
   div.classList = "wlg";
 
@@ -396,8 +437,9 @@ function levelWindow(level) {
   span_name.textContent = level.name;
   span_name.classList = "level_name";
   span_name.id = "level_name";
-  document.title = level.name + " - MCRhubarb";
-
+  if (level.preview == 0) {
+    document.title = level.name + " - MCRhubarb";
+  } else { document.title = 'Level Preview - MCRhubarb' }
   name_div.appendChild(span_name);
 
   author = document.createElement("div");
@@ -437,9 +479,28 @@ function levelWindow(level) {
   th_bbc.classList = "th_bbc";
 
   thumbnail = document.createElement("img");
-  thumbnail.src = "/files/levels/" + level.id + "/thumbnail.png";
+  if (level.thumbnail == '/images/obj/default.png') {
+    thumbnail.src = level.thumbnail;
+  } else {
+    try {
+      console.log(sessionStorage.getItem('thumbnail_url'))
+      console.log('___')
+      if (sessionStorage.getItem('thumbnail_url').files && sessionStorage.getItem('thumbnail_url').files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          thumbnail.src = e.target.result;
+        };
+
+        reader.readAsDataURL(sessionStorage.getItem('thumbnail_url').files[0]);
+      }
+    } catch {
+      thumbnail.src = level.thumbnail;
+    }
+  }
   thumbnail.style.width = "256px";
-  thumbnail.style.heigth = "256px";
+  thumbnail.style.minWidth = "256px";
+  thumbnail.style.height = "256px";
+  thumbnail.style.minHeight = "256px";
   thumbnail.classList = "thumbnail";
 
   div.appendChild(top_div);
@@ -564,12 +625,18 @@ function levelWindow(level) {
 
   dl_div = document.createElement("div");
   dl_div.style.textAlign = "right";
+  dl_img = document.createElement("img")
+  dl_img.src = "/images/obj/download.png";
+  dl_img.marginRight = "10px";
   download_link = document.createElement('a');
   download_link.id = "download_link";
   download_link.classList = "download";
   download_link.textContent = "Download the Level";
-  download_link.href = "/files/levels/" + level.id + "/" + level.file;
+  if (level.preview == 0) {
+    download_link.href = "/files/levels/" + level.id + "/" + level.file;
+  }
 
+  dl_div.appendChild(dl_img)
   dl_div.appendChild(download_link)
   actions.appendChild(infos_actions)
   actions.appendChild(dl_div)
@@ -597,7 +664,7 @@ function verifySearch() {
   urlParams = new URLSearchParams(queryString);
   search = urlParams.get('search');
   lvlid = urlParams.get('lvlid');
-  if (search != null || lvlid == null) {
+  if (search != null && lvlid == null) {
     div = document.createElement("div");
     span_results = document.createElement("span");
     span_results.innerHTML = 'Results for';
@@ -614,10 +681,10 @@ function verifySearch() {
 }
 
 function BBcodeTranslate(text) {
-  balises=['[img]','[/img]','[youtube]','[/youtube]']
-  balises_b=['<img src=','>','<iframe width="426" height="240" src=','></iframe>']
-  for (i = 0; i < balises.length;i++){
-    text=text.replace(balises[i].replace('<','[').replace('>',']'),balises_b[i])
+  balises = ['[img]', '[/img]', '[youtube]', '[/youtube]']
+  balises_b = ['<img src=', '>', '<iframe width="426" height="240" src=', '></iframe>']
+  for (i = 0; i < balises.length; i++) {
+    text = text.replace(balises[i].replace('<', '[').replace('>', ']'), balises_b[i])
   };
   return text
 }
@@ -626,13 +693,13 @@ function LoadLevel() {
   queryString = window.location.search
   urlParams = new URLSearchParams(queryString);
   id = urlParams.get('lvlid');
+  pr = urlParams.get('preview');
 
-  file_path = "/files/levels/" + id + "/index.xml";
-
-  if (id != null) {
+  if (id != null && pr == null) {
 
     try {
       let xml_content = {};
+      file_path = "/files/levels/" + id + "/index.xml";
 
       fetch(file_path).then(r => r.text()).then(data => {
         let parser = new DOMParser();
@@ -646,15 +713,39 @@ function LoadLevel() {
         xml_content.bbcode = (xmlDoc.querySelector("bbcode").textContent)
         xml_content.name = (xmlDoc.querySelector("name").textContent)
         xml_content.id = (xmlDoc.querySelector("id").textContent)
+        xml_content.thumbnail = '/files/levels/' + xml_content.id + '/thumbnail.png';
         xml_content.size = (xmlDoc.querySelector("size").textContent)
         xml_content.votes = (xmlDoc.querySelector("votes").textContent)
         xml_content.note = (xmlDoc.querySelector("note").textContent)
+        xml_content.preview = 0
         levelWindow(xml_content)
       });
     } catch (error) {
-      console.log('not found' + error)
     };
 
+  } else if (pr == '1') {
+    if (sessionStorage.getItem('level_name') == null) { sessionStorage.setItem('level_name', 'No name') };
+    if (sessionStorage.getItem('level_version') == null) { sessionStorage.setItem('level_version', '1.4') };
+    if (sessionStorage.getItem('level_description') == null) { sessionStorage.setItem('level_description', 'No description') };
+    if (sessionStorage.getItem('level_bbcode') == null) { sessionStorage.setItem('level_bbcode', 'No BBCode') };
+    if (sessionStorage.getItem('level_thumbnail') == null) { sessionStorage.setItem('level_thumbnail', '/images/obj/default.png') };
+    if (sessionStorage.getItem('level_file') == null) { sessionStorage.setItem('level_file', '/images/obj/default.png') };
+    level = {};
+    level.preview = 1
+    level.file = sessionStorage.getItem('level_file');
+    level.author = localStorage.getItem('username');
+    level.release_date = '22/01/1996';
+    level.release_hour = '14:45';
+    level.thumbnail = sessionStorage.getItem('level_thumbnail');
+    level.version = sessionStorage.getItem('level_version');
+    level.description = sessionStorage.getItem('level_description');
+    level.bbcode = sessionStorage.getItem('level_bbcode');
+    level.name = sessionStorage.getItem('level_name');
+    level.id = getRandomInt(10000);
+    level.size = '47 Kb';
+    level.votes = getRandomInt(150);
+    level.note = (60 + getRandomInt(20)) / 10;
+    levelWindow(level);
   } else {
     levelLink(1);
     levelLink(2);
@@ -884,7 +975,7 @@ function ui_start() {
   try {
     localStorage.getItem('bg')
   } catch (error) {
-    console.log('bg set to 1')
+
     localStorage.setItem('1', 'bg')
   };
   if (localStorage.getItem('moving') == null) {
@@ -985,17 +1076,18 @@ function load_acc_index() {
   } catch { }
 }
 
-function readURL(input) {
+function readURL(input,id) {
   if (input.files && input.files[0]) {
 
     var reader = new FileReader();
     reader.onload = function (e) {
-      document.querySelector("#pfp_pr").setAttribute("src", e.target.result);
+      document.querySelector("#"+id).setAttribute("src", e.target.result);
     };
 
     reader.readAsDataURL(input.files[0]);
   }
 }
+
 
 function check_dim() {
   const red_box = document.querySelectorAll("div.box_red");
@@ -1076,10 +1168,12 @@ function check_dim() {
 }
 
 function show_description(id, size) {
+  document.getElementById("box_left").style.borderBottomLeftRadius = "1rem";
   document.getElementById(id).style.height = size + "px";
   document.getElementById(id).style.filter = "none";
 }
 function hide_description(id) {
+  document.getElementById("box_left").style.borderBottomLeftRadius = "0rem";
   document.getElementById(id).style.height = "0px";
   document.getElementById(id).style.filter = "blur(4px)";
 }
@@ -1100,15 +1194,16 @@ function time_set() {
   } catch (error) { }
 }
 function time_switch() {
-  var time = localStorage.getItem('time')
-  var bg = localStorage.getItem('bg')
-  var ui = localStorage.getItem('ui')
+  var time = localStorage.getItem('time');
+  var bg = localStorage.getItem('bg');
+  var ui = localStorage.getItem('ui');
   if ((bg == 3) && (ui == 'smb' || 'smb3') && (ui != 'smw')) {
     //pass
   } else {
     if (time == 'night') {
       document.body.style.backgroundImage = "url(/images/bg/stars.gif)";
       document.getElementById("clouds_bg").style.opacity = "50%";
+
     } else {
       document.body.style.backgroundImage = "none";
       document.body.style.background = "linear-gradient(0deg, rgba(160, 208, 248, 1) 10%, rgba(214, 160, 255, 1) 90%)";
@@ -1119,6 +1214,7 @@ function time_switch() {
         document.getElementById("time_select").value = time;
       } else {
         document.getElementById("time_select").value = 'day';
+        console.log('nf')
       }
     } catch (error) { }
   }
@@ -1126,6 +1222,7 @@ function time_switch() {
     document.getElementById("top_layer_bg").style.filter = "brightness(50%)"
     if (document.body.style.backgroundImage != 'url("/images/bg/stars.gif")') { document.body.style.backdropFilter = "brightness(50%)" }
     document.getElementById("footer_bg").style.filter = "brightness(50%)"
+    document.body.style.backgroundImage.filter = "brightness(50%)"
     if (ui == 'smb3') {
       document.getElementById("top_id").style.borderImage = "url(/images/bg/dark_cloud_top.png) 32 repeat";
       document.getElementById("top_id").style.backgroundColor = "#7c7c7c";

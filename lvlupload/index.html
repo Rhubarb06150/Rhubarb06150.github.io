@@ -34,50 +34,77 @@
         </div>
     </div>
     <div id="start"></div>
-    <div class="box_orange" id="upload_win">
-        <h2>
-            Your level name:
-            <input type="text" placeholder="Try to be original">
-        </h2>
-        <br>
-        <h2>
-            SMBX Version:
-            <select>
-                <option value="1.0">SMBX 1.0</option>
-                <option value="1.1">SMBX 1.1</option>
-                <option value="1.2">SMBX 1.2</option>
-                <option value="1.3">SMBX 1.3</option>
-                <option value="1.4">SMBX 1.4</option>
-                <option value="2">SMBX 2</option>
-            </select>
-        </h2>
-        <br>
-        <h2>Description:</h2>
-        <br>
-        <textarea id="description" cols="50" rows="10"
-            placeholder="The description goes here, make people want to play your level!"></textarea>
-        <div>
-            <br>
-            <h2>Thumbnail:</h2><span>Accepted formats: .png, .jpeg, .jpg, .gif</span>
-        </div>
-        <div>
-            <input id="thumbnail" type="file" accept="image/png, image/jpeg, image/jpg, image/gif" hidden>
-            <label for="thumbnail" class="file_button">choose thumbnail</label>
-        </div>
-        <br>
-        <div>
-            <h2>Level file:</h2>
-            <span>Accepted formats: .lvl, .lvlx, .zip, .rar, .7z</span>
-        </div>
-        <div>
-            <input id="level_file" type="file" accept=".zip,.rar,.7z,.lvl,.lvlx" hidden>
-            <label for="level_file" class="file_button">choose level file</label>
-        </div>
-        <!-- <span>Download URL: (required if no level file is provided)</span>
+    <center>
+
+        <form>
+            <div class="box_orange" id="upload_win">
+                <h2>
+                    Your level name:
+                    <input type="text" placeholder="Try to be original" id="level_name">
+                </h2>
+                <br>
+                <h2>
+                    SMBX Version:
+                    <select id="level_version">
+                        <option value="1.0">SMBX 1.0</option>
+                        <option value="1.1">SMBX 1.1</option>
+                        <option value="1.2">SMBX 1.2</option>
+                        <option value="1.3">SMBX 1.3</option>
+                        <option value="1.4">SMBX 1.4</option>
+                        <option value="2">SMBX 2</option>
+                    </select>
+                </h2>
+                <br>
+                <h2>Description:</h2>
+                <br>
+                <textarea id="description" cols="50" rows="10"
+                    placeholder="The description goes here, make people want to play your level!"></textarea>
+                <h2>BBCode:</h2>
+                <!-- <div class="block" id="bbcode_help"></div>
+                <span class="infos">Help for BBCode</span> -->
+                <p>Note: when you put a youtube video link, replace the "/watch?v=" with "/embed/" followed by the
+                    youtube video ID</p>
+                <br>
+                <textarea id="bbcode" cols="50" rows="10"
+                    placeholder="Type here a BBCode description to animate your level description!"></textarea>
+                <br>
+                <h2>Thumbnail:</h2><span>Accepted formats: .png, .jpeg, .jpg, .gif</span>
+                <div>
+                    <input id="thumbnail" type="file" accept="image/png, image/jpeg, image/jpg, image/gif" hidden
+                        onchange="readURL(this);">
+                    <label for="thumbnail" class="file_button">choose thumbnail</label>
+                </div>
+                <center>
+                    <img src="/images/obj/default.png" class="thumbnail">
+                </center>
+                <br>
+                <div>
+                    <h2>Level file:</h2>
+                    <span>Accepted formats: .lvl, .lvlx, .zip, .rar, .7z</span>
+                </div>
+                <div>
+                    <input id="level_file" type="file" accept=".zip,.rar,.7z,.lvl,.lvlx" hidden>
+                    <label for="level_file" class="file_button">choose level file</label>
+                </div>
+                <!-- <span>Download URL: (required if no level file is provided)</span>
         <textarea id="description" cols="75" rows="1"
             placeholder="Put a stable link, like a mediafire link for example."></textarea> -->
-    </div>
+                <div class="rows">
+                    <div>
+                        <button id="preview_button" class="file_button" onclick="previewLevel();return false;">
+                            Preview
+                        </button>
+                    </div>
+                    <div>
+                        <button id="submit_button" class="file_button">
+                            Submit
+                        </button>
+                    </div>
+                </div>
+            </div>
 
+        </form>
+    </center>
 
     <div class="footer_content">
         <footer id="footer_bg">
