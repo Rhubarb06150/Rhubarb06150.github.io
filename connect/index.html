@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="/scripts.js"></script>
+    <script type="text/javascript">
+        function init() {
+            ui_start();
+            load_acc_index();
+            check_dim();
+
+            var bg = localStorage.getItem('bg')
+            var ui = localStorage.getItem('ui')
+            if ((bg != 3) && (ui == ('smb3' || 'smb'))) {
+                time_switch();
+            }
+        }
+        window.onload = init;
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Welcome to MCRhubarb.net! A website for download some little softwares made for SMBX and other games!">
+    <title>Connect - MCRhubarb</title>
+    <link href="/k.css" rel="stylesheet">
+    <link href="/images/head/icon.png" rel="icon">
+</head>
+
+<body>
+    <div class="top" id="top_id">
+        <div class="logo">
+            <center><img src="" alt="Website's logo" id="logo_img" width="498" title="that's the logo :o"></center>
+        </div>
+    </div>
+    <div id="start"></div> 
+    <center>
+    <div class="box_orange">
+            <h2>
+            Login to MCRhubarb.net!
+            </h2>
+        <div class="margin-bottom50px"></div>
+
+        <div class="login_content">
+            <center class="rows">
+            <div class="labels_sides">
+
+                <div>
+                <span class="login_label">username/email:</span>
+                </div>
+
+                <div>
+                    <span class="login_label">password:</span>
+                </div>
+            </div>
+            <div class="entries_sides">
+                <input class="login_entry" type="text" >
+                <input class="login_entry" type="password">
+            </div>
+            </center>
+        </div>
+    </div>
+    </center>
+    <div class="footer_content">
+        <footer id="footer_bg">
+        </footer>
+    </div>
+</body>
+<div class="hills" id="top_layer_bg"></div>
+<div class="sun"></div>
+<div class="clouds" id="clouds_bg"></div>
+<script>
+    clouds_shift();
+    set_clouds();
+    time_switch();
+    website_hover('wohlsoft',150);
+    // website_hover('mfgg',144);
+    // website_hover('hfg',180);
+</script>
+
+</html>

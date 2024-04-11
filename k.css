@@ -186,6 +186,56 @@ p {
   border-style: solid;
 }
 
+.margin-bottom50px{
+  margin-bottom:50px;
+}
+
+.margin-bottom20px{
+  margin-bottom:20px;
+}
+
+.login_content{
+  width: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.login_entry{
+  margin-bottom: 10px;
+  border-radius: 0.25rem;
+  background-color: #505050;
+  color: #ffffff;
+}
+
+.login_entry:focus{
+  animation-name: entry_focus;
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+  transition-duration: 125ms;
+}
+
+.login_label{
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.labels_sides{
+  width: max-content;
+  width: 20%;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+}
+
+.entries_sides{
+  width: max-content;
+  width: 70%;
+  text-align: right;
+}
+
 .commentaries {
   display: flex;
   flex-direction: column;

@@ -1193,6 +1193,7 @@ function time_set() {
     time_switch();
   } catch (error) { }
 }
+
 function time_switch() {
   var time = localStorage.getItem('time');
   var bg = localStorage.getItem('bg');
