@@ -48,6 +48,35 @@ p{
     margin: 0px;
 }
 
+textarea{
+    background-color: #454545;
+    color: #ffffff;
+}
+
+input{
+    background-color: #454545;
+    color: #ffffff;
+}
+
+
+
+.entry_and_labels{
+    display: flex;
+    flex-direction: row;
+}
+
+.button{
+    background-color: #900000;
+    padding: 5px;
+    border: #884343 1px solid;
+    display:inline-block;
+}
+
+.button:hover{
+    border: #ffffff 1px solid;
+    background-color: #884343;
+}
+
 .section_title{
     margin: 16px;
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
@@ -86,13 +115,14 @@ p{
     background-color: #3f1d1d;
     padding: 5px;
     color: #ffffff;
-    font-size: 60%;
+    font-size: 75%;
     line-break: auto;
 }
 
 .element_content {
     padding: 5px;
     background-color: #532727;
+    color: #ffffff;
     line-break: anywhere;
 }
 
@@ -158,12 +188,15 @@ p{
 
 a:link {
     color: #ffff00;
+    text-decoration: none;
 }
 
 a:visited {
     color: #ffff00;
+    text-decoration: none;
     font-weight: bold;
 }
+
 
 a:hover {
     color: #ff7500;
