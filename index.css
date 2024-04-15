@@ -7,10 +7,19 @@
     width: 100%;
     min-width: max-content;
     background-image: url("/images/bgs/header-bg.png");
+    background-color: #212121;
     image-rendering: pixelated;
     background-attachment: fixed;   
     display: flex;
     flex-direction: column;
+}
+
+.profile_picture{
+    max-width: 128px;
+    min-width: 128px;
+    max-height: 128px;
+    min-height: 128px;
+    border: #884343 2px solid;
 }
 
 .page_structure {
@@ -28,6 +37,7 @@
 
 body {
     background-image: url("/images/bgs/dark-bg.png");
+    background-color: #454545;
     image-rendering: pixelated;
     background-attachment: fixed;
     display: flex;
@@ -58,7 +68,10 @@ input{
     color: #ffffff;
 }
 
-
+h2{
+    font-family: Verdana, Helvetica, Arial, Sans-Serif;
+    font-size: 120%;
+}
 
 .entry_and_labels{
     display: flex;
@@ -68,17 +81,20 @@ input{
 .button{
     background-color: #900000;
     padding: 5px;
-    border: #884343 1px solid;
+    border: #884343 2px solid;
     display:inline-block;
 }
 
 .button:hover{
-    border: #ffffff 1px solid;
+    border: #ffffff 2px solid;
     background-color: #884343;
 }
 
 .section_title{
-    margin: 16px;
+    margin-left: 5px;
+    margin-right: 16px;
+    margin-top: 16px;
+    margin-bottom: 16px;
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
     color: #ffffff;
     font-size: 175%;
@@ -89,9 +105,9 @@ input{
 
 .elements {
     display: flex;
-    max-width: fit-content;
+    width: 100%;
     flex-direction: column;
-    margin-right: 10px;
+    margin-right: 25px;
 }
 
 .element {
@@ -101,6 +117,8 @@ input{
     flex-direction: column;
     height: max-content;
     margin-bottom: 10px;
+    min-width: 100%;
+    font-family: Verdana, Helvetica, Arial, Sans-Serif;
 }
 
 .element_title {
@@ -110,12 +128,14 @@ input{
     font-size: 110%;
     font-weight: bold;
     line-break: auto;
+    font-family: Verdana, Helvetica, Arial, Sans-Serif;
 }
 .element_infos {
     background-color: #3f1d1d;
     padding: 5px;
     color: #ffffff;
     font-size: 75%;
+    font-family: Verdana, Helvetica, Arial, Sans-Serif;
     line-break: auto;
 }
 
@@ -123,13 +143,18 @@ input{
     padding: 5px;
     background-color: #532727;
     color: #ffffff;
-    line-break: anywhere;
+    line-break: auto;
+    font-family: Verdana, Helvetica, Arial, Sans-Serif;
+}
+
+.thumbnail{
+    border: #884343 2px solid;
 }
 
 .menu {
     border: #884343 2px solid;
     background-color: #900000;
-    width: 123px;
+    width: 118px;
     min-height: 16px;
     color: #ffffff;
     padding-left: 5px;
@@ -205,10 +230,12 @@ a:hover {
 footer {
     margin-top: auto;
     margin-bottom: 0px;
+    background-image: url("/images/bgs/header-bg.png");
+    background-attachment: fixed;
+    background-color: #212121;
 }
 
 .footer_content {
-    background-image: url("/images/bgs/header-bg.png");
     padding:14px;
     background-attachment: fixed;
 }
