@@ -1,5 +1,5 @@
 <?php
-$servername = "localhost";
+$servername = "10.10.29.38";
 $username = "hey";
 $password = "";
 
@@ -109,11 +109,15 @@ if ($conn->connect_error) {
                 <div class="element_title">Log to your account</div>
                 <div class="element_infos">If you don't have any account you can create one on <a href="/signup.php">sign up page</a>. If you have any trouble with logging in, contact administrators.</div>
                 <div class="element_content">
-                    Username:<br>
-                    <form method="post" action="/actions/login.php">
-                        <input><br><br>
-                        Password:<br><input type="password"><br><br>
-                        <input hidden type="submit" id="login">
+                    <form method="post" action="actions/login.php">
+                        Username:<br>
+                        <input type="text" id="username" name="username"><br><br>
+
+                        Password:<br>
+                        <input type="password" id="password" name="password"><br><br>
+                        
+                        <input hidden type="submit" id="login" name="login">
+
                         <label for="login" class="button">Connect</label><br><br>
                         <a href="">Lost your password?</a>
                 </div>

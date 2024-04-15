@@ -195,6 +195,11 @@ function loadTheme() {
             menus_options_websites[i].style.border = "#6060ff 1px solid";
             menus_options_websites[i].style.backgroundColor = "#202040";
         }
+    }else if (fav_theme=='pokemon'){
+        document.body.style.backgroundImage = "url('/images/bgs/dark-bg-pokemon.png')";
+        document.getElementById("header").style.backgroundImage = "url('/images/bgs/header-bg-pokemon.png')";
+        document.getElementById("footer").style.backgroundImage = "url('/images/bgs/header-bg-pokemon.png')";
+        document.getElementById("website-logo").src = "/images/logos/smbxworld-pokemon.png";
     } else if (fav_theme == 'dark') {
         document.body.style.backgroundImage = "url('/images/bgs/dark-mushrooms.png')";
         document.getElementById("header").style.backgroundImage = "url('/images/bgs/header-bg-mushrooms.png')";
@@ -261,6 +266,8 @@ function getSuccess() {
     act = urlParams.get('act');
     if (act == 'signup') {
         document.getElementById('success_span').innerHTML = 'Your account has been created, you now <a href="/login.php">log in</a>.'
+    }else if(act=='login'){
+        document.getElementById('success_span').innerHTML = 'You are now logged in.'
     }
 };
 

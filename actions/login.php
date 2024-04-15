@@ -1,20 +1,29 @@
 <?php
-$servername = "localhost";
+session_start();
+$servername = "10.10.29.38";
 $username = "hey";
 $password = "";
 
-$conn = new mysqli($servername, $username, $password);
-$conn->select_db('personnes');
+$conn = new PDO(
+	'mysql:host=10.10.29.38;dbname=personnes;charset=utf8',
+	'hey',
+	''
+);
 
-if ($conn->connect_error) {
+if (isset($_POST["login"])) {
+
+
+    $usernamef = ($_POST['username']);
+    $passwordf = ($_POST['password']);
+
+    $sql = "SELECT * FROM users WHERE username = '$usernamef' AND password = '$passwordf'";
+    $result = $conn->query($sql);
+
+    if ($result->rowCount() > 0) {
+        $_SESSION["username"] = $usernamef;
+        $_SESSION["loggedin"] = true;
+        header("Location: /success.php?act=login");
+    } else {
+        echo "Invalid username or password";
+    };
 };
-$username = ($_POST['username']);
-$password = ($_POST['password']);
-
-$rpassword='';
-$sql=('SET @rpassword = (SELCET password FROM users WHERE username = @username)');
-
-if ($conn->query($sql) === TRUE) { 
-    header("Location:/success.php?act=login");
-    exit();
-}

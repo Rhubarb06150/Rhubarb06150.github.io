@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,10 +103,10 @@
                     <img src="/images/head/succes.png">
                     <span>If you are not redirected click <a href="/">here</a>.</span>
                 </div>
-                </div>
-                </form>
             </div>
+            </form>
         </div>
+    </div>
     </div>
     <footer id="footer">
         <div class="footer_content">

@@ -1,15 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "hey";
-$password = "";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password);
-
-// Check connection
-if ($conn->connect_error) {
-};
-
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">

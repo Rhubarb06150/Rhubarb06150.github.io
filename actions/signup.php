@@ -1,20 +1,27 @@
 <?php
-$servername = "localhost";
-$username = "hey";
-$password = "";
+$conn = new PDO(
+    'mysql:host=10.10.29.38;dbname=personnes;charset=utf8',
+    'hey',
+    ''
+);
 
-$conn = new mysqli($servername, $username, $password);
-$conn->select_db('personnes');
+$usernamef = ($_POST['username']);
+$emailf = ($_POST['mail1']);
+$passwordf = ($_POST['password1']);
 
-if ($conn->connect_error) {
+$req = "SELECT * FROM users WHERE username = '$usernamef'";
+$result = $conn->query($req);
+echo $result->rowCount();
+
+if ($result->rowCount() > 0) {
+    echo 'Username already tooken.';
+    echo $result->rowCount();
+} else {
+    $sql = "INSERT INTO users (username , register_date , email , password)
+    VALUES ('$usernamef', NOW(), '$emailf', '$passwordf')";
+    if ($conn->query($sql) == TRUE) {
+        header("Location:/success.php?act=signup");
+        echo $result->rowCount();
+        exit();
+    };
 };
-$username = ($_POST['username']);
-$email = ($_POST['mail1']);
-$password = ($_POST['password1']);
-
-$sql = "INSERT INTO users (username , register_date , email , password)
-VALUES ('$username', NOW(), '$email', '$password')";
-if ($conn->query($sql) === TRUE) { 
-    header("Location:/success.php?act=signup");
-    exit();
-}
