@@ -306,6 +306,9 @@ function getSuccess() {
     } else if (act == 'pwd_ch') {
         document.getElementById('success_span').innerHTML = "Your password has been modified.<br><a href='/account/'>Return to account managing</a> or wait to get redirected.";
         Redirect('index');
+    } else if (act == 'pfp_ch') {
+        document.getElementById('success_span').innerHTML = "Your profile picture has been modified.<br><a href='/account/'>Return to account managing</a> or wait to get redirected.";
+        Redirect('index');
     } else {
         Redirect('index');
     };
@@ -351,6 +354,24 @@ function getFailure() {
     } else if (act == 'bad_pwd') {
         document.getElementById('failure').innerHTML = "Your old passwords isn't corresponding."
         Redirect('/account/password_modify');
+    } else if (act == 'no_pfp') {
+        document.getElementById('failure').innerHTML = "Your didn't uploaded an image."
+        Redirect('/account/index');
+    } else if (act == 'no_img') {
+        document.getElementById('failure').innerHTML = "The file you uploaded seems to be broken."
+        Redirect('/account/index');
+    } else if (act == 'pfp_size') {
+        document.getElementById('failure').innerHTML = "The file you uploaded is too heavy, the max file size is 128 Kb! Try to reduce the size."
+        Redirect('/account/index');
+    } else if (act == 'pfp_for') {
+        document.getElementById('failure').innerHTML = "The file format is'nt supported, the supported formats are: .png, .jpg, .jpeg, .gif"
+        Redirect('/account/index');
+    } else if (act == 'pfp_ch') {
+        document.getElementById('failure').innerHTML = "An unknown error has occured when trying to modify your profile picture."
+        Redirect('/account/index');
+    } else if (act == 'tl_bio') {
+        document.getElementById('failure').innerHTML = "Your biography cannot exceed 1024 characters."
+        Redirect('/account/index');
 
 
     } else if (act == 'usignup') {

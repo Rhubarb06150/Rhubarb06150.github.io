@@ -139,13 +139,14 @@ session_start();
 </body>
 
 </html>
-<script>
-    AddElement("You doesn't have an account?", 'No problem!', "You can create an account an account on <a href='/signup.php'>sign up page</a>, and joining <span id='members_nb'></span> members!")
-</script>
+
 <?php
+
 if (isset($_SESSION["username"])) {
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
-    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
+    echo "<script>AddElement('Members!','Wow this is awesome!','Currently, there are <span id=members_nb></span> members registered here! Our last member is <span id=last_member></span>.');</script>";
+} else {
+    echo '<script>' . "AddElement('You do not have an account?','No problem!','You can create an account an account on <a href=/signup.php>sign up page</a>, and joining <span id=members_nb></span> members!  Our last member is <span id=last_member></span>.');"  . '</script>';
 };
 
 $conn = new PDO(
@@ -153,7 +154,22 @@ $conn = new PDO(
     'hey',
     ''
 );
+
+$req = "SELECT * FROM users ORDER BY id DESC LIMIT 1";
+$result = $conn->query($req);
+$lu = $result->fetch();
+$last_user = $lu["username"];
+
+if (isset($_SESSION["username"])) {
+    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
+};
 $req = "SELECT * FROM users";
 $result = $conn->query($req);
-echo "<script>document.getElementById('members_nb').innerHTML=" . $result->rowCount() . "</script>";
+
+$sql="SELECT id FROM users WHERE username = '$last_user'";
+$result_b=$conn->query($sql);
+$result_b=$result_b->fetch();
+$luid=$result_b['id'];
+echo "<script>document.getElementById('members_nb').innerHTML=" . $result->rowCount() . ";</script>";
+echo "<script>document.getElementById('last_member').innerHTML='<a href=/user/?id=".$luid.">" .$last_user . "</a>';</script>";
 ?>

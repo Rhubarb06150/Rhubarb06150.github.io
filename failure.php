@@ -123,12 +123,12 @@ session_start();
 </body>
 
 </html>
+<script>
+    getFailure();
+</script>
 <?php
 if (isset($_SESSION["username"])) {
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
+    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
 };
 ?>
-<script>
-    loadTheme();
-    getFailure();
-</script>

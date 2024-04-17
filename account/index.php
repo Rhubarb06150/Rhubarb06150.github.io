@@ -104,11 +104,29 @@ session_start();
                     <span>Here you can edit your account settings.</span>
                 </div>
                 <div class="element_content">
+
+                    <form action="/actions/upload_pfp.php" method="post" enctype="multipart/form-data">
+                        <p>
+                            Modify profile picture:<br>
+                            The image can't be over 128 Kb!<br><br>For a better result, upload a square profile picture.<br><br>
+                        </p>
+
+                        <input type="file" id="picture" name="picture"><br><br>
+
+                        <input type="submit" id="post_pfp" name="post_pfp" hidden>
+
+                        <label for="post_pfp" class="button">Update profile picture</label>
+
+                    </form>
+
+                    <br><br>
+
                     <form method="post" action="/actions/acc_modify.php">
+
                         <p>
                             Change website theme:
                         </p>
-
+                        <br>
                         <select id="theme" name="theme">
                             <option value="default">Classic (Gray and Red)</option>
                             <option value="dark">Dark (Blue Mushrooms)</option>
@@ -116,14 +134,32 @@ session_start();
                             <option value="pokemon2">Pokémon 2 (Fire Red and Green Leaf)</option>
                             <option value="blue">Blue</option>
                         </select><br><br>
+                        Bio:<br><br>
+                        <textarea id="desc_aera" style="width:512px;height:256px" name="bio"></textarea>
+                        <script>
+                            document.getElementById('desc_aera').addEventListener("keyup", (event) => {
+                                document.getElementById('len').innerHTML=document.getElementById('desc_aera').value.length
+                                if (document.getElementById('desc_aera').value.length>1024){
+                                    document.getElementById('len').style.color="#ff0000";
+                                }else{
+                                    document.getElementById('len').style.color="#ffffff";
+                                }
+                            });
+                        </script><br>
+                        <span id="len"></span>/1024<br><br>
                         <input hidden type="submit" id="post" name="post">
                         <label for="post" class="button">Update account preferences</label>
-                    </form><br>
-                    
+
+                    </form>
+
+                    <br>
+
                     <span>Account informations:</span><br><br>
                     <span id="reg_span">Register date: </span>
                     <br>
                     <span id="email_span">E-mail address: </span>
+                    <br>
+                    <span id="user_id">Your user ID is: </span>
                     <br>
                     <a href="/account/password_modify.php"><span>Modify your password</span></a><br><br>
                     <p>To reveal your absolute code, click <a onclick="showAbsCode();">here</a>.</p>
@@ -164,6 +200,21 @@ if (isset($_SESSION["username"])) {
     $emailf = $emailf["email"];
     echo "<script>var email ='" . $emailf . "'</script>";
 
+    $sql = "SELECT id FROM users WHERE username = '$usrf'";
+    $uid = $conn->query($sql);
+    $uid = $uid->fetch();
+    $uid = $uid["id"];
+    echo "<script>var uid ='" . $uid . "'</script>";
+
+    $sql = "SELECT description FROM users WHERE username = '$usrf'";
+    $result = $conn->query($sql);
+    $result = $result->fetch();
+    $bio = $result["description"];
+
+    echo "<script>document.getElementById('desc_aera').value=`" . $bio . "`</script>";
+    echo "<script>document.getElementById('len').innerHTML=document.getElementById('desc_aera').value.length</script>";
+
+
     $sql = "SELECT register_date FROM users WHERE username = '$usrf'";
     $reg_date = $conn->query($sql);
     $reg_datef = $reg_date->fetch();
@@ -174,4 +225,5 @@ if (isset($_SESSION["username"])) {
 <script>
     document.getElementById("email_span").innerHTML += email;
     document.getElementById("reg_span").innerHTML += reg_date;
+    document.getElementById("user_id").innerHTML += uid;
 </script>

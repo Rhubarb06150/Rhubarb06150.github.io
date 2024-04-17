@@ -48,13 +48,11 @@ body {
 
 span {
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
-    font-size: 85%;
 }
 
 p{
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
     color: #ffffff;
-    font-size: 85%;
     margin: 0px;
 }
 
@@ -134,7 +132,7 @@ h2{
     background-color: #3f1d1d;
     padding: 5px;
     color: #ffffff;
-    font-size: 75%;
+    font-size: 70%;
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
     line-break: auto;
 }
@@ -144,6 +142,7 @@ h2{
     background-color: #532727;
     color: #ffffff;
     line-break: auto;
+    font-size: 85%;
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
 }
 
