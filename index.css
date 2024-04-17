@@ -147,6 +147,11 @@ h2{
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
 }
 
+select{
+    background-color: #454545;
+    color: #ffffff;
+};
+
 .thumbnail{
     border: #884343 2px solid;
 }
@@ -154,7 +159,7 @@ h2{
 .menu {
     border: #884343 2px solid;
     background-color: #900000;
-    width: 118px;
+    width: 120px;
     min-height: 16px;
     color: #ffffff;
     padding-left: 5px;
@@ -164,6 +169,10 @@ h2{
     padding-top: 2px;
     padding-bottom: 2px;
     padding-right: 5px;
+}
+
+.green{
+    color: #33ff00;
 }
 
 .menu_img {
@@ -183,7 +192,8 @@ h2{
 }
 
 .menu_options {
-    border: #884343 1px solid;
+    border-right: #884343 2px solid;
+    border-left: #884343 2px solid;
     background-color: #532727;
     width: 114px;
     padding-left: 10px;
@@ -193,7 +203,9 @@ h2{
 }
 
 .menu_options_websites {
-    border: #884343 1px solid;
+    border-right: #884343 2px solid;
+    border-left: #884343 2px solid;
+    border-bottom: #884343 2px solid;
     background-color: #532727;
     padding-top: 4px;
     width: 122px;
@@ -211,9 +223,10 @@ h2{
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
 }
 
-a:link {
+a {
     color: #ffff00;
     text-decoration: none;
+    cursor: pointer;
 }
 
 a:visited {

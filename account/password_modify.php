@@ -11,7 +11,7 @@ session_start();
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <title>Sign Up - SMBX World</title>
+    <title>Account preferences - SMBX World</title>
 </head>
 
 <body id="body">
@@ -51,7 +51,7 @@ session_start();
             </div>
             <div id="account_div">
                 <div class="menu">Account
-                    <img src="/images/tiles/rotating-block.png" width="16"00 height="16" class="menu_img">
+                    <img src="/images/tiles/rotating-block.png" width="16" height="16" class="menu_img">
                 </div>
                 <div class="menu_options" id="account">
                     <span class="menu_options_link"><a href="/login.php">Log In</a></span>
@@ -96,34 +96,28 @@ session_start();
             </div>
         </div>
         <div class="elements" id="elements">
-            <div class="element" id="signup_form">
-                <div class="element_title">Create a new account</div>
-                <div class="element_infos">If you already have an account you can log in on <a href="/login.php">log in page</a>. If you have any trouble with singin up, contact administrators.</div>
-                <div class="element_content">
-                    <form method="post" action="/actions/signup.php">
-                        Username:<br>
-                        <div>
-                        <input type="text" id="username" name="username" onfocusout="verifyUsernameDisponibility();"><p id="username_info"></p>
-                        </div>
-                        <br>
-
-                        E-mail address:<br>
-                        <input type="email" id="mail1" name="mail1"><br><br>
-
-                        Confirm e-mail address:<br>
-                        <input type="email" id="mail2" name="mail2"><br><br>
-
-                        Password:<br>
-                        <input type="password" id="password1" name="password1"><br><br>
-
-                        Confirm password:<br>
-                        <input type="password" id="password2" name="password2"><br><br>
-
-                        <input hidden type="submit" id="login">
-
-                        <label for="login" class="button">Sign Up!</label><br><br>
+            <div class="element">
+                <div class="element_title">
+                    <span>Modify your password</span>
                 </div>
-                </form>
+                <div class="element_infos">
+                    <span>Here you can modify your password.</span>
+                </div>
+                <div class="element_content">
+                    <p>Make sure to remember your new password.</p>
+                    <p>You can also <a href="/account">go back to account management</a>.</p>
+                    <br>
+                    <form method="post" action="/actions/pwd_modify.php">
+                        <p>Old password:<br>
+                            <input type="password" id="old_password" name="old_password"><br><br>
+                            New password:<br>
+                            <input type="password" id="new_password1" name="new_password1"><br><br>
+                            Confirm new password:<br>
+                            <input type="password" id="new_password2" name="new_password2"><br><br>
+                            <input hidden type="submit" id="post" name="post">
+                            <label for="post" class="button">Modify password</label>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -138,10 +132,11 @@ session_start();
 </body>
 
 </html>
+
 <?php
 if (isset($_SESSION["username"])) {
+
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
-    echo "<script>document.getElementById('signup_form').remove();AddElement('Oops','This action is impossible :/','You cannot signup while you are logged in.');</script>";
-    echo "<script>loadTheme('".$_SESSION["theme"]."');</script>";
+    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
 };
 ?>

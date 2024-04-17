@@ -1,29 +1,47 @@
 <?php
 session_start();
-$servername = "10.10.29.38";
-$username = "hey";
-$password = "";
 
 $conn = new PDO(
-	'mysql:host=10.10.29.38;dbname=personnes;charset=utf8',
-	'hey',
-	''
+    'mysql:host=localhost;dbname=personnes;charset=utf8',
+    'hey',
+    ''
 );
 
 if (isset($_POST["login"])) {
 
-
     $usernamef = ($_POST['username']);
     $passwordf = ($_POST['password']);
 
-    $sql = "SELECT * FROM users WHERE username = '$usernamef' AND password = '$passwordf'";
+    $sql = "SELECT * FROM users WHERE username = '$usernamef'";
     $result = $conn->query($sql);
 
-    if ($result->rowCount() > 0) {
-        $_SESSION["username"] = $usernamef;
-        $_SESSION["loggedin"] = true;
-        header("Location: /success.php?act=login");
+    $sql = "SELECT password FROM users WHERE username = '$usernamef'";
+    $rpassword = $conn->query($sql);
+    $rpassword = $rpassword->fetch();
+    $rpassword = $rpassword["password"];
+    
+    if (password_verify($passwordf, $rpassword)) {
+
+        $sql = "SELECT theme FROM users WHERE username = '$usernamef'";
+        $theme = $conn->query($sql);
+        $themef = $theme->fetch();
+
+        $sql = "SELECT abs_code FROM users WHERE username = '$usernamef'";
+        $abs_code = $conn->query($sql);
+        $abs_codef = $abs_code->fetch();
+
+        if ($result->rowCount() > 0) {
+            $_SESSION["username"] = $usernamef;
+            $_SESSION["theme"] = $themef["theme"];
+            $_SESSION["abs_code"] = $abs_codef["abs_code"];
+            $_SESSION["loggedin"] = true;
+            header("Location: /success.php?act=login");
+        } else {
+            header("Location: /failure.php?act=login");
+        };
     } else {
-        echo "Invalid username or password";
+        header("Location: /failure.php?act=login");
     };
+} else {
+    header("Location: /login.php");
 };

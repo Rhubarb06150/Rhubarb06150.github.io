@@ -136,11 +136,13 @@ function LoadUser() {
 };
 
 function Pokey(div_id, length) {
+
     pokey_div = document.createElement("div");
     pokey_div.style.display = "flex";
     pokey_div.style.flexDirection = "column";
     pokey_div.style.verticalAlign = "left";
     pokey_div.style.width = "max-content";
+
     for (i = 0; i < length; i++) {
         img = document.createElement("img");
         img.style.width = "32px";
@@ -156,8 +158,7 @@ function Pokey(div_id, length) {
     document.getElementById(div_id).appendChild(pokey_div);
 };
 
-function loadTheme() {
-    fav_theme = localStorage.getItem("fav_theme");
+function loadTheme(fav_theme) {
     if (fav_theme == "blue") {
         document.body.style.backgroundImage = "url('/images/bgs/dark-bg-blue.png')";
         document.getElementById("header").style.backgroundImage = "url('/images/bgs/header-bg-blue.png')";
@@ -187,19 +188,42 @@ function loadTheme() {
         }
         menus_options = document.getElementsByClassName("menu_options");
         for (let i = 0; i < menus_options.length; i++) {
-            menus_options[i].style.border = "#6060ff 1px solid";
+            menus_options[i].style.borderRight = "#6060ff 2px solid";
+            menus_options[i].style.borderLeft = "#6060ff 2px solid";
             menus_options[i].style.backgroundColor = "#202040";
         }
         menus_options_websites = document.getElementsByClassName("menu_options_websites");
         for (let i = 0; i < menus_options_websites.length; i++) {
-            menus_options_websites[i].style.border = "#6060ff 1px solid";
+            menus_options_websites[i].style.borderRight = "#6060ff 2px solid";
+            menus_options_websites[i].style.borderLeft = "#6060ff 2px solid";
+            menus_options_websites[i].style.borderBottom = "#6060ff 2px solid";
             menus_options_websites[i].style.backgroundColor = "#202040";
         }
-    }else if (fav_theme=='pokemon'){
+        buttons = document.getElementsByClassName("button");
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].style.border = "#6060ff 2px solid";
+            buttons[i].style.backgroundColor = "#2020ff";
+            buttons[i].addEventListener('mouseover', () => {
+                buttons[i].style.backgroundColor = '#404060';
+                buttons[i].style.border = "#6060ff 2px solid";
+            });
+            buttons[i].addEventListener('mouseout', () => {
+                buttons[i].style.backgroundColor = '#2020ff';
+                buttons[i].style.border = "#6060ff 2px solid";
+            });
+        }
+    } else if (fav_theme == 'pokemon') {
         document.body.style.backgroundImage = "url('/images/bgs/dark-bg-pokemon.png')";
         document.getElementById("header").style.backgroundImage = "url('/images/bgs/header-bg-pokemon.png')";
         document.getElementById("footer").style.backgroundImage = "url('/images/bgs/header-bg-pokemon.png')";
         document.getElementById("website-logo").src = "/images/logos/smbxworld-pokemon.png";
+    } else if (fav_theme == 'pokemon2') {
+        document.body.style.backgroundImage = "url('/images/bgs/dark-bg-pokemon2.png')";
+        document.getElementById("header").style.backgroundImage = "url('/images/bgs/header-bg-pokemon2.png')";
+        document.getElementById("footer").style.backgroundImage = "url('/images/bgs/header-bg-pokemon2.png')";
+        document.getElementById("website-logo").src = "/images/logos/smbxworld-pokemon2.png";
+        document.getElementById("website-logo").width = "614";
+        document.getElementById("website-logo").height = "128";
     } else if (fav_theme == 'dark') {
         document.body.style.backgroundImage = "url('/images/bgs/dark-mushrooms.png')";
         document.getElementById("header").style.backgroundImage = "url('/images/bgs/header-bg-mushrooms.png')";
@@ -229,12 +253,15 @@ function loadTheme() {
         }
         menus_options = document.getElementsByClassName("menu_options");
         for (let i = 0; i < menus_options.length; i++) {
-            menus_options[i].style.border = "#ccccff 1px solid";
+            menus_options[i].style.borderRight = "#ccccff 2px solid";
+            menus_options[i].style.borderLeft = "#ccccff 2px solid";
             menus_options[i].style.backgroundColor = "#050510";
         }
         menus_options_websites = document.getElementsByClassName("menu_options_websites");
         for (let i = 0; i < menus_options_websites.length; i++) {
-            menus_options_websites[i].style.border = "#ccccff 1px solid";
+            menus_options_websites[i].style.borderRight = "#ccccff 2px solid";
+            menus_options_websites[i].style.borderLeft = "#ccccff 2px solid";
+            menus_options_websites[i].style.borderBottom = "#ccccff 2px solid";
             menus_options_websites[i].style.backgroundColor = "#050510";
         }
         buttons = document.getElementsByClassName("button");
@@ -254,9 +281,9 @@ function loadTheme() {
 
 };
 
-function Redirect() {
+function Redirect(act) {
     setTimeout(function () {
-        open("/", "_self")
+        open("/" + act + '.php', "_self")
     }, 5000);
 };
 
@@ -265,12 +292,109 @@ function getSuccess() {
     urlParams = new URLSearchParams(queryString);
     act = urlParams.get('act');
     if (act == 'signup') {
-        document.getElementById('success_span').innerHTML = 'Your account has been created, you now <a href="/login.php">log in</a>.'
-    }else if(act=='login'){
-        document.getElementById('success_span').innerHTML = 'You are now logged in.'
-    }
+        document.getElementById('success_span').innerHTML = 'Your account has been created, you can now <a href="/login.php">log in</a>.';
+        Redirect('index');
+    } else if (act == 'login') {
+        document.getElementById('success_span').innerHTML = 'You are now logged in.';
+        Redirect('index');
+    } else if (act == 'logout') {
+        document.getElementById('success_span').innerHTML = "You've been logged out.";
+        Redirect('index');
+    } else if (act == 'acc_modify') {
+        document.getElementById('success_span').innerHTML = "Your account preferences has been updated.<br><a href='/account/'>Return to account managing</a> or wait to get redirected.";
+        Redirect('index');
+    } else if (act == 'pwd_ch') {
+        document.getElementById('success_span').innerHTML = "Your password has been modified.<br><a href='/account/'>Return to account managing</a> or wait to get redirected.";
+        Redirect('index');
+    } else {
+        Redirect('index');
+    };
 };
 
+function getFailure() {
+    queryString = window.location.search;
+    urlParams = new URLSearchParams(queryString);
+    act = urlParams.get('act');
+    if (act == 'signup') {
+        document.getElementById('failure').innerHTML = "Verify that you've been completed all fields correctly."
+        Redirect('singup');
+    } else if (act == 'login') {
+        document.getElementById('failure').innerHTML = 'Invalid username or password.'
+        Redirect('login');
+    } else if (act == 'tk_usr') {
+        document.getElementById('failure').innerHTML = 'This username is already tooken.'
+        Redirect('login');
+    } else if (act == 'no_add') {
+        document.getElementById('failure').innerHTML = "You didn't entered a valid address."
+        Redirect('signup');
+    } else if (act == 'nc_add') {
+        document.getElementById('failure').innerHTML = "Addresses aren't corresponding."
+        Redirect('signup');
+    } else if (act == 'nel_pwd') {
+        document.getElementById('failure').innerHTML = "Your password must be at least 8 characters long."
+        Redirect('signup');
+    } else if (act == 'nc_pwd') {
+        document.getElementById('failure').innerHTML = "Passwords aren't corresponding."
+        Redirect('signup');
+    } else if (act == 'usr') {
+        document.getElementById('failure').innerHTML = "Your username isn't valid."
+        Redirect('signup');
+    } else if (act == 'sm_pwd') {
+        document.getElementById('failure').innerHTML = "You can't modify your password to your current password."
+        Redirect('/account/password_modify');
+    } else if (act == 'nel_npwd') {
+        document.getElementById('failure').innerHTML = "Your new password isn't long enough."
+        Redirect('/account/password_modify');
+    } else if (act == 'ncn_pwd') {
+        document.getElementById('failure').innerHTML = "Your new passwords aren't corresponding."
+        Redirect('/account/password_modify');
+    } else if (act == 'bad_pwd') {
+        document.getElementById('failure').innerHTML = "Your old passwords isn't corresponding."
+        Redirect('/account/password_modify');
+
+
+    } else if (act == 'usignup') {
+        document.getElementById('failure').innerHTML = "An unknown error has occured."
+        Redirect('signup');
+    };
+};
 function verifyUsernameDisponibility() {
     console.log('focusout');
+};
+
+function loadAccount(acc_name) {
+
+    document.getElementById('account').remove();
+    div = document.createElement("div");
+
+    div.classList = "menu_options";
+
+    a1 = document.createElement("a");
+    a1.href = "/account/";
+    span1 = document.createElement("span");
+    span1.classList = "menu_options_link";
+    a1.innerHTML = acc_name;
+    span1.appendChild(a1);
+
+    a2 = document.createElement("a");
+    a2.href = "/logout.php";
+    span2 = document.createElement("span");
+    span2.classList = "menu_options_link";
+    a2.innerHTML = "Log Out";
+    span2.appendChild(a2);
+
+    div.appendChild(span1);
+    div.appendChild(span2);
+
+    document.getElementById("account_div").appendChild(div);
+};
+
+function showAbsCode() {
+    div = document.getElementById("abs_code_div");
+    div.innerHTML = "Your absolute code is <span class='green'>" + abs_code + "</span>, DON'T SHARE IT WITH ANYONE!<br><a onclick='hideAbsCode();'>HIDE</a>";
+};
+
+function hideAbsCode() {
+    div = document.getElementById("abs_code_div");
+    div.innerHTML = "Your absolute code is currently hidden.";
 };

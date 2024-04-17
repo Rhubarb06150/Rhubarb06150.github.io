@@ -11,7 +11,7 @@ session_start();
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <title>Sign Up - SMBX World</title>
+    <title>Account preferences - SMBX World</title>
 </head>
 
 <body id="body">
@@ -51,7 +51,7 @@ session_start();
             </div>
             <div id="account_div">
                 <div class="menu">Account
-                    <img src="/images/tiles/rotating-block.png" width="16"00 height="16" class="menu_img">
+                    <img src="/images/tiles/rotating-block.png" width="16" height="16" class="menu_img">
                 </div>
                 <div class="menu_options" id="account">
                     <span class="menu_options_link"><a href="/login.php">Log In</a></span>
@@ -96,34 +96,39 @@ session_start();
             </div>
         </div>
         <div class="elements" id="elements">
-            <div class="element" id="signup_form">
-                <div class="element_title">Create a new account</div>
-                <div class="element_infos">If you already have an account you can log in on <a href="/login.php">log in page</a>. If you have any trouble with singin up, contact administrators.</div>
-                <div class="element_content">
-                    <form method="post" action="/actions/signup.php">
-                        Username:<br>
-                        <div>
-                        <input type="text" id="username" name="username" onfocusout="verifyUsernameDisponibility();"><p id="username_info"></p>
-                        </div>
-                        <br>
-
-                        E-mail address:<br>
-                        <input type="email" id="mail1" name="mail1"><br><br>
-
-                        Confirm e-mail address:<br>
-                        <input type="email" id="mail2" name="mail2"><br><br>
-
-                        Password:<br>
-                        <input type="password" id="password1" name="password1"><br><br>
-
-                        Confirm password:<br>
-                        <input type="password" id="password2" name="password2"><br><br>
-
-                        <input hidden type="submit" id="login">
-
-                        <label for="login" class="button">Sign Up!</label><br><br>
+            <div class="element">
+                <div class="element_title">
+                    <span>Manage account preferences</span>
                 </div>
-                </form>
+                <div class="element_infos">
+                    <span>Here you can edit your account settings.</span>
+                </div>
+                <div class="element_content">
+                    <form method="post" action="/actions/acc_modify.php">
+                        <p>
+                            Change website theme:
+                        </p>
+
+                        <select id="theme" name="theme">
+                            <option value="default">Classic (Gray and Red)</option>
+                            <option value="dark">Dark (Blue Mushrooms)</option>
+                            <option value="pokemon">Pokémon (Gold and Silver)</option>
+                            <option value="pokemon2">Pokémon 2 (Fire Red and Green Leaf)</option>
+                            <option value="blue">Blue</option>
+                        </select><br><br>
+                        <input hidden type="submit" id="post" name="post">
+                        <label for="post" class="button">Update account preferences</label>
+                    </form><br>
+                    
+                    <span>Account informations:</span><br><br>
+                    <span id="reg_span">Register date: </span>
+                    <br>
+                    <span id="email_span">E-mail address: </span>
+                    <br>
+                    <a href="/account/password_modify.php"><span>Modify your password</span></a><br><br>
+                    <p>To reveal your absolute code, click <a onclick="showAbsCode();">here</a>.</p>
+                    <p id="abs_code_div">Your absolute code is currently hidden.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -138,10 +143,35 @@ session_start();
 </body>
 
 </html>
+
 <?php
 if (isset($_SESSION["username"])) {
+
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
-    echo "<script>document.getElementById('signup_form').remove();AddElement('Oops','This action is impossible :/','You cannot signup while you are logged in.');</script>";
-    echo "<script>loadTheme('".$_SESSION["theme"]."');</script>";
+    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
+
+    echo "<script>document.getElementById('theme').value='" . $_SESSION["theme"] . "'</script>";
+
+    echo "<script>var abs_code ='" . $_SESSION["abs_code"] . "'</script>";
+
+    $conn = new PDO('mysql:host=localhost;dbname=personnes;charset=utf8', 'hey', '');
+    $usrf = $_SESSION['username'];
+
+
+    $sql = "SELECT email FROM users WHERE username = '$usrf'";
+    $email = $conn->query($sql);
+    $emailf = $email->fetch();
+    $emailf = $emailf["email"];
+    echo "<script>var email ='" . $emailf . "'</script>";
+
+    $sql = "SELECT register_date FROM users WHERE username = '$usrf'";
+    $reg_date = $conn->query($sql);
+    $reg_datef = $reg_date->fetch();
+    $reg_datef = $reg_datef["register_date"];
+    echo "<script>var reg_date ='" . $reg_datef . "'</script>";
 };
 ?>
+<script>
+    document.getElementById("email_span").innerHTML += email;
+    document.getElementById("reg_span").innerHTML += reg_date;
+</script>

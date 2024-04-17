@@ -48,15 +48,15 @@ session_start();
                 <span class="menu_options_link"><a href="/credits/">Credits</a></span>
                 <span class="menu_options_link"><a href="/team/">Team</a></span>
             </div>
-            <div class="menu">Account
-                <img src="/images/tiles/rotating-block.png" width="16" height="16" class="menu_img">
-            </div>
-            <div class="menu_options">
+            <div id="account_div">
+                <div class="menu">Account
+                    <img src="/images/tiles/rotating-block.png" width="16" height="16" class="menu_img">
+                </div>
+                <div class="menu_options" id="account">
                     <span class="menu_options_link"><a href="/login.php">Log In</a></span>
                     <span class="menu_options_link"><a href="/signup.php">Sign Up</a></span>
-            </div>  
-
-            <div style="margin-top: 10px;"></div>
+                </div>
+            </div>
 
             <!-- <div class="menu">Affiliates
                 <img src="/images/tiles/star-block.png" width="16" height="16" class="menu_img">
@@ -95,21 +95,38 @@ session_start();
             </div>
         </div>
         <div class="elements" id="elements">
+            <div class="element">
+                <div class="element_title">
+                    <span>404 Error - Page Not Found</span>
+                </div>
+                <div class="element_infos">
+                    <span>Uh ho...</span>
+                </div>
+                <div class="element_content">
+                    <p>
+                        This page does not exists or does not exists anymore :/<br><br>
+                        <img src="/images/head/failure.png" width=32 height=58>
+                        If you are not redirected click <a href="/">here</a>.
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
-    <footer>
+    <footer id="footer">
         <div class="footer_content">
             <center>
                 <p>SMBX World is not affiliated with Nintendo or any other company. All nintendo content belongs to
                     Nintendo, all the rest belongs to SMBX World.</p>
-            </center>   
+            </center>
         </div>
     </footer>
 </body>
-<script>
-    pokey_len=getRandomInt(10)+2;
-    AddElement('Not found','404 ERROR','This page does not exist, or does not exists anymore!<br><br>So, here is a pokey :)<br><br>Wow this pokey is '+pokey_len+' meters tall! :o<br><br>','404win');
-    Pokey('404win',pokey_len);
-    loadTheme();
-</script>
+
 </html>
+<?php
+if (isset($_SESSION["username"])) {
+    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
+    echo "<script>loadTheme('".$_SESSION["theme"]."');</script>";
+    echo "<script>Redirect();</script>";
+};
+?>

@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,15 +48,15 @@
                 <span class="menu_options_link"><a href="/credits/">Credits</a></span>
                 <span class="menu_options_link"><a href="/team/">Team</a></span>
             </div>
-            <div class="menu">Account
-                <img src="/images/tiles/rotating-block.png" width="16" height="16" class="menu_img">
+            <div id="account_div">
+                <div class="menu">Account
+                    <img src="/images/tiles/rotating-block.png" width="16" height="16" class="menu_img">
+                </div>
+                <div class="menu_options" id="account">
+                    <span class="menu_options_link"><a href="/login.php">Log In</a></span>
+                    <span class="menu_options_link"><a href="/signup.php">Sign Up</a></span>
+                </div>
             </div>
-            <div class="menu_options">
-                <span class="menu_options_link"><a href="/login.php">Log In</a></span>
-                <span class="menu_options_link"><a href="/signup.php">Sign Up</a></span>
-            </div>
-
-            <div style="margin-top: 10px;"></div>
 
             <!-- <div class="menu">Affiliates
                 <img src="/images/tiles/star-block.png" width="16" height="16" class="menu_img">
@@ -110,7 +113,6 @@
                         <br><br>So I'm rebuilding this website with a to do list there (very far to be complete):
                         <br><br>
 
-                        - Accounts<br>
                         - Levels uploads<br>
                         - Level search engine<br>
                         - The documentation for my softwares<br>
@@ -120,8 +122,8 @@
                         If you have any idea you can contact me at <a href="mailto:rhubarb06150@gmail.com">rhubarb06150@gmail.com</a>.<br><br>
                         If you also want to help me for making the website you can still contact me at the adress above.<br><br>
                     </p>
-                    <img src="/images/head/v-mario.png" width="154" height="128" onclick="localStorage.setItem('fav_theme','default');loadTheme();">
-                    <img src="/images/head/v-luigi.png" width="148" height="128" onclick="localStorage.setItem('fav_theme','dark');loadTheme();">
+                    <img src="/images/head/v-mario.png" width="154" height="128">
+                    <img src="/images/head/v-luigi.png" width="148" height="128">
                 </div>
             </div>
         </div>
@@ -138,5 +140,20 @@
 
 </html>
 <script>
-    loadTheme();
+    AddElement("You doesn't have an account?", 'No problem!', "You can create an account an account on <a href='/signup.php'>sign up page</a>, and joining <span id='members_nb'></span> members!")
 </script>
+<?php
+if (isset($_SESSION["username"])) {
+    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
+    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
+};
+
+$conn = new PDO(
+    'mysql:host=localhost;dbname=personnes;charset=utf8',
+    'hey',
+    ''
+);
+$req = "SELECT * FROM users";
+$result = $conn->query($req);
+echo "<script>document.getElementById('members_nb').innerHTML=" . $result->rowCount() . "</script>";
+?>

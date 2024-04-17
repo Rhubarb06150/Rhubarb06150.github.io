@@ -1,14 +1,5 @@
 <?php
-$servername = "10.10.29.38";
-$username = "hey";
-$password = "";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password);
-
-// Check connection
-if ($conn->connect_error) {
-};
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -58,15 +49,15 @@ if ($conn->connect_error) {
                 <span class="menu_options_link"><a href="/credits/">Credits</a></span>
                 <span class="menu_options_link"><a href="/team/">Team</a></span>
             </div>
-            <div class="menu">Account
-                <img src="/images/tiles/rotating-block.png" width="16" height="16" class="menu_img">
+            <div id="account_div">
+                <div class="menu">Account
+                    <img src="/images/tiles/rotating-block.png" width="16" height="16" class="menu_img">
+                </div>
+                <div class="menu_options" id="account">
+                    <span class="menu_options_link"><a href="/login.php">Log In</a></span>
+                    <span class="menu_options_link"><a href="/signup.php">Sign Up</a></span>
+                </div>
             </div>
-            <div class="menu_options">
-                <span class="menu_options_link"><a href="/login.php">Log In</a></span>
-                <span class="menu_options_link"><a href="/signup.php">Sign Up</a></span>
-            </div>
-
-            <div style="margin-top: 10px;"></div>
 
             <!-- <div class="menu">Affiliates
                 <img src="/images/tiles/star-block.png" width="16" height="16" class="menu_img">
@@ -105,7 +96,7 @@ if ($conn->connect_error) {
             </div>
         </div>
         <div class="elements" id="elements">
-            <div class="element">
+            <div class="element" id="login_form">
                 <div class="element_title">Log to your account</div>
                 <div class="element_infos">If you don't have any account you can create one on <a href="/signup.php">sign up page</a>. If you have any trouble with logging in, contact administrators.</div>
                 <div class="element_content">
@@ -115,7 +106,7 @@ if ($conn->connect_error) {
 
                         Password:<br>
                         <input type="password" id="password" name="password"><br><br>
-                        
+
                         <input hidden type="submit" id="login" name="login">
 
                         <label for="login" class="button">Connect</label><br><br>
@@ -136,6 +127,10 @@ if ($conn->connect_error) {
 </body>
 
 </html>
-<script>
-    loadTheme();
-</script>
+<?php
+if (isset($_SESSION["username"])) {
+    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
+    echo "<script>document.getElementById('login_form').remove();AddElement('Oops','This action is impossible :/','You cannot log in while you are logged in, which is logic when you think about it.');</script>";
+    echo "<script>loadTheme('".$_SESSION["theme"]."');</script>";
+};
+?>

@@ -48,15 +48,15 @@ session_start();
                 <span class="menu_options_link"><a href="/credits/">Credits</a></span>
                 <span class="menu_options_link"><a href="/team/">Team</a></span>
             </div>
-            <div class="menu">Account
-                <img src="/images/tiles/rotating-block.png" width="16" height="16" class="menu_img">
+            <div id="account_div">
+                <div class="menu">Account
+                    <img src="/images/tiles/rotating-block.png" width="16" height="16" class="menu_img">
+                </div>
+                <div class="menu_options" id="account">
+                    <span class="menu_options_link"><a href="/login.php">Log In</a></span>
+                    <span class="menu_options_link"><a href="/signup.php">Sign Up</a></span>
+                </div>
             </div>
-            <div class="menu_options">
-                <span class="menu_options_link"><a href="/login.php">Log In</a></span>
-                <span class="menu_options_link"><a href="/signup.php">Sign Up</a></span>
-            </div>
-
-            <div style="margin-top: 10px;"></div>
 
             <!-- <div class="menu">Affiliates
                 <img src="/images/tiles/star-block.png" width="16" height="16" class="menu_img">
@@ -120,7 +120,11 @@ session_start();
 
 </html>
 <script>
-    loadTheme();
     getSuccess();
-    Redirect();
 </script>
+<?php
+if (isset($_SESSION["username"])) {
+    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
+    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
+};
+?>
