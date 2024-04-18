@@ -97,10 +97,10 @@ session_start();
         <div class="elements">
             <div class="elements" id="elements">
                 <div class="element">
-                    <div class="element_title">Your posts</div>
-                    <div class="element_infos">Here you can see all of your posts.</div>
-                    <div class="element_content" id="posts_div">
-                        <span id='posts_span'></span>
+                    <div class="element_title">Your comments</div>
+                    <div class="element_infos">Here you can see all of comments.</div>
+                    <div class="element_content" id="comments_div">
+                        <span id='comments_span'></span>
                     </div>
                 </div>
             </div>
@@ -124,47 +124,54 @@ $conn = new PDO(
     'hey',
     ''
 );
-
 $usr = $_SESSION['username'];
 $sql = "SELECT id FROM users WHERE username = '$usr'";
 $res = $conn->query($sql);
 $res = $res->fetch();
 $pid = $res['id'];
 
-$sql = "SELECT * FROM posts WHERE poster_id = '$pid'";
+$sql = "SELECT * FROM comments WHERE poster_id = '$pid'";
 $res = $conn->query($sql);
-$posts = $res->fetchAll();
+$comments = $res->fetchAll();
 $posts_nb = $res->rowCount();
 
 if ($posts_nb > 0) {
     echo "<script>
-document.getElementById('posts_span').innerHTML='" . $posts_nb . " posts<br><br>'
+document.getElementById('comments_span').innerHTML='" . $posts_nb . " comment(s)<br><br>'
 </script>";
 };
 
-foreach ($posts as &$value) {
-    $sub = $value['subject'];
-    $post_id = $value['id'];
-    $sql = "SELECT * FROM comments WHERE post_id = '$post_id'";
+foreach ($comments as &$value) {
+    $content = $value['content'];
+    $com_id = $value['id'];
+    $sql = "SELECT * FROM comments WHERE post_id = '$com_id'";
     $res = $conn->query($sql);
     $com_nb = $res->rowCount();
+    $content = str_replace('<', '&lt', $content);
+    $content = str_replace('>', '&gt', $content);
+
+    $post_id = $value['post_id'];
+
+    $sql = "SELECT * FROM posts WHERE id = '$post_id'";
+    $res = $conn->query($sql);
+    $res = $res->fetch();
+
+    $post_name = $res['subject'];
+    $post_id = $res['id'];
 
     echo "<script>
-
     post_div=document.createElement('div');
     post_div.style.borderTop='1px #404040 solid';
     post_div.style.marginBottom='5px';
     post_div.style.display='flex';
     post_div.style.justifyContent='space-between';
-
-    link=document.createElement('a');
-    link.href='/posts/?id=" . $post_id . "';
-    link.innerHTML=(document.createElement('span').innerHTML='" . $sub . "');
-    post_div.appendChild(link);
-    com_span=document.createElement('span');
-    com_span.innerHTML='" . $com_nb . " comment(s)';
-    post_div.appendChild(com_span);
-    document.getElementById('posts_div').appendChild(post_div);
+    content_span=document.createElement('span');
+    content_span.innerHTML+=`" . $content . "`;
+    post_div.appendChild(content_span);
+    post_span=document.createElement('span');
+    post_span.innerHTML= 'posted on <a href=/posts/?id=" . $post_id . ">" . $post_name . "</a>';
+    post_div.appendChild(post_span);
+    document.getElementById('comments_div').appendChild(post_div);
     </script>";
 };
 
