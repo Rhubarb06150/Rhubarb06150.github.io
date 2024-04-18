@@ -105,6 +105,9 @@ session_start();
                 </div>
                 <div class="element_content">
 
+                    <a href="/account/posts.php">See all your posts</a><br>
+                    <a href="/account/comments.php">See all your comments</a><br><br>
+
                     <form action="/actions/upload_pfp.php" method="post" enctype="multipart/form-data">
                         <p>
                             Modify profile picture:<br>

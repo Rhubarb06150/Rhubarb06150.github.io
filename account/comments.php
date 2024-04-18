@@ -10,7 +10,7 @@ session_start();
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <title>SMBX World</title>
+    <title>Your comments - SMBX World</title>
 </head>
 
 <body id="body">
@@ -139,6 +139,10 @@ if ($posts_nb > 0) {
     echo "<script>
 document.getElementById('comments_span').innerHTML='" . $posts_nb . " comment(s)<br><br>'
 </script>";
+} else {
+    echo "<script>
+document.getElementById('comments_span').innerHTML='<br>no comments yet.<br><br>'
+</script>";
 };
 
 foreach ($comments as &$value) {
@@ -182,4 +186,3 @@ if (isset($_SESSION["username"])) {
     echo "<script>document.getElementById('post_form').remove();</script>";
     echo "<script>AddElement('You cannot post yet.','But I said YET','<br><br>You must <a href=/login.php>log in</a> to post.<br><br><br>');</script>";
 };
-?>

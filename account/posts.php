@@ -10,7 +10,7 @@ session_start();
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <title>SMBX World</title>
+    <title>Your posts - SMBX World</title>
 </head>
 
 <body id="body">
@@ -138,7 +138,11 @@ $posts_nb = $res->rowCount();
 
 if ($posts_nb > 0) {
     echo "<script>
-document.getElementById('posts_span').innerHTML='" . $posts_nb . " posts<br><br>'
+document.getElementById('posts_span').innerHTML='" . $posts_nb . " post(s)<br><br>'
+</script>";
+}else{
+    echo "<script>
+document.getElementById('posts_span').innerHTML='<br>No posts yet.<br><br>'
 </script>";
 };
 
