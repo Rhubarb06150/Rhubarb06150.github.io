@@ -1,7 +1,18 @@
 <?php
 session_start();
-?>
+$conn = new PDO(
+    'mysql:host=localhost;dbname=data;charset=utf8',
+    'hey',
+    ''
+);
 
+$id = $_GET['id'];
+$sql = "SELECT subject FROM posts WHERE id = '$id'";
+$result = $conn->query($sql);
+$result = $result->fetch();
+$subject = $result['subject'];
+echo "<script>document.title='" . $subject . " - SMBX World'</script>"
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +22,6 @@ session_start();
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <title>Sign Up - SMBX World</title>
 </head>
 
 <body id="body">
@@ -51,7 +61,7 @@ session_start();
             </div>
             <div id="account_div">
                 <div class="menu">Account
-                    <img src="/images/tiles/rotating-block.png" width="16"00 height="16" class="menu_img">
+                    <img src="/images/tiles/rotating-block.png" width="16" height="16" class="menu_img">
                 </div>
                 <div class="menu_options" id="account">
                     <span class="menu_options_link"><a href="/login.php">Log In</a></span>
@@ -95,39 +105,31 @@ session_start();
                 </a>
             </div>
         </div>
-        
-        <div class="elements" id="elements">
-            <div class="element" id="signup_form">
-                <div class="element_title">Create a new account</div>
-                <div class="element_infos">If you already have an account you can log in on <a href="/login.php">log in page</a>. If you have any trouble with singin up, contact administrators.</div>
-                <div class="element_content">
-                    Once your account is created, you will can upload levels, NPCs packs, scripts and interract with other users!<br><br>
-                    <form method="post" action="/actions/signup.php">
-                        Username:<br>
-                        <div>
-                        <input type="text" id="username" name="username"><p id="username_info"></p>
-                        </div>
-                        <br>
-
-                        E-mail address:<br>
-                        <input type="email" id="mail1" name="mail1"><br><br>
-
-                        Confirm e-mail address:<br>
-                        <input type="email" id="mail2" name="mail2"><br><br>
-
-                        Password:<br>
-                        <input type="password" id="password1" name="password1"><br><br>
-
-                        Confirm password:<br>
-                        <input type="password" id="password2" name="password2"><br><br>
-
-                        <input hidden type="submit" id="login">
-
-                        <label for="login" class="button">Sign Up!</label><br><br>
-                </div>
-                </form>
+        <div class="elements">
+            <div class="elements" id="elements">
             </div>
+            <span class=little_section_title id="post_span">Post a comment:</span>
+            <form method="post" action="/actions/commentary_post.php" id="post_form">
+                <div class="element">
+                    <div class=element_infos>Remember to stay polite and respectful when posting comment.</div>
+                    <div class="element_content">
+                        Comment:<br><br>
+                        <textarea style="width: 100%; height:64px;" id="content" name="content"></textarea>
+                        <input id="type" name="type" value="post" hidden>
+                        <input id="post_id" name="post_id" value="post" hidden>
+                        <br><br>
+                        <input hidden type="submit" id="post" name="post">
+                        <label for="post" class="button">Post comment</label>
+                    </div>
+
+                </div>
+
+            </form>
+            <span class=little_section_title id='com_span'></span>
+            <div id="comments"></div>
+
         </div>
+    </div>
     </div>
     <footer id="footer">
         <div class="footer_content">
@@ -140,10 +142,72 @@ session_start();
 </body>
 
 </html>
+
 <?php
+
+$post_id = $_GET['id'];
+$sql = "SELECT * FROM posts WHERE id = '$post_id'";
+$result = $conn->query($sql);
+$result = $result->fetch();
+
+$pid = $result['poster_id'];
+
+$sql = "SELECT username FROM users WHERE id = '$pid'";
+$res = $conn->query($sql);
+$res = $res->fetch();
+$poster_usr = $res['username'];
+
+echo "<script>showPost('" . $result['subject'] . "','Posted by: <a href=/user/?id=" . $result['poster_id'] . ">" . $poster_usr . "</a> at: " . $result['post_date'] . "',`" . $result['content'] . "`);</script>";
+echo "<script>document.getElementById('post_id').value=".$_GET['id']."</script>";
+
+$pid=$_GET['id'];
+$sql = "SELECT * FROM comments WHERE type = 'post' AND post_id = '$pid'";
+
+$comments = $conn->query($sql);
+$comms_nb = $comments->rowCount();
+$comments = $comments->fetchAll();
+
+foreach($comments as &$value){
+    $poster_id = $value['poster_id'];
+
+    $sql="SELECT username FROM users WHERE id = '$poster_id'";
+    $res=$conn->query($sql);
+    $res=$res->fetch();
+    $poster_name=$res['username'];
+
+    $sql="SELECT pfp FROM users WHERE id = '$poster_id'";
+    $res=$conn->query($sql);
+    $res=$res->fetch();
+
+    $poster_pfp=$res['pfp'];
+
+    $user=array(
+        'id' => $poster_id,
+        'name' => $poster_name,
+        'pfp' => $poster_pfp);
+
+    $infos='posted by <a href=/user/?id='.$poster_id.'>'.$poster_name.'</a> at: '.$value['post_date'];
+    $content=$value['content'];
+
+    echo "<script>showCommentary(".json_encode($user).",`".$infos."`,`".$content."`)</script>";
+
+    // $user = array($pid);
+    
+};
+
+if ($comms_nb!=0){
+    echo "<script>document.getElementById('com_span').innerHTML=' Comments (".$comms_nb.")'</script>";
+}else{
+    echo "<script>document.getElementById('com_span').innerHTML='No comments yet.'</script>";
+};
+
 if (isset($_SESSION["username"])) {
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
-    echo "<script>document.getElementById('signup_form').remove();AddElement('Oops','This action is impossible :/','You cannot signup while you are logged in.');</script>";
-    echo "<script>loadTheme('".$_SESSION["theme"]."');</script>";
+    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
+}else{
+    echo "<script>document.getElementById('post_form').remove();</script>";
+    echo "<script>document.getElementById('post_span').remove();</script>";
+    echo "<script>AddElement('Oops...','You cannot comment without an account','<br>You must <a href=/login.php>log in</a> to comment.<br><br>');</script>";
 };
+
 ?>

@@ -131,6 +131,6 @@ session_start();
 if (isset($_SESSION["username"])) {
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
     echo "<script>document.getElementById('login_form').remove();AddElement('Oops','This action is impossible :/','You cannot log in while you are logged in, which is logic when you think about it.');</script>";
-    echo "<script>loadTheme('".$_SESSION["theme"]."');</script>";
+    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
 };
 ?>

@@ -94,39 +94,50 @@ session_start();
                 </a>
             </div>
         </div>
-        <div class="elements" id="elements">
-            <div class="element">
-                <div class="element_title">
-                    <span>
-                        Welcome to SMBX World!
-                    </span>
-                </div>
-                <div class="element_infos">
-                    <span>
-                        April 11 2024, written by Rhubarb
-                    </span>
-                </div>
-                <div class="element_content">
-                    <p>
-                        What's going on? I'm currently rebuilding all of the website because the old design was too much complicated to adjust for everybody.<br>
-                        That's also because I didn't like the name because it didn't represent SMBX.
-                        <br><br>So I'm rebuilding this website with a to do list there (very far to be complete):
-                        <br><br>
+        <div class="elements">
+            <div class="elements" id="elements">
+                <div class="element">
+                    <div class="element_title">
+                        <span>
+                            Welcome to SMBX World!
+                        </span>
+                    </div>
+                    <div class="element_infos">
+                        <span>
+                            April 11 2024, written by Rhubarb
+                        </span>
+                    </div>
+                    <div class="element_content">
+                        <p>
+                            What's going on? I'm currently rebuilding all of the website because the old design was too much complicated to adjust for everybody.<br>
+                            That's also because I didn't like the name because it didn't represent SMBX.
+                            <br><br>So I'm rebuilding this website with a to do list there (very far to be complete):
+                            <br><br>
 
-                        - Levels uploads<br>
-                        - Level search engine<br>
-                        - The documentation for my softwares<br>
-                        - An level making help page<br>
-                        - Multiple themes<br><br>
+                            - Levels uploads<br>
+                            - Level search engine<br>
+                            - The documentation for my softwares<br>
+                            - An level making help page<br>
+                            - Multiple themes<br><br>
 
-                        If you have any idea you can contact me at <a href="mailto:rhubarb06150@gmail.com">rhubarb06150@gmail.com</a>.<br><br>
-                        If you also want to help me for making the website you can still contact me at the adress above.<br><br>
-                    </p>
-                    <img src="/images/head/v-mario.png" width="154" height="128">
-                    <img src="/images/head/v-luigi.png" width="148" height="128">
+                            If you have any idea you can contact me at <a href="mailto:rhubarb06150@gmail.com">rhubarb06150@gmail.com</a>.<br><br>
+                            If you also want to help me for making the website you can still contact me at the adress above.<br><br>
+                        </p>
+                        <img src="/images/head/v-mario.png" width="154" height="128">
+                        <img src="/images/head/v-luigi.png" width="148" height="128">
+                    </div>
+                </div>
+            </div>
+            <div class="elements" id="posts">
+                <span class="section_title">Lastest posts</span>
+                <div class=element style="margin-bottom: 40px;">
+                    <div class="element_title">You wanna post something?</div>
+                    <div class="element_infos">You can!</div>
+                    <div class="element_content">Go on the <a href="/post">post page</a> and express yourself!</div>
                 </div>
             </div>
         </div>
+
     </div>
     <footer id="footer">
         <div class="footer_content">
@@ -150,7 +161,7 @@ if (isset($_SESSION["username"])) {
 };
 
 $conn = new PDO(
-    'mysql:host=localhost;dbname=personnes;charset=utf8',
+    'mysql:host=localhost;dbname=data;charset=utf8',
     'hey',
     ''
 );
@@ -160,16 +171,43 @@ $result = $conn->query($req);
 $lu = $result->fetch();
 $last_user = $lu["username"];
 
-if (isset($_SESSION["username"])) {
-    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
-};
 $req = "SELECT * FROM users";
 $result = $conn->query($req);
 
-$sql="SELECT id FROM users WHERE username = '$last_user'";
-$result_b=$conn->query($sql);
-$result_b=$result_b->fetch();
-$luid=$result_b['id'];
+$sql = "SELECT id FROM users WHERE username = '$last_user'";
+$result_b = $conn->query($sql);
+$result_b = $result_b->fetch();
+$luid = $result_b['id'];
+
 echo "<script>document.getElementById('members_nb').innerHTML=" . $result->rowCount() . ";</script>";
-echo "<script>document.getElementById('last_member').innerHTML='<a href=/user/?id=".$luid.">" .$last_user . "</a>';</script>";
+echo "<script>document.getElementById('last_member').innerHTML='<a href=/user/?id=" . $luid . ">" . $last_user . "</a>';</script>";
+
+$sql = "SELECT * FROM posts ORDER BY id DESC LIMIT 20";
+$result = $conn->query($sql);
+$result = $result->fetchAll();
+
+foreach ($result as $value) {
+
+    $pid = $value['poster_id'];
+    $post_id = $value['id'];
+
+    $sql = "SELECT username FROM users WHERE id = '$pid'";
+    $poster_usr = $conn->query($sql);
+    $poster_usr = $poster_usr->fetch();
+    $poster_usr = $poster_usr['username'];
+
+    $sql = "SELECT * FROM comments WHERE type = 'post' and post_id = '$post_id'";
+    $res = $conn->query($sql);
+    $comm_nb = $res->rowCount();
+
+    echo "<script>";
+    echo "addPost('" . $value["subject"] . "','posted by <a href=/user/?id=" . $pid . ">" . $poster_usr . "</a> at " . $value["post_date"] . "',`" . $value["content"] . "`," . $value["id"] . "," . $comm_nb . ");";
+    echo "</script>";
+};
+
+// echo "<script>showPosts(".json_encode($result).")</script>";
+
+if (isset($_SESSION["username"])) {
+    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
+};
 ?>

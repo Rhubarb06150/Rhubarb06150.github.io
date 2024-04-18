@@ -21,7 +21,7 @@ session_start();
             <img src="/images/logos/smbxworld.png" height="106" width="588" style="margin-left: 32px;" alt="website logo" id="website-logo">
         </a>
     </div>
-    <div class="page_structure">
+    <div class="page_structure" style="max-width:100vw;">
         <div class="sidebar">
             <div class="menu">Main
                 <img src="/images/tiles/cloud.png" width="16" height="16" class="menu_img" class="menu_img">
@@ -96,7 +96,7 @@ session_start();
             </div>
         </div>
         <div class="elements" id="elements">
-            <div class="element">
+            <div class="element" style="max-width:100%;">
                 <div class="element_title">
                     <span>Manage account preferences</span>
                 </div>
@@ -135,7 +135,7 @@ session_start();
                             <option value="blue">Blue</option>
                         </select><br><br>
                         Bio:<br><br>
-                        <textarea id="desc_aera" style="width:512px;height:256px" name="bio"></textarea>
+                        <textarea id="desc_aera" style="width:80%;height:256px" name="bio"></textarea>
                         <script>
                             document.getElementById('desc_aera').addEventListener("keyup", (event) => {
                                 document.getElementById('len').innerHTML=document.getElementById('desc_aera').value.length
@@ -190,7 +190,7 @@ if (isset($_SESSION["username"])) {
 
     echo "<script>var abs_code ='" . $_SESSION["abs_code"] . "'</script>";
 
-    $conn = new PDO('mysql:host=localhost;dbname=personnes;charset=utf8', 'hey', '');
+    $conn = new PDO('mysql:host=localhost;dbname=data;charset=utf8', 'hey', '');
     $usrf = $_SESSION['username'];
 
 

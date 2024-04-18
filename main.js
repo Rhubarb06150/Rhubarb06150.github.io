@@ -31,6 +31,116 @@ function AddElement(title, infos, content, div_id) {
 
 };
 
+function addPost(title, infos, content, post_id, comms_nb) {
+
+    div = document.createElement("div");
+    div.classList = "element";
+
+    content = content.replaceAll("<", "&lt");
+    content = content.replaceAll(">", "&gt");
+    content = content.replaceAll("\n", "<br>");
+
+    title_div = document.createElement("div");
+    title_div.classList = "element_title";
+    title_span = document.createElement("span");
+    title_span.innerHTML = title;
+    title_div.appendChild(title_span);
+
+    infos_div = document.createElement("div");
+    infos_div.classList = "element_infos";
+    infos_span = document.createElement("span");
+    infos_span.innerHTML = infos;
+    infos_div.appendChild(infos_span);
+
+    content_div = document.createElement("div");
+    content_div.classList = "element_content";
+    content_content = document.createElement("p");
+    content_content.innerHTML = content;
+    content_div.appendChild(content_content);
+
+    comments_div = document.createElement("div");
+    comments_div.classList = "element_infos";
+    comment_a = document.createElement('a');
+    comment_a.href = '/posts/?id=' + post_id;
+    comment_a.innerHTML = 'Comments (' + comms_nb + ')'
+    comments_div.appendChild(comment_a);
+
+    div.appendChild(title_div);
+    div.appendChild(infos_div);
+    div.appendChild(content_div);
+    div.appendChild(comments_div);
+
+    document.getElementById("posts").appendChild(div);
+
+};
+
+function showPost(title, infos, content, post_id) {
+
+    div = document.createElement("div");
+    div.classList = "element";
+
+    title_div = document.createElement("div");
+    title_div.classList = "element_title";
+    title_span = document.createElement("span");
+    title_span.innerHTML = title;
+    title_div.appendChild(title_span);
+
+    infos_div = document.createElement("div");
+    infos_div.classList = "element_infos";
+    infos_span = document.createElement("span");
+    infos_span.innerHTML = infos;
+    infos_div.appendChild(infos_span);
+
+    content_div = document.createElement("div");
+    content_div.classList = "element_content";
+    content_content = document.createElement("p");
+    content = content.replaceAll("<", "&lt");
+    content = content.replaceAll(">", "&gt");
+    content = content.replaceAll("\n", "<br>");
+    content_content.innerHTML = content;
+    content_div.appendChild(content_content);
+
+    div.appendChild(title_div);
+    div.appendChild(infos_div);
+    div.appendChild(content_div);
+
+    document.getElementById("elements").appendChild(div);
+
+};
+
+function showCommentary(user, infos, content) {
+
+    div = document.createElement("div");
+    div.classList = "element";
+
+    pfp = document.createElement('img');
+    pfp.src = user.pfp
+    pfp.style.width = "32px"
+    pfp.style.height = "32px"
+    pfp.style.marginRight = "8px"
+
+    infos_div = document.createElement("div");
+    infos_div.classList = "element_infos";
+    infos_span = document.createElement("span");
+    infos_span.innerHTML = infos;
+    infos_div.appendChild(pfp);
+    infos_div.appendChild(infos_span);
+
+    content_div = document.createElement("div");
+    content_div.classList = "element_content";
+    content_content = document.createElement("p");
+    content = content.replaceAll("<", "&lt");
+    content = content.replaceAll(">", "&gt");
+    content = content.replaceAll("\n", "<br>");
+    content_content.innerHTML = content;
+    content_div.appendChild(content_content);
+
+    div.appendChild(infos_div);
+    div.appendChild(content_div);
+
+    document.getElementById("comments").appendChild(div);
+}
+
 function ShowStars(note, votes) {
     note_abs = Math.round(note);
     if (votes > 100) {
@@ -62,11 +172,9 @@ function ShowStars(note, votes) {
     note_span.innerHTML = note_abs + '|' + note_abs + '|' + star_src
     stars_div.appendChild(note_span)
     document.getElementById("elements").appendChild(stars_div);
-}
+};
 
 function LoadLevel() {
-
-    console.log('load level');
 
     queryString = window.location.search;
     urlParams = new URLSearchParams(queryString);
@@ -163,7 +271,6 @@ function loadTheme(fav_theme) {
         document.body.style.backgroundImage = "url('/images/bgs/dark-bg-blue.png')";
         document.getElementById("header").style.backgroundImage = "url('/images/bgs/header-bg-blue.png')";
         document.getElementById("footer").style.backgroundImage = "url('/images/bgs/header-bg-blue.png')";
-        console.log('blue')
         elements = document.getElementsByClassName("element");
         for (let i = 0; i < elements.length; i++) {
             elements[i].style.border = "#6060ff 2px solid";
@@ -291,6 +398,7 @@ function getSuccess() {
     queryString = window.location.search;
     urlParams = new URLSearchParams(queryString);
     act = urlParams.get('act');
+
     if (act == 'signup') {
         document.getElementById('success_span').innerHTML = 'Your account has been created, you can now <a href="/login.php">log in</a>.';
         Redirect('index');
@@ -308,6 +416,17 @@ function getSuccess() {
         Redirect('index');
     } else if (act == 'pfp_ch') {
         document.getElementById('success_span').innerHTML = "Your profile picture has been modified.<br><a href='/account/'>Return to account managing</a> or wait to get redirected.";
+        Redirect('index');
+    } else if (act == 'post') {
+        document.getElementById('success_span').innerHTML = "Your post has been submitted.";
+        Redirect('index');
+    } else if (act == 'com_post') {
+
+        queryString = window.location.search;
+        urlParams = new URLSearchParams(queryString);
+        pid = urlParams.get('post_id');
+
+        document.getElementById('success_span').innerHTML = "Your comment has been submitted.<br><a href='/posts/?id="+pid+"'>Go back to the post</a> or wait to get redirected.";
         Redirect('index');
     } else {
         Redirect('index');
@@ -379,9 +498,6 @@ function getFailure() {
         Redirect('signup');
     };
 };
-function verifyUsernameDisponibility() {
-    console.log('focusout');
-};
 
 function loadAccount(acc_name) {
 
@@ -418,4 +534,19 @@ function showAbsCode() {
 function hideAbsCode() {
     div = document.getElementById("abs_code_div");
     div.innerHTML = "Your absolute code is currently hidden.";
+};
+
+function checkEmoji(text) {
+    text = text.replaceAll(':mushroom:', '<img src="/images/emojis/mushroom.png">')
+    return text;
+}
+
+function showPosts(posts) {
+    for (i = 0; i < posts.length; i++) {
+        posts[i][4] = posts[i][4].replaceAll("<", "&lt");
+        posts[i][4] = posts[i][4].replaceAll(">", "&gt");
+        posts[i][4] = posts[i][4].replaceAll("\n", "<br>");
+        // posts[i][4]=checkEmoji(posts[i][4]);
+        addPost(posts[i][5], "posted by: <a href='/user/?id=" + posts[i][2] + "'>" + posts[i][1] + "</a> at: " + posts[i][3], posts[i][4], posts[i]);
+    };
 };

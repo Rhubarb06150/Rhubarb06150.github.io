@@ -2,7 +2,7 @@
 session_start();
 
 $conn = new PDO(
-    'mysql:host=localhost;dbname=personnes;charset=utf8',
+    'mysql:host=localhost;dbname=data;charset=utf8',
     'hey',
     ''
 );
@@ -22,6 +22,7 @@ if (!(filesize($_FILES["picture"]["tmp_name"]))) {
     header('Location:/failure.php?act=no_pfp');
     exit();
 }
+
 
 if (isset($_POST["post_pfp"])) {
     $check = getimagesize($_FILES["picture"]["tmp_name"]);
