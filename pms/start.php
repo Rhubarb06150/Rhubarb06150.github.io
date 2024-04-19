@@ -109,7 +109,9 @@ session_start();
                 <div class="element_content">
                     <form method="post" action="/actions/start_chat.php">
                         Username of the person you want to talk:
-                        <input type>
+                        <input type="text" name="username" id="username"><br><br>
+                        <input hidden type="submit" id="login" name="login">
+                        <label for="login" class="button">Start a discussion!</label>
                     </form>
                 </div>
             </div>
@@ -127,6 +129,11 @@ session_start();
 
 </html>
 <?php
+$conn = new PDO(
+    'mysql:host=localhost;dbname=data;charset=utf8',
+    'hey',
+    ''
+);
 if (isset($_SESSION["username"])) {
 
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";

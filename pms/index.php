@@ -94,6 +94,11 @@ session_start();
                 </a>
             </div>
         </div>
+        <form method="post" action="/actions/start_chat.php" id="instant_discussion" hidden>
+            Instant discussion:
+            <input type="text" name="username" id="username"><br><br>
+            <input hidden type="submit" id="login" name="login">
+        </form>
         <div class="elements">
             <div class="elements" id="elements">
                 <div class=element id="pms">
@@ -164,10 +169,9 @@ if (isset($_SESSION["username"])) {
 
                 if ($res->rowCount() > 0) {
                     echo "<script>document.getElementById('infos').innerHTML='Discussion started at " . $first['send_date'] . "'</script>";
-                }else{
+                } else {
                     echo "<script>document.getElementById('infos').innerHTML='No messages has been sent yet.'</script>";
                     echo "<script>document.getElementById('messages').innerHTML=`Wow it's empty here.`</script>";
-
                 };
 
                 $sql = "SELECT * FROM pms WHERE (sender_id = '$ur_id' AND receiver_id = '$chat_id') OR (sender_id = '$chat_id' AND receiver_id = '$ur_id')";
@@ -205,7 +209,7 @@ if (isset($_SESSION["username"])) {
                 };
             } else {
                 echo "<script>document.getElementById('pms').remove();</script>";
-                echo "<script>AddElement('Seriously?','Did you just want to talk to yourself?','You really need some friends...');</script>";
+                echo "<script>AddElement('Seriously?','Did you just wanted to talk to yourself?','You really need some friends...');</script>";
                 echo "<script>document.title='You need friends - SMBX World'</script>";
             }
         } else {
@@ -219,6 +223,8 @@ if (isset($_SESSION["username"])) {
         echo "<script>document.getElementById('pms').remove();</script>";
         echo "<script>document.title='Discussions - SMBX World'</script>";
         echo "<script>AddElement('All your discussions','Here you can see all of your discussions','<div id=chats></div>');</script>";
+        echo "<script>document.getElementById('chats').appendChild(document.getElementById('instant_discussion'))</script>";
+        echo "<script>document.getElementById('instant_discussion').style.display='block';</script>";
         $sql = "SELECT * FROM pms WHERE sender_id = '$ur_id' OR receiver_id = '$ur_id'";
         $res = $conn->query($sql);
         $chats = $res->fetchAll();
@@ -230,6 +236,9 @@ if (isset($_SESSION["username"])) {
             if (!(in_array($chat['receiver_id'], $chats_arr))) {
                 array_push($chats_arr, $chat['receiver_id']);
             }
+        };
+        if (count($chats_arr)==0){
+            echo "<script>document.getElementById('chats').innerHTML+=`There's no discussions here :(`</script>";
         };
         foreach ($chats_arr as &$chat) {
 

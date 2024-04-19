@@ -526,6 +526,9 @@ function getFailure() {
     } else if (act == 'no_yo_com') {
         document.getElementById('failure').innerHTML = "You cannot edit/delete this comment, your aen't the poster of it.";
         Redirect('/account/index');
+    } else if (act == 'usr_nf') {
+        document.getElementById('failure').innerHTML = "The user you requested does not exists, try to check that you typed the username correctly.";
+        Redirect('/pms/');
 
 
     } else if (act == 'usignup') {

@@ -128,6 +128,11 @@ session_start();
 </script>
 <?php
 if (isset($_SESSION["username"])) {
+    $conn = new PDO(
+        'mysql:host=localhost;dbname=data;charset=utf8',
+        'hey',
+        ''
+    );
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
 
     $usr = $_SESSION['username'];
