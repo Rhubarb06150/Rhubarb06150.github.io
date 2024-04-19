@@ -17,9 +17,9 @@ $result = $result->fetch();
 $uid = $result['id'];
 
 if (isset($_SESSION["loggedin"])) {
-    if (isset($_POST)) {
+    if (isset($_POST)&&$_POST['subject']!=''&&$_POST['post_content']!='') {
         $sql = "INSERT INTO posts (poster_id, post_date , content , subject)
-    VALUES ('$uid', NOW(), '$content', '$subject')";
+VALUES ('$uid', NOW(), '$content', '$subject')";
         if ($conn->query($sql) == TRUE) {
             header("Location:/success.php?act=post");
             exit();

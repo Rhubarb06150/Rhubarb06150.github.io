@@ -9,7 +9,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="/index.css" />
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
     <title>Your comments - SMBX World</title>
 </head>
 
@@ -141,7 +141,7 @@ document.getElementById('comments_span').innerHTML='" . $posts_nb . " comment(s)
 </script>";
 } else {
     echo "<script>
-document.getElementById('comments_span').innerHTML='<br>no comments yet.<br><br>'
+document.getElementById('comments_span').innerHTML=`<br>You haven't posted any comments yet.<br><br>`
 </script>";
 };
 
@@ -160,27 +160,54 @@ foreach ($comments as &$value) {
     $res = $conn->query($sql);
     $res = $res->fetch();
 
-    $post_name = $res['subject'];
-    $post_id = $res['id'];
+    if (json_encode($res) != 'false') {
+        $post_name = $res['subject'];
+        $post_id = $res['id'];
 
-    echo "<script>
+        echo "<script>
     post_div=document.createElement('div');
     post_div.style.borderTop='1px #404040 solid';
     post_div.style.marginBottom='5px';
     post_div.style.display='flex';
     post_div.style.justifyContent='space-between';
-    content_span=document.createElement('span');
-    content_span.innerHTML+=`" . $content . "`;
+    content_span=document.createElement('span'); 
+    content_span.innerHTML+='<a href=/com/?id=" . $com_id . ">'+`" . $content . "`+'</a>';
     post_div.appendChild(content_span);
     post_span=document.createElement('span');
     post_span.innerHTML= 'posted on <a href=/posts/?id=" . $post_id . ">" . $post_name . "</a>';
     post_div.appendChild(post_span);
     document.getElementById('comments_div').appendChild(post_div);
     </script>";
+    };
 };
 
 if (isset($_SESSION["username"])) {
+    $conn = new PDO(
+        'mysql:host=localhost;dbname=data;charset=utf8',
+        'hey',
+        ''
+    );
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
+
+    $usr = $_SESSION['username'];
+    $sql = "SELECT id FROM users WHERE username = '$usr'";
+    $res = $conn->query($sql);
+    $res = $res->fetch();
+    $ur_id = $res['id'];
+
+    $sql = "SELECT * FROM pms WHERE receiver_id = '$ur_id'";
+    $res = $conn->query($sql);
+    $msgs = $res->fetchAll();
+    $unread_msgs = 0;
+    foreach ($msgs as &$message) {
+        if ($message['msg_state'] == 'unread') {
+            $unread_msgs += 1;
+        };
+    };
+    if ($unread_msgs != 0) {
+        echo "<script>document.getElementById('chat_span').innerHTML+=' (" . $unread_msgs . ")'</script>";
+    };
+
     echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
 } else {
     echo "<script>document.getElementById('post_form').remove();</script>";

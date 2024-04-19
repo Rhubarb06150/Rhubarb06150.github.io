@@ -108,7 +108,7 @@ function showPost(title, infos, content, post_id) {
 
 };
 
-function showCommentary(user, infos, content) {
+function showCommentary(user, infos, content, cur_user, edit, comm_id) {
 
     div = document.createElement("div");
     div.classList = "element";
@@ -126,6 +126,17 @@ function showCommentary(user, infos, content) {
     infos_div.appendChild(pfp);
     infos_div.appendChild(infos_span);
 
+    if (edit != '') {
+
+        edit_span = document.createElement('span');
+        edit_span.style.marginLeft = '20px'
+        edit_span.style.fontStyle = 'italic';
+        edit_span.style.color = '#aaaaaa'
+        edit_span.innerHTML = 'Last edited at ' + edit;
+        infos_div.appendChild(edit_span);
+
+    };
+
     content_div = document.createElement("div");
     content_div.classList = "element_content";
     content_content = document.createElement("p");
@@ -135,8 +146,22 @@ function showCommentary(user, infos, content) {
     content_content.innerHTML = content;
     content_div.appendChild(content_content);
 
+    bottom_div = document.createElement('div');
+    bottom_div.classList = 'element_infos';
+
     div.appendChild(infos_div);
     div.appendChild(content_div);
+
+    if (user.name == cur_user) {
+
+        action_button = document.createElement('a');
+        action_button.href = '/com/?id=' + comm_id;
+        action_button.innerHTML = 'Edit / Delete';
+        action_button.style.marginRight = '10px';
+
+        bottom_div.appendChild(action_button);
+        div.appendChild(bottom_div);
+    };
 
     document.getElementById("comments").appendChild(div);
 }
@@ -421,12 +446,13 @@ function getSuccess() {
         document.getElementById('success_span').innerHTML = "Your post has been submitted.";
         Redirect('index');
     } else if (act == 'com_post') {
-
-        queryString = window.location.search;
-        urlParams = new URLSearchParams(queryString);
-        pid = urlParams.get('post_id');
-
-        document.getElementById('success_span').innerHTML = "Your comment has been submitted.<br><a href='/posts/?id="+pid+"'>Go back to the post</a> or wait to get redirected.";
+        document.getElementById('success_span').innerHTML = "Your comment has been submitted.<br><a href='" + document.referrer + "'>Go back to the post/level</a> or wait to get redirected.";
+        Redirect('index');
+    } else if (act == 'com_edit') {
+        document.getElementById('success_span').innerHTML = "Your comment has been edited.";
+        Redirect('index');
+    } else if (act == 'com_del') {
+        document.getElementById('success_span').innerHTML = "Your comment has been deleted.";
         Redirect('index');
     } else {
         Redirect('index');
@@ -438,58 +464,67 @@ function getFailure() {
     urlParams = new URLSearchParams(queryString);
     act = urlParams.get('act');
     if (act == 'signup') {
-        document.getElementById('failure').innerHTML = "Verify that you've been completed all fields correctly."
+        document.getElementById('failure').innerHTML = "Verify that you've been completed all fields correctly.";
         Redirect('singup');
     } else if (act == 'login') {
-        document.getElementById('failure').innerHTML = 'Invalid username or password.'
+        document.getElementById('failure').innerHTML = 'Invalid username or password.';
         Redirect('login');
     } else if (act == 'tk_usr') {
-        document.getElementById('failure').innerHTML = 'This username is already tooken.'
+        document.getElementById('failure').innerHTML = 'This username is already tooken.';
         Redirect('login');
     } else if (act == 'no_add') {
-        document.getElementById('failure').innerHTML = "You didn't entered a valid address."
+        document.getElementById('failure').innerHTML = "You didn't entered a valid address.";
         Redirect('signup');
     } else if (act == 'nc_add') {
-        document.getElementById('failure').innerHTML = "Addresses aren't corresponding."
+        document.getElementById('failure').innerHTML = "Addresses aren't corresponding.";
         Redirect('signup');
     } else if (act == 'nel_pwd') {
-        document.getElementById('failure').innerHTML = "Your password must be at least 8 characters long."
+        document.getElementById('failure').innerHTML = "Your password must be at least 8 characters long.";
         Redirect('signup');
     } else if (act == 'nc_pwd') {
-        document.getElementById('failure').innerHTML = "Passwords aren't corresponding."
+        document.getElementById('failure').innerHTML = "Passwords aren't corresponding.";
         Redirect('signup');
     } else if (act == 'usr') {
-        document.getElementById('failure').innerHTML = "Your username isn't valid."
+        document.getElementById('failure').innerHTML = "Your username isn't valid.";
         Redirect('signup');
     } else if (act == 'sm_pwd') {
-        document.getElementById('failure').innerHTML = "You can't modify your password to your current password."
+        document.getElementById('failure').innerHTML = "You can't modify your password to your current password.";
         Redirect('/account/password_modify');
     } else if (act == 'nel_npwd') {
-        document.getElementById('failure').innerHTML = "Your new password isn't long enough."
+        document.getElementById('failure').innerHTML = "Your new password isn't long enough.";
         Redirect('/account/password_modify');
     } else if (act == 'ncn_pwd') {
-        document.getElementById('failure').innerHTML = "Your new passwords aren't corresponding."
+        document.getElementById('failure').innerHTML = "Your new passwords aren't corresponding.";
         Redirect('/account/password_modify');
     } else if (act == 'bad_pwd') {
-        document.getElementById('failure').innerHTML = "Your old passwords isn't corresponding."
+        document.getElementById('failure').innerHTML = "Your old passwords isn't corresponding.";
         Redirect('/account/password_modify');
     } else if (act == 'no_pfp') {
-        document.getElementById('failure').innerHTML = "Your didn't uploaded an image."
+        document.getElementById('failure').innerHTML = "Your didn't uploaded an image.";
         Redirect('/account/index');
     } else if (act == 'no_img') {
-        document.getElementById('failure').innerHTML = "The file you uploaded seems to be broken."
+        document.getElementById('failure').innerHTML = "The file you uploaded seems to be broken.";
         Redirect('/account/index');
     } else if (act == 'pfp_size') {
-        document.getElementById('failure').innerHTML = "The file you uploaded is too heavy, the max file size is 128 Kb! Try to reduce the size."
+        document.getElementById('failure').innerHTML = "The file you uploaded is too heavy, the max file size is 128 Kb! Try to reduce the size.";
         Redirect('/account/index');
     } else if (act == 'pfp_for') {
-        document.getElementById('failure').innerHTML = "The file format is'nt supported, the supported formats are: .png, .jpg, .jpeg, .gif"
+        document.getElementById('failure').innerHTML = "The file format is'nt supported, the supported formats are: .png, .jpg, .jpeg, .gif";
         Redirect('/account/index');
     } else if (act == 'pfp_ch') {
-        document.getElementById('failure').innerHTML = "An unknown error has occured when trying to modify your profile picture."
+        document.getElementById('failure').innerHTML = "An unknown error has occured when trying to modify your profile picture.";
         Redirect('/account/index');
     } else if (act == 'tl_bio') {
-        document.getElementById('failure').innerHTML = "Your biography cannot exceed 1024 characters."
+        document.getElementById('failure').innerHTML = "Your biography cannot exceed 1024 characters.";
+        Redirect('/account/index');
+    } else if (act == 'com_edit') {
+        document.getElementById('failure').innerHTML = "An error has occured, so your comment hasn't been edited.";
+        Redirect('/account/index');
+    } else if (act == 'com_del') {
+        document.getElementById('failure').innerHTML = "An error has occured, so your comment hasn't been deleted.";
+        Redirect('/account/index');
+    } else if (act == 'no_yo_com') {
+        document.getElementById('failure').innerHTML = "You cannot edit/delete this comment, your aen't the poster of it.";
         Redirect('/account/index');
 
 
@@ -497,6 +532,96 @@ function getFailure() {
         document.getElementById('failure').innerHTML = "An unknown error has occured."
         Redirect('signup');
     };
+};
+
+function showMessage(message, userid) {
+
+    abs_div = document.createElement('div');
+    abs_div.style.display = 'flex';
+    abs_div.style.width = "100%"
+    abs_div.style.flexDirection = 'column';
+    abs_div.style.marginBottom = "5px";
+
+    div = document.createElement("div");
+    div.classList = "element";
+    div.style.maxWidth = '80%';
+    div.style.width = 'max-content';
+    div.style.marginBottom = "0px"
+
+    title_div = document.createElement("div");
+    title_div.classList = "element_infos";
+    title_div.style.display = 'flex';
+    title_div.style.flexDirection = 'row';
+    title_div.style.fontSize = '100%';
+
+    title_span = document.createElement("span");
+    title_span.innerHTML = message.sender_username;
+    title_span.style.height = 'max-content';
+    title_span.style.marginTop = 'auto';
+
+    pfp = document.createElement('img');
+    pfp.src = message.sender_pfp;
+    pfp.classList = "element";
+    pfp.style.width = "32px";
+    pfp.style.height = "32px";
+    pfp.style.marginRight = "10px";
+    pfp.style.marginBottom = "0px";
+    pfp.src = message.sender_pfp;
+
+    title_div.appendChild(pfp);
+    title_div.appendChild(title_span);
+
+    content_div = document.createElement("div");
+    content_div.classList = "element_content";
+    content_content = document.createElement("p");
+
+    message.content = message.content.replaceAll("<", "&lt");
+    message.content = message.content.replaceAll(">", "&gt");
+    message.content = message.content.replaceAll("\n", "<br>");
+
+    content_content.innerHTML = message.content;
+    content_div.appendChild(content_content);
+
+    div.appendChild(title_div);
+    div.appendChild(content_div);
+
+    abs_div.appendChild(div);
+    date_span = document.createElement('span');
+    date_span.innerHTML = message.send_date;
+    date_span.style.color = '#aaaaaa';
+    date_span.style.fontSize = "60%"
+    date_span.style.marginLeft = "5px";
+
+    if (parseInt(userid) == parseInt(message.sender_id)) {
+
+        div.style.marginLeft = 'auto';
+        date_span.style.marginLeft = "auto";
+    }
+
+    abs_div.appendChild(date_span);
+    document.getElementById("messages").appendChild(abs_div);
+
+};
+
+function loadChat(user){
+    
+    div=document.createElement('div');
+    div.style.display='flex';
+    div.style.justifyContent='space-between';
+    div.style.marginTop='5px';
+    a=document.createElement('a');
+    a.href='/pms/?user='+user.id;
+    a.innerHTML='Discussion with '+user.name;
+    if (user.unread>0){
+        a.innerHTML+=' ('+user.unread+')';
+        a.style.color='#00ff00';
+    };
+    div.appendChild(a);
+    nb_span=document.createElement('span');
+    nb_span.innerHTML=user.nb+' message(s)';
+    div.appendChild(nb_span);
+    document.getElementById('chats').appendChild(div);
+
 };
 
 function loadAccount(acc_name) {
@@ -514,14 +639,23 @@ function loadAccount(acc_name) {
     span1.appendChild(a1);
 
     a2 = document.createElement("a");
-    a2.href = "/logout.php";
+    a2.href = "/pms/";
     span2 = document.createElement("span");
     span2.classList = "menu_options_link";
-    a2.innerHTML = "Log Out";
+    a2.innerHTML = "Chat";
+    a2.id='chat_span';
     span2.appendChild(a2);
+
+    a3 = document.createElement("a");
+    a3.href = "/logout.php";
+    span3 = document.createElement("span");
+    span3.classList = "menu_options_link";
+    a3.innerHTML = "Log Out";
+    span3.appendChild(a3);
 
     div.appendChild(span1);
     div.appendChild(span2);
+    div.appendChild(span3);
 
     document.getElementById("account_div").appendChild(div);
 };

@@ -14,6 +14,11 @@
     flex-direction: column;
 }
 
+.line{
+    width: 100%;
+    border-top: 1px #404040 solid;
+}
+
 @media only screen and (max-width: 700px) {
     #website-logo{
         width: auto;
@@ -139,7 +144,7 @@ h2{
     flex-direction: column;
     height: max-content;
     margin-bottom: 10px;
-    min-width: 100%;
+    /* min-width: 100%; */
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
 }
 

@@ -9,7 +9,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="/index.css" />
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
     <title>User - SMBX World</title>
 </head>
 
@@ -101,7 +101,12 @@ session_start();
                 <div class="element_content">
                     <img id="pfp" class="element" style="max-width:128px;min-width:128px;max-height:128px;min-height:128px;"><br>
                     <span id="uid">User ID: </span><br>
-                    <span id="reg_date">Register date: </span><br><br>
+                    <span id="reg_date">Register date: </span><br>
+                    <span id="posts">Posts: </span><br>
+                    <span id="comms">Comments: </span><br><br>
+                    <a id="chat_a">
+                        <span id="chat">Chat with </span></a><br>
+                    <div class="line"></div>
                     <span id="bio"></span>
                 </div>
             </div>
@@ -171,6 +176,19 @@ if ($result->rowCount() > 0) {
     echo "<script>document.getElementById('pfp').src='" . $pfp . "'</script>";
     echo "<script>document.getElementById('uid').innerHTML+='" . $user_id . "'</script>";
     echo "<script>document.getElementById('reg_date').innerHTML+='" . $reg_date . "'</script>";
+    echo "<script>document.getElementById('chat').innerHTML+='" . $username . "'</script>";
+    echo "<script>document.getElementById('chat_a').href='/pms/?user=" . $user_id . "'</script>";
+
+    $sql = "SELECT * FROM posts WHERE poster_id = '$user_id'";
+    $result = $conn->query($sql);
+    $posts_nb = $result->rowCount();
+
+    $sql = "SELECT * FROM comments WHERE poster_id = '$user_id'";
+    $result = $conn->query($sql);
+    $comms_nb = $result->rowCount();
+
+    echo "<script>document.getElementById('posts').innerHTML+='" . $posts_nb . "'</script>";
+    echo "<script>document.getElementById('comms').innerHTML+='" . $comms_nb . "'</script>";
 } else {
     echo "<script>document.getElementById('user_div').remove();";
     echo "AddElement('User not found','I have nothing to say about it','This user does not exist.')</script>";
