@@ -7,7 +7,7 @@ $conn = new PDO(
 );
 
 $id = $_GET['id'];
-$sql = "SELECT subject FROM posts WHERE id = '$id'";
+$sql = "SELECT title FROM news WHERE id = '$id'";
 $result = $conn->query($sql);
 $exist = $result->rowCount();
 $result = $result->fetch();
@@ -114,7 +114,7 @@ $result = $result->fetch();
                     <div class="element_content">
                         Comment:<br><br>
                         <textarea style="width: 100%; height:64px;" id="content" name="content"></textarea>
-                        <input id="type" name="type" value="post" hidden>
+                        <input id="type" name="type" value="news" hidden>
                         <input id="post_id" name="post_id" value="post" hidden>
                         <br><br>
                         <input hidden type="submit" id="post" name="post">
@@ -145,15 +145,15 @@ $result = $result->fetch();
 <?php
 
 $post_id = $_GET['id'];
-$sql = "SELECT * FROM posts WHERE id = '$post_id'";
+$sql = "SELECT * FROM news WHERE id = '$post_id'";
 $result = $conn->query($sql);
 $exist = $result->rowCount();
 $result = $result->fetch();
 
 
 if ($exist > 0) {
-    $subject = $result['subject'];
-    echo "<script>document.title=`" . $subject . " - SMBX World`</script>";
+    $title = $result['title'];
+    echo "<script>document.title=`" . $title . " - SMBX World`</script>";
 } else {
     echo "<script>document.title='Post not found - SMBX World'</script>";
 };
@@ -167,11 +167,11 @@ if ($exist > 0) {
     $res = $res->fetch();
     $poster_usr = $res['username'];
 
-    echo "<script>showPost('" . $result['subject'] . "','Posted by: <a href=/user/?id=" . $result['poster_id'] . ">" . $poster_usr . "</a> at: " . $result['post_date'] . "',`" . $result['content'] . "`);</script>";
+    echo "<script>showPost('" . $result['title'] . "','Posted by: <a href=/user/?id=" . $result['poster_id'] . ">" . $poster_usr . "</a> at: " . $result['post_date'] . "',`" . $result['content'] . "`,'new'    );</script>";
     echo "<script>document.getElementById('post_id').value=" . $_GET['id'] . "</script>";
 
     $pid = $_GET['id'];
-    $sql = "SELECT * FROM comments WHERE type = 'post' AND post_id = '$pid' ORDER BY id DESC";
+    $sql = "SELECT * FROM comments WHERE type = 'news' AND post_id = '$pid' ORDER BY id DESC";
 
     $comments = $conn->query($sql);
     $comms_nb = $comments->rowCount();

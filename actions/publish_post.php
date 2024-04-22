@@ -16,6 +16,11 @@ $result = $conn->query($sql);
 $result = $result->fetch();
 $uid = $result['id'];
 
+if (str_contains($content,'`')){
+    header("Location: /failure.php?act=ill_char");
+    exit();
+};
+
 if (isset($_SESSION["loggedin"])) {
     if (isset($_POST)&&$_POST['subject']!=''&&$_POST['post_content']!='') {
         $sql = "INSERT INTO posts (poster_id, post_date , content , subject)

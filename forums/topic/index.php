@@ -6,7 +6,7 @@ $conn = new PDO(
     ''
 );
 
-$id = $_GET['id'];
+$id = $_GET['topic'];
 $sql = "SELECT subject FROM posts WHERE id = '$id'";
 $result = $conn->query($sql);
 $exist = $result->rowCount();
@@ -107,25 +107,23 @@ $result = $result->fetch();
         <div class="elements">
             <div class="elements" id="elements">
             </div>
-            <span class=little_section_title id="post_span">Post a comment:</span>
-            <form method="post" action="/actions/commentary_post.php" id="post_form">
+            <span class=little_section_title id="post_span">Submit a reply:</span>
+            <form method="post" action="/actions/submit_reply.php" id="post_form">
                 <div class="element">
-                    <div class=element_infos>Remember to stay polite and respectful when posting comment.</div>
+                    <div class=element_infos>Remember to stay polite and respectful when replying to someone.</div>
                     <div class="element_content">
-                        Comment:<br><br>
+                        Reply:<br><br>
                         <textarea style="width: 100%; height:64px;" id="content" name="content"></textarea>
                         <input id="type" name="type" value="post" hidden>
-                        <input id="post_id" name="post_id" value="post" hidden>
+                        <input id="topic_id" name="topic_id" value="topic" hidden>
+                        <input id="reply" name="reply" value="" hidden>
                         <br><br>
                         <input hidden type="submit" id="post" name="post">
-                        <label for="post" class="button">Post comment</label>
+                        <label for="post" class="button">Submit reply</label>
                     </div>
-
                 </div>
-
             </form>
             <span class=little_section_title id='com_span'></span>
-            <div id="comments"></div>
 
         </div>
     </div>
@@ -144,38 +142,61 @@ $result = $result->fetch();
 
 <?php
 
-$post_id = $_GET['id'];
-$sql = "SELECT * FROM posts WHERE id = '$post_id'";
+$topic_id = $_GET['topic'];
+$sql = "SELECT * FROM topics WHERE id = '$topic_id'";
 $result = $conn->query($sql);
 $exist = $result->rowCount();
 $result = $result->fetch();
 
 
 if ($exist > 0) {
-    $subject = $result['subject'];
-    echo "<script>document.title=`" . $subject . " - SMBX World`</script>";
+    $topic = $result['topic'];
+    echo "<script>document.title=`" . $topic . " - SMBX World`</script>";
 } else {
-    echo "<script>document.title='Post not found - SMBX World'</script>";
+    echo "<script>document.title='Topic not found - SMBX World'</script>";
 };
 
 if ($exist > 0) {
 
-    $pid = $result['poster_id'];
+    $sql="SELECT category FROM topics WHERE id = '$topic_id'";
+    $res=$conn->query($sql);
+    $res=$res->fetch();
+    $cat=$res['category'];
+    if($cat=='smbx'){
+        $category='Super Mario Bros. X';
+    }else if($cat=='smb'){
+        $category='Super Mario Bros.';
+    }else if($cat=='tloz'){
+        $category='The Legend Of Zelda';
+    }else if($cat=='met'){
+        $category='Metroid';
+    }else if($cat=='dkc'){
+        $category='Donkey Kong Country';
+    }else if($cat=='other'){
+        $category='Other';
+    }else if($cat=='pkmn'){
+        $category='Pokémon';
+    }else if($cat=='ssb'){
+        $category='Super Smash Bros.';
+    };
+    echo "<script>document.title=`" . $topic . " - ".$category." - SMBX World`</script>";
 
-    $sql = "SELECT username FROM users WHERE id = '$pid'";
+    $topic_id = $result['poster_id'];
+
+    $sql = "SELECT username FROM users WHERE id = '$topic_id'";
     $res = $conn->query($sql);
     $res = $res->fetch();
     $poster_usr = $res['username'];
 
-    echo "<script>showPost('" . $result['subject'] . "','Posted by: <a href=/user/?id=" . $result['poster_id'] . ">" . $poster_usr . "</a> at: " . $result['post_date'] . "',`" . $result['content'] . "`);</script>";
-    echo "<script>document.getElementById('post_id').value=" . $_GET['id'] . "</script>";
+    echo "<script>showTopic('" . $result['topic'] . "',`Posted by: <a href=/user/?id=" . $result['poster_id'] . ">" . $poster_usr . "</a> at: " . $result['submit_date'] . " in <a href=/forums/sub/?sub=".$cat.">".$category."</a>`,`" . $result['content'] . "`);</script>";
+    echo "<script>document.getElementById('topic_id').value=" . $_GET['topic'] . "</script>";
 
-    $pid = $_GET['id'];
-    $sql = "SELECT * FROM comments WHERE type = 'post' AND post_id = '$pid' ORDER BY id DESC";
+    $topic_id = $_GET['topic'];
+    $sql = "SELECT * FROM replies WHERE topic_id = '$topic_id' ORDER BY id DESC";
 
-    $comments = $conn->query($sql);
-    $comms_nb = $comments->rowCount();
-    $comments = $comments->fetchAll();
+    $replies = $conn->query($sql);
+    $replies_nb = $replies->rowCount();
+    $replies = $replies->fetchAll();
 
     if (isset($_SESSION['username'])) {
         $usr = $_SESSION['username'];
@@ -183,7 +204,7 @@ if ($exist > 0) {
         $usr = '';
     };
 
-    foreach ($comments as &$value) {
+    foreach ($replies as &$value) {
 
         $poster_id = $value['poster_id'];
 
@@ -204,24 +225,25 @@ if ($exist > 0) {
             'pfp' => $poster_pfp
         );
 
-        $infos = 'posted by <a href=/user/?id=' . $poster_id . '>' . $poster_name . '</a> at: ' . $value['post_date'];
+        $infos = 'posted by <a href=/user/?id=' . $poster_id . '>' . $poster_name . '</a> at: ' . $value['submit_date'];
         $content = $value['content'];
 
-        echo "<script>showCommentary(" . json_encode($user) . ",`" . $infos . "`,`" . $content . "`,`" . $usr . "`,'" . $value['edit'] . "','" . $value['id'] . "')</script>";
+        echo "<script>showReply(" . json_encode($user) . ",`" . $infos . "`,`" . $content . "`,`" . $usr . "`,'" . $value['edit'] . "','" . $value['id'] . "')</script>";
 
         // $user = array($pid);
 
     };
 
-    if ($comms_nb != 0) {
-        echo "<script>document.getElementById('com_span').innerHTML=' Comments (" . $comms_nb . ")'</script>";
-    } else {
-        echo "<script>document.getElementById('com_span').innerHTML='No comments yet.'</script>";
+    if ($replies_nb != 0) {
+        echo "<script>document.getElementById('topic_title').innerHTML+=' (" . $replies_nb . ")'</script>";
+    } else {    
+        echo "<script>document.getElementById('topic_title').innerHTML+=' (No replies)'</script>";
     };
 } else {
+    echo "<script>document.title='Topic not found - SMBX World'</script>";
     echo "<script>document.getElementById('post_form').remove();</script>";
     echo "<script>document.getElementById('post_span').remove();</script>";
-    echo "<script>AddElement('Oops...','Not found!','No post was found with this ID');</script>";
+    echo "<script>AddElement('Oops...','Not found!','No topic was found with this ID');</script>";
 };
 if (isset($_SESSION["username"])) {
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";

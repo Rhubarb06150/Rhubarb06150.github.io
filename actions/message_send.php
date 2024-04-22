@@ -15,6 +15,7 @@ $sender_id = $res['id'];
 $receiver_id = $_POST['receiver_id'];
 $mp_content = $_POST['content'];
 $mp_content = str_replace("'", "''", $mp_content);
+$mp_content = str_replace("`", "''", $mp_content);
 $state = 'unread';
 
 $sql = "INSERT INTO pms (sender_id , receiver_id , content , send_date , msg_state) VALUES ('$sender_id' , '$receiver_id' , '$mp_content' , NOW() , '$state')";

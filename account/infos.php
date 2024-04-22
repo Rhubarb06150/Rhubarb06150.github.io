@@ -5,13 +5,11 @@ $conn = new PDO(
     'hey',
     ''
 );
-
-$id = $_GET['id'];
-$sql = "SELECT subject FROM posts WHERE id = '$id'";
-$result = $conn->query($sql);
-$exist = $result->rowCount();
-$result = $result->fetch();
+if (!(isset($_SESSION["username"]))){
+    header('Location:/login.php');
+};
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,7 +18,8 @@ $result = $result->fetch();
     <link rel="stylesheet" type="text/css" href="/index.css" />
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
-
+    
+    <title>Account preferences - SMBX World</title>
 </head>
 
 <body id="body">
@@ -30,7 +29,7 @@ $result = $result->fetch();
             <img src="/images/logos/smbxworld.png" height="106" width="588" style="margin-left: 32px;" alt="website logo" id="website-logo">
         </a>
     </div>
-    <div class="page_structure">
+    <div class="page_structure" style="max-width:100vw;">
         <div class="sidebar">
             <div class="menu">Main
                 <img src="/images/tiles/cloud.png" width="16" height="16" class="menu_img" class="menu_img">
@@ -104,31 +103,28 @@ $result = $result->fetch();
                 </a>
             </div>
         </div>
-        <div class="elements">
-            <div class="elements" id="elements">
-            </div>
-            <span class=little_section_title id="post_span">Post a comment:</span>
-            <form method="post" action="/actions/commentary_post.php" id="post_form">
-                <div class="element">
-                    <div class=element_infos>Remember to stay polite and respectful when posting comment.</div>
-                    <div class="element_content">
-                        Comment:<br><br>
-                        <textarea style="width: 100%; height:64px;" id="content" name="content"></textarea>
-                        <input id="type" name="type" value="post" hidden>
-                        <input id="post_id" name="post_id" value="post" hidden>
-                        <br><br>
-                        <input hidden type="submit" id="post" name="post">
-                        <label for="post" class="button">Post comment</label>
-                    </div>
-
+        <div class="elements" id="elements">
+            <div class="element" style="max-width:100%;">
+                <div class="element_title">
+                    <span>Informations</span>
                 </div>
+                <div class="element_infos">
+                    <span>Here you can see your account infos.</span>
+                </div>
+                <div class="element_content">
 
-            </form>
-            <span class=little_section_title id='com_span'></span>
-            <div id="comments"></div>
-
+                    <span>Account informations:</span><br><br>
+                    <span id="reg_span">Register date: </span>
+                    <br>
+                    <span id="email_span">E-mail address: </span>
+                    <br>
+                    <span id="user_id">Your user ID is: </span>
+                    <br><br>
+                    <p>To reveal your absolute code, click <a onclick="showAbsCode();">here</a>.</p>
+                    <p id="abs_code_div">Your absolute code is currently hidden.</p>
+                </div>
+            </div>
         </div>
-    </div>
     </div>
     <footer id="footer">
         <div class="footer_content">
@@ -143,87 +139,8 @@ $result = $result->fetch();
 </html>
 
 <?php
-
-$post_id = $_GET['id'];
-$sql = "SELECT * FROM posts WHERE id = '$post_id'";
-$result = $conn->query($sql);
-$exist = $result->rowCount();
-$result = $result->fetch();
-
-
-if ($exist > 0) {
-    $subject = $result['subject'];
-    echo "<script>document.title=`" . $subject . " - SMBX World`</script>";
-} else {
-    echo "<script>document.title='Post not found - SMBX World'</script>";
-};
-
-if ($exist > 0) {
-
-    $pid = $result['poster_id'];
-
-    $sql = "SELECT username FROM users WHERE id = '$pid'";
-    $res = $conn->query($sql);
-    $res = $res->fetch();
-    $poster_usr = $res['username'];
-
-    echo "<script>showPost('" . $result['subject'] . "','Posted by: <a href=/user/?id=" . $result['poster_id'] . ">" . $poster_usr . "</a> at: " . $result['post_date'] . "',`" . $result['content'] . "`);</script>";
-    echo "<script>document.getElementById('post_id').value=" . $_GET['id'] . "</script>";
-
-    $pid = $_GET['id'];
-    $sql = "SELECT * FROM comments WHERE type = 'post' AND post_id = '$pid' ORDER BY id DESC";
-
-    $comments = $conn->query($sql);
-    $comms_nb = $comments->rowCount();
-    $comments = $comments->fetchAll();
-
-    if (isset($_SESSION['username'])) {
-        $usr = $_SESSION['username'];
-    } else {
-        $usr = '';
-    };
-
-    foreach ($comments as &$value) {
-
-        $poster_id = $value['poster_id'];
-
-        $sql = "SELECT username FROM users WHERE id = '$poster_id'";
-        $res = $conn->query($sql);
-        $res = $res->fetch();
-        $poster_name = $res['username'];
-
-        $sql = "SELECT pfp FROM users WHERE id = '$poster_id'";
-        $res = $conn->query($sql);
-        $res = $res->fetch();
-
-        $poster_pfp = $res['pfp'];
-
-        $user = array(
-            'id' => $poster_id,
-            'name' => $poster_name,
-            'pfp' => $poster_pfp
-        );
-
-        $infos = 'posted by <a href=/user/?id=' . $poster_id . '>' . $poster_name . '</a> at: ' . $value['post_date'];
-        $content = $value['content'];
-
-        echo "<script>showCommentary(" . json_encode($user) . ",`" . $infos . "`,`" . $content . "`,`" . $usr . "`,'" . $value['edit'] . "','" . $value['id'] . "')</script>";
-
-        // $user = array($pid);
-
-    };
-
-    if ($comms_nb != 0) {
-        echo "<script>document.getElementById('com_span').innerHTML=' Comments (" . $comms_nb . ")'</script>";
-    } else {
-        echo "<script>document.getElementById('com_span').innerHTML='No comments yet.'</script>";
-    };
-} else {
-    echo "<script>document.getElementById('post_form').remove();</script>";
-    echo "<script>document.getElementById('post_span').remove();</script>";
-    echo "<script>AddElement('Oops...','Not found!','No post was found with this ID');</script>";
-};
 if (isset($_SESSION["username"])) {
+
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
 
     $usr = $_SESSION['username'];
@@ -246,10 +163,38 @@ if (isset($_SESSION["username"])) {
     };
 
     echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
-} else {
-    echo "<script>document.getElementById('post_form').remove();</script>";
-    echo "<script>document.getElementById('post_span').remove();</script>";
-    echo "<script>AddElement('Oops...','You cannot comment without an account','<br>You must <a href=/login.php>log in</a> to comment.<br><br>');</script>";
-};
 
+    echo "<script>var abs_code ='" . $_SESSION["abs_code"] . "'</script>";
+
+    $conn = new PDO('mysql:host=localhost;dbname=data;charset=utf8', 'hey', '');
+    $usrf = $_SESSION['username'];
+
+    $sql = "SELECT email FROM users WHERE username = '$usrf'";
+    $email = $conn->query($sql);
+    $emailf = $email->fetch();
+    $emailf = $emailf["email"];
+    echo "<script>var email ='" . $emailf . "'</script>";
+
+    $sql = "SELECT id FROM users WHERE username = '$usrf'";
+    $uid = $conn->query($sql);
+    $uid = $uid->fetch();
+    $uid = $uid["id"];
+    echo "<script>var uid ='" . $uid . "'</script>";
+
+    $sql = "SELECT description FROM users WHERE username = '$usrf'";
+    $result = $conn->query($sql);
+    $result = $result->fetch();
+    $bio = $result["description"];
+
+    $sql = "SELECT register_date FROM users WHERE username = '$usrf'";
+    $reg_date = $conn->query($sql);
+    $reg_datef = $reg_date->fetch();
+    $reg_datef = $reg_datef["register_date"];
+    echo "<script>var reg_date ='" . $reg_datef . "'</script>";
+};
 ?>
+<script>
+    document.getElementById("email_span").innerHTML += email;
+    document.getElementById("reg_span").innerHTML += reg_date;
+    document.getElementById("user_id").innerHTML += uid;
+</script>

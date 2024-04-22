@@ -5,6 +5,9 @@ $conn = new PDO(
     'hey',
     ''
 );
+if (!(isset($_SESSION["username"]))){
+    header('Location:/login.php');
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -112,7 +115,7 @@ $conn = new PDO(
                         <br><br>
                         <input hidden type="submit" id="edit" name="edit">
                         <label for="edit" class="button">Edit comment</label>
-                    </form>
+                    </form><br>
                     <form method="post" action="/actions/commentary_delete.php">
                         <input id="com_id_2" name="com_id_2" hidden>
                         <input hidden type="submit" id="delete" name="delete">
@@ -164,6 +167,11 @@ if ($exist > 0) {
             $res = $conn->query($sql);
             $target = $res->fetch();
             $target_name = $target['subject'];
+        }else if($comment['type']=='news'){
+            $sql = "SELECT * FROM news WHERE id = '$target_id'";
+            $res = $conn->query($sql);
+            $target = $res->fetch();
+            $target_name = $target['title'];
         };
 
         echo "<script>document.getElementById('content').value=`" . $comment['content'] . "`</script>";

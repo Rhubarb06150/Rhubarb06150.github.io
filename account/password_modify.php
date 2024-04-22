@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!(isset($_SESSION["username"]))){
+    header('Location:/login.php');
+};
 ?>
 
 <!DOCTYPE html>
@@ -11,7 +14,7 @@ session_start();
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
     
-    <title>Account preferences - SMBX World</title>
+    <title>Password modify - SMBX World</title>
 </head>
 
 <body id="body">
@@ -105,7 +108,7 @@ session_start();
                 </div>
                 <div class="element_content">
                     <p>Make sure to remember your new password.</p>
-                    <p>You can also <a href="/account">go back to account management</a>.</p>
+                    <p>Once you modified your password, you will be logged out.</p>
                     <br>
                     <form method="post" action="/actions/pwd_modify.php">
                         <p>Old password:<br>
@@ -134,6 +137,7 @@ session_start();
 </html>
 
 <?php
+$conn = new PDO('mysql:host=localhost;dbname=data;charset=utf8', 'hey', '');
 if (isset($_SESSION["username"])) {
 
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";

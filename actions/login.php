@@ -30,8 +30,13 @@ if (isset($_POST["login"])) {
         $abs_code = $conn->query($sql);
         $abs_codef = $abs_code->fetch();
 
+        $sql = "SELECT id FROM users WHERE username = '$usernamef'";
+        $id = $conn->query($sql);
+        $id = $id->fetch();
+
         if ($result->rowCount() > 0) {
             $_SESSION["username"] = $usernamef;
+            $_SESSION["id"] = $id;
             $_SESSION["theme"] = $themef["theme"];
             $_SESSION["abs_code"] = $abs_codef["abs_code"];
             $_SESSION["loggedin"] = true;

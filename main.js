@@ -74,7 +74,48 @@ function addPost(title, infos, content, post_id, comms_nb) {
 
 };
 
-function showPost(title, infos, content, post_id) {
+function addNews(title, infos, content, post_id, comms_nb) {
+
+    div = document.createElement("div");
+    div.classList = "element";
+
+    content = content.replaceAll("\n", "<br>");
+
+    title_div = document.createElement("div");
+    title_div.classList = "element_title";
+    title_span = document.createElement("span");
+    title_span.innerHTML = title;
+    title_div.appendChild(title_span);
+
+    infos_div = document.createElement("div");
+    infos_div.classList = "element_infos";
+    infos_span = document.createElement("span");
+    infos_span.innerHTML = infos;
+    infos_div.appendChild(infos_span);
+
+    content_div = document.createElement("div");
+    content_div.classList = "element_content";
+    content_content = document.createElement("p");
+    content_content.innerHTML = content;
+    content_div.appendChild(content_content);
+
+    comments_div = document.createElement("div");
+    comments_div.classList = "element_infos";
+    comment_a = document.createElement('a');
+    comment_a.href = '/news/?id=' + post_id;
+    comment_a.innerHTML = 'Comments (' + comms_nb + ')'
+    comments_div.appendChild(comment_a);
+
+    div.appendChild(title_div);
+    div.appendChild(infos_div);
+    div.appendChild(content_div);
+    div.appendChild(comments_div);
+
+    document.getElementById("news").appendChild(div);
+
+};
+
+function showPost(title, infos, content, news) {
 
     div = document.createElement("div");
     div.classList = "element";
@@ -94,8 +135,10 @@ function showPost(title, infos, content, post_id) {
     content_div = document.createElement("div");
     content_div.classList = "element_content";
     content_content = document.createElement("p");
-    content = content.replaceAll("<", "&lt");
-    content = content.replaceAll(">", "&gt");
+    if (news == null) {
+        content = content.replaceAll("<", "&lt");
+        content = content.replaceAll(">", "&gt");
+    };
     content = content.replaceAll("\n", "<br>");
     content_content.innerHTML = content;
     content_div.appendChild(content_content);
@@ -103,6 +146,48 @@ function showPost(title, infos, content, post_id) {
     div.appendChild(title_div);
     div.appendChild(infos_div);
     div.appendChild(content_div);
+
+    document.getElementById("elements").appendChild(div);
+
+};
+
+function showTopic(title, infos, content, news) {
+
+    div = document.createElement("div");
+    div.id='topic';
+    div.classList = "element";
+
+    title_div = document.createElement("div");
+    title_div.id='topic_title';
+    title_div.classList = "element_title";
+    title_span = document.createElement("span");
+    title_span.innerHTML = title;
+    title_div.appendChild(title_span);
+
+    infos_div = document.createElement("div");
+    infos_div.classList = "element_infos";
+    infos_span = document.createElement("span");
+    infos_span.innerHTML = infos;
+    infos_div.appendChild(infos_span);
+
+    content_div = document.createElement("div");
+    content_div.classList = "element_content";
+    content_content = document.createElement("p");
+    if (news == null) {
+        content = content.replaceAll("<", "&lt");
+        content = content.replaceAll(">", "&gt");
+    };
+    content = content.replaceAll("\n", "<br>");
+    content_content.innerHTML = content;
+    content_div.appendChild(content_content);
+
+    div.appendChild(title_div);
+    div.appendChild(infos_div);
+    div.appendChild(content_div);
+    replies=document.createElement('div');
+    replies.id="replies";
+    div.appendChild(replies);
+    content_div.style.paddingBottom="10px";
 
     document.getElementById("elements").appendChild(div);
 
@@ -128,6 +213,7 @@ function showCommentary(user, infos, content, cur_user, edit, comm_id) {
 
     if (edit != '') {
 
+        edit=edit.slice(0,-3)
         edit_span = document.createElement('span');
         edit_span.style.marginLeft = '20px'
         edit_span.style.fontStyle = 'italic';
@@ -164,6 +250,65 @@ function showCommentary(user, infos, content, cur_user, edit, comm_id) {
     };
 
     document.getElementById("comments").appendChild(div);
+}
+
+function showReply(user, infos, content, cur_user, edit, comm_id) {
+
+    div = document.createElement("div");
+    div.classList='reply';
+
+    pfp = document.createElement('img');
+    pfp.src = user.pfp
+    pfp.style.width = "32px"
+    pfp.style.height = "32px"
+    pfp.style.marginRight = "8px"
+
+    infos_div = document.createElement("div");
+    infos_div.classList = "element_infos";
+    infos_span = document.createElement("span");
+    infos_span.innerHTML = infos;
+    infos_div.appendChild(pfp);
+    infos_div.appendChild(infos_span);
+
+    if (edit != '') {
+
+        edit=edit.slice(0,-3)
+        edit_span = document.createElement('span');
+        edit_span.style.marginLeft = '20px'
+        edit_span.style.fontStyle = 'italic';
+        edit_span.style.color = '#aaaaaa'
+        edit_span.innerHTML = 'Last edited at ' + edit;
+        infos_div.appendChild(edit_span);
+    };
+
+    content_div = document.createElement("div");
+    content_div.classList = "element_content";
+    content_content = document.createElement("p");
+    content = content.replaceAll("<", "&lt");
+    content = content.replaceAll(">", "&gt");
+    content = content.replaceAll("\n", "<br>");
+    content_content.innerHTML = content;
+    content_content.innerHTML += '<br><br><a>Reply</a>';
+    content_div.appendChild(content_content);
+
+    bottom_div = document.createElement('div');
+    bottom_div.classList = 'element_infos';
+
+    div.appendChild(infos_div);
+    div.appendChild(content_div);
+
+    if (user.name == cur_user) {
+
+        action_button = document.createElement('a');
+        action_button.href = '/rep/?id=' + comm_id;
+        action_button.innerHTML = 'Edit / Delete';
+        action_button.style.marginRight = '10px';
+
+        bottom_div.appendChild(action_button);
+        div.appendChild(bottom_div);
+    };
+
+    document.getElementById("replies").appendChild(div);
 }
 
 function ShowStars(note, votes) {
@@ -410,6 +555,17 @@ function loadTheme(fav_theme) {
             });
         }
     };
+    try {
+        var r = document.getElementsByTagName('script');
+
+        for (var i = (r.length - 1); i >= 0; i--) {
+
+            if (r[i].getAttribute('id') != 'a') {
+                r[i].parentNode.removeChild(r[i]);
+            }
+
+        };
+    } catch (error) { };
 
 };
 
@@ -423,7 +579,7 @@ function getSuccess() {
     queryString = window.location.search;
     urlParams = new URLSearchParams(queryString);
     act = urlParams.get('act');
-
+    document.getElementById('success_span').style.height='max-content';
     if (act == 'signup') {
         document.getElementById('success_span').innerHTML = 'Your account has been created, you can now <a href="/login.php">log in</a>.';
         Redirect('index');
@@ -437,7 +593,7 @@ function getSuccess() {
         document.getElementById('success_span').innerHTML = "Your account preferences has been updated.<br><a href='/account/'>Return to account managing</a> or wait to get redirected.";
         Redirect('index');
     } else if (act == 'pwd_ch') {
-        document.getElementById('success_span').innerHTML = "Your password has been modified.<br><a href='/account/'>Return to account managing</a> or wait to get redirected.";
+        document.getElementById('success_span').innerHTML = "Your password has been modified.<br>You can now <a href='/account/'>log in back</a> or wait to get redirected.";
         Redirect('index');
     } else if (act == 'pfp_ch') {
         document.getElementById('success_span').innerHTML = "Your profile picture has been modified.<br><a href='/account/'>Return to account managing</a> or wait to get redirected.";
@@ -446,7 +602,10 @@ function getSuccess() {
         document.getElementById('success_span').innerHTML = "Your post has been submitted.";
         Redirect('index');
     } else if (act == 'com_post') {
-        document.getElementById('success_span').innerHTML = "Your comment has been submitted.<br><a href='" + document.referrer + "'>Go back to the post/level</a> or wait to get redirected.";
+        document.getElementById('success_span').innerHTML = "Your comment has been submitted.<br><a href='" + document.referrer + "'>Go back to the post</a> or wait to get redirected.";
+        Redirect('index');
+    } else if (act == 'submit_reply') {
+        document.getElementById('success_span').innerHTML = "Your reply has been submitted.<br><a href='" + document.referrer + "'>Go back to the topic</a> or wait to get redirected.";
         Redirect('index');
     } else if (act == 'com_edit') {
         document.getElementById('success_span').innerHTML = "Your comment has been edited.";
@@ -471,7 +630,10 @@ function getFailure() {
         Redirect('login');
     } else if (act == 'tk_usr') {
         document.getElementById('failure').innerHTML = 'This username is already tooken.';
-        Redirect('login');
+        Redirect('singup');
+    } else if (act == 'tk_add') {
+        document.getElementById('failure').innerHTML = 'This address is already in use.';
+        Redirect('singup');
     } else if (act == 'no_add') {
         document.getElementById('failure').innerHTML = "You didn't entered a valid address.";
         Redirect('signup');
@@ -529,6 +691,9 @@ function getFailure() {
     } else if (act == 'usr_nf') {
         document.getElementById('failure').innerHTML = "The user you requested does not exists, try to check that you typed the username correctly.";
         Redirect('/pms/');
+    } else if (act == 'ill_char') {
+        document.getElementById('failure').innerHTML = "One or multiple fields contained illegal characters.";
+        Redirect('/index');
 
 
     } else if (act == 'usignup') {
@@ -606,22 +771,44 @@ function showMessage(message, userid) {
 
 };
 
-function loadChat(user){
-    
-    div=document.createElement('div');
-    div.style.display='flex';
-    div.style.justifyContent='space-between';
-    div.style.marginTop='5px';
-    a=document.createElement('a');
-    a.href='/pms/?user='+user.id;
-    a.innerHTML='Discussion with '+user.name;
-    if (user.unread>0){
-        a.innerHTML+=' ('+user.unread+')';
-        a.style.color='#00ff00';
+function loadChat(user) {
+
+    div = document.createElement('div');
+    div.style.display = 'flex';
+    div.style.justifyContent = 'space-between';
+    div.style.marginTop = '5px';
+    a = document.createElement('a');
+    a.href = '/pms/?user=' + user.id;
+    a.style.height = 'max-content';
+    a.style.maxHeight = 'max-content';
+    a.innerHTML = 'Discussion with ' + user.name;
+    if (user.unread > 0) {
+        a.innerHTML += ' (' + user.unread + ')';
+        a.style.color = '#00ff00';
+        if (user.unread < 2){
+            a.innerHTML = user.unread+' new message from '+user.name;
+        }else{
+            a.innerHTML = user.unread+' new messages from '+user.name;
+        };
     };
-    div.appendChild(a);
-    nb_span=document.createElement('span');
-    nb_span.innerHTML=user.nb+' message(s)';
+    pfp = document.createElement("img");
+    pfp.src = user.pfp;
+    pfp.style.width = "32px";
+    pfp.style.height = "32px";
+    pfp.style.maxWidth = "32px";
+    pfp.style.maxHeight = "32px";
+    pfp.style.marginRight = "10px";
+    div2 = document.createElement('div');
+    div2.style.display = "flex";
+    div2.style.alignItems = "flex-end";
+    div2.style.justifyContent = "baseline";
+    div2.appendChild(pfp);
+    div2.appendChild(a);
+    div.appendChild(div2);
+    nb_span = document.createElement('span');
+    nb_span.innerHTML = user.nb + ' message(s)';
+    nb_span.style.height = 'max-content';
+    nb_span.style.marginTop = 'auto';
     div.appendChild(nb_span);
     document.getElementById('chats').appendChild(div);
 
@@ -646,7 +833,7 @@ function loadAccount(acc_name) {
     span2 = document.createElement("span");
     span2.classList = "menu_options_link";
     a2.innerHTML = "Chat";
-    a2.id='chat_span';
+    a2.id = 'chat_span';
     span2.appendChild(a2);
 
     a3 = document.createElement("a");

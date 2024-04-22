@@ -5,12 +5,9 @@ $conn = new PDO(
     'hey',
     ''
 );
-
-$id = $_GET['id'];
-$sql = "SELECT subject FROM posts WHERE id = '$id'";
-$result = $conn->query($sql);
-$exist = $result->rowCount();
-$result = $result->fetch();
+if (!(isset($_SESSION["username"]))) {
+    header('Location:/login.php');
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +17,7 @@ $result = $result->fetch();
     <link rel="stylesheet" type="text/css" href="/index.css" />
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
-
+    <title>Reply action - SMBX World</title>
 </head>
 
 <body id="body">
@@ -104,28 +101,31 @@ $result = $result->fetch();
                 </a>
             </div>
         </div>
-        <div class="elements">
-            <div class="elements" id="elements">
-            </div>
-            <span class=little_section_title id="post_span">Post a comment:</span>
-            <form method="post" action="/actions/commentary_post.php" id="post_form">
-                <div class="element">
-                    <div class=element_infos>Remember to stay polite and respectful when posting comment.</div>
-                    <div class="element_content">
-                        Comment:<br><br>
-                        <textarea style="width: 100%; height:64px;" id="content" name="content"></textarea>
-                        <input id="type" name="type" value="post" hidden>
-                        <input id="post_id" name="post_id" value="post" hidden>
-                        <br><br>
-                        <input hidden type="submit" id="post" name="post">
-                        <label for="post" class="button">Post comment</label>
-                    </div>
+        <div class="elements" id="elements">
+            <span class=little_section_title id="post_span">Your reply:</span>
+            <div class="element" id="com_span">
+                <div class=element_infos>Here you can edit or delete your reply.</div>
+                <div class="element_content">
+                    <form method="post" action="/actions/reply_edit.php" id="post_form">
 
+                        <span id="reply_title">reply posted on</span><br><br>
+                        <input id="reply_id" name="reply_id" hidden>
+                        <textarea style="width: calc(100% - 7px); height:256px;" id="content" name="content"></textarea>
+                        <input id="topic_id" name="topic_id" value="post" hidden>
+                        <br><br>
+                        <input hidden type="submit" id="edit" name="edit">
+                        <label for="edit" class="button">Edit reply</label>
+                    </form><br>
+                    <form method="post" action="/actions/reply_delete.php">
+                        <input id="reply_id_2" name="reply_id_2" hidden>
+                        <input hidden type="submit" id="delete" name="delete">
+                        <label for="delete" class="button">Delete reply</label>
+                    </form>
                 </div>
 
-            </form>
-            <span class=little_section_title id='com_span'></span>
-            <div id="comments"></div>
+            </div>
+
+
 
         </div>
     </div>
@@ -144,85 +144,46 @@ $result = $result->fetch();
 
 <?php
 
-$post_id = $_GET['id'];
-$sql = "SELECT * FROM posts WHERE id = '$post_id'";
-$result = $conn->query($sql);
-$exist = $result->rowCount();
-$result = $result->fetch();
+$id = $_GET['id'];
 
+$sql = "SELECT * FROM replies WHERE id = '$id'";
+$comment = $conn->query($sql);
+$exist = $comment->rowCount();
+$comment = $comment->fetch();
 
-if ($exist > 0) {
-    $subject = $result['subject'];
-    echo "<script>document.title=`" . $subject . " - SMBX World`</script>";
-} else {
-    echo "<script>document.title='Post not found - SMBX World'</script>";
-};
+$sql = "SELECT id FROM users WHERE username = '" . $_SESSION['username'] . "'";
+$res = $conn->query($sql);
+$res = $res->fetch();
+$uid = $res['id'];
 
 if ($exist > 0) {
-
-    $pid = $result['poster_id'];
-
-    $sql = "SELECT username FROM users WHERE id = '$pid'";
-    $res = $conn->query($sql);
-    $res = $res->fetch();
-    $poster_usr = $res['username'];
-
-    echo "<script>showPost('" . $result['subject'] . "','Posted by: <a href=/user/?id=" . $result['poster_id'] . ">" . $poster_usr . "</a> at: " . $result['post_date'] . "',`" . $result['content'] . "`);</script>";
-    echo "<script>document.getElementById('post_id').value=" . $_GET['id'] . "</script>";
-
-    $pid = $_GET['id'];
-    $sql = "SELECT * FROM comments WHERE type = 'post' AND post_id = '$pid' ORDER BY id DESC";
-
-    $comments = $conn->query($sql);
-    $comms_nb = $comments->rowCount();
-    $comments = $comments->fetchAll();
-
-    if (isset($_SESSION['username'])) {
-        $usr = $_SESSION['username'];
-    } else {
-        $usr = '';
-    };
-
-    foreach ($comments as &$value) {
-
-        $poster_id = $value['poster_id'];
-
-        $sql = "SELECT username FROM users WHERE id = '$poster_id'";
+    $poster_id = $comment['poster_id'];
+    if ($uid == $poster_id) {
+        $target_id = $comment['topic_id'];
+        $post_time = $comment['submit_date'];
+        $sql = "SELECT * FROM topics WHERE id = '$target_id'";
         $res = $conn->query($sql);
-        $res = $res->fetch();
-        $poster_name = $res['username'];
+        $target = $res->fetch();
+        $target_name = $target['topic'];
 
-        $sql = "SELECT pfp FROM users WHERE id = '$poster_id'";
-        $res = $conn->query($sql);
-        $res = $res->fetch();
-
-        $poster_pfp = $res['pfp'];
-
-        $user = array(
-            'id' => $poster_id,
-            'name' => $poster_name,
-            'pfp' => $poster_pfp
-        );
-
-        $infos = 'posted by <a href=/user/?id=' . $poster_id . '>' . $poster_name . '</a> at: ' . $value['post_date'];
-        $content = $value['content'];
-
-        echo "<script>showCommentary(" . json_encode($user) . ",`" . $infos . "`,`" . $content . "`,`" . $usr . "`,'" . $value['edit'] . "','" . $value['id'] . "')</script>";
-
-        // $user = array($pid);
-
-    };
-
-    if ($comms_nb != 0) {
-        echo "<script>document.getElementById('com_span').innerHTML=' Comments (" . $comms_nb . ")'</script>";
+        echo "<script>document.getElementById('content').value=`" . $comment['content'] . "`</script>";
+        echo "<script>document.getElementById('reply_id').value=`" . $comment['id'] . "`</script>";
+        echo "<script>document.getElementById('reply_id_2').value=`" . $comment['id'] . "`</script>";
+        echo "<script>document.getElementById('topic_id').value=`" . $target['id'] . "`</script>";
+        echo "<script>document.getElementById('reply_title').innerHTML+=` <a href='/posts/?id=" . $target_id . "'>" . $target_name . "</a> at " . $post_time . "`</script>";
     } else {
-        echo "<script>document.getElementById('com_span').innerHTML='No comments yet.'</script>";
-    };
+        echo "<script>document.getElementById('post_span').remove()</script>";
+        echo "<script>document.getElementById('com_span').remove()</script>";
+        echo "<script>AddElement('What are you doing?',`This comment isn't yours`,`You cannot edit/delete a comment that you doesn't own`);</script>";
+        echo "<script>document.title='Comment not found - SMBX World'</script>";
+    }
 } else {
-    echo "<script>document.getElementById('post_form').remove();</script>";
-    echo "<script>document.getElementById('post_span').remove();</script>";
-    echo "<script>AddElement('Oops...','Not found!','No post was found with this ID');</script>";
+    echo "<script>document.getElementById('post_span').remove()</script>";
+    echo "<script>document.getElementById('com_span').remove()</script>";
+    echo "<script>AddElement('Oops',`Comment not found.`,'This comment seems to not exist :/');</script>";
+    echo "<script>document.title='Comment not found - SMBX World'</script>";
 };
+
 if (isset($_SESSION["username"])) {
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
 
@@ -248,8 +209,8 @@ if (isset($_SESSION["username"])) {
     echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
 } else {
     echo "<script>document.getElementById('post_form').remove();</script>";
-    echo "<script>document.getElementById('post_span').remove();</script>";
-    echo "<script>AddElement('Oops...','You cannot comment without an account','<br>You must <a href=/login.php>log in</a> to comment.<br><br>');</script>";
+    echo "<script>document.getElementById('comm_span').remove();</script>";
+    echo "<script>AddElement('Oops...','This action is impossible when you are not logged in.','<br>You must <a href=/login.php>log in</a> to comment.<br><br>');</script>";
 };
 
 ?>

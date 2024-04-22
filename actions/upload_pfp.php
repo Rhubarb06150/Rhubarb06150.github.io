@@ -11,7 +11,7 @@ $usr = $_SESSION['username'];
 $sql = "SELECT id FROM users WHERE username = '$usr'";
 $result = $conn->query($sql);
 $result = $result->fetch();
-$uid=$result['id'];
+$uid = $result['id'];
 
 $target_dir = "../files/pfps/";
 $target_file = $target_dir . basename($_FILES["picture"]["name"]);
@@ -45,13 +45,12 @@ if (
 ) {
     header('Location:/failure.php?act=pfp_for');
     exit();
-}
+};
 
 if ($uploadOk == 1) {
 
     $pfp_path = "../files/pfps/" . $uid . "." . $imageFileType;
     $pfp_path_ul = "/files/pfps/" . $uid . "." . $imageFileType;
-
     move_uploaded_file($_FILES["picture"]["tmp_name"], $pfp_path);
 
     $sql = "UPDATE users SET pfp = '$pfp_path_ul' where username = '$usr'";

@@ -13,15 +13,13 @@ $pid=$pid['id'];
 
 $content=$_POST['content'];
 
-// $content=str_replace('<','$lt',$content);
-// $content=str_replace('>','$gt',$content);
 $content=str_replace("'","''",$content);
 
-$type=$_POST['type'];
-$post_id=$_POST['post_id'];
+$post_id=$_POST['topic_id'];
+$reply=$_POST['reply'];
 
-$sql="INSERT INTO comments (poster_id , type , content , post_date , post_id)
-VALUES ('$pid' , '$type' , '$content' , NOW() , '$post_id')";
+$sql="INSERT INTO replies (poster_id , content , submit_date , reply, topic_id)
+VALUES ('$pid' , '$content' , NOW() , '$reply', '$post_id')";
 
 if (str_contains($content,'`')){
     header("Location: /failure.php?act=ill_char");
@@ -29,9 +27,9 @@ if (str_contains($content,'`')){
 };
 
 if ($conn->query($sql)==true){
-    header('Location:/success.php?act=com_post');
+    header('Location:/success.php?act=reply_submit');
     exit();
 }else{
-    header('Location:/failure.php?act=com_post');
+    header('Location:/failure.php?act=reply_submit');
     exit();
 }

@@ -9,24 +9,24 @@
     background-image: url("/images/bgs/header-bg.png");
     background-color: #212121;
     image-rendering: pixelated;
-    background-attachment: fixed;   
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
 }
 
-.line{
+.line {
     width: 100%;
     border-top: 1px #404040 solid;
 }
 
 @media only screen and (max-width: 700px) {
-    #website-logo{
+    #website-logo {
         width: auto;
         height: auto;
     }
-  }
+}
 
-.profile_picture{
+.profile_picture {
     max-width: 128px;
     min-width: 128px;
     max-height: 128px;
@@ -41,7 +41,7 @@
     margin-bottom: 32px;
 }
 
-.sidebar{
+.sidebar {
     display: flex;
     flex-direction: column;
     margin-right: 10px;
@@ -62,48 +62,48 @@ span {
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
 }
 
-p{
+p {
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
     color: #ffffff;
     margin: 0px;
 }
 
-textarea{
+textarea {
     background-color: #454545;
     color: #ffffff;
-    max-width: 100%; 
+    max-width: 100%;
     max-height: 100%;
     resize: none;
 }
 
-input{
+input {
     background-color: #454545;
     color: #ffffff;
 }
 
-h2{
+h2 {
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
     font-size: 120%;
 }
 
-.entry_and_labels{
+.entry_and_labels {
     display: flex;
     flex-direction: row;
 }
 
-.button{
+.button {
     background-color: #900000;
     padding: 5px;
     border: #884343 2px solid;
-    display:inline-block;
+    display: inline-block;
 }
 
-.button:hover{
+.button:hover {
     border: #ffffff 2px solid;
     background-color: #884343;
 }
 
-.section_title{
+.section_title {
     margin-left: 5px;
     margin-right: 16px;
     margin-top: 16px;
@@ -116,7 +116,7 @@ h2{
     width: 100%;
 }
 
-.little_section_title{
+.little_section_title {
     margin-left: 5px;
     margin-right: 16px;
     margin-top: 16px;
@@ -148,6 +148,10 @@ h2{
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
 }
 
+.reply{
+    border-top: #884343 2px solid;
+}
+
 .element_title {
     background-color: #900000;
     padding: 5px;
@@ -157,6 +161,7 @@ h2{
     line-break: auto;
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
 }
+
 .element_infos {
     background-color: #3f1d1d;
     padding: 5px;
@@ -175,12 +180,14 @@ h2{
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
 }
 
-select{
+select {
     background-color: #454545;
     color: #ffffff;
-};
+}
 
-.thumbnail{
+;
+
+.thumbnail {
     border: #884343 2px solid;
 }
 
@@ -199,7 +206,25 @@ select{
     padding-right: 5px;
 }
 
-.green{
+table{
+    border: #884343 2px solid;
+    padding: 0px;
+    margin: 0px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th{
+    padding: 5px;   
+    border: #884343 2px solid;
+}
+
+td{
+    border: #884343 2px solid;
+    text-align: center;
+}
+
+.green {
     color: #33ff00;
 }
 
@@ -212,7 +237,7 @@ select{
 .website_img {
     width: 88;
     height: 31;
-    filter: contrast(75%);
+    filter: saturate(50%) contrast(75%);
 }
 
 .website_img:hover {
@@ -277,6 +302,6 @@ footer {
 }
 
 .footer_content {
-    padding:14px;
+    padding: 14px;
     background-attachment: fixed;
 }

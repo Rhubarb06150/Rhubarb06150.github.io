@@ -18,6 +18,10 @@ if (isset($_SESSION["loggedin"])) {
         header("Location: /failure.php?act=tl_bio");
         exit();
     }
+    if (str_contains($bio,'`')){
+        header("Location: /failure.php?act=ill_char");
+        exit();
+    };
     if ($conn->query($req) == TRUE && $conn->query($sec_req) == TRUE) {
         $_SESSION["theme"]=$_POST["theme"];
         header("Location: /success.php?act=acc_modify");

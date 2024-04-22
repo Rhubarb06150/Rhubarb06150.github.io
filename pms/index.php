@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!(isset($_SESSION["username"]))){
+    header('Location:/login.php');
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,8 +12,6 @@ session_start();
     <link rel="stylesheet" type="text/css" href="/index.css" />
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
-
-    <title>SMBX World</title>
 </head>
 
 <body id="body">
@@ -28,6 +29,7 @@ session_start();
 
             <div class="menu_options">
                 <span class="menu_options_link"><a href="/">Home</a></span>
+                <span class="menu_options_link"><a href="/forums/">Forums</a></span>
                 <span class="menu_options_link"><a href="/contact">Contact</a></span>
                 <span class="menu_options_link"><a href="/softwares/">Softwares</a></span>
             </div>
@@ -166,9 +168,9 @@ if (isset($_SESSION["username"])) {
                 $sql = "SELECT DISTINCT send_date FROM pms WHERE (sender_id = '$ur_id' AND receiver_id = '$chat_id') OR (sender_id = '$chat_id' AND receiver_id = '$ur_id')";
                 $res = $conn->query($sql);
                 $first = $res->fetch();
-
+                
                 if ($res->rowCount() > 0) {
-                    echo "<script>document.getElementById('infos').innerHTML='Discussion started at " . $first['send_date'] . "'</script>";
+                    echo "<script>document.getElementById('infos').innerHTML='Discussion started at " . mb_substr($first['send_date'],0,-3) . "'</script>";
                 } else {
                     echo "<script>document.getElementById('infos').innerHTML='No messages has been sent yet.'</script>";
                     echo "<script>document.getElementById('messages').innerHTML=`Wow it's empty here.`</script>";
@@ -218,6 +220,7 @@ if (isset($_SESSION["username"])) {
             echo "<script>document.title='User not found - SMBX World'</script>";
             echo "<script>AddElement('User not found!','User not found!!!','USER NOT FOUND NAAAAAAAAH !!!!!!');</script>";
         };
+
     } else {
 
         echo "<script>document.getElementById('pms').remove();</script>";
@@ -248,6 +251,11 @@ if (isset($_SESSION["username"])) {
                 $res = $res->fetch();
                 $username = $res['username'];
 
+                $sql = "SELECT pfp FROM users WHERE id = '$chat'";
+                $res = $conn->query($sql);
+                $res = $res->fetch();
+                $pfp = $res['pfp'];
+
                 $sql = "SELECT * FROM pms WHERE (sender_id = '$chat' AND receiver_id = '$ur_id') OR (sender_id = '$ur_id' AND receiver_id = '$chat')";
                 $res = $conn->query($sql);
                 $msg_nb = $res->rowCount();
@@ -260,6 +268,7 @@ if (isset($_SESSION["username"])) {
                 $user = array(
                     "id" => $chat,
                     "name" => $username,
+                    "pfp" => $pfp,
                     "nb" => $msg_nb,
                     "unread" => $unread
                 );

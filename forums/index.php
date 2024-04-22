@@ -1,16 +1,5 @@
 <?php
 session_start();
-$conn = new PDO(
-    'mysql:host=localhost;dbname=data;charset=utf8',
-    'hey',
-    ''
-);
-
-$id = $_GET['id'];
-$sql = "SELECT subject FROM posts WHERE id = '$id'";
-$result = $conn->query($sql);
-$exist = $result->rowCount();
-$result = $result->fetch();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +10,7 @@ $result = $result->fetch();
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
 
+    <title>Forums - SMBX World</title>
 </head>
 
 <body id="body">
@@ -38,6 +28,7 @@ $result = $result->fetch();
 
             <div class="menu_options">
                 <span class="menu_options_link"><a href="/">Home</a></span>
+                <span class="menu_options_link"><a href="/forums/">Forums</a></span>
                 <span class="menu_options_link"><a href="/contact">Contact</a></span>
                 <span class="menu_options_link"><a href="/softwares/">Softwares</a></span>
             </div>
@@ -106,29 +97,81 @@ $result = $result->fetch();
         </div>
         <div class="elements">
             <div class="elements" id="elements">
-            </div>
-            <span class=little_section_title id="post_span">Post a comment:</span>
-            <form method="post" action="/actions/commentary_post.php" id="post_form">
                 <div class="element">
-                    <div class=element_infos>Remember to stay polite and respectful when posting comment.</div>
+                    <div class="element_title">Topics</div>
                     <div class="element_content">
-                        Comment:<br><br>
-                        <textarea style="width: 100%; height:64px;" id="content" name="content"></textarea>
-                        <input id="type" name="type" value="post" hidden>
-                        <input id="post_id" name="post_id" value="post" hidden>
-                        <br><br>
-                        <input hidden type="submit" id="post" name="post">
-                        <label for="post" class="button">Post comment</label>
+                        <a href="/forums/topic/submit/">Start a new topic</a>
+                        <table>
+                            <tr>
+                                <th width="20%">Subject</th>
+                                <th>Last Topic</th>
+                                <th width="5%">Topics</th>
+                                <th width="5%">Replies</th>
+                            </tr>
+                            <tr>
+                                <td>Super Mario Bros. X</td>
+                                <td id="smbx_last"></td>
+                                <td id="smbx_nb"></td>
+                                <td id="smbx_rnb"></td>
+                            </tr>
+                            <tr>
+                                <td>Super Mario Bros</td>
+                                <td id="smb_last"></td>
+                                <td id="smb_nb"></td>
+                                <td id="smb_rnb"></td>
+                            </tr>
+                            <tr>
+                                <td>Super Smash Bros.</td>
+                                <td id="ssb_last"></td>
+                                <td id="ssb_nb"></td>
+                                <td id="ssb_rnb"></td>
+                            </tr>
+                            <tr>
+                                <td>The Legend Of Zelda</td>
+                                <td id="tloz_last"></td>
+                                <td id="tloz_nb"></td>
+                                <td id="tloz_rnb"></td>
+                            </tr>
+                            <tr>
+                                <td>Metroid</td>
+                                <td id="met_last"></td>
+                                <td id="met_nb"></td>
+                                <td id="met_rnb"></td>
+                            </tr>
+                            <tr>
+                                <td>Donkey Kong Country</td>
+                                <td id="dkc_last"></td>
+                                <td id="dkc_nb"></td>
+                                <td id="dkc_rnb"></td>
+                            </tr>
+                            <tr>
+                                <td>Pokémon</td>
+                                <td id="pk_last"></td>
+                                <td id="pk_nb"></td>
+                                <td id="pk_rnb"></td>
+                            </tr>
+                            <tr>
+                                <td>Other</td>
+                                <td id="other_last"></td>
+                                <td id="other_nb"></td>
+                                <td id="other_rnb"></td>
+                            </tr>
+                        </table>
                     </div>
-
                 </div>
-
-            </form>
-            <span class=little_section_title id='com_span'></span>
-            <div id="comments"></div>
-
+            </div>
         </div>
-    </div>
+        <!-- <div class="elements">
+            <div class="elements" id="elements">
+                <div class="element">
+                    <div class="element_title">Off-Topics</div>
+                    <div class="element_content">
+                        <a>Start a new topic</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
     </div>
     <footer id="footer">
         <div class="footer_content">
@@ -144,85 +187,12 @@ $result = $result->fetch();
 
 <?php
 
-$post_id = $_GET['id'];
-$sql = "SELECT * FROM posts WHERE id = '$post_id'";
-$result = $conn->query($sql);
-$exist = $result->rowCount();
-$result = $result->fetch();
+$conn = new PDO(
+    'mysql:host=localhost;dbname=data;charset=utf8',
+    'hey',
+    ''
+);
 
-
-if ($exist > 0) {
-    $subject = $result['subject'];
-    echo "<script>document.title=`" . $subject . " - SMBX World`</script>";
-} else {
-    echo "<script>document.title='Post not found - SMBX World'</script>";
-};
-
-if ($exist > 0) {
-
-    $pid = $result['poster_id'];
-
-    $sql = "SELECT username FROM users WHERE id = '$pid'";
-    $res = $conn->query($sql);
-    $res = $res->fetch();
-    $poster_usr = $res['username'];
-
-    echo "<script>showPost('" . $result['subject'] . "','Posted by: <a href=/user/?id=" . $result['poster_id'] . ">" . $poster_usr . "</a> at: " . $result['post_date'] . "',`" . $result['content'] . "`);</script>";
-    echo "<script>document.getElementById('post_id').value=" . $_GET['id'] . "</script>";
-
-    $pid = $_GET['id'];
-    $sql = "SELECT * FROM comments WHERE type = 'post' AND post_id = '$pid' ORDER BY id DESC";
-
-    $comments = $conn->query($sql);
-    $comms_nb = $comments->rowCount();
-    $comments = $comments->fetchAll();
-
-    if (isset($_SESSION['username'])) {
-        $usr = $_SESSION['username'];
-    } else {
-        $usr = '';
-    };
-
-    foreach ($comments as &$value) {
-
-        $poster_id = $value['poster_id'];
-
-        $sql = "SELECT username FROM users WHERE id = '$poster_id'";
-        $res = $conn->query($sql);
-        $res = $res->fetch();
-        $poster_name = $res['username'];
-
-        $sql = "SELECT pfp FROM users WHERE id = '$poster_id'";
-        $res = $conn->query($sql);
-        $res = $res->fetch();
-
-        $poster_pfp = $res['pfp'];
-
-        $user = array(
-            'id' => $poster_id,
-            'name' => $poster_name,
-            'pfp' => $poster_pfp
-        );
-
-        $infos = 'posted by <a href=/user/?id=' . $poster_id . '>' . $poster_name . '</a> at: ' . $value['post_date'];
-        $content = $value['content'];
-
-        echo "<script>showCommentary(" . json_encode($user) . ",`" . $infos . "`,`" . $content . "`,`" . $usr . "`,'" . $value['edit'] . "','" . $value['id'] . "')</script>";
-
-        // $user = array($pid);
-
-    };
-
-    if ($comms_nb != 0) {
-        echo "<script>document.getElementById('com_span').innerHTML=' Comments (" . $comms_nb . ")'</script>";
-    } else {
-        echo "<script>document.getElementById('com_span').innerHTML='No comments yet.'</script>";
-    };
-} else {
-    echo "<script>document.getElementById('post_form').remove();</script>";
-    echo "<script>document.getElementById('post_span').remove();</script>";
-    echo "<script>AddElement('Oops...','Not found!','No post was found with this ID');</script>";
-};
 if (isset($_SESSION["username"])) {
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
 
@@ -246,10 +216,49 @@ if (isset($_SESSION["username"])) {
     };
 
     echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
-} else {
-    echo "<script>document.getElementById('post_form').remove();</script>";
-    echo "<script>document.getElementById('post_span').remove();</script>";
-    echo "<script>AddElement('Oops...','You cannot comment without an account','<br>You must <a href=/login.php>log in</a> to comment.<br><br>');</script>";
 };
 
+$sql="SELECT * FROM topics WHERE category = 'smbx'";
+$req="SELECT DISTINCT * FROM topics WHERE category = 'smbx' ORDER BY id DESC";
+$res=$conn->query($sql);
+$nb=$res->rowCount();
+$res=$conn->query($req);
+$res=$res->fetch();
+$last=$res['topic'];
+$last_id=$res['id'];
+echo "<script>document.getElementById('smbx_nb').innerHTML=".$nb."</script>";
+echo "<script>document.getElementById('smbx_last').innerHTML='<a href=/forums/topic/?topic=".$last_id.">".$last."</a>'</script>";
+
+$sql="SELECT * FROM topics WHERE category = 'smb'";
+$req="SELECT DISTINCT * FROM topics WHERE category = 'smb' ORDER BY id DESC";
+$res=$conn->query($sql);
+$nb=$res->rowCount();
+$res=$conn->query($req);
+$res=$res->fetch();
+$last=$res['topic'];
+$last_id=$res['id'];
+echo "<script>document.getElementById('smb_nb').innerHTML=".$nb."</script>";
+echo "<script>document.getElementById('smb_last').innerHTML='<a href=/forums/topic/?topic=".$last_id.">".$last."</a>'</script>";
+
+$sql="SELECT * FROM topics WHERE category = 'ssb'";
+$req="SELECT DISTINCT * FROM topics WHERE category = 'ssb' ORDER BY id DESC";
+$res=$conn->query($sql);
+$nb=$res->rowCount();
+$res=$conn->query($req);
+$res=$res->fetch();
+$last=$res['topic'];
+$last_id=$res['id'];
+echo "<script>document.getElementById('ssb_nb').innerHTML=".$nb."</script>";
+echo "<script>document.getElementById('ssb_last').innerHTML='<a href=/forums/topic/?topic=".$last_id.">".$last."</a>'</script>";
+
+$sql="SELECT * FROM topics WHERE category = 'dkc'";
+$req="SELECT DISTINCT * FROM topics WHERE category = 'dkc' ORDER BY id DESC";
+$res=$conn->query($sql);
+$nb=$res->rowCount();
+$res=$conn->query($req);
+$res=$res->fetch();
+$last=$res['topic'];
+$last_id=$res['id'];
+echo "<script>document.getElementById('dkc_nb').innerHTML=".$nb."</script>";
+echo "<script>document.getElementById('dkc_last').innerHTML='<a href=/forums/topic/?topic=".$last_id.">".$last."</a>'</script>";
 ?>

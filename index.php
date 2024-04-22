@@ -9,7 +9,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="/index.css" />
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
-    
+
     <title>SMBX World</title>
 </head>
 
@@ -28,6 +28,7 @@ session_start();
 
             <div class="menu_options">
                 <span class="menu_options_link"><a href="/">Home</a></span>
+                <span class="menu_options_link"><a href="/forums/">Forums</a></span>
                 <span class="menu_options_link"><a href="/contact">Contact</a></span>
                 <span class="menu_options_link"><a href="/softwares/">Softwares</a></span>
             </div>
@@ -128,6 +129,10 @@ session_start();
                     </div>
                 </div>
             </div>
+            <div class="elements" id="news">
+                <span class="section_title">Lastest news:</span>
+            </div>
+
             <div class="elements" id="posts">
                 <span class="section_title">Lastest posts</span>
                 <div class=element style="margin-bottom: 40px;">
@@ -200,11 +205,30 @@ foreach ($result as $value) {
     $comm_nb = $res->rowCount();
 
     echo "<script>";
-    echo "addPost('" . $value["subject"] . "','posted by <a href=/user/?id=" . $pid . ">" . $poster_usr . "</a> at " . $value["post_date"] . "',`" . $value["content"] . "`," . $value["id"] . "," . $comm_nb . ");";
+    echo "addPost(`" . $value["subject"] . "`,`posted by <a href=/user/?id=" . $pid . ">" . $poster_usr . "</a> at " . mb_substr($value["post_date"],0,-3) . "`,`" . $value["content"] . "`," . $value["id"] . "," . $comm_nb . ");";
     echo "</script>";
 };
 
-// echo "<script>showPosts(".json_encode($result).")</script>";
+$sql = "SELECT * FROM news ORDER BY id DESC LIMIT 5";
+$result = $conn->query($sql);
+$result = $result->fetchAll();
+
+foreach ($result as $value) {
+
+    $pid = $value['poster_id'];
+    $post_id = $value['id'];
+
+    $sql = "SELECT username FROM users WHERE id = '$pid'";
+    $poster_usr = $conn->query($sql);
+    $poster_usr = $poster_usr->fetch();
+    $poster_usr = $poster_usr['username'];
+
+    $sql = "SELECT * FROM comments WHERE type = 'news' and post_id = '$post_id'";
+    $res = $conn->query($sql);
+    $comm_nb = $res->rowCount();
+
+    echo "<script>addNews(`" . $value["title"] . "`,`posted by <a href=/user/?id=" . $pid . ">" . $poster_usr . "</a> at " . mb_substr($value["post_date"],0,-3) . "`,`" . $value["content"] . "`," . $value["id"] . "," . $comm_nb . ");</script>";
+};
 
 if (isset($_SESSION["username"])) {
     echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";

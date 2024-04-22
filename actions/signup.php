@@ -11,6 +11,9 @@ $passwordf = (password_hash($_POST['password1'],CRYPT_BLOWFISH));
 
 $req = "SELECT * FROM users WHERE username = '$usernamef'";
 $result = $conn->query($req);
+$req = "SELECT * FROM users WHERE email = '$emailf'";
+$result2 = $conn->query($req);
+
 if (strlen($_POST['username']) == 0) {
     header("Location:/failure.php?act=usr");
     exit();
@@ -20,6 +23,11 @@ if ($result->rowCount() > 0) {
     header("Location:/failure.php?act=tk_usr");
     exit();
 }
+if ($result2->rowCount() > 0) {
+    header("Location:/failure.php?act=tk_add");
+    exit();
+}
+
 if ($_POST['mail1'] == '') {
     header("Location:/failure.php?act=no_add");
     exit();

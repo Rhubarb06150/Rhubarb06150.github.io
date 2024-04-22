@@ -28,6 +28,11 @@ if ($uid == $op_id) {
 
     $sql = "UPDATE comments SET content = '$content', edit = NOW() WHERE id = '$comm_id'";
 
+    if (str_contains($content,'`')){
+        header("Location: /failure.php?act=ill_char");
+        exit();
+    };
+
     if ($conn->query($sql) == true) {
         header('Location:/success.php?act=com_edit');
         exit();

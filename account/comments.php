@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!(isset($_SESSION["username"]))){
+    header('Location:/login.php');
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -209,7 +212,4 @@ if (isset($_SESSION["username"])) {
     };
 
     echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
-} else {
-    echo "<script>document.getElementById('post_form').remove();</script>";
-    echo "<script>AddElement('You cannot post yet.','But I said YET','<br><br>You must <a href=/login.php>log in</a> to post.<br><br><br>');</script>";
 };
