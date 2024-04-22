@@ -29,7 +29,7 @@ if (isset($_SESSION["username"])) {
     $notifs = $res->fetchAll();
     $unread_notifs = 0;
     foreach ($notifs as &$notif) {
-        if ($notif['state'] == 'unread') {
+        if ($notif['notif_state'] == 'unread') {
             $unread_notifs += 1;
         };
     };

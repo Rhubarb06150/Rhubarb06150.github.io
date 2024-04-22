@@ -477,8 +477,8 @@ function Pokey(div_id, length) {
 };
 
 function loadTheme(fav_theme) {
-    if (document.getElementById('chat_span').innerHTML.includes('(')){
-        document.getElementById('chat_span').style.color='#00ff00   '
+    if (document.getElementById('chat_span').innerHTML.includes('(')) {
+        document.getElementById('chat_span').style.color = '#00ff00   '
     }
     if (fav_theme == "blue") {
         document.body.style.backgroundImage = "url('/images/bgs/dark-bg-blue.png')";
@@ -681,13 +681,13 @@ function addTopicRow(poster_name, topic_id, topic_name, replies) {
     poster_td.innerHTML = poster_name
 
     topic_td = document.createElement('td');
-    topic=document.createElement('a');
-    topic.href='/forums/topic/?topic='+topic_id;
-    topic.innerHTML=topic_name
+    topic = document.createElement('a');
+    topic.href = '/forums/topic/?topic=' + topic_id;
+    topic.innerHTML = topic_name
     topic_td.appendChild(topic)
 
     replies_td = document.createElement('td');
-    replies_td.innerHTML=replies;
+    replies_td.innerHTML = replies;
 
     row.appendChild(poster_td);
     row.appendChild(topic_td);
@@ -891,6 +891,34 @@ function loadChat(user) {
 
 };
 
+function loadNotif(content,notif_id) {
+
+    div = document.createElement('div');
+    div.style.display = 'flex';
+    div.style.justifyContent = 'space-between';
+    div.style.marginTop = '5px';
+
+    span = document.createElement('span');
+    span.style.height = 'max-content';
+    span.style.maxHeight = 'max-content';
+    span.innerHTML = content;
+
+    div2 = document.createElement('div');
+    div2.style.display = "flex";
+    div2.style.alignItems = "flex-end";
+    div2.style.justifyContent = "baseline";
+    div2.appendChild(span);
+    div.appendChild(div2);
+
+    remove=document.createElement('a');
+    remove.href='/actions/delete_notifcation.php?id='+notif_id;
+    remove.innerHTML='Delete notification'
+    div.appendChild(remove);
+
+    document.getElementById('notifs').appendChild(div);
+
+};
+
 function loadAccount(acc_name) {
 
     document.getElementById('account').remove();
@@ -918,7 +946,7 @@ function loadAccount(acc_name) {
     span3 = document.createElement("span");
     span3.classList = "menu_options_link";
     a3.innerHTML = "Notifs";
-    a3.id='notif_span';
+    a3.id = 'notif_span';
     span3.appendChild(a3);
 
     a4 = document.createElement("a");

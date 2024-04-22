@@ -1,6 +1,6 @@
 <?php
 session_start();
-if(!(isset($_SESSION['username']))){
+if (!(isset($_SESSION['username']))) {
     header('Location:/login.php');
 };
 ?>
@@ -106,7 +106,7 @@ if(!(isset($_SESSION['username']))){
                 <div class="element_content" id="notifs">
 
                 </div>
-            </div>  
+            </div>
         </div>
     </div>
     <footer id="footer">
@@ -126,7 +126,14 @@ $conn = new PDO(
     'hey',
     ''
 );
-$uid=$_SESSION['id']['id'];
-$sql="SELECT * FROM notifications WHERE receiver_id = '$uid'";
-
-?>
+$uid = $_SESSION['id']['id'];
+$sql = "SELECT * FROM notifications WHERE receiver_id = '$uid'";
+$notifs = $conn->query($sql);
+$notifs = $notifs->fetchAll();
+foreach ($notifs as &$notif) {
+    echo "<script>loadNotif(`".$notif['content']."`,".$notif['id'].")</script>";
+    $notif_id=$notif['id'];
+    $state='read';
+    $sql="UPDATE notifications SET notif_state = '$state' WHERE id = '$notif_id'";
+    $conn->query($sql);
+};
