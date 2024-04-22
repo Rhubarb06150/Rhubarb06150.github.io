@@ -279,31 +279,5 @@ if (isset($_SESSION["username"])) {
             };
         };
     };
-
-    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
-
-    $usr = $_SESSION['username'];
-    $sql = "SELECT id FROM users WHERE username = '$usr'";
-    $res = $conn->query($sql);
-    $res = $res->fetch();
-    $ur_id = $res['id'];
-
-    $sql = "SELECT * FROM pms WHERE receiver_id = '$ur_id'";
-    $res = $conn->query($sql);
-    $msgs = $res->fetchAll();
-    $unread_msgs = 0;
-    foreach ($msgs as &$message) {
-        if ($message['msg_state'] == 'unread') {
-            $unread_msgs += 1;
-        };
-    };
-    if ($unread_msgs != 0) {
-        echo "<script>document.getElementById('chat_span').innerHTML+=' (" . $unread_msgs . ")'</script>";
-    };
-
-    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
-} else {
-    echo "<script>document.getElementById('pms').remove();</script>";
-    echo "<script>AddElement('You cannot chat yet.','But I said YET','<br>You must <a href=/login.php>log in</a> to chat.<br><br>');</script>";
 };
 ?>

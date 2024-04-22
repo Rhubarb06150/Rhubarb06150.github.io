@@ -1,5 +1,11 @@
 <?php
 session_start();
+$category_url = $_GET['sub'];
+$cats = array("smbx", "smb", "ssb", "tloz", "met", "dkc", "pkmn", "other");
+
+if(!(in_array($category_url,$cats))){
+    header('Location:/forums/');
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -9,12 +15,11 @@ session_start();
     <link rel="stylesheet" type="text/css" href="/index.css" />
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <title>404 Not Found</title>
+
+    <title>Forums - SMBX World</title>
 </head>
 
 <body id="body">
-
     <div class="header" id="header">
         <a href="/" style="width: max-content;">
             <img src="/images/logos/smbxworld.png" height="106" width="588" style="margin-left: 32px;" alt="website logo" id="website-logo">
@@ -95,23 +100,35 @@ session_start();
                 </a>
             </div>
         </div>
-        <div class="elements" id="elements">
-            <div class="element">
-                <div class="element_title">
-                    <span>404 Error - Page Not Found</span>
-                </div>
-                <div class="element_infos">
-                    <span>Uh ho...</span>
-                </div>
-                <div class="element_content">
-                    <p>
-                        This page does not exists or does not exists anymore :/<br><br>
-                        <img src="/images/head/failure.png" width=32 height=58>
-                        If you are not redirected click <a href="/">here</a>.
-                    </p>
+        <div class="elements">
+            <div class="elements" id="elements">
+                <div class="element">
+                    <div class="element_title" id="title"></div>
+                    <div class="element_content">
+                        <a href="/forums/topic/submit/">Start a new topic</a>
+                        <table id="topics">
+                            <tr>
+                                <th width="10%">Poster</th>
+                                <th>Topic</th>
+                                <th width="5%">Replies</th>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- <div class="elements">
+            <div class="elements" id="elements">
+                <div class="element">
+                    <div class="element_title">Off-Topics</div>
+                    <div class="element_content">
+                        <a>Start a new topic</a>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
     </div>
     <footer id="footer">
         <div class="footer_content">
@@ -124,9 +141,53 @@ session_start();
 </body>
 
 </html>
+
 <?php
+
 $conn = new PDO(
     'mysql:host=localhost;dbname=data;charset=utf8',
     'hey',
     ''
 );
+$cat=$category_url;
+if ($cat == 'smbx') {
+    $category = 'Super Mario Bros. X';
+} else if ($cat == 'smb') {
+    $category = 'Super Mario Bros.';
+} else if ($cat == 'tloz') {
+    $category = 'The Legend Of Zelda';
+} else if ($cat == 'met') {
+    $category = 'Metroid';
+} else if ($cat == 'dkc') {
+    $category = 'Donkey Kong Country';
+} else if ($cat == 'other') {
+    $category = 'Other';
+} else if ($cat == 'pkmn') {
+    $category = 'Pokémon';
+} else if ($cat == 'ssb') {
+    $category = 'Super Smash Bros.';
+};
+
+$sql="SELECT * FROM topics WHERE category = '$category_url'";
+$res=$conn->query($sql);
+$topics=$res->fetchAll();
+$topics_nb=$res->rowCount();
+
+echo "<script>document.getElementById('title').innerHTML='".$category." Topics (".$topics_nb.")'</script>";
+echo "<script>document.title='".$category." topics - SMBX World'</script>";
+
+foreach($topics as &$topic){
+    $poster_id=$topic['poster_id'];
+    $sql="SELECT username FROM users WHERE id = '$poster_id'";
+    $res=$conn->query($sql);
+    $res=$res->fetch();
+    $poster_username=$res['username'];
+    $topic_id=$topic['id'];
+    $topic_name=$topic['topic'];
+    $sql="SELECT * FROM replies WHERE topic_id = '$topic_id'";
+    $res=$conn->query($sql);
+    $replies_nb=$res->rowCount();
+    echo "<script>addTopicRow(`<a href=/user/?id=".$poster_id.">".$poster_username."</a>`,".$topic_id.",`".$topic_name."`,".$replies_nb.")</script>";
+};
+
+?>

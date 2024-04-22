@@ -13,7 +13,7 @@ if (!(isset($_SESSION["username"]))){
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
     
-    <title>SMBX World</title>
+    <title>Post submit - SMBX World</title>
 </head>
 
 <body id="body">
@@ -31,6 +31,7 @@ if (!(isset($_SESSION["username"]))){
 
             <div class="menu_options">
                 <span class="menu_options_link"><a href="/">Home</a></span>
+                <span class="menu_options_link"><a href="/forums/">Forums</a></span>
                 <span class="menu_options_link"><a href="/contact">Contact</a></span>
                 <span class="menu_options_link"><a href="/softwares/">Softwares</a></span>
             </div>
@@ -139,13 +140,3 @@ if (!(isset($_SESSION["username"]))){
 </body>
 
 </html>
-
-<?php
-if (isset($_SESSION["username"])) {
-    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
-    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
-}else{
-    echo "<script>document.getElementById('post_form').remove();</script>";
-    echo "<script>AddElement('You cannot post yet.','But I said YET','<br><br>You must <a href=/login.php>log in</a> to post.<br><br><br>');</script>";
-};
-?>

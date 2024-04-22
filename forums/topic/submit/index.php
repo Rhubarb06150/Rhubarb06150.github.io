@@ -31,6 +31,7 @@ if (!(isset($_SESSION["username"]))){
 
             <div class="menu_options">
                 <span class="menu_options_link"><a href="/">Home</a></span>
+                <span class="menu_options_link"><a href="/forums/">Forums</a></span>
                 <span class="menu_options_link"><a href="/contact">Contact</a></span>
                 <span class="menu_options_link"><a href="/softwares/">Softwares</a></span>
             </div>
@@ -113,7 +114,7 @@ if (!(isset($_SESSION["username"]))){
                                 <option value="tloz" name="tloz">The Legend Of Zelda</option>
                                 <option value="met" name="met">Metroid</option>
                                 <option value="dkc" name="dkc">Donkey Kong Country</option>
-                                <option value="pknm" name="pkmn">Pokémon</option>
+                                <option value="pkmn" name="pkmn">Pokémon</option>
                                 <option value="other" name="other">Other</option>
                             </select><br><br>
                             The subject of your topic:<br><br>
@@ -151,13 +152,3 @@ if (!(isset($_SESSION["username"]))){
 </body>
 
 </html>
-
-<?php
-if (isset($_SESSION["username"])) {
-    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
-    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
-}else{
-    echo "<script>document.getElementById('post_form').remove();</script>";
-    echo "<script>AddElement('You cannot post yet.','But I said YET','<br><br>You must <a href=/login.php>log in</a> to post.<br><br><br>');</script>";
-};
-?>

@@ -1,6 +1,10 @@
 <?php
 session_start();
+if(!(isset($_SESSION['username']))){
+    header('Location:/login.php');
+};
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,8 +13,8 @@ session_start();
     <link rel="stylesheet" type="text/css" href="/index.css" />
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
-    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-    <title>404 Not Found</title>
+
+    <title>Notifications - SMBX World</title>
 </head>
 
 <body id="body">
@@ -97,20 +101,12 @@ session_start();
         </div>
         <div class="elements" id="elements">
             <div class="element">
-                <div class="element_title">
-                    <span>404 Error - Page Not Found</span>
+                <div class="element_title">Notifications</div>
+                <div class="element_infos">Here you can see your notifications</div>
+                <div class="element_content" id="notifs">
+
                 </div>
-                <div class="element_infos">
-                    <span>Uh ho...</span>
-                </div>
-                <div class="element_content">
-                    <p>
-                        This page does not exists or does not exists anymore :/<br><br>
-                        <img src="/images/head/failure.png" width=32 height=58>
-                        If you are not redirected click <a href="/">here</a>.
-                    </p>
-                </div>
-            </div>
+            </div>  
         </div>
     </div>
     <footer id="footer">
@@ -130,3 +126,7 @@ $conn = new PDO(
     'hey',
     ''
 );
+$uid=$_SESSION['id']['id'];
+$sql="SELECT * FROM notifications WHERE receiver_id = '$uid'";
+
+?>

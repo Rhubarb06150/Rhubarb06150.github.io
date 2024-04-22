@@ -11,6 +11,9 @@ $sql = "SELECT subject FROM posts WHERE id = '$id'";
 $result = $conn->query($sql);
 $exist = $result->rowCount();
 $result = $result->fetch();
+if(!(isset($_SESSION['username']))){
+    header('Location:/login.php');
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,6 +41,7 @@ $result = $result->fetch();
 
             <div class="menu_options">
                 <span class="menu_options_link"><a href="/">Home</a></span>
+                <span class="menu_options_link"><a href="/forums/">Forums</a></span>
                 <span class="menu_options_link"><a href="/contact">Contact</a></span>
                 <span class="menu_options_link"><a href="/softwares/">Softwares</a></span>
             </div>
@@ -112,7 +116,7 @@ $result = $result->fetch();
                 <div class="element">
                     <div class=element_infos>Remember to stay polite and respectful when replying to someone.</div>
                     <div class="element_content">
-                        Reply:<br><br>
+                        Reply:<span id="reply_target" style="display: none;"></span><br><br>
                         <textarea style="width: 100%; height:64px;" id="content" name="content"></textarea>
                         <input id="type" name="type" value="post" hidden>
                         <input id="topic_id" name="topic_id" value="topic" hidden>
@@ -158,28 +162,28 @@ if ($exist > 0) {
 
 if ($exist > 0) {
 
-    $sql="SELECT category FROM topics WHERE id = '$topic_id'";
-    $res=$conn->query($sql);
-    $res=$res->fetch();
-    $cat=$res['category'];
-    if($cat=='smbx'){
-        $category='Super Mario Bros. X';
-    }else if($cat=='smb'){
-        $category='Super Mario Bros.';
-    }else if($cat=='tloz'){
-        $category='The Legend Of Zelda';
-    }else if($cat=='met'){
-        $category='Metroid';
-    }else if($cat=='dkc'){
-        $category='Donkey Kong Country';
-    }else if($cat=='other'){
-        $category='Other';
-    }else if($cat=='pkmn'){
-        $category='Pokémon';
-    }else if($cat=='ssb'){
-        $category='Super Smash Bros.';
+    $sql = "SELECT category FROM topics WHERE id = '$topic_id'";
+    $res = $conn->query($sql);
+    $res = $res->fetch();
+    $cat = $res['category'];
+    if ($cat == 'smbx') {
+        $category = 'Super Mario Bros. X';
+    } else if ($cat == 'smb') {
+        $category = 'Super Mario Bros.';
+    } else if ($cat == 'tloz') {
+        $category = 'The Legend Of Zelda';
+    } else if ($cat == 'met') {
+        $category = 'Metroid';
+    } else if ($cat == 'dkc') {
+        $category = 'Donkey Kong Country';
+    } else if ($cat == 'other') {
+        $category = 'Other';
+    } else if ($cat == 'pkmn') {
+        $category = 'Pokémon';
+    } else if ($cat == 'ssb') {
+        $category = 'Super Smash Bros.';
     };
-    echo "<script>document.title=`" . $topic . " - ".$category." - SMBX World`</script>";
+    echo "<script>document.title=`" . $topic . " - " . $category . " - SMBX World`</script>";
 
     $topic_id = $result['poster_id'];
 
@@ -188,11 +192,11 @@ if ($exist > 0) {
     $res = $res->fetch();
     $poster_usr = $res['username'];
 
-    echo "<script>showTopic('" . $result['topic'] . "',`Posted by: <a href=/user/?id=" . $result['poster_id'] . ">" . $poster_usr . "</a> at: " . $result['submit_date'] . " in <a href=/forums/sub/?sub=".$cat.">".$category."</a>`,`" . $result['content'] . "`);</script>";
+    echo "<script>showTopic('" . $result['topic'] . "',`Posted by: <a href=/user/?id=" . $result['poster_id'] . ">" . $poster_usr . "</a> at: " . $result['submit_date'] . " in <a href=/forums/sub/?sub=" . $cat . ">" . $category . "</a>`,`" . $result['content'] . "`);</script>";
     echo "<script>document.getElementById('topic_id').value=" . $_GET['topic'] . "</script>";
 
     $topic_id = $_GET['topic'];
-    $sql = "SELECT * FROM replies WHERE topic_id = '$topic_id' ORDER BY id DESC";
+    $sql = "SELECT * FROM replies WHERE topic_id = '$topic_id' ORDER BY id";
 
     $replies = $conn->query($sql);
     $replies_nb = $replies->rowCount();
@@ -225,10 +229,33 @@ if ($exist > 0) {
             'pfp' => $poster_pfp
         );
 
+        $reply_content = '';
         $infos = 'posted by <a href=/user/?id=' . $poster_id . '>' . $poster_name . '</a> at: ' . $value['submit_date'];
         $content = $value['content'];
 
-        echo "<script>showReply(" . json_encode($user) . ",`" . $infos . "`,`" . $content . "`,`" . $usr . "`,'" . $value['edit'] . "','" . $value['id'] . "')</script>";
+        $reply_poster = '';
+        $reply_id = '';
+        $reply_poster = '';
+
+        if ($value['reply'] != 0) {
+
+            $id = $value['reply'];
+
+            $sql = "SELECT * FROM replies WHERE id = '$id'";
+            $res = $conn->query($sql);
+            $res = $res->fetch();
+            $id = $res['poster_id'];
+
+            $sql = "SELECT username FROM users WHERE id = '$id'";
+            $result = $conn->query($sql);
+            $result = $result->fetch();
+
+            $reply_poster = $result['username'];
+            $reply_id = $res['id'];
+            $reply_content = $res['content'];
+        };
+
+        echo "<script>showReply(" . json_encode($user) . ",`" . $infos . "`,`" . $content . "`,`" . $usr . "`,'" . $value['edit'] . "','" . $value['id'] . "',`" . $reply_id . "`,`" . $reply_content . "`,`" . $reply_poster . "`)</script>";
 
         // $user = array($pid);
 
@@ -236,7 +263,7 @@ if ($exist > 0) {
 
     if ($replies_nb != 0) {
         echo "<script>document.getElementById('topic_title').innerHTML+=' (" . $replies_nb . ")'</script>";
-    } else {    
+    } else {
         echo "<script>document.getElementById('topic_title').innerHTML+=' (No replies)'</script>";
     };
 } else {
@@ -245,33 +272,10 @@ if ($exist > 0) {
     echo "<script>document.getElementById('post_span').remove();</script>";
     echo "<script>AddElement('Oops...','Not found!','No topic was found with this ID');</script>";
 };
-if (isset($_SESSION["username"])) {
-    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
-
-    $usr = $_SESSION['username'];
-    $sql = "SELECT id FROM users WHERE username = '$usr'";
-    $res = $conn->query($sql);
-    $res = $res->fetch();
-    $ur_id = $res['id'];
-
-    $sql = "SELECT * FROM pms WHERE receiver_id = '$ur_id'";
-    $res = $conn->query($sql);
-    $msgs = $res->fetchAll();
-    $unread_msgs = 0;
-    foreach ($msgs as &$message) {
-        if ($message['msg_state'] == 'unread') {
-            $unread_msgs += 1;
-        };
-    };
-    if ($unread_msgs != 0) {
-        echo "<script>document.getElementById('chat_span').innerHTML+=' (" . $unread_msgs . ")'</script>";
-    };
-
-    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
-} else {
+if (!(isset($_SESSION["username"]))) {
     echo "<script>document.getElementById('post_form').remove();</script>";
     echo "<script>document.getElementById('post_span').remove();</script>";
-    echo "<script>AddElement('Oops...','You cannot comment without an account','<br>You must <a href=/login.php>log in</a> to comment.<br><br>');</script>";
+    echo "<script>AddElement('Oops...','You cannot reply without an account','<br>You must <a href=/login.php>log in</a> to reply.<br><br>');</script>";
 };
 
 ?>

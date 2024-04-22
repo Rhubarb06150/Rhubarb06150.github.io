@@ -35,6 +35,7 @@ if (!(isset($_SESSION["username"]))) {
 
             <div class="menu_options">
                 <span class="menu_options_link"><a href="/">Home</a></span>
+                <span class="menu_options_link"><a href="/forums/">Forums</a></span>
                 <span class="menu_options_link"><a href="/contact">Contact</a></span>
                 <span class="menu_options_link"><a href="/softwares/">Softwares</a></span>
             </div>
@@ -183,34 +184,3 @@ if ($exist > 0) {
     echo "<script>AddElement('Oops',`Comment not found.`,'This comment seems to not exist :/');</script>";
     echo "<script>document.title='Comment not found - SMBX World'</script>";
 };
-
-if (isset($_SESSION["username"])) {
-    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
-
-    $usr = $_SESSION['username'];
-    $sql = "SELECT id FROM users WHERE username = '$usr'";
-    $res = $conn->query($sql);
-    $res = $res->fetch();
-    $ur_id = $res['id'];
-
-    $sql = "SELECT * FROM pms WHERE receiver_id = '$ur_id'";
-    $res = $conn->query($sql);
-    $msgs = $res->fetchAll();
-    $unread_msgs = 0;
-    foreach ($msgs as &$message) {
-        if ($message['msg_state'] == 'unread') {
-            $unread_msgs += 1;
-        };
-    };
-    if ($unread_msgs != 0) {
-        echo "<script>document.getElementById('chat_span').innerHTML+=' (" . $unread_msgs . ")'</script>";
-    };
-
-    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
-} else {
-    echo "<script>document.getElementById('post_form').remove();</script>";
-    echo "<script>document.getElementById('comm_span').remove();</script>";
-    echo "<script>AddElement('Oops...','This action is impossible when you are not logged in.','<br>You must <a href=/login.php>log in</a> to comment.<br><br>');</script>";
-};
-
-?>

@@ -109,49 +109,49 @@ session_start();
                                 <th width="5%">Replies</th>
                             </tr>
                             <tr>
-                                <td>Super Mario Bros. X</td>
+                                <td><a href="/forums/sub/?sub=smbx">Super Mario Bros. X</a></td>
                                 <td id="smbx_last"></td>
                                 <td id="smbx_nb"></td>
                                 <td id="smbx_rnb"></td>
                             </tr>
                             <tr>
-                                <td>Super Mario Bros</td>
+                                <td><a href="/forums/sub/?sub=smb">Super Mario Bros</a></td>
                                 <td id="smb_last"></td>
                                 <td id="smb_nb"></td>
                                 <td id="smb_rnb"></td>
                             </tr>
                             <tr>
-                                <td>Super Smash Bros.</td>
+                                <td><a href="/forums/sub/?sub=ssb">Super Smash Bros.</a></td>
                                 <td id="ssb_last"></td>
                                 <td id="ssb_nb"></td>
                                 <td id="ssb_rnb"></td>
                             </tr>
                             <tr>
-                                <td>The Legend Of Zelda</td>
+                                <td><a href="/forums/sub/?sub=tloz">The Legend Of Zelda</a></td>
                                 <td id="tloz_last"></td>
                                 <td id="tloz_nb"></td>
                                 <td id="tloz_rnb"></td>
                             </tr>
                             <tr>
-                                <td>Metroid</td>
+                                <td><a href="/forums/sub/?sub=met">Metroid</a></td>
                                 <td id="met_last"></td>
                                 <td id="met_nb"></td>
                                 <td id="met_rnb"></td>
                             </tr>
                             <tr>
-                                <td>Donkey Kong Country</td>
+                                <td><a href="/forums/sub/?sub=dkc">Donkey Kong Country</a></td>
                                 <td id="dkc_last"></td>
                                 <td id="dkc_nb"></td>
                                 <td id="dkc_rnb"></td>
                             </tr>
                             <tr>
-                                <td>Pokémon</td>
-                                <td id="pk_last"></td>
-                                <td id="pk_nb"></td>
-                                <td id="pk_rnb"></td>
+                                <td><a href="/forums/sub/?sub=pkmn">Pokémon</a></td>
+                                <td id="pkmn_last"></td>
+                                <td id="pkmn_nb"></td>
+                                <td id="pkmn_rnb"></td>
                             </tr>
                             <tr>
-                                <td>Other</td>
+                                <td><a href="/forums/sub/?sub=other">Other</a></td>
                                 <td id="other_last"></td>
                                 <td id="other_nb"></td>
                                 <td id="other_rnb"></td>
@@ -161,6 +161,7 @@ session_start();
                 </div>
             </div>
         </div>
+
         <!-- <div class="elements">
             <div class="elements" id="elements">
                 <div class="element">
@@ -193,72 +194,35 @@ $conn = new PDO(
     ''
 );
 
-if (isset($_SESSION["username"])) {
-    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
+$cats = array("smbx", "smb", "ssb", "tloz", "met", "dkc", "pkmn", "other");
 
-    $usr = $_SESSION['username'];
-    $sql = "SELECT id FROM users WHERE username = '$usr'";
+foreach ($cats as &$category) {
+
+    $sql = "SELECT * FROM topics WHERE category = '$category'";
+    $req = "SELECT DISTINCT * FROM topics WHERE category = '$category' ORDER BY id DESC";
+
     $res = $conn->query($sql);
+    $nb = $res->rowCount();
+
+    $topics = $res->fetchAll();
+
+    $res = $conn->query($req);
     $res = $res->fetch();
-    $ur_id = $res['id'];
+    $last = $res['topic'];
 
-    $sql = "SELECT * FROM pms WHERE receiver_id = '$ur_id'";
-    $res = $conn->query($sql);
-    $msgs = $res->fetchAll();
-    $unread_msgs = 0;
-    foreach ($msgs as &$message) {
-        if ($message['msg_state'] == 'unread') {
-            $unread_msgs += 1;
-        };
-    };
-    if ($unread_msgs != 0) {
-        echo "<script>document.getElementById('chat_span').innerHTML+=' (" . $unread_msgs . ")'</script>";
+    $last_id = $res['id'];
+
+    $ids = array();
+    foreach ($topics as &$value) {
+        array_push($ids, $value['id']);
     };
 
-    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
+    $sql2 = "SELECT * FROM replies WHERE topic_id IN (" . implode(',', $ids) . ")";
+    $replies = $conn->query($sql2);
+    $replies = $replies->rowCount();
+
+    echo "<script>document.getElementById('".$category."_rnb').innerHTML=" . $replies . "</script>";
+    echo "<script>document.getElementById('".$category."_nb').innerHTML=" . $nb . "</script>";
+    echo "<script>document.getElementById('".$category."_last').innerHTML='<a href=/forums/topic/?topic=" . $last_id . ">" . $last . "</a>'</script>";
 };
-
-$sql="SELECT * FROM topics WHERE category = 'smbx'";
-$req="SELECT DISTINCT * FROM topics WHERE category = 'smbx' ORDER BY id DESC";
-$res=$conn->query($sql);
-$nb=$res->rowCount();
-$res=$conn->query($req);
-$res=$res->fetch();
-$last=$res['topic'];
-$last_id=$res['id'];
-echo "<script>document.getElementById('smbx_nb').innerHTML=".$nb."</script>";
-echo "<script>document.getElementById('smbx_last').innerHTML='<a href=/forums/topic/?topic=".$last_id.">".$last."</a>'</script>";
-
-$sql="SELECT * FROM topics WHERE category = 'smb'";
-$req="SELECT DISTINCT * FROM topics WHERE category = 'smb' ORDER BY id DESC";
-$res=$conn->query($sql);
-$nb=$res->rowCount();
-$res=$conn->query($req);
-$res=$res->fetch();
-$last=$res['topic'];
-$last_id=$res['id'];
-echo "<script>document.getElementById('smb_nb').innerHTML=".$nb."</script>";
-echo "<script>document.getElementById('smb_last').innerHTML='<a href=/forums/topic/?topic=".$last_id.">".$last."</a>'</script>";
-
-$sql="SELECT * FROM topics WHERE category = 'ssb'";
-$req="SELECT DISTINCT * FROM topics WHERE category = 'ssb' ORDER BY id DESC";
-$res=$conn->query($sql);
-$nb=$res->rowCount();
-$res=$conn->query($req);
-$res=$res->fetch();
-$last=$res['topic'];
-$last_id=$res['id'];
-echo "<script>document.getElementById('ssb_nb').innerHTML=".$nb."</script>";
-echo "<script>document.getElementById('ssb_last').innerHTML='<a href=/forums/topic/?topic=".$last_id.">".$last."</a>'</script>";
-
-$sql="SELECT * FROM topics WHERE category = 'dkc'";
-$req="SELECT DISTINCT * FROM topics WHERE category = 'dkc' ORDER BY id DESC";
-$res=$conn->query($sql);
-$nb=$res->rowCount();
-$res=$conn->query($req);
-$res=$res->fetch();
-$last=$res['topic'];
-$last_id=$res['id'];
-echo "<script>document.getElementById('dkc_nb').innerHTML=".$nb."</script>";
-echo "<script>document.getElementById('dkc_last').innerHTML='<a href=/forums/topic/?topic=".$last_id.">".$last."</a>'</script>";
 ?>

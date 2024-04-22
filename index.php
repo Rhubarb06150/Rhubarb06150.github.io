@@ -205,7 +205,7 @@ foreach ($result as $value) {
     $comm_nb = $res->rowCount();
 
     echo "<script>";
-    echo "addPost(`" . $value["subject"] . "`,`posted by <a href=/user/?id=" . $pid . ">" . $poster_usr . "</a> at " . mb_substr($value["post_date"],0,-3) . "`,`" . $value["content"] . "`," . $value["id"] . "," . $comm_nb . ");";
+    echo "addPost(`" . $value["subject"] . "`,`posted by <a href=/user/?id=" . $pid . ">" . $poster_usr . "</a> at " . mb_substr($value["post_date"], 0, -3) . "`,`" . $value["content"] . "`," . $value["id"] . "," . $comm_nb . ");";
     echo "</script>";
 };
 
@@ -227,31 +227,15 @@ foreach ($result as $value) {
     $res = $conn->query($sql);
     $comm_nb = $res->rowCount();
 
-    echo "<script>addNews(`" . $value["title"] . "`,`posted by <a href=/user/?id=" . $pid . ">" . $poster_usr . "</a> at " . mb_substr($value["post_date"],0,-3) . "`,`" . $value["content"] . "`," . $value["id"] . "," . $comm_nb . ");</script>";
+    echo "<script>addNews(`" . $value["title"] . "`,`posted by <a href=/user/?id=" . $pid . ">" . $poster_usr . "</a> at " . mb_substr($value["post_date"], 0, -3) . "`,`" . $value["content"] . "`," . $value["id"] . "," . $comm_nb . ");</script>";
 };
 
-if (isset($_SESSION["username"])) {
-    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
+$sql = "SELECT visits FROM visits WHERE id = 1";
+$res = $conn->query($sql);
+$res = $res->fetch();
+$visits_nb = $res['visits'];
+$visits_nb += 1;
 
-    $usr = $_SESSION['username'];
-    $sql = "SELECT id FROM users WHERE username = '$usr'";
-    $res = $conn->query($sql);
-    $res = $res->fetch();
-    $ur_id = $res['id'];
-
-    $sql = "SELECT * FROM pms WHERE receiver_id = '$ur_id'";
-    $res = $conn->query($sql);
-    $msgs = $res->fetchAll();
-    $unread_msgs = 0;
-    foreach ($msgs as &$message) {
-        if ($message['msg_state'] == 'unread') {
-            $unread_msgs += 1;
-        };
-    };
-    if ($unread_msgs != 0) {
-        echo "<script>document.getElementById('chat_span').innerHTML+=' (" . $unread_msgs . ")'</script>";
-    };
-
-    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
-};
+$sql = "UPDATE visits SET visits = '$visits_nb' WHERE id = 1 ";
+$conn->query($sql);
 ?>

@@ -5,7 +5,7 @@ $conn = new PDO(
     'hey',
     ''
 );
-if (!(isset($_SESSION["username"]))){
+if (!(isset($_SESSION["username"]))) {
     header('Location:/login.php');
 };
 ?>
@@ -18,7 +18,7 @@ if (!(isset($_SESSION["username"]))){
     <link rel="stylesheet" type="text/css" href="/index.css" />
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
-    
+
     <title>Account preferences - SMBX World</title>
 </head>
 
@@ -37,6 +37,7 @@ if (!(isset($_SESSION["username"]))){
 
             <div class="menu_options">
                 <span class="menu_options_link"><a href="/">Home</a></span>
+                <span class="menu_options_link"><a href="/forums/">Forums</a></span>
                 <span class="menu_options_link"><a href="/contact">Contact</a></span>
                 <span class="menu_options_link"><a href="/softwares/">Softwares</a></span>
             </div>
@@ -146,11 +147,11 @@ if (!(isset($_SESSION["username"]))){
                         <textarea id="desc_aera" style="width:80%;height:256px" name="bio"></textarea>
                         <script>
                             document.getElementById('desc_aera').addEventListener("keyup", (event) => {
-                                document.getElementById('len').innerHTML=document.getElementById('desc_aera').value.length
-                                if (document.getElementById('desc_aera').value.length>1024){
-                                    document.getElementById('len').style.color="#ff0000";
-                                }else{
-                                    document.getElementById('len').style.color="#ffffff";
+                                document.getElementById('len').innerHTML = document.getElementById('desc_aera').value.length
+                                if (document.getElementById('desc_aera').value.length > 1024) {
+                                    document.getElementById('len').style.color = "#ff0000";
+                                } else {
+                                    document.getElementById('len').style.color = "#ffffff";
                                 }
                             });
                         </script><br>
@@ -175,45 +176,20 @@ if (!(isset($_SESSION["username"]))){
 </html>
 
 <?php
-if (isset($_SESSION["username"])) {
 
-    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
+echo "<script>document.getElementById('theme').value='" . $_SESSION["theme"] . "'</script>";
 
-    $usr = $_SESSION['username'];
-    $sql = "SELECT id FROM users WHERE username = '$usr'";
-    $res = $conn->query($sql);
-    $res = $res->fetch();
-    $ur_id = $res['id'];
+echo "<script>var abs_code ='" . $_SESSION["abs_code"] . "'</script>";
 
-    $sql = "SELECT * FROM pms WHERE receiver_id = '$ur_id'";
-    $res = $conn->query($sql);
-    $msgs = $res->fetchAll();
-    $unread_msgs = 0;
-    foreach ($msgs as &$message) {
-        if ($message['msg_state'] == 'unread') {
-            $unread_msgs += 1;
-        };
-    };
-    if ($unread_msgs != 0) {
-        echo "<script>document.getElementById('chat_span').innerHTML+=' (" . $unread_msgs . ")'</script>";
-    };
+$conn = new PDO('mysql:host=localhost;dbname=data;charset=utf8', 'hey', '');
+$usrf = $_SESSION['username'];
 
-    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
+$sql = "SELECT description FROM users WHERE username = '$usrf'";
+$result = $conn->query($sql);
+$result = $result->fetch();
+$bio = $result["description"];
 
-    echo "<script>document.getElementById('theme').value='" . $_SESSION["theme"] . "'</script>";
+echo "<script>document.getElementById('desc_aera').value=`" . $bio . "`</script>";
+echo "<script>document.getElementById('len').innerHTML=document.getElementById('desc_aera').value.length</script>";
 
-    echo "<script>var abs_code ='" . $_SESSION["abs_code"] . "'</script>";
-
-    $conn = new PDO('mysql:host=localhost;dbname=data;charset=utf8', 'hey', '');
-    $usrf = $_SESSION['username'];
-
-    $sql = "SELECT description FROM users WHERE username = '$usrf'";
-    $result = $conn->query($sql);
-    $result = $result->fetch();
-    $bio = $result["description"];
-
-    echo "<script>document.getElementById('desc_aera').value=`" . $bio . "`</script>";
-    echo "<script>document.getElementById('len').innerHTML=document.getElementById('desc_aera').value.length</script>";
-
-};
 ?>

@@ -154,11 +154,11 @@ function showPost(title, infos, content, news) {
 function showTopic(title, infos, content, news) {
 
     div = document.createElement("div");
-    div.id='topic';
+    div.id = 'topic';
     div.classList = "element";
 
     title_div = document.createElement("div");
-    title_div.id='topic_title';
+    title_div.id = 'topic_title';
     title_div.classList = "element_title";
     title_span = document.createElement("span");
     title_span.innerHTML = title;
@@ -184,10 +184,10 @@ function showTopic(title, infos, content, news) {
     div.appendChild(title_div);
     div.appendChild(infos_div);
     div.appendChild(content_div);
-    replies=document.createElement('div');
-    replies.id="replies";
+    replies = document.createElement('div');
+    replies.id = "replies";
     div.appendChild(replies);
-    content_div.style.paddingBottom="10px";
+    content_div.style.paddingBottom = "10px";
 
     document.getElementById("elements").appendChild(div);
 
@@ -213,7 +213,7 @@ function showCommentary(user, infos, content, cur_user, edit, comm_id) {
 
     if (edit != '') {
 
-        edit=edit.slice(0,-3)
+        edit = edit.slice(0, -3)
         edit_span = document.createElement('span');
         edit_span.style.marginLeft = '20px'
         edit_span.style.fontStyle = 'italic';
@@ -252,10 +252,11 @@ function showCommentary(user, infos, content, cur_user, edit, comm_id) {
     document.getElementById("comments").appendChild(div);
 }
 
-function showReply(user, infos, content, cur_user, edit, comm_id) {
+function showReply(user, infos, content, cur_user, edit, comm_id, reply_id, reply_content, reply_poster) {
 
     div = document.createElement("div");
-    div.classList='reply';
+    div.classList = 'reply';
+    div.id = 'rep' + comm_id
 
     pfp = document.createElement('img');
     pfp.src = user.pfp
@@ -272,13 +273,25 @@ function showReply(user, infos, content, cur_user, edit, comm_id) {
 
     if (edit != '') {
 
-        edit=edit.slice(0,-3)
+        edit = edit.slice(0, -3)
         edit_span = document.createElement('span');
         edit_span.style.marginLeft = '20px'
         edit_span.style.fontStyle = 'italic';
         edit_span.style.color = '#aaaaaa'
         edit_span.innerHTML = 'Last edited at ' + edit;
         infos_div.appendChild(edit_span);
+    };
+
+    if (reply_id != 0) {
+
+        edit = edit.slice(0, -3)
+        edit_span = document.createElement('span');
+        edit_span.style.marginLeft = '20px'
+        edit_span.style.fontStyle = 'italic';
+        edit_span.style.color = '#aaaaaa'
+        edit_span.innerHTML = 'Reply to: ' + reply_poster + " - " + TPP(reply_content, 50);
+        infos_div.appendChild(edit_span);
+
     };
 
     content_div = document.createElement("div");
@@ -288,8 +301,13 @@ function showReply(user, infos, content, cur_user, edit, comm_id) {
     content = content.replaceAll(">", "&gt");
     content = content.replaceAll("\n", "<br>");
     content_content.innerHTML = content;
-    content_content.innerHTML += '<br><br><a>Reply</a>';
+
+    reply = document.createElement('a');
+    reply.onclick = function () { setReply(comm_id, content); };
+    reply.innerHTML = '<br>Reply';
+
     content_div.appendChild(content_content);
+    content_div.appendChild(reply);
 
     bottom_div = document.createElement('div');
     bottom_div.classList = 'element_infos';
@@ -309,6 +327,28 @@ function showReply(user, infos, content, cur_user, edit, comm_id) {
     };
 
     document.getElementById("replies").appendChild(div);
+}
+
+function noReply() {
+    document.getElementById('reply').value = 0;
+    document.getElementById('reply_target').style.display = 'none';
+}
+
+function setReply(id, content) {
+    remove = document.createElement('a');
+    remove.onclick = function () { noReply(); };
+    remove.innerHTML = ' Cancel'
+    document.getElementById('reply').value = id;
+    document.getElementById('reply_target').innerHTML = "Reply to: " + TPP(content);
+    document.getElementById('reply_target').style.display = 'block';
+    document.getElementById('reply_target').appendChild(remove);
+};
+
+function TPP(text, size) {
+    if (text.length > size) {
+        text = text.substring(0, size) + '...';
+    };
+    return text;
 }
 
 function ShowStars(note, votes) {
@@ -427,9 +467,9 @@ function Pokey(div_id, length) {
         img.style.height = "32px";
         img.style.marginLeft = getRandomInt(8) + "px";
         if (i == 0) {
-            img.src = "/images/npcs/pokey-head.png"
+            img.src = "/images/npcs/pokey-head.png";
         } else {
-            img.src = "/images/npcs/pokey-body.png"
+            img.src = "/images/npcs/pokey-body.png";
         }
         pokey_div.appendChild(img);
     };
@@ -437,6 +477,9 @@ function Pokey(div_id, length) {
 };
 
 function loadTheme(fav_theme) {
+    if (document.getElementById('chat_span').innerHTML.includes('(')){
+        document.getElementById('chat_span').style.color='#00ff00   '
+    }
     if (fav_theme == "blue") {
         document.body.style.backgroundImage = "url('/images/bgs/dark-bg-blue.png')";
         document.getElementById("header").style.backgroundImage = "url('/images/bgs/header-bg-blue.png')";
@@ -444,6 +487,10 @@ function loadTheme(fav_theme) {
         elements = document.getElementsByClassName("element");
         for (let i = 0; i < elements.length; i++) {
             elements[i].style.border = "#6060ff 2px solid";
+        }
+        replies = document.getElementsByClassName("reply");
+        for (let i = 0; i < replies.length; i++) {
+            replies[i].style.borderTop = "#6060ff 2px solid";
         }
         titles = document.getElementsByClassName("element_title");
         for (let i = 0; i < titles.length; i++) {
@@ -509,6 +556,14 @@ function loadTheme(fav_theme) {
         elements = document.getElementsByClassName("element");
         for (let i = 0; i < elements.length; i++) {
             elements[i].style.border = "#ccccff 2px solid";
+        }
+        replies = document.getElementsByClassName("reply");
+        for (let i = 0; i < replies.length; i++) {
+            replies[i].style.borderTop = "#ccccff 2px solid";
+        }
+        tables = document.querySelectorAll('table,th,tr,td')
+        for (let i = 0; i < tables.length; i++) {
+            tables[i].style.border = "#ccccff 2px solid";
         }
         titles = document.getElementsByClassName("element_title");
         for (let i = 0; i < titles.length; i++) {
@@ -579,7 +634,7 @@ function getSuccess() {
     queryString = window.location.search;
     urlParams = new URLSearchParams(queryString);
     act = urlParams.get('act');
-    document.getElementById('success_span').style.height='max-content';
+    document.getElementById('success_span').style.height = 'max-content';
     if (act == 'signup') {
         document.getElementById('success_span').innerHTML = 'Your account has been created, you can now <a href="/login.php">log in</a>.';
         Redirect('index');
@@ -617,6 +672,28 @@ function getSuccess() {
         Redirect('index');
     };
 };
+
+function addTopicRow(poster_name, topic_id, topic_name, replies) {
+
+    row = document.createElement('tr');
+
+    poster_td = document.createElement('td');
+    poster_td.innerHTML = poster_name
+
+    topic_td = document.createElement('td');
+    topic=document.createElement('a');
+    topic.href='/forums/topic/?topic='+topic_id;
+    topic.innerHTML=topic_name
+    topic_td.appendChild(topic)
+
+    replies_td = document.createElement('td');
+    replies_td.innerHTML=replies;
+
+    row.appendChild(poster_td);
+    row.appendChild(topic_td);
+    row.appendChild(replies_td);
+    document.getElementById('topics').appendChild(row);
+}
 
 function getFailure() {
     queryString = window.location.search;
@@ -785,10 +862,10 @@ function loadChat(user) {
     if (user.unread > 0) {
         a.innerHTML += ' (' + user.unread + ')';
         a.style.color = '#00ff00';
-        if (user.unread < 2){
-            a.innerHTML = user.unread+' new message from '+user.name;
-        }else{
-            a.innerHTML = user.unread+' new messages from '+user.name;
+        if (user.unread < 2) {
+            a.innerHTML = user.unread + ' new message from ' + user.name;
+        } else {
+            a.innerHTML = user.unread + ' new messages from ' + user.name;
         };
     };
     pfp = document.createElement("img");
@@ -837,15 +914,24 @@ function loadAccount(acc_name) {
     span2.appendChild(a2);
 
     a3 = document.createElement("a");
-    a3.href = "/logout.php";
+    a3.href = "/account/notifications/";
     span3 = document.createElement("span");
     span3.classList = "menu_options_link";
-    a3.innerHTML = "Log Out";
+    a3.innerHTML = "Notifs";
+    a3.id='notif_span';
     span3.appendChild(a3);
+
+    a4 = document.createElement("a");
+    a4.href = "/logout.php";
+    span4 = document.createElement("span");
+    span4.classList = "menu_options_link";
+    a4.innerHTML = "Log Out";
+    span4.appendChild(a4);
 
     div.appendChild(span1);
     div.appendChild(span2);
     div.appendChild(span3);
+    div.appendChild(span4);
 
     document.getElementById("account_div").appendChild(div);
 };

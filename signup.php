@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(isset($_SESSION['username'])){
+    header('Location:/index.php');
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,6 +32,7 @@ session_start();
 
             <div class="menu_options">
                 <span class="menu_options_link"><a href="/">Home</a></span>
+                <span class="menu_options_link"><a href="/forums/">Forums</a></span>
                 <span class="menu_options_link"><a href="/contact">Contact</a></span>
                 <span class="menu_options_link"><a href="/softwares/">Softwares</a></span>
             </div>
@@ -140,10 +144,3 @@ session_start();
 </body>
 
 </html>
-<?php
-if (isset($_SESSION["username"])) {
-    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
-    echo "<script>document.getElementById('signup_form').remove();AddElement('Oops','This action is impossible :/','You cannot signup while you are logged in.');</script>";
-    echo "<script>loadTheme('".$_SESSION["theme"]."');</script>";
-};
-?>

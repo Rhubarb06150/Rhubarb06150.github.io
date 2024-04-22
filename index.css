@@ -238,10 +238,12 @@ td{
     width: 88;
     height: 31;
     filter: saturate(50%) contrast(75%);
+    border: #000000 1px solid;
 }
 
 .website_img:hover {
     filter: contrast(100%);
+    border: #ffffff 1px solid;
 }
 
 .menu_options {

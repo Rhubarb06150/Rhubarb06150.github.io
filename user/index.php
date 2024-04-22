@@ -28,6 +28,7 @@ session_start();
 
             <div class="menu_options">
                 <span class="menu_options_link"><a href="/">Home</a></span>
+                <span class="menu_options_link"><a href="/forums/">Forums</a></span>
                 <span class="menu_options_link"><a href="/contact">Contact</a></span>
                 <span class="menu_options_link"><a href="/softwares/">Softwares</a></span>
             </div>
@@ -212,10 +213,5 @@ if ($result->rowCount() > 0) {
     echo "<script>document.getElementById('user_div').remove();";
     echo "AddElement('User not found','I have nothing to say about it','This user does not exist.')</script>";
     echo "<script>document.title='User not found! - SMBX World'</script>";
-};
-
-if (isset($_SESSION["username"])) {
-    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
-    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
 };
 ?>
