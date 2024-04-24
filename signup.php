@@ -119,7 +119,7 @@ if(isset($_SESSION['username'])){
                         Confirm e-mail address:<br>
                         <input type="email" id="mail2" name="mail2"><br><br>
 
-                        Password:<br>
+                        Password: <span class="infos">Your password needs to be at least 8 characters long.</span><br>
                         <input type="password" id="password1" name="password1"><br><br>
 
                         Confirm password:<br>

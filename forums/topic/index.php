@@ -11,7 +11,7 @@ $sql = "SELECT subject FROM posts WHERE id = '$id'";
 $result = $conn->query($sql);
 $exist = $result->rowCount();
 $result = $result->fetch();
-if(!(isset($_SESSION['username']))){
+if (!(isset($_SESSION['username']))) {
     header('Location:/login.php');
 };
 ?>
@@ -108,16 +108,14 @@ if(!(isset($_SESSION['username']))){
                 </a>
             </div>
         </div>
-        <div class="elements">
-            <div class="elements" id="elements">
-            </div>
+        <div class="elements" id="elements" style="width: calc(100% - 5px);">
             <span class=little_section_title id="post_span">Submit a reply:</span>
             <form method="post" action="/actions/submit_reply.php" id="post_form">
                 <div class="element">
                     <div class=element_infos>Remember to stay polite and respectful when replying to someone.</div>
                     <div class="element_content">
                         Reply:<span id="reply_target" style="display: none;"></span><br><br>
-                        <textarea style="width: 100%; height:64px;" id="content" name="content"></textarea>
+                        <textarea style="width: calc(100% - 5px); height:64px;" id="content" name="content"></textarea>
                         <input id="type" name="type" value="post" hidden>
                         <input id="topic_id" name="topic_id" value="topic" hidden>
                         <input id="reply" name="reply" value="" hidden>
@@ -128,9 +126,7 @@ if(!(isset($_SESSION['username']))){
                 </div>
             </form>
             <span class=little_section_title id='com_span'></span>
-
         </div>
-    </div>
     </div>
     <footer id="footer">
         <div class="footer_content">

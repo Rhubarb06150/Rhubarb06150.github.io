@@ -102,7 +102,7 @@ if (!(isset($_SESSION['username']))) {
         <div class="elements" id="elements">
             <div class="element">
                 <div class="element_title">Notifications</div>
-                <div class="element_infos">Here you can see your notifications</div>
+                <div class="element_infos" id="infos">Here you can see your notifications.</div>
                 <div class="element_content" id="notifs">
 
                 </div>
@@ -129,11 +129,18 @@ $conn = new PDO(
 $uid = $_SESSION['id']['id'];
 $sql = "SELECT * FROM notifications WHERE receiver_id = '$uid'";
 $notifs = $conn->query($sql);
+$notifs_nb = $notifs->rowCount();
 $notifs = $notifs->fetchAll();
 foreach ($notifs as &$notif) {
-    echo "<script>loadNotif(`".$notif['content']."`,".$notif['id'].")</script>";
+    echo "<script>loadNotif(`".$notif['content']."`,'".$notif['id']."')</script>";
     $notif_id=$notif['id'];
     $state='read';
     $sql="UPDATE notifications SET notif_state = '$state' WHERE id = '$notif_id'";
     $conn->query($sql);
+};
+if ($notifs_nb>0){
+    echo "<script>document.getElementById('infos').innerHTML+=' You have ".$notifs_nb." notification(s)'</script>";
+}else{
+    echo "<script>document.getElementById('infos').innerHTML+=' You have no notifications'</script>";
+    echo "<script>document.getElementById('notifs').innerHTML='Wow, such empty here.'</script>";
 };

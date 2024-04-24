@@ -11,7 +11,7 @@ session_start();
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
 
-    <title>Log In - SMBX World</title>
+    <title>SMBX World</title>
 </head>
 
 <body id="body">
@@ -110,9 +110,3 @@ session_start();
 </body>
 
 </html>
-<?php
-$conn = new PDO(
-    'mysql:host=localhost;dbname=data;charset=utf8',
-    'hey',
-    ''
-);

@@ -1,13 +1,5 @@
 <?php
 session_start();
-$conn = new PDO(
-    'mysql:host=localhost;dbname=data;charset=utf8',
-    'hey',
-    ''
-);
-if (!(isset($_SESSION["username"]))){
-    header('Location:/login.php');
-};
 ?>
 
 <!DOCTYPE html>
@@ -18,8 +10,8 @@ if (!(isset($_SESSION["username"]))){
     <link rel="stylesheet" type="text/css" href="/index.css" />
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
-    
-    <title>Account preferences - SMBX World</title>
+
+    <title>Levels - SMBX World</title>
 </head>
 
 <body id="body">
@@ -29,7 +21,7 @@ if (!(isset($_SESSION["username"]))){
             <img src="/images/logos/smbxworld.png" height="106" width="588" style="margin-left: 32px;" alt="website logo" id="website-logo">
         </a>
     </div>
-    <div class="page_structure" style="max-width:100vw;">
+    <div class="page_structure">
         <div class="sidebar">
             <div class="menu">Main
                 <img src="/images/tiles/cloud.png" width="16" height="16" class="menu_img" class="menu_img">
@@ -104,22 +96,16 @@ if (!(isset($_SESSION["username"]))){
                 </a>
             </div>
         </div>
-        
-        <div class="elements">
+        <div class="elements" id="elements">
             <div class="element">
-                <div class="element_title">
-                    <span>Manage account</span>
-                </div>
-                <div class="element_infos">
-                    <span>Here you can manage your account.</span>
-                </div>
+                <div class="element_title">Levels</div>
+                <div class="element_infos">Here is the levels page!</div>
                 <div class="element_content">
-
-                    <a href="/account/preferences.php">Manage your account preferences</a><br>
-                    <a href="/account/infos.php">See your account infos</a><br>
-                    <a href="/account/password_modify.php">Modify your password</a><br><br>
-                    <a href="/account/posts.php">See all your posts</a><br>
-                    <a href="/account/comments.php">See all your comments</a><br>
+                    <div style="display: flex; justify-content: space-between;">
+                    <a href="/levels/upload/">
+                        Upload a level
+                    </a>
+                    </div>
                 </div>
             </div>
         </div>

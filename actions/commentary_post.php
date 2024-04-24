@@ -22,7 +22,7 @@ $post_id = $_POST['post_id'];
 
 $sql = "SELECT * FROM posts WHERE id = '$post_id'";
 $res = $conn->query($sql);
-$res = $res->fetchAll();
+$res = $res->fetch();
 $op_id = $res['poster_id'];
 $post_subject = $res['subject'];
 

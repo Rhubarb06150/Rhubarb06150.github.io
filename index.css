@@ -39,6 +39,7 @@
     margin-left: 2px;
     display: flex;
     margin-bottom: 32px;
+    width: calc(100% - 5px);
 }
 
 .sidebar {
@@ -96,6 +97,7 @@ h2 {
     padding: 5px;
     border: #884343 2px solid;
     display: inline-block;
+    color:#ffffff;
 }
 
 .button:hover {
@@ -113,7 +115,7 @@ h2 {
     font-size: 175%;
     filter: drop-shadow(#00000050 2px 2px 0px);
     text-decoration: underline;
-    width: 100%;
+    width: max-content;
 }
 
 .little_section_title {
@@ -126,15 +128,13 @@ h2 {
     font-size: 100%;
     filter: drop-shadow(#00000050 2px 2px 0px);
     text-decoration: underline;
-    width: 100%;
+    width: max-content;
 }
 
 .elements {
     display: flex;
-    width: 100%;
+    width:100%;
     flex-direction: column;
-    margin-right: 15px;
-    max-width: 90vw;
 }
 
 .element {
@@ -144,11 +144,10 @@ h2 {
     flex-direction: column;
     height: max-content;
     margin-bottom: 10px;
-    /* min-width: 100%; */
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
 }
 
-.reply{
+.reply {
     border-top: #884343 2px solid;
 }
 
@@ -206,7 +205,7 @@ select {
     padding-right: 5px;
 }
 
-table{
+table {
     border: #884343 2px solid;
     padding: 0px;
     margin: 0px;
@@ -214,12 +213,12 @@ table{
     width: 100%;
 }
 
-th{
-    padding: 5px;   
+th {
+    padding: 5px;
     border: #884343 2px solid;
 }
 
-td{
+td {
     border: #884343 2px solid;
     text-align: center;
 }
@@ -290,6 +289,11 @@ a:visited {
     font-weight: bold;
 }
 
+.infos {
+    font-size: 85%;
+    color: #aaaaaa;
+    font-style: italic;
+}
 
 a:hover {
     color: #ff7500;

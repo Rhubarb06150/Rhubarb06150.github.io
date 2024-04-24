@@ -1,13 +1,5 @@
 <?php
 session_start();
-$conn = new PDO(
-    'mysql:host=localhost;dbname=data;charset=utf8',
-    'hey',
-    ''
-);
-if (!(isset($_SESSION["username"]))){
-    header('Location:/login.php');
-};
 ?>
 
 <!DOCTYPE html>
@@ -18,8 +10,8 @@ if (!(isset($_SESSION["username"]))){
     <link rel="stylesheet" type="text/css" href="/index.css" />
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
-    
-    <title>Account preferences - SMBX World</title>
+
+    <title>Rules - SMBX World</title>
 </head>
 
 <body id="body">
@@ -29,7 +21,7 @@ if (!(isset($_SESSION["username"]))){
             <img src="/images/logos/smbxworld.png" height="106" width="588" style="margin-left: 32px;" alt="website logo" id="website-logo">
         </a>
     </div>
-    <div class="page_structure" style="max-width:100vw;">
+    <div class="page_structure">
         <div class="sidebar">
             <div class="menu">Main
                 <img src="/images/tiles/cloud.png" width="16" height="16" class="menu_img" class="menu_img">
@@ -104,26 +96,29 @@ if (!(isset($_SESSION["username"]))){
                 </a>
             </div>
         </div>
-        
-        <div class="elements">
+        <div class="elements" id="elements">
             <div class="element">
-                <div class="element_title">
-                    <span>Manage account</span>
-                </div>
-                <div class="element_infos">
-                    <span>Here you can manage your account.</span>
-                </div>
+                <div class="element_title">Rules</div>
+                <div class="element_infos">Read it please.</div>
                 <div class="element_content">
-
-                    <a href="/account/preferences.php">Manage your account preferences</a><br>
-                    <a href="/account/infos.php">See your account infos</a><br>
-                    <a href="/account/password_modify.php">Modify your password</a><br><br>
-                    <a href="/account/posts.php">See all your posts</a><br>
-                    <a href="/account/comments.php">See all your comments</a><br>
+                    <p>Here are the rules of SMBX World<br><br>
+                        <span id="car">Comments and replies</span><br><br>
+                    <div style="margin-left: 16px">
+                        - Always stay respectfull with other people, do not injure people for no reason.<br>
+                        - No hate for any stupid reason.<br>
+                        - Repesct other people works and efforts, even if you don't like it, you can say you don't like it and help creator to improve his work.
+                    </div><br>
+                    <span id="levels">Levels</span><br><br>
+                    <div style="margin-left: 16px">
+                        - Post only levels you made, you can post someone else's level but you have to prove that you have his permission.<br>
+                        - Don't reupload levels, nobody wants to see multiple times the same level.<br>
+                        - Don't post stupid levels that are just one fix screen with 3 elements.<br>
+                    </p>    
                 </div>
             </div>
         </div>
     </div>
+</div>
     <footer id="footer">
         <div class="footer_content">
             <center>

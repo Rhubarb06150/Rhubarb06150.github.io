@@ -1,11 +1,6 @@
 <?php
 session_start();
-$conn = new PDO(
-    'mysql:host=localhost;dbname=data;charset=utf8',
-    'hey',
-    ''
-);
-if (!(isset($_SESSION["username"]))){
+if (!(isset($_SESSION['username']))) {
     header('Location:/login.php');
 };
 ?>
@@ -18,8 +13,8 @@ if (!(isset($_SESSION["username"]))){
     <link rel="stylesheet" type="text/css" href="/index.css" />
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
-    
-    <title>Account preferences - SMBX World</title>
+
+    <title>Upload a level - SMBX World</title>
 </head>
 
 <body id="body">
@@ -29,7 +24,7 @@ if (!(isset($_SESSION["username"]))){
             <img src="/images/logos/smbxworld.png" height="106" width="588" style="margin-left: 32px;" alt="website logo" id="website-logo">
         </a>
     </div>
-    <div class="page_structure" style="max-width:100vw;">
+    <div class="page_structure">
         <div class="sidebar">
             <div class="menu">Main
                 <img src="/images/tiles/cloud.png" width="16" height="16" class="menu_img" class="menu_img">
@@ -104,22 +99,72 @@ if (!(isset($_SESSION["username"]))){
                 </a>
             </div>
         </div>
-        
-        <div class="elements">
+        <div class="elements" id="elements">
             <div class="element">
-                <div class="element_title">
-                    <span>Manage account</span>
-                </div>
-                <div class="element_infos">
-                    <span>Here you can manage your account.</span>
-                </div>
+                <div class="element_title">Upload a level</div>
+                <div class="element_infos">Upload your own levels!</div>
                 <div class="element_content">
+                    <form method="post" action="/actions/level_upload.php" enctype="multipart/form-data">
+                        <p>Before uploading your level, please <a href="/rules#levels">read the rules</a>.</p><br><br>
+                        Level Title:
+                        <input type="text" name="level_name" id="level_name">
+                        <p class="infos">100 characters max.</p><br><br>
+                        <p>Level description:</p><br>
+                        <textarea id="level_description" name="level_description" style="width:70vw;height:256px"></textarea>
+                        <script>
+                            document.getElementById('level_description').addEventListener("keyup", (event) => {
+                                document.getElementById('len').innerHTML = document.getElementById('level_description').value.length
+                                if (document.getElementById('level_description').value.length > 4096) {
+                                    document.getElementById('len').style.color = "#ff0000";
+                                } else {
+                                    document.getElementById('len').style.color = "#ffffff";
+                                }
+                            });
+                        </script><br>
+                        <span id=len>0</span>/4096<br><br>
+                        <p>Level File: <span class="infos"><br>Supported formats: (.lvl .lvlx .rar .zip .7z)</span><br>
+                                <span id="dlm" class="infos">Max size: 10 Mo, if it's bigger than 10 Mo, click <a onclick="downloadLink();">here</a> to provide a download link
+                            </span>
+                        <p id="level_input">
+                            <input type="file" name="level_file" id="level_file"><br><br>
+                        </p>
+                        <p>Thumbnail: <span class="infos"><br>Supported formats: (.png .jpeg .jpg .gif)<br>Max size: 512 Ko</span></p><br>
+                        <div class="thumbnail_div"><img id="output" class="thumbnail" src='/images/head/default_level.png'></div>
+                        <script>
+                            var loadFile = function(event) {
+                                if (event.target.files[0].type.includes('image/')) {
+                                    formats = ["png", "jpg", "jpeg", "gif"];
+                                    if (formats.includes(event.target.files[0].type.replace('image/', ''))) {
+                                        var image = document.getElementById('output');
+                                        image.src = URL.createObjectURL(event.target.files[0]);
+                                        image.style.width = "256px";
+                                        image.style.height = "256px";
+                                        document.getElementById('thumbnail_msg').style.display = 'none';
+                                    };
+                                } else {
+                                    document.getElementById('thumbnail').value = "";
+                                    document.getElementById('output').src = '/images/head/default_level.png';
+                                    document.getElementById('thumbnail_msg').style.display = 'block';
 
-                    <a href="/account/preferences.php">Manage your account preferences</a><br>
-                    <a href="/account/infos.php">See your account infos</a><br>
-                    <a href="/account/password_modify.php">Modify your password</a><br><br>
-                    <a href="/account/posts.php">See all your posts</a><br>
-                    <a href="/account/comments.php">See all your comments</a><br>
+                                };
+                            };
+                        </script>
+                        <p><input type="file" accept=".png, .jpg, .jpeg, .gif" name="thumbnail" id="thumbnail" onchange="loadFile(event)"></p>
+                        <p class="infos" id="thumbnail_msg" style="display: none;">this fomat isn't supported!</p>
+                        <br>
+                        <p>SMBX Version:</p><br>
+                        <select id="smbx_version" name="smbx_version">
+                            <option value="1.0">SMBX 1.0</option>
+                            <option value="1.1">SMBX 1.1</option>
+                            <option value="1.2">SMBX 1.2</option>
+                            <option value="1.3">SMBX 1.3</option>
+                            <option value="1.4">SMBX 1.4</option>
+                            <option value="2.0">SMBX 2.0</option>
+                        </select>
+                        <br>
+                        <input hidden type="submit" id="post" name="post"><br>
+                        <label for="post" class="button">Submit your level</label><br>
+                    </form>
                 </div>
             </div>
         </div>

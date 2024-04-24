@@ -14,12 +14,14 @@ if (isset($_POST["login"])) {
 
     $sql = "SELECT * FROM users WHERE username = '$usernamef'";
     $result = $conn->query($sql);
+    $rusername = $result->fetch();
+    $rusername = $rusername['username'];
 
     $sql = "SELECT password FROM users WHERE username = '$usernamef'";
     $rpassword = $conn->query($sql);
     $rpassword = $rpassword->fetch();
     $rpassword = $rpassword["password"];
-    
+
     if (password_verify($passwordf, $rpassword)) {
 
         $sql = "SELECT theme FROM users WHERE username = '$usernamef'";
@@ -35,7 +37,7 @@ if (isset($_POST["login"])) {
         $id = $id->fetch();
 
         if ($result->rowCount() > 0) {
-            $_SESSION["username"] = $usernamef;
+            $_SESSION["username"] = $rusername;
             $_SESSION["id"] = $id;
             $_SESSION["theme"] = $themef["theme"];
             $_SESSION["abs_code"] = $abs_codef["abs_code"];

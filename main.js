@@ -189,8 +189,7 @@ function showTopic(title, infos, content, news) {
     div.appendChild(replies);
     content_div.style.paddingBottom = "10px";
 
-    document.getElementById("elements").appendChild(div);
-
+    document.getElementById("elements").prepend(div);
 };
 
 function showCommentary(user, infos, content, cur_user, edit, comm_id) {
@@ -252,17 +251,39 @@ function showCommentary(user, infos, content, cur_user, edit, comm_id) {
     document.getElementById("comments").appendChild(div);
 }
 
+function downloadLink() {
+    document.getElementById('level_file').remove();
+    document.getElementById('dlm').remove();
+    div = document.createElement('div');
+
+    level_url = document.createElement('input');
+    level_url.type = "text";
+    level_url.placeholder = 'Download URL:';
+
+    dl = document.createElement('span');
+    dl.innerHTML = 'Download link: ';
+
+    div.appendChild(dl);
+    div.appendChild(level_url);
+    document.getElementById('level_input').prepend(div);
+};
+
+function getExtension(filename) {
+    var parts = filename.split('.');
+    return parts[parts.length - 1];
+};
+
 function showReply(user, infos, content, cur_user, edit, comm_id, reply_id, reply_content, reply_poster) {
 
     div = document.createElement("div");
     div.classList = 'reply';
-    div.id = 'rep' + comm_id
+    div.id = 'rep' + comm_id;
 
     pfp = document.createElement('img');
-    pfp.src = user.pfp
-    pfp.style.width = "32px"
-    pfp.style.height = "32px"
-    pfp.style.marginRight = "8px"
+    pfp.src = user.pfp;
+    pfp.style.width = "32px";
+    pfp.style.height = "32px";
+    pfp.style.marginRight = "8px";
 
     infos_div = document.createElement("div");
     infos_div.classList = "element_infos";
@@ -273,7 +294,7 @@ function showReply(user, infos, content, cur_user, edit, comm_id, reply_id, repl
 
     if (edit != '') {
 
-        edit = edit.slice(0, -3)
+        edit = edit.slice(0, -3);
         edit_span = document.createElement('span');
         edit_span.style.marginLeft = '20px'
         edit_span.style.fontStyle = 'italic';
@@ -324,15 +345,15 @@ function showReply(user, infos, content, cur_user, edit, comm_id, reply_id, repl
 
         bottom_div.appendChild(action_button);
         div.appendChild(bottom_div);
-    };
 
+    };
     document.getElementById("replies").appendChild(div);
-}
+};
 
 function noReply() {
     document.getElementById('reply').value = 0;
     document.getElementById('reply_target').style.display = 'none';
-}
+};
 
 function setReply(id, content) {
     remove = document.createElement('a');
@@ -349,7 +370,7 @@ function TPP(text, size) {
         text = text.substring(0, size) + '...';
     };
     return text;
-}
+};
 
 function ShowStars(note, votes) {
     note_abs = Math.round(note);
@@ -382,6 +403,29 @@ function ShowStars(note, votes) {
     note_span.innerHTML = note_abs + '|' + note_abs + '|' + star_src
     stars_div.appendChild(note_span)
     document.getElementById("elements").appendChild(stars_div);
+};
+
+function previousUser() {
+    queryString = window.location.search;
+    urlParams = new URLSearchParams(queryString);
+    id = urlParams.get('id');
+    if (id != '' && id != null) {
+        if (id > 1) {
+            id=parseInt(id);
+            id -= 1;
+            open("/user/?id=" + id, "_self");
+        };
+    };
+};
+function nextUser() {
+    queryString = window.location.search;
+    urlParams = new URLSearchParams(queryString);
+    id = urlParams.get('id');
+    if (id != '' && id != null) {
+        id=parseInt(id);
+        id += 1;
+        open("/user/?id=" + id, "_self");
+    };
 };
 
 function LoadLevel() {
@@ -479,6 +523,9 @@ function Pokey(div_id, length) {
 function loadTheme(fav_theme) {
     if (document.getElementById('chat_span').innerHTML.includes('(')) {
         document.getElementById('chat_span').style.color = '#00ff00   '
+    }
+    if (document.getElementById('notif_span').innerHTML.includes('(')) {
+        document.getElementById('notif_span').style.color = '#00ff00   '
     }
     if (fav_theme == "blue") {
         document.body.style.backgroundImage = "url('/images/bgs/dark-bg-blue.png')";
@@ -660,6 +707,9 @@ function getSuccess() {
         document.getElementById('success_span').innerHTML = "Your comment has been submitted.<br><a href='" + document.referrer + "'>Go back to the post</a> or wait to get redirected.";
         Redirect('index');
     } else if (act == 'submit_reply') {
+        document.getElementById('success_span').innerHTML = "Your comment has been submitted.<br><a href='" + document.referrer + "'>Go back to the topic</a> or wait to get redirected.";
+        Redirect('index');
+    } else if (act == 'submit_reply') {
         document.getElementById('success_span').innerHTML = "Your reply has been submitted.<br><a href='" + document.referrer + "'>Go back to the topic</a> or wait to get redirected.";
         Redirect('index');
     } else if (act == 'com_edit') {
@@ -671,6 +721,14 @@ function getSuccess() {
     } else {
         Redirect('index');
     };
+};
+
+function execPHP(path) {
+    frame = document.createElement('iframe');
+    frame.style.display = 'none';
+    frame.id = 'frame';
+    frame.src = path;
+    document.body.appendChild(frame);
 };
 
 function addTopicRow(poster_name, topic_id, topic_name, replies) {
@@ -769,6 +827,9 @@ function getFailure() {
         document.getElementById('failure').innerHTML = "The user you requested does not exists, try to check that you typed the username correctly.";
         Redirect('/pms/');
     } else if (act == 'ill_char') {
+        document.getElementById('failure').innerHTML = "One or multiple fields contained illegal characters.";
+        Redirect('/index');
+    } else if (act == 'submit_reply') {
         document.getElementById('failure').innerHTML = "One or multiple fields contained illegal characters.";
         Redirect('/index');
 
@@ -891,7 +952,7 @@ function loadChat(user) {
 
 };
 
-function loadNotif(content,notif_id) {
+function loadNotif(content, notif_id) {
 
     div = document.createElement('div');
     div.style.display = 'flex';
@@ -910,9 +971,9 @@ function loadNotif(content,notif_id) {
     div2.appendChild(span);
     div.appendChild(div2);
 
-    remove=document.createElement('a');
-    remove.href='/actions/delete_notifcation.php?id='+notif_id;
-    remove.innerHTML='Delete notification'
+    remove = document.createElement('a');
+    remove.innerHTML = 'Delete notification'
+    remove.href = '/actions/delete_notifcation.php?id=' + notif_id;
     div.appendChild(remove);
 
     document.getElementById('notifs').appendChild(div);

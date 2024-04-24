@@ -96,6 +96,7 @@ session_start();
             </div>
         </div>
         <div class="elements" id="elements">
+
             <div class="element" id="user_div">
                 <div class="element_title" id="username"></div>
                 <div class="element_infos" id="infos">Informations about </div>
@@ -104,12 +105,19 @@ session_start();
                     <span id="uid">User ID: </span><br>
                     <span id="reg_date">Register date: </span><br>
                     <span id="posts">Posts: </span><br>
-                    <span id="comms">Comments: </span><br><br>
+                    <span id="comms">Comments: </span><br>
+                    <span id="topics">Topics: </span><br>
+                    <span id="replies">Replies: </span><br><br>
                     <a id="chat_a">
                         <span id="chat">Chat with </span></a><br><br>
                     <div class="line"></div>
-                    <span id="bio"></span>
+                    <span id="bio"></span><br><br>
+                    <button id="prev" onclick="previousUser();" hidden></button>
+                    <label for="prev" class="button" style="width:max-content;"><span>Previous user</span></label>
+                    <button id="next" onclick="nextUser();" hidden></button>
+                    <label for="next" class="button" style="width:max-content;"><span>Next user</span></label>
                 </div>
+
             </div>
         </div>
     </div>
@@ -166,7 +174,7 @@ if ($result->rowCount() > 0) {
     $result = $result->fetch();
     $bio = $result['description'];
     $bio = str_replace("\n", '<br>', $bio);
-    
+
     if ($bio == '') {
         echo "<script>document.getElementById('bio').innerHTML='No bio provided'</script>";
     } else {
@@ -177,7 +185,7 @@ if ($result->rowCount() > 0) {
 
     echo "<script>document.getElementById('username').innerHTML='" . $username . "'</script>";
 
-    if ($admin->rowCount()>0){
+    if ($admin->rowCount() > 0) {
         echo "<script>staff_span=document.createElement('span');</script>";
         echo "<script>staff_span.style.color='#0088ff';</script>";
         echo "<script>staff_span.innerHTML=' (Staff)';</script>";
@@ -199,14 +207,33 @@ if ($result->rowCount() > 0) {
     $result = $conn->query($sql);
     $comms_nb = $result->rowCount();
 
+    $sql = "SELECT * FROM replies WHERE poster_id = '$user_id'";
+    $result = $conn->query($sql);
+    $replies_nb = $result->rowCount();
+
+    $sql = "SELECT * FROM topics WHERE poster_id = '$user_id'";
+    $result = $conn->query($sql);
+    $topics_nb = $result->rowCount();
+
     echo "<script>document.getElementById('posts').innerHTML+='" . $posts_nb . "'</script>";
-    if ($posts_nb){
-        $sql="SELECT * FROM posts WHERE poster_id = '$user_id' ORDER BY id DESC";
-        $res=$conn->query($sql);
-        $res=$res->fetch();
-        $last_post=$res['subject'];
-        $last_post_id=$res['id'];
-    echo "<script>document.getElementById('posts').innerHTML+=' Last post: <a href=/posts/?id=" . $last_post_id . ">".$last_post."</a>'</script>";
+    echo "<script>document.getElementById('topics').innerHTML+='" . $topics_nb . "'</script>";
+    echo "<script>document.getElementById('replies').innerHTML+='" . $replies_nb . "'</script>";
+    if ($posts_nb > 0) {
+        $sql = "SELECT * FROM posts WHERE poster_id = '$user_id' ORDER BY id DESC";
+        $res = $conn->query($sql);
+        $res = $res->fetch();
+        $last_post = $res['subject'];
+        $last_post_id = $res['id'];
+        echo "<script>document.getElementById('posts').innerHTML+='  -  Last post: <a href=/posts/?id=" . $last_post_id . ">" . $last_post . "</a>'</script>";
+    };
+
+    if ($topics_nb > 0) {
+        $sql = "SELECT * FROM topics WHERE poster_id = '$user_id' ORDER BY id DESC";
+        $res = $conn->query($sql);
+        $res = $res->fetch();
+        $last_post = $res['topic'];
+        $last_post_id = $res['id'];
+        echo "<script>document.getElementById('topics').innerHTML+='  -  Last topic: <a href=/posts/?id=" . $last_post_id . ">" . $last_post . "</a>'</script>";
     };
     echo "<script>document.getElementById('comms').innerHTML+='" . $comms_nb . "'</script>";
 } else {
