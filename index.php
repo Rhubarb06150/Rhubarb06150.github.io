@@ -129,21 +129,27 @@ session_start();
                     </div>
                 </div>
             </div>
-            <div class="elements" id="news">
-                <span class="section_title">Lastest news:</span>
-            </div>
 
-            <div class="elements" id="posts">
-                <span class="section_title">Lastest posts</span>
-                <div class=element style="margin-bottom: 40px;">
-                    <div class="element_title">You wanna post something?</div>
-                    <div class="element_infos">You can!</div>
-                    <div class="element_content">Go on the <a href="/post">post page</a> and express yourself!</div>
+            <div style="display: flex;flex-direction:row;">
+
+                <div class="elements" id="posts">
+                    <span class="section_title">Lastest posts</span>
+                    <div class=element style="margin-bottom: 40px;">
+                        <div class="element_title">You wanna post something?</div>
+                        <div class="element_infos">You can!</div>
+                        <div class="element_content">Go on the <a href="/post">post page</a> and express yourself!</div>
+                    </div>
+                </div>
+                <div class="elements" id="news">
+                    <span class="section_title">Lastest news:</span>
                 </div>
             </div>
         </div>
-
     </div>
+    <center>
+        <span class="infos" id="visits"></span>
+    </center>
+
     <footer id="footer">
         <div class="footer_content">
             <center>
@@ -159,7 +165,7 @@ session_start();
 <?php
 
 if (isset($_SESSION["username"])) {
-    echo "<script>AddElement('Members!','Wow this is awesome!','Currently, there are <span id=members_nb></span> members registered here! Our last member is <span id=last_member></span>.');</script>";
+    echo "<script>AddElement('<a href=/users>Members!</a>','Wow this is awesome!','Currently, there are <span id=members_nb></span> members registered here! Our last member is <span id=last_member></span>.');</script>";
 } else {
     echo '<script>' . "AddElement('You do not have an account?','No problem!','You can create an account an account on <a href=/signup.php>sign up page</a>, and joining <span id=members_nb></span> members!  Our last member is <span id=last_member></span>.');"  . '</script>';
 };
@@ -230,12 +236,10 @@ foreach ($result as $value) {
     echo "<script>addNews(`" . $value["title"] . "`,`posted by <a href=/user/?id=" . $pid . ">" . $poster_usr . "</a> at " . mb_substr($value["post_date"], 0, -3) . "`,`" . $value["content"] . "`," . $value["id"] . "," . $comm_nb . ");</script>";
 };
 
-$sql = "SELECT visits FROM visits WHERE id = 1";
-$res = $conn->query($sql);
-$res = $res->fetch();
-$visits_nb = $res['visits'];
-$visits_nb += 1;
+$sql="SELECT visits FROM visits WHERE id = 1";
+$res=$conn->query($sql);
+$res=$res->fetch();
+$visits_nb=$res['visits'];
 
-$sql = "UPDATE visits SET visits = '$visits_nb' WHERE id = 1 ";
-$conn->query($sql);
+echo "<script>document.getElementById('visits').innerHTML='".$visits_nb." pages browsed on SMBX World'</script>"
 ?>

@@ -39,6 +39,9 @@ if ($conn->query($sql) == true) {
     $req = "INSERT INTO notifications (receiver_id, content) VALUES ('$op_id', '$post_link')";
     $conn->query($req);
 
+    $sql="UPDATE topics SET last_activity = NOW() WHERE id = '$post_id'";
+    $conn->query($sql);
+
     header('Location:/success.php?act=reply_submit');
     exit();
 } else {

@@ -123,7 +123,7 @@ if (!(isset($_SESSION['username']))) {
                         </script><br>
                         <span id=len>0</span>/4096<br><br>
                         <p>Level File: <span class="infos"><br>Supported formats: (.lvl .lvlx .rar .zip .7z)</span><br>
-                                <span id="dlm" class="infos">Max size: 10 Mo, if it's bigger than 10 Mo, click <a onclick="downloadLink();">here</a> to provide a download link
+                            <span id="dlm" class="infos">Max size: 10 Mo, if it's bigger than 10 Mo, click <a onclick="downloadLink();">here</a> to provide a download link
                             </span>
                         <p id="level_input">
                             <input type="file" name="level_file" id="level_file"><br><br>

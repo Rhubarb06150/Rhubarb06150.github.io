@@ -411,7 +411,7 @@ function previousUser() {
     id = urlParams.get('id');
     if (id != '' && id != null) {
         if (id > 1) {
-            id=parseInt(id);
+            id = parseInt(id);
             id -= 1;
             open("/user/?id=" + id, "_self");
         };
@@ -422,7 +422,7 @@ function nextUser() {
     urlParams = new URLSearchParams(queryString);
     id = urlParams.get('id');
     if (id != '' && id != null) {
-        id=parseInt(id);
+        id = parseInt(id);
         id += 1;
         open("/user/?id=" + id, "_self");
     };
@@ -574,14 +574,6 @@ function loadTheme(fav_theme) {
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].style.border = "#6060ff 2px solid";
             buttons[i].style.backgroundColor = "#2020ff";
-            buttons[i].addEventListener('mouseover', () => {
-                buttons[i].style.backgroundColor = '#404060';
-                buttons[i].style.border = "#6060ff 2px solid";
-            });
-            buttons[i].addEventListener('mouseout', () => {
-                buttons[i].style.backgroundColor = '#2020ff';
-                buttons[i].style.border = "#6060ff 2px solid";
-            });
         }
     } else if (fav_theme == 'pokemon') {
         document.body.style.backgroundImage = "url('/images/bgs/dark-bg-pokemon.png')";
@@ -614,7 +606,7 @@ function loadTheme(fav_theme) {
         }
         titles = document.getElementsByClassName("element_title");
         for (let i = 0; i < titles.length; i++) {
-            titles[i].style.backgroundColor = "#000020";
+            titles[i].style.backgroundColor = "#151030";
         }
         infos = document.getElementsByClassName("element_infos");
         for (let i = 0; i < infos.length; i++) {
@@ -628,7 +620,7 @@ function loadTheme(fav_theme) {
         menus = document.getElementsByClassName("menu");
         for (let i = 0; i < menus.length; i++) {
             menus[i].style.border = "#ccccff 2px solid";
-            menus[i].style.backgroundColor = "#000020";
+            menus[i].style.backgroundColor = "#151030";
         }
         menus_options = document.getElementsByClassName("menu_options");
         for (let i = 0; i < menus_options.length; i++) {
@@ -647,14 +639,59 @@ function loadTheme(fav_theme) {
         for (let i = 0; i < buttons.length; i++) {
             buttons[i].style.border = "#ccccff 2px solid";
             buttons[i].style.backgroundColor = "#000020";
-            buttons[i].addEventListener('mouseover', () => {
-                buttons[i].style.backgroundColor = '#404060';
-                buttons[i].style.border = "#ffffff 2px solid";
-            });
-            buttons[i].addEventListener('mouseout', () => {
-                buttons[i].style.backgroundColor = '#000020';
-                buttons[i].style.border = "#ccccff 2px solid";
-            });
+        }
+    } else if (fav_theme == 'dark-red') {
+        document.body.style.backgroundImage = "url('/images/bgs/dark-red-mushrooms.png')";
+        document.getElementById("header").style.backgroundImage = "url('/images/bgs/header-bg-red-mushrooms.png')";
+        document.getElementById("footer").style.backgroundImage = "url('/images/bgs/header-bg-red-mushrooms.png')";
+        document.getElementById("website-logo").src = "/images/logos/smbxworld-red-dark.png";
+        elements = document.getElementsByClassName("element");
+        for (let i = 0; i < elements.length; i++) {
+            elements[i].style.border = "#ffcccc 2px solid";
+        }
+        replies = document.getElementsByClassName("reply");
+        for (let i = 0; i < replies.length; i++) {
+            replies[i].style.borderTop = "#ffcccc 2px solid";
+        }
+        tables = document.querySelectorAll('table,th,tr,td')
+        for (let i = 0; i < tables.length; i++) {
+            tables[i].style.border = "#ffcccc 2px solid";
+        }
+        titles = document.getElementsByClassName("element_title");
+        for (let i = 0; i < titles.length; i++) {
+            titles[i].style.backgroundColor = "#300000";
+        }
+        infos = document.getElementsByClassName("element_infos");
+        for (let i = 0; i < infos.length; i++) {
+            infos[i].style.backgroundColor = "#200000";
+        }
+        contents = document.getElementsByClassName("element_content");
+        for (let i = 0; i < contents.length; i++) {
+            contents[i].style.backgroundColor = "#100000";
+        }
+
+        menus = document.getElementsByClassName("menu");
+        for (let i = 0; i < menus.length; i++) {
+            menus[i].style.border = "#ffcccc 2px solid";
+            menus[i].style.backgroundColor = "#300000";
+        }
+        menus_options = document.getElementsByClassName("menu_options");
+        for (let i = 0; i < menus_options.length; i++) {
+            menus_options[i].style.borderRight = "#ffcccc 2px solid";
+            menus_options[i].style.borderLeft = "#ffcccc 2px solid";
+            menus_options[i].style.backgroundColor = "#100000";
+        }
+        menus_options_websites = document.getElementsByClassName("menu_options_websites");
+        for (let i = 0; i < menus_options_websites.length; i++) {
+            menus_options_websites[i].style.borderRight = "#ffcccc 2px solid";
+            menus_options_websites[i].style.borderLeft = "#ffcccc 2px solid";
+            menus_options_websites[i].style.borderBottom = "#ffcccc 2px solid";
+            menus_options_websites[i].style.backgroundColor = "#100000";
+        }
+        buttons = document.getElementsByClassName("button");
+        for (let i = 0; i < buttons.length; i++) {
+            buttons[i].style.border = "#ffcccc 2px solid";
+            buttons[i].style.backgroundColor = "#200000";
         }
     };
     try {
@@ -751,7 +788,7 @@ function addTopicRow(poster_name, topic_id, topic_name, replies) {
     row.appendChild(topic_td);
     row.appendChild(replies_td);
     document.getElementById('topics').appendChild(row);
-}
+};
 
 function getFailure() {
     queryString = window.location.search;
@@ -761,7 +798,7 @@ function getFailure() {
         document.getElementById('failure').innerHTML = "Verify that you've been completed all fields correctly.";
         Redirect('singup');
     } else if (act == 'login') {
-        document.getElementById('failure').innerHTML = 'Invalid username or password.';
+        document.getElementById('failure').innerHTML = 'Invalid username, email or password.';
         Redirect('login');
     } else if (act == 'tk_usr') {
         document.getElementById('failure').innerHTML = 'This username is already tooken.';
@@ -786,52 +823,52 @@ function getFailure() {
         Redirect('signup');
     } else if (act == 'sm_pwd') {
         document.getElementById('failure').innerHTML = "You can't modify your password to your current password.";
-        Redirect('/account/password_modify');
+        Redirect('account/password_modify');
     } else if (act == 'nel_npwd') {
         document.getElementById('failure').innerHTML = "Your new password isn't long enough.";
-        Redirect('/account/password_modify');
+        Redirect('account/password_modify');
     } else if (act == 'ncn_pwd') {
         document.getElementById('failure').innerHTML = "Your new passwords aren't corresponding.";
-        Redirect('/account/password_modify');
+        Redirect('account/password_modify');
     } else if (act == 'bad_pwd') {
         document.getElementById('failure').innerHTML = "Your old passwords isn't corresponding.";
-        Redirect('/account/password_modify');
+        Redirect('account/password_modify');
     } else if (act == 'no_pfp') {
         document.getElementById('failure').innerHTML = "Your didn't uploaded an image.";
-        Redirect('/account/index');
+        Redirect('account/index');
     } else if (act == 'no_img') {
         document.getElementById('failure').innerHTML = "The file you uploaded seems to be broken.";
-        Redirect('/account/index');
+        Redirect('account/index');
     } else if (act == 'pfp_size') {
         document.getElementById('failure').innerHTML = "The file you uploaded is too heavy, the max file size is 128 Kb! Try to reduce the size.";
-        Redirect('/account/index');
+        Redirect('account/index');
     } else if (act == 'pfp_for') {
         document.getElementById('failure').innerHTML = "The file format is'nt supported, the supported formats are: .png, .jpg, .jpeg, .gif";
-        Redirect('/account/index');
+        Redirect('account/index');
     } else if (act == 'pfp_ch') {
         document.getElementById('failure').innerHTML = "An unknown error has occured when trying to modify your profile picture.";
-        Redirect('/account/index');
+        Redirect('account/index');
     } else if (act == 'tl_bio') {
         document.getElementById('failure').innerHTML = "Your biography cannot exceed 1024 characters.";
-        Redirect('/account/index');
+        Redirect('account/index');
     } else if (act == 'com_edit') {
         document.getElementById('failure').innerHTML = "An error has occured, so your comment hasn't been edited.";
-        Redirect('/account/index');
+        Redirect('account/index');
     } else if (act == 'com_del') {
         document.getElementById('failure').innerHTML = "An error has occured, so your comment hasn't been deleted.";
-        Redirect('/account/index');
+        Redirect('account/index');
     } else if (act == 'no_yo_com') {
         document.getElementById('failure').innerHTML = "You cannot edit/delete this comment, your aen't the poster of it.";
-        Redirect('/account/index');
+        Redirect('account/index');
     } else if (act == 'usr_nf') {
         document.getElementById('failure').innerHTML = "The user you requested does not exists, try to check that you typed the username correctly.";
-        Redirect('/pms/');
+        Redirect('pms/');
     } else if (act == 'ill_char') {
         document.getElementById('failure').innerHTML = "One or multiple fields contained illegal characters.";
-        Redirect('/index');
+        Redirect('index');
     } else if (act == 'submit_reply') {
         document.getElementById('failure').innerHTML = "One or multiple fields contained illegal characters.";
-        Redirect('/index');
+        Redirect('index');
 
 
     } else if (act == 'usignup') {
@@ -894,9 +931,9 @@ function showMessage(message, userid) {
     abs_div.appendChild(div);
     date_span = document.createElement('span');
     date_span.innerHTML = message.send_date;
-    date_span.style.color = '#aaaaaa';
-    date_span.style.fontSize = "60%"
-    date_span.style.marginLeft = "5px";
+    date_span.classList = "infos";
+    date_span.style.fontSize = "80%";
+    date_span.style.marginTop = "5px";
 
     if (parseInt(userid) == parseInt(message.sender_id)) {
 
@@ -906,6 +943,28 @@ function showMessage(message, userid) {
 
     abs_div.appendChild(date_span);
     document.getElementById("messages").appendChild(abs_div);
+
+};
+
+function addPageButton(page, type, target_id) {
+
+    a = document.createElement('a');
+    a.style.marginRight = "5px";
+
+    page_nb = document.createElement('span');
+    page_nb.innerHTML = page
+
+    a.classList = "button";
+    a.style.width = "max-content";
+    a.style.margin = '2px';
+    if (type != 'users/') {
+        a.href = '/' + type + target_id + '&page=' + page;
+    } else {
+        a.href = '/' + type + '?page=' + page;
+    };
+
+    a.appendChild(page_nb);
+    document.getElementById('buttons').appendChild(a);
 
 };
 
@@ -978,6 +1037,35 @@ function loadNotif(content, notif_id) {
 
     document.getElementById('notifs').appendChild(div);
 
+};
+
+function showUser(user) {
+    div = document.createElement("div");
+    div.style.display = "flex";
+    div.flexDirection = 'row';
+    div.style.width = "max-content";
+
+    pfp = document.createElement('img');
+    pfp.classList = "element";
+    pfp.style.maxwidth = "32px";
+    pfp.style.maxheight = "32px";
+    pfp.style.minHeight = "32px";
+    pfp.style.minHeight = "32px";
+    pfp.style.width = "32px";
+    pfp.style.height = "32px";
+    pfp.src = user.pfp;
+
+    name_span = document.createElement('a');
+    name_span.href = '/user/?id=' + user.id;
+    name_span.innerHTML = user.id + ' - ' + user.username;
+    name_span.style.height = "max-content";
+    name_span.style.marginBottom = "16px";
+    name_span.style.marginLeft = "10px";
+    name_span.style.marginTop = "auto";
+
+    div.appendChild(pfp);
+    div.appendChild(name_span);
+    document.getElementById('users_div').appendChild(div);
 };
 
 function loadAccount(acc_name) {

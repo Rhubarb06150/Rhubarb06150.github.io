@@ -11,6 +11,13 @@ $sql = "SELECT subject FROM posts WHERE id = '$id'";
 $result = $conn->query($sql);
 $exist = $result->rowCount();
 $result = $result->fetch();
+
+if (!isset($_GET['page'])) {
+    $cur_page = 1;
+    header('Location:/posts/?id=' . $id . '&page=1');
+} else {
+    $cur_page = $_GET['page'];
+};
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,7 +133,8 @@ $result = $result->fetch();
 
             </form>
             <span class=little_section_title id='com_span'></span>
-            <div id="comments"></div>
+            <div id="comments" class="grid"></div>
+            <div id="buttons"></div>
 
         </div>
     </div>
@@ -183,6 +191,15 @@ if ($exist > 0) {
     } else {
         $usr = '';
     };
+
+    if ($comms_nb > 10) {
+        $pages_nb = ceil($comms_nb / 10);
+        $comments = array_slice($comments, ($cur_page - 1) * 10, 10);
+    };
+
+    for($i=1;$i<$pages_nb+1;$i++){
+        echo "<script>addPageButton('".$i."','posts/?id=','".$id."')</script>";
+    }
 
     foreach ($comments as &$value) {
 

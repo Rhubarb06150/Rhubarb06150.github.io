@@ -105,7 +105,7 @@ if (!(isset($_SESSION["username"]))){
             <div class="elements" id="elements">
                 <div class=element id="pms">
                     <div class="element_title" id="title">Discussion with </div>
-                    <div class="element_infos" id="infos"></div>
+                    <div class="element_infos"><span id="infos" class="infos"></span></div>
                     <div class="element_content" id="messages"></div>
                     <div class="element_infos">
                         <form method="post" action="/actions/message_send.php">
@@ -160,7 +160,7 @@ if (isset($_SESSION["username"])) {
 
         if ($exist > 0) {
             if ($chat_id != $ur_id) {
-                echo "<script>document.getElementById('title').innerHTML+='" . $user['username'] . "'</script>";
+                echo "<script>document.getElementById('title').innerHTML+='<a href=/user/?id=".$chat_id.">" . $user['username'] . "</a>'</script>";
                 echo "<script>document.getElementById('receiver_id').value='" . $chat_id . "'</script>";
                 echo "<script>document.getElementById('sender_id').value='" . $ur_id . "'</script>";
                 echo "<script>document.title='Discussion with " . $user['username'] . " - SMBX World'</script>";
@@ -208,6 +208,7 @@ if (isset($_SESSION["username"])) {
                     echo "<script>
                     showMessage(" . json_encode($msg) . ",'" . $ur_id . "');
                     </script>";
+                $chatset=1;
                 };
             } else {
                 echo "<script>document.getElementById('pms').remove();</script>";
@@ -280,4 +281,3 @@ if (isset($_SESSION["username"])) {
         };
     };
 };
-?>

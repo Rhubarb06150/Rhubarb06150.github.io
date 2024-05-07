@@ -1,13 +1,5 @@
 <?php
 session_start();
-$conn = new PDO(
-    'mysql:host=localhost;dbname=data;charset=utf8',
-    'hey',
-    ''
-);
-if (!(isset($_SESSION["username"]))) {
-    header('Location:/login.php');
-};
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +11,7 @@ if (!(isset($_SESSION["username"]))) {
     <link href="/images/head/icon.png" rel="icon">
     <script src="/main.js"></script>
 
-    <title>Account preferences - SMBX World</title>
+    <title>SMBX World</title>
 </head>
 
 <body id="body">
@@ -29,7 +21,7 @@ if (!(isset($_SESSION["username"]))) {
             <img src="/images/logos/smbxworld.png" height="106" width="588" style="margin-left: 32px;" alt="website logo" id="website-logo">
         </a>
     </div>
-    <div class="page_structure" style="max-width:100vw;">
+    <div class="page_structure">
         <div class="sidebar">
             <div class="menu">Main
                 <img src="/images/tiles/cloud.png" width="16" height="16" class="menu_img" class="menu_img">
@@ -105,61 +97,33 @@ if (!(isset($_SESSION["username"]))) {
             </div>
         </div>
         <div class="elements" id="elements">
-            <div class="element" style="max-width:100%;">
-                <div class="element_title">
-                    <span>Manage account preferences</span>
-                </div>
-                <div class="element_infos">
-                    <span>Here you can edit your account settings.</span>
-                </div>
+            <div class="element">
+                <div class="element_title">Credits</div>
+                <div class="element_infos">Here you can find basically all ressources I used for the design of the website</div>
                 <div class="element_content">
-
-                    <form action="/actions/upload_pfp.php" method="post" enctype="multipart/form-data">
-                        <p>
-                            Modify profile picture:<br>
-                            The image can't be over 512 Kb!<br><br>For a better result, upload a square profile picture.<br><br>
-                        </p>
-
-                        <input type="file" id="picture" name="picture"><br><br>
-
-                        <input type="submit" id="post_pfp" name="post_pfp" hidden>
-
-                        <label for="post_pfp" class="button">Update profile picture</label>
-
-                    </form>
-
-                    <br><br>
-
-                    <form method="post" action="/actions/acc_modify.php">
-
-                        <p>
-                            Change website theme:
-                        </p>
-                        <br>
-                        <select id="theme" name="theme">
-                            <option value="default">Classic (Gray and Red)</option>
-                            <option value="dark">Dark (Blue Mushrooms)</option>
-                            <option value="dark-red">Dark Red (Red Mushrooms)</option>
-                            <option value="pokemon">Pokémon (Gold and Silver)</option>
-                            <!-- <option value="pokemon2">Pokémon 2 (Fire Red and Green Leaf)</option> -->
-                            <option value="blue">Blue</option>
-                        </select><br><br>
-                        Bio:<br><br>
-                        <textarea id="desc_aera" style="width:80%;height:256px" name="bio"></textarea>
-                        <script>
-                            document.getElementById('desc_aera').addEventListener("keyup", (event) => {
-                                document.getElementById('len').innerHTML = document.getElementById('desc_aera').value.length
-                                if (document.getElementById('desc_aera').value.length > 1024) {
-                                    document.getElementById('len').style.color = "#ff0000";
-                                } else {
-                                    document.getElementById('len').style.color = "#ffffff";
-                                }
-                            });
-                        </script><br>
-                        <span id="len"></span>/1024<br><br>
-                        <input hidden type="submit" id="post" name="post">
-                        <label for="post" class="button">Update account preferences</label>
-                    </form>
+                    <p>Special Thanks to:
+                        <br><br>
+                        <a href="https://mfgg.net">MFGG</a> which inspired me a lot for the design.<br>
+                        <a href="https://www.spriters-resource.com/">The Spriters Ressources</a> on which I took a lot of ressources.<br>
+                        <a href="https://wohlsoft.ru/">Wohlstand</a> who helped me by giving me some tips for the website and for my softwares.
+                        <br><br>Below are tilesheets/spritesheets I used for the website's design:
+                        <br><br>
+                        <a href="https://www.spriters-resource.com/custom_edited/mariocustoms/sheet/17656/">Bowser on website's logo</a><br>
+                        <a href="https://mfgg.net/index.php?act=resdb&param=02&c=1&id=30424">Font used website's logo</a><br>
+                        <a href="https://www.spriters-resource.com/snes/smarioworld/sheet/144754/">Power ups in the background</a><br>
+                        <a href="https://mfgg.net/index.php?act=resdb&param=02&c=1&id=4226">SMW Tiles for the sidebar</a><br>
+                        <a href="https://www.spriters-resource.com/snes/smassmb1/sheet/168932/">Mario and Luigi on welcome page</a><br>
+                        <a href="https://www.spriters-resource.com/snes/smarioworld/sheet/53664/">Mario Sprites</a><br>
+                        <a href="https://www.spriters-resource.com/snes/smarioworld/sheet/4591/">Yoshi Sprites</a><br>
+                        <a href="https://www.spriters-resource.com/snes/smarioworld/sheet/32120/">Softwares logo's font</a><br>
+                    </p>
+                    <br>
+                    Here is my 88x31 logo if you want to put it somewhere:<br><br>
+                    <img src="/smbxworld.png" width=88 height=31><br>
+                    Here is also my 350x38 gif banner if you want to put it somewhere:<br><br>
+                    <img src="/smbxworld.gif" width=350 height=38><br>
+                    Or even if you are registered here and you want to support the website:<br><br>
+                    <img src="/images/head/smbxworlduser.png" width=350 height=19>   
                 </div>
             </div>
         </div>
@@ -175,22 +139,3 @@ if (!(isset($_SESSION["username"]))) {
 </body>
 
 </html>
-
-<?php
-
-echo "<script>document.getElementById('theme').value='" . $_SESSION["theme"] . "'</script>";
-
-echo "<script>var abs_code ='" . $_SESSION["abs_code"] . "'</script>";
-
-$conn = new PDO('mysql:host=localhost;dbname=data;charset=utf8', 'hey', '');
-$usrf = $_SESSION['username'];
-
-$sql = "SELECT description FROM users WHERE username = '$usrf'";
-$result = $conn->query($sql);
-$result = $result->fetch();
-$bio = $result["description"];
-
-echo "<script>document.getElementById('desc_aera').value=`" . $bio . "`</script>";
-echo "<script>document.getElementById('len').innerHTML=document.getElementById('desc_aera').value.length</script>";
-
-?>

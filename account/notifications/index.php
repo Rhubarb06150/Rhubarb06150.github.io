@@ -142,5 +142,5 @@ if ($notifs_nb>0){
     echo "<script>document.getElementById('infos').innerHTML+=' You have ".$notifs_nb." notification(s)'</script>";
 }else{
     echo "<script>document.getElementById('infos').innerHTML+=' You have no notifications'</script>";
-    echo "<script>document.getElementById('notifs').innerHTML='Wow, such empty here.'</script>";
+    echo "<script>document.getElementById('notifs').innerHTML=`Wow, it's empty here.`</script>";
 };

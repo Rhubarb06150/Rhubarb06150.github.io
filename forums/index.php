@@ -104,57 +104,57 @@ session_start();
                         <table>
                             <tr>
                                 <th width="20%">Subject</th>
-                                <th>Last Topic</th>
-                                <th width="5%">Topics</th>
-                                <th width="5%">Replies</th>
+                                <th>Last activity on topic</th>
+                                <th width="5%" class="useless_row">Topics</th>
+                                <th width="5%" class="useless_row">Replies</th>
                             </tr>
                             <tr>
                                 <td><a href="/forums/sub/?sub=smbx">Super Mario Bros. X</a></td>
                                 <td id="smbx_last"></td>
-                                <td id="smbx_nb"></td>
-                                <td id="smbx_rnb"></td>
+                                <td class="useless_row" id="smbx_nb"></td>
+                                <td class="useless_row" id="smbx_rnb"></td>
                             </tr>
                             <tr>
                                 <td><a href="/forums/sub/?sub=smb">Super Mario Bros</a></td>
                                 <td id="smb_last"></td>
-                                <td id="smb_nb"></td>
-                                <td id="smb_rnb"></td>
+                                <td class="useless_row" id="smb_nb"></td>
+                                <td class="useless_row" id="smb_rnb"></td>
                             </tr>
                             <tr>
                                 <td><a href="/forums/sub/?sub=ssb">Super Smash Bros.</a></td>
                                 <td id="ssb_last"></td>
-                                <td id="ssb_nb"></td>
-                                <td id="ssb_rnb"></td>
+                                <td class="useless_row" id="ssb_nb"></td>
+                                <td class="useless_row" id="ssb_rnb"></td>
                             </tr>
                             <tr>
                                 <td><a href="/forums/sub/?sub=tloz">The Legend Of Zelda</a></td>
                                 <td id="tloz_last"></td>
-                                <td id="tloz_nb"></td>
-                                <td id="tloz_rnb"></td>
+                                <td class="useless_row" id="tloz_nb"></td>
+                                <td class="useless_row" id="tloz_rnb"></td>
                             </tr>
                             <tr>
                                 <td><a href="/forums/sub/?sub=met">Metroid</a></td>
                                 <td id="met_last"></td>
-                                <td id="met_nb"></td>
-                                <td id="met_rnb"></td>
+                                <td class="useless_row" id="met_nb"></td>
+                                <td class="useless_row" id="met_rnb"></td>
                             </tr>
                             <tr>
                                 <td><a href="/forums/sub/?sub=dkc">Donkey Kong Country</a></td>
                                 <td id="dkc_last"></td>
-                                <td id="dkc_nb"></td>
-                                <td id="dkc_rnb"></td>
+                                <td class="useless_row" id="dkc_nb"></td>
+                                <td class="useless_row" id="dkc_rnb"></td>
                             </tr>
                             <tr>
                                 <td><a href="/forums/sub/?sub=pkmn">Pokémon</a></td>
                                 <td id="pkmn_last"></td>
-                                <td id="pkmn_nb"></td>
-                                <td id="pkmn_rnb"></td>
+                                <td class="useless_row" id="pkmn_nb"></td>
+                                <td class="useless_row" id="pkmn_rnb"></td>
                             </tr>
                             <tr>
                                 <td><a href="/forums/sub/?sub=other">Other</a></td>
                                 <td id="other_last"></td>
-                                <td id="other_nb"></td>
-                                <td id="other_rnb"></td>
+                                <td class="useless_row" id="other_nb"></td>
+                                <td class="useless_row" id="other_rnb"></td>
                             </tr>
                         </table>
                     </div>
@@ -196,10 +196,48 @@ $conn = new PDO(
 
 $cats = array("smbx", "smb", "ssb", "tloz", "met", "dkc", "pkmn", "other");
 
+if (isset($_SESSION["username"])) {
+    echo "<script>loadAccount('" . $_SESSION["username"] . "')</script>";
+
+    $usr = $_SESSION['username'];
+    $sql = "SELECT id FROM users WHERE username = '$usr'";
+    $res = $conn->query($sql);
+    $res = $res->fetch();
+    $ur_id = $res['id'];
+
+    $sql = "SELECT * FROM notifications WHERE receiver_id = '$ur_id'";
+    $res = $conn->query($sql);
+    $notifs = $res->fetchAll();
+    $unread_notifs = 0;
+    foreach ($notifs as &$notif) {
+        if ($notif['notif_state'] == 'unread') {
+            $unread_notifs += 1;
+        };
+    };
+    if ($unread_notifs != 0) {
+        echo "<script>document.getElementById('notif_span').innerHTML+=' (" . $unread_notifs . ")'</script>";
+    };
+
+
+    $sql = "SELECT * FROM pms WHERE receiver_id = '$ur_id'";
+    $res = $conn->query($sql);
+    $msgs = $res->fetchAll();
+    $unread_msgs = 0;
+    foreach ($msgs as &$message) {
+        if ($message['msg_state'] == 'unread') {
+            $unread_msgs += 1;
+        };
+    };
+    if ($unread_msgs != 0) {
+        echo "<script>document.getElementById('chat_span').innerHTML+=' (" . $unread_msgs . ")'</script>";
+    };
+    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
+};
+
 foreach ($cats as &$category) {
 
     $sql = "SELECT * FROM topics WHERE category = '$category'";
-    $req = "SELECT DISTINCT * FROM topics WHERE category = '$category' ORDER BY id DESC";
+    $req = "SELECT DISTINCT * FROM topics WHERE category = '$category' ORDER BY last_activity DESC";
 
     $res = $conn->query($sql);
     $nb = $res->rowCount();
@@ -209,8 +247,12 @@ foreach ($cats as &$category) {
     $res = $conn->query($req);
     $res = $res->fetch();
     $last = $res['topic'];
-
     $last_id = $res['id'];
+    $poster_username = $res['poster_id'];
+    $sql = "SELECT username FROM users WHERE id ='$poster_username'";
+    $result = $conn->query($sql);
+    $result = $result->fetch();
+    $poster_username = $result['username'];
 
     $ids = array();
     foreach ($topics as &$value) {
@@ -221,8 +263,12 @@ foreach ($cats as &$category) {
     $replies = $conn->query($sql2);
     $replies = $replies->rowCount();
 
-    echo "<script>document.getElementById('".$category."_rnb').innerHTML=" . $replies . "</script>";
-    echo "<script>document.getElementById('".$category."_nb').innerHTML=" . $nb . "</script>";
-    echo "<script>document.getElementById('".$category."_last').innerHTML='<a href=/forums/topic/?topic=" . $last_id . ">" . $last . "</a>'</script>";
+    $sql = "SELECT * FROM replies WHERE topic_id = '$last_id'";
+    $res = $conn->query($sql);
+    $replies_nb = $res->rowCount();
+
+    echo "<script>document.getElementById('" . $category . "_rnb').innerHTML=" . $replies . "</script>";
+    echo "<script>document.getElementById('" . $category . "_nb').innerHTML=" . $nb . "</script>";
+    echo "<script>document.getElementById('" . $category . "_last').innerHTML=`<a href=/forums/topic/?topic=" . $last_id . ">" . $last . "</a> <span class=infos> (" . $replies_nb . ") by " . $poster_username . "</span>`</script>";
 };
 ?>

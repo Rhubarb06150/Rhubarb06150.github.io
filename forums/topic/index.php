@@ -11,9 +11,14 @@ $sql = "SELECT subject FROM posts WHERE id = '$id'";
 $result = $conn->query($sql);
 $exist = $result->rowCount();
 $result = $result->fetch();
-if (!(isset($_SESSION['username']))) {
-    header('Location:/login.php');
+
+if (!isset($_GET['page'])) {
+    $cur_page = 1;
+    header('Location:/forums/topic/?topic=' . $id . '&page=1');
+} else {
+    $cur_page = $_GET['page'];
 };
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,7 +131,9 @@ if (!(isset($_SESSION['username']))) {
                 </div>
             </form>
             <span class=little_section_title id='com_span'></span>
+            <div id="buttons"></div>
         </div>
+
     </div>
     <footer id="footer">
         <div class="footer_content">
@@ -197,6 +204,18 @@ if ($exist > 0) {
     $replies = $conn->query($sql);
     $replies_nb = $replies->rowCount();
     $replies = $replies->fetchAll();
+
+    $pages_nb = 1;
+    if ($replies_nb > 10) {
+        $pages_nb = ceil($replies_nb / 10);
+        $replies = array_slice($replies, ($cur_page - 1) * 10, 10);
+    };
+
+    if ($pages_nb > 1) {
+        for ($i = 1; $i < $pages_nb + 1; $i++) {
+            echo "<script>addPageButton('" . $i . "','forums/topic/?topic=','" . $id . "')</script>";
+        }
+    };
 
     if (isset($_SESSION['username'])) {
         $usr = $_SESSION['username'];

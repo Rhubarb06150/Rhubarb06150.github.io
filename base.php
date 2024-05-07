@@ -97,6 +97,11 @@ session_start();
             </div>
         </div>
         <div class="elements" id="elements">
+            <div class="element">
+                <div class="element_title"></div>
+                <div class="element_infos"></div>
+                <div class="element_content"></div>
+            </div>
         </div>
     </div>
     <footer id="footer">

@@ -105,7 +105,7 @@ if(isset($_SESSION['username'])){
                 <div class="element_infos">If you don't have any account you can create one on <a href="/signup.php">sign up page</a>. If you have any trouble with logging in, contact administrators.</div>
                 <div class="element_content">
                     <form method="post" action="actions/login.php">
-                        Username:<br>
+                        Username or address:<br>
                         <input type="text" id="username" name="username"><br><br>
 
                         Password:<br>

@@ -14,6 +14,16 @@
     flex-direction: column;
 }
 
+.useless_row {
+    color:inherit;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    line-break: anywhere;
+}
+
 .line {
     width: 100%;
     border-top: 1px #404040 solid;
@@ -23,6 +33,15 @@
     #website-logo {
         width: auto;
         height: auto;
+    }
+
+    .grid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .useless_row {
+        display: none;
     }
 }
 
@@ -39,7 +58,7 @@
     margin-left: 2px;
     display: flex;
     margin-bottom: 32px;
-    width: calc(100% - 5px);
+    width: calc(100% - 15px);
 }
 
 .sidebar {
@@ -82,11 +101,6 @@ input {
     color: #ffffff;
 }
 
-h2 {
-    font-family: Verdana, Helvetica, Arial, Sans-Serif;
-    font-size: 120%;
-}
-
 .entry_and_labels {
     display: flex;
     flex-direction: row;
@@ -97,12 +111,12 @@ h2 {
     padding: 5px;
     border: #884343 2px solid;
     display: inline-block;
-    color:#ffffff;
+    color: #ffffff;
 }
 
 .button:hover {
+    filter: brightness(150%) saturate(200%);
     border: #ffffff 2px solid;
-    background-color: #884343;
 }
 
 .section_title {
@@ -113,8 +127,7 @@ h2 {
     font-family: Verdana, Helvetica, Arial, Sans-Serif;
     color: #ffffff;
     font-size: 175%;
-    filter: drop-shadow(#00000050 2px 2px 0px);
-    text-decoration: underline;
+    /* filter: drop-shadow(#000000 0px 0px 5px);*/
     width: max-content;
 }
 
@@ -133,7 +146,7 @@ h2 {
 
 .elements {
     display: flex;
-    width:100%;
+    width: 100%;
     flex-direction: column;
 }
 
@@ -148,7 +161,7 @@ h2 {
 }
 
 .reply {
-    border-top: #884343 2px solid;
+    border-top: #554343 2px solid;
 }
 
 .element_title {
@@ -221,6 +234,7 @@ th {
 td {
     border: #884343 2px solid;
     text-align: center;
+    padding: 5px;
 }
 
 .green {
@@ -234,15 +248,17 @@ td {
 }
 
 .website_img {
-    width: 88;
-    height: 31;
+    width: 88px;
+    height: 31px;
     filter: saturate(50%) contrast(75%);
-    border: #000000 1px solid;
+    margin: 0px;
+    padding: 0px;
 }
 
 .website_img:hover {
     filter: contrast(100%);
-    border: #ffffff 1px solid;
+    width: 92px;
+    height: 33px;
 }
 
 .menu_options {
@@ -254,6 +270,7 @@ td {
     display: flex;
     margin-left: 8px;
     flex-direction: column;
+    line-break: anywhere;
 }
 
 .menu_options_websites {
@@ -281,12 +298,19 @@ a {
     color: #ffff00;
     text-decoration: none;
     cursor: pointer;
+    margin: 0px;
+    padding: 0px;
+}
+
+a:link {
+    color: #ffff00;
+    text-decoration: none;
+
 }
 
 a:visited {
     color: #ffff00;
     text-decoration: none;
-    font-weight: bold;
 }
 
 .infos {

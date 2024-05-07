@@ -168,7 +168,7 @@ if ($cat == 'smbx') {
     $category = 'Super Smash Bros.';
 };
 
-$sql="SELECT * FROM topics WHERE category = '$category_url'";
+$sql="SELECT * FROM topics WHERE category = '$category_url' ORDER BY last_activity DESC";
 $res=$conn->query($sql);
 $topics=$res->fetchAll();
 $topics_nb=$res->rowCount();

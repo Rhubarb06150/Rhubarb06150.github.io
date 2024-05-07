@@ -50,5 +50,5 @@ if (isset($_SESSION["username"])) {
     if ($unread_msgs != 0) {
         echo "<script>document.getElementById('chat_span').innerHTML+=' (" . $unread_msgs . ")'</script>";
     };
-    echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
+    // echo "<script>loadTheme('" . $_SESSION["theme"] . "');</script>";
 };

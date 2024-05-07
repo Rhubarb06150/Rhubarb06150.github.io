@@ -34,7 +34,7 @@ if (isset($_POST["post_pfp"])) {
     }
 };
 
-if ($_FILES["picture"]["size"] > 131072) {
+if ($_FILES["picture"]["size"] > 524288) {
     header('Location:/failure.php?act=pfp_size');
     exit();
 }
