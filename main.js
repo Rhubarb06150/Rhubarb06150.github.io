@@ -49,10 +49,20 @@ minia_preview.addEventListener("click",function(){
 	//minia_bg=document.getElementById('minia_bg');
 	let minia=document.getElementById('minia-'+link);
 	//minia_bg.style.display="block";
-	minia.style.width="100vw";
-	minia.style.height="100vh";
+	minia.style.width="80vw";
+	minia.zindex="101";
 	minia.style.position="absolute";
-	minia.style.top="0px";
-	minia.style.left="0px";
+	minia.style.top="5vh";
+	minia.style.left="10vw";
+	document.addEventListener("scroll",function(){/*POUR QUE LA MINIA SUIVE LE SCROLL*/
+		exit_minia=document.getElementById("minia-"+link);
+		exit_minia.style.top="calc("+window.scrollY+"px + 5vh)";
+				
+		/* minia_bg=document.getElementById("minia_bg");
+		minia_bg.style.top=window.scrollY+"px"; */
+
+		minia=document.getElementById("minia");
+		minia.style.top="calc(5vh + "+window.scrollY+"px)";
+	});
 });
 }

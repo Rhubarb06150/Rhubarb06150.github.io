@@ -24,7 +24,7 @@ iframe:hover{filter:saturate(100%);}
 .pfp{border-radius:100%;height:64px}
 .button{border-radius:2rem;display:flex;flex-direction:row;padding:15px;margin-bottom:30px;transition:250ms;cursor:pointer;}
 .button:hover p{transition:250ms;padding-left:10px;}
-.minia-preview{height:128px;filter:saturate(0%);transition:250ms;}
+.minia-preview{width:256px;filter:saturate(0%);transition:250ms;}
 .minia-preview:hover{filter:saturate(100%);box-shadow:#000 0px 0px 10px}
 .minia-bg{width:100vw;height:100vh;backdrop-filter:brightness(10%);position:absolute;top:0px;left:0px;z-index:100;}
 .minia{width:80vw;position:absolute;top:0px;left:10vw;z-index:101;}
