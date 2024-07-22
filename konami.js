@@ -7,7 +7,7 @@ document.addEventListener('keydown',function(e){
 	if (key==requiredKey){
 	konamiCodePosition++;
 	if (konamiCodePosition==konamiCode.length) {
-	document.body.style.background="url(/files/image-1.png)";
+	document.body.style.background="url(/files/alt-bg.webp)";
 	konamiCodePosition = 0;
 	};
 }else{
