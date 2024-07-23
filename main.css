@@ -1,10 +1,11 @@
-html,body{padding:0px;margin:0px;background:url(/files/bg.png) fixed;background-size:cover;}
+html{padding:0px}
+body{padding:0px;margin:0px;background:url(/files/bg.png) fixed;background-size:cover;}
 p,h1,h2,a{font-family:"PUTE";color:#fff;margin:0px;/*filter:drop-shadow(#000 0px 0px 4px)*/}
 p,a{transition:250ms;font-size:30px;text-align:left;}
 .b-out{text-shadow:-2px -2px 0 #000,0 -2px 0 #000,2px -2px 0 #000,2px 0 0 #000,2px 2px 0 #000,0 2px 0 #000,-2px 2px 0 #000,-2px 0 0 #000;};
 a{text-decoration:none;transition:250ms;}
 a:hover{transition:250ms;padding-left:10px;}
-.content{width:640px;background:radial-gradient(circle, #ffdd59 50%, #ffc443 100%);min-height:100vh;margin-bottom:-20px;padding:0px;box-shadow:#000 0px 0px 50px;margin-bottom:-35px;}
+.content{width:640px;background:radial-gradient(circle, #ffdd59 50%, #ffc443 100%);min-height:100vh;margin-bottom:-20px;padding:0px;box-shadow:#000 0px 0px 50px;margin-bottom:-35px;z-index:99}
 .a-link{height:100%;text-align:center;font-size:40px;margin-left:20px;}
 .a-link:hover{margin-right:-10px;}
 ul{list-style:none;text-align:left;width:max-content;display:flex;flex-direction:column;}
@@ -30,3 +31,5 @@ iframe:hover{filter:saturate(100%);}
 .minia{width:80vw;position:absolute;top:0px;left:10vw;z-index:101;}
 .minia-op{transition: opacity 500ms;}
 .exit-minia{position:absolute;top:0px;left:0px;z-index:101;}
+@keyframes bg-anim{0%{left:0px;top:-162px;}100%{left:-209px;top:0px;}}
+.rhb-bg{position:fixed;width:calc(100vw + 209px);height:calc(100vh + 162px);z-index:-99;animation:bg-anim 0.8s linear infinite;background:url(/files/alt-bg.webp);min-height:100vh;top:0px;}

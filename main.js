@@ -31,13 +31,13 @@ minia.style.display="block";
 exit_minia.style.display="block";
 minia.src="/minias/"+link+".png";
 }
-function hideThumbnail(){
-minia_bg=document.getElementById('minia_bg');
-minia=document.getElementById('minia');
+function hideThumbnail(link){
+minia=document.getElementById('minia-'+link);
 exit_minia=document.getElementById('exit-minia');
 //minia_bg.style.display="none";
 document.getElementById('minia-op').style.opacity="0.0";
 exit_minia.display="none";
+minia.style.position="block";
 }
 function addThumbnail(link){
 let minia_preview=document.createElement("img");
@@ -57,7 +57,6 @@ minia_preview.addEventListener("click",function(){
 	document.addEventListener("scroll",function(){/*POUR QUE LA MINIA SUIVE LE SCROLL*/
 		exit_minia=document.getElementById("minia-"+link);
 		exit_minia.style.top="calc("+window.scrollY+"px + 5vh)";
-				
 		/* minia_bg=document.getElementById("minia_bg");
 		minia_bg.style.top=window.scrollY+"px"; */
 

@@ -6,9 +6,10 @@ document.addEventListener('keydown',function(e){
 	var requiredKey=konamiCode[konamiCodePosition];
 	if (key==requiredKey){
 	konamiCodePosition++;
-	if (konamiCodePosition==konamiCode.length) {
-	document.body.style.background="url(/files/alt-bg.webp)";
-	konamiCodePosition = 0;
+	if (konamiCodePosition==konamiCode.length){
+		console.log("Salut Rhubarb :D");
+		document.getElementById('rhb-bg').removeAttribute("hidden");
+		konamiCodePosition=0;
 	};
 }else{
 konamiCodePosition = 0;

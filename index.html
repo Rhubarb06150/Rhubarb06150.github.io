@@ -58,16 +58,15 @@
 			document.addEventListener("scroll",function(){/*POUR QUE LA MINIA SUIVE LE SCROLL*/
 				exit_minia=document.getElementById("exit-minia");
 				exit_minia.style.top=window.scrollY+"px";
-				
 				/* minia_bg=document.getElementById("minia_bg");
 				minia_bg.style.top=window.scrollY+"px"; */
-
 				minia=document.getElementById("minia");
 				minia.style.top="calc(5vh + "+window.scrollY+"px)";
 			});
 		</script>
 	</div>
 </div>
+<div class=rhb-bg id=rhb-bg hidden></div>
 </center>
 </body>
 </html>
