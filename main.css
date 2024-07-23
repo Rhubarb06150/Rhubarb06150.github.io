@@ -32,4 +32,4 @@ iframe:hover{filter:saturate(100%);}
 .minia-op{transition: opacity 500ms;}
 .exit-minia{position:absolute;top:0px;left:0px;z-index:101;}
 @keyframes bg-anim{0%{left:0px;top:-162px;}100%{left:-209px;top:0px;}}
-.rhb-bg{position:fixed;width:calc(100vw + 209px);height:calc(100vh + 162px);z-index:-99;animation:bg-anim 0.8s linear infinite;background:url(/files/alt-bg.webp);min-height:100vh;top:0px;}
+.rhb-bg{position:fixed;width:calc(100vw + 209px);height:calc(100vh + 162px);z-index:-99;animation:bg-anim 1s linear infinite;background:url(/files/alt-bg.webp);min-height:100vh;top:0px;}
