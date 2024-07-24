@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<link rel="icon" href="files/graphics/icon.png">
-	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="/main.css">
 	<meta charset="UTF-8">
 	<script src="/main.js"></script>
 	<script src="/konami.js"></script>
@@ -15,14 +15,14 @@
 </header> -->
 <body>
 	<center>
-	<div class=content>
-	<img src="files/graphics/logo.png" class=website-logo>
+	<div class="content">
+	<img src="/logo.png" class="website-logo">
 	<h1 class="b-out" style="margin-bottom:25px">Notre dernière vidéo:</h1>
-	<div class=video-box width="80%">
-	<iframe id=last-video>
-	src="https://www.youtube.com/embed/1RJGCCtRGXM"><!-- LIEN DE LA VIDÉO DANS SRC -->
+	<div class="video-box" width="80%">
+	<iframe id="last-video">
+	src="https://www.youtube.com/embed/t7kN87RrJVc"&gt;&lt;!-- LIEN DE LA VIDÉO DANS SRC --&gt;
 	</iframe>
-	<p id=video-name style="width:max-content;" class=ytb-font>SUPER MAMIE EST DE RETOUR ! - [Gang Beasts #2]<!-- NOM DE LA VID2O --></p>
+	<p id="video-name" style="width:max-content;" class="ytb-font">SUPER MAMIE EST DE RETOUR ! - [Gang Beasts #2]<!-- NOM DE LA VID2O --></p>
 	<!-- <div class=stats-video>
 	<div class=rows><img id="channel-img" class=pfp><p id=subs-nb>0</p></div>
 	<div class="rows thumb"><img src="/files/thumb.png" height="22px"><p id=likes-nb style="margin-left:10px;height:max-content;font-family:YTB;font-size:20px"></p></div>
@@ -38,22 +38,26 @@
 	document.getElementById("channel-img").src=source;
 	};
 	getCH();*/
-	aB("files/graphics/icons/dis.png","https://discord.gg/DqV3RGjtTe","#5865f2","#3f67Af","Discord");
-	aB("files/graphics/icons/tik.png","https://www.tiktok.com/@puteressestv_off","#444","#000","TikTok");
-	aB("files/graphics/icons/ins.png","https://www.instagram.com/puteressestv/","#f2586a","#a63faf","Instagram");
-	aB("files/graphics/icons/you.png","https://www.youtube.com/@PuteressesTV","#f25858","#af3f3f","YouTube");
-	aB("files/graphics/icons/twi.png","https://twitter.com/PuteressesTv","#58def2","#3f13af","Twitter");
+	aB("files/icons/dis.png","https://discord.gg/DqV3RGjtTe","#5865f2","#1d458d","Discord");
+	aB("files/icons/tik.png","https://www.tiktok.com/@puteressestv_off","#433","#000","TikTok");
+	aB("files/icons/ins.png","https://www.instagram.com/puteressestv/","#f2586a","#a63faf","Instagram");
+	aB("files/icons/you.png","https://www.youtube.com/@PuteressesTV","#f25858","#d22","YouTube");
+	aB("files/icons/twi.png","https://twitter.com/PuteressesTv","#58def2","#569be1","Twitter");
 	</script>
-	</div>
-	<h1 class="b-out" style="margin-bottom:15px">Minia gallery</h1>
+	<center>
+	<h1 style="text-align:center;margin-bottom:10px;" class="b-out">Contact Pro:</h1><br>
+	<p style="text-align:center;margin-bottom:30px;font-size:20px;padding:25px" class="b-out-smaller">Pour toute demande professionnelle ou collaboration commercialle, veuillez nous écrire à:<br>
+	<a href="mailto:contact.ptv@gmail.com" class="mail">contact.ptv@gmail.com</a></p>
+	</center>
+	<h1 class="b-out" style="margin-bottom:15px">Minia gallery:</h1>
 	<div id="gallery" class="gallery">
-		<div id="minia_bg" class="minia-bg" hidden></div>
+		<div id="minia_bg" class="minia-bg" hidden=""></div>
 		<div class="minia-op" id="minia-op"><img id="minia" class="minia"></div>
-		<img id=exit-minia class=exit-minia src="/files/exit.png" hidden>
+		<img id="exit-minia" class="exit-minia" src="/exit.png" hidden="">
 		<script>
 			minias=["GangBeast2","ContentWarning1","Worms1","TrickyTower1","ChainedTogether1"];/* NOM DE LA MINIA SANS LE CHEMIN ET SANS LE .WEBP */
 			for(const minia of minias){
-				addThumbnail(minia);
+				//addThumbnail(minia);
 			};
 			document.addEventListener("scroll",function(){/*POUR QUE LA MINIA SUIVE LE SCROLL*/
 				exit_minia=document.getElementById("exit-minia");
@@ -65,8 +69,15 @@
 			});
 		</script>
 	</div>
+	<div class="car">
+	<img class="car-piece" src="/minias/Worms1.webp">
+	<div id="minia-left"></div>
+	<div id="minia-right"></div>
+	</div>
+<p style="font-size:20px;text-align:center;margin-bottom:10px">Site réalisé par Rhubarb</p>
 </div>
-<div class=rhb-bg id=rhb-bg hidden></div>
+<div class="rhb-bg" id="rhb-bg" hidden=""></div>
 </center>
-</body>
-</html>
+
+
+</body></html>

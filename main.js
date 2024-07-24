@@ -18,6 +18,7 @@ let p_link=document.createElement('p');
 p_link.style.marginTop="16px";
 p_link.style.marginLeft="32px";
 p_link.innerHTML=text;
+p_link.style.fontSize="30px";
 button.appendChild(img_div);
 button.appendChild(p_link);
 document.getElementById('main').appendChild(button);
