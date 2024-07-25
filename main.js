@@ -23,46 +23,17 @@ button.appendChild(img_div);
 button.appendChild(p_link);
 document.getElementById('main').appendChild(button);
 };
-function showThumbnail(link){
-minia_bg=document.getElementById('minia_bg');
-minia=document.getElementById('minia');
-exit_minia=document.getElementById('exit-minia');
-minia_bg.style.display="block";
-minia.style.display="block";
-exit_minia.style.display="block";
-minia.src="/minias/"+link+".png";
+/*
+function slideMinia(from,to,direction){
+let ind_minia_to;
+let ind_minia_from=minia_index;
+let minia_to=document.getElementById('minia-to');
+let minia_from=document.getElementById('minia-from');
+minia_to.src="minias/pr"+minias[ind_minia_to]+".webp";
+minia_from.src="/minias/pr"+minias[ind_minia_from]+".webp";
+if(direction="left"){
+if(minia_index==0){ind_minia_to=minias.length;};
+}else{
 }
-function hideThumbnail(link){
-minia=document.getElementById('minia-'+link);
-exit_minia=document.getElementById('exit-minia');
-//minia_bg.style.display="none";
-document.getElementById('minia-op').style.opacity="0.0";
-exit_minia.display="none";
-minia.style.position="block";
-}
-function addThumbnail(link){
-let minia_preview=document.createElement("img");
-minia_preview.classList="minia-preview";
-minia_preview.id="minia-"+link;
-minia_preview.src="/minias/"+link+".webp";
-document.getElementById('gallery').appendChild(minia_preview);
-minia_preview.addEventListener("click",function(){
-	//minia_bg=document.getElementById('minia_bg');
-	let minia=document.getElementById('minia-'+link);
-	//minia_bg.style.display="block";
-	minia.style.width="80vw";
-	minia.zindex="101";
-	minia.style.position="absolute";
-	minia.style.top="5vh";
-	minia.style.left="10vw";
-	document.addEventListener("scroll",function(){/*POUR QUE LA MINIA SUIVE LE SCROLL*/
-		exit_minia=document.getElementById("minia-"+link);
-		exit_minia.style.top="calc("+window.scrollY+"px + 5vh)";
-		/* minia_bg=document.getElementById("minia_bg");
-		minia_bg.style.top=window.scrollY+"px"; */
-
-		minia=document.getElementById("minia");
-		minia.style.top="calc(5vh + "+window.scrollY+"px)";
-	});
-});
-}
+};
+*/

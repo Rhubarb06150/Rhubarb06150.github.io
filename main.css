@@ -17,25 +17,18 @@ ul{list-style:none;text-align:left;width:max-content;display:flex;flex-direction
 li{display:flex;justify-content:center;align-items:center;text-align:left;width:max-content;margin-bottom:45px;}
 header{width:100%;padding:10px;}
 .website-logo{width:70%;/*animation: color_idle 16s infinite;*/margin-top:25px;margin-bottom:50px}
-iframe{outline:none;border:none;border-radius:1rem;transition:250ms;filter:saturate(55%);width:90%;padding-top:10px}
+iframe{outline:none;border:none;border-radius:1rem;transition:250ms;filter:saturate(55%);width:100%;height:400px;}
 iframe:hover{filter:saturate(100%);}
 @font-face{font-family:PUTE;src:url(files/Pute.ttf);}
 @font-face{font-family:YTB;src:url(files/Roboto.ttf);}
 /*@keyframes color_idle{0%,100%{filter:drop-shadow(#fff 0px 0px 20px)}50%{filter:drop-shadow(#fff 0px 0px 0px)}}*/
-.video-box{background:#0f0f0f;border-radius:1rem;}
+.video-box{background:#0f0f0f;border-radius:1rem;width:90%;}
 .ytb-font{font-family:"YTB";padding:10px;font-size:20px;width:100%;text-align:left;}
-.stats-video{display:flex;flex-direction:row;justify-content:space-between;padding:10px;font-family:"YTB";color:#fff}
 .rows{display:flex;flex-direction:row;height:max-content;}
 .thumb{font-family:"YTB";width:max-content;background:#454545;border-radius:2rem;padding:5px;height:max-content;padding-right:15px;padding-left:15px;}
 .pfp{border-radius:100%;height:64px}
 .button{border-radius:2rem;display:flex;flex-direction:row;padding:15px;margin-bottom:30px;transition:250ms;cursor:pointer;color:#fff;}
 .button:hover p{transition:250ms;padding-left:10px;}
-.minia-preview{width:256px;filter:saturate(0%);transition:250ms;}
-.minia-preview:hover{filter:saturate(100%);box-shadow:#000 0px 0px 10px}
-.minia-bg{width:100vw;height:100vh;backdrop-filter:brightness(10%);position:absolute;top:0px;left:0px;z-index:100;}
-.minia{width:80vw;position:absolute;top:0px;left:10vw;z-index:101;}
-.minia-op{transition: opacity 500ms;}
-.exit-minia{position:absolute;top:0px;left:0px;z-index:101;}
 @keyframes bg-anim{0%{left:0px;top:-162px;}100%{left:-418px;top:0px;}}
 .rhb-bg{position:fixed;width:calc(100vw + 418px);height:calc(100vh + 162px);z-index:-99;animation:bg-anim 1s linear infinite;background:url(/files/alt-bg.png);min-height:100vh;top:0px;}
 .car{width:80%;border-radius:1rem;display:flex;flex-direction:row;align-items:center;}

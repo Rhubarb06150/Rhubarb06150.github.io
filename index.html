@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-	<link rel="icon" href="files/graphics/icon.png">
+	<link rel="icon" href="files/icon.png">
 	<link rel="stylesheet" href="/main.css">
 	<meta charset="UTF-8">
 	<script src="/main.js"></script>
@@ -19,8 +19,7 @@
 	<img src="/logo.png" class="website-logo">
 	<h1 class="b-out" style="margin-bottom:25px">Notre dernière vidéo:</h1>
 	<div class="video-box" width="80%">
-	<iframe id="last-video"
-	src="https://www.youtube.com/embed/1RJGCCtRGXM" <!-- LIEN DE LA VIDÉO DANS SRC -->
+	<iframe src="https://www.youtube.com/embed/1RJGCCtRGXM"> <!-- LIEN DE LA VIDÉO DANS SRC -->
 	</iframe>
 	<p id="video-name" style="width:max-content;" class="ytb-font">SUPER MAMIE EST DE RETOUR ! - [Gang Beasts #2]<!-- NOM DE LA VID2O --></p>
 	</div>
@@ -43,17 +42,18 @@
 			minias=["GangBeast2","ContentWarning1","Worms1","TrickyTower1","ChainedTogether1"];/* NOM DE LA MINIA SANS LE CHEMIN ET SANS LE .WEBP */
 		</script>
 	</div>
-	<div class="car" style="margin-bottom:30px;">
-		<div id="arr-left" class=arrow style="background:url(/files/arrow_l.png)"></div>
-		<img class="car-piece" id="minia-pr">
+	<div class=car style="margin-bottom:30px;">
+		<div id=arr-left class=arrow style="background:url(/files/arrow_l.png)"></div>
+		<img id=minia-tr class=minia-tr>
+		<img class=car-piece id=minia-pr>
 		<script>document.getElementById('minia-pr').src="/minias/pr"+minias[0]+".webp";</script>
-		<div id="arr-right" class=arrow style="background:url(/files/arrow_r.png)"></div>
+		<div id=arr-right class=arrow style="background:url(/files/arrow_r.png)"></div>
 		<script>
 		document.getElementById('arr-left').addEventListener("click",function(){
 			if(minia_index>0){
 				minia_index--;
 			}else{
-				minia_index=minias.length;
+				minia_index=minias.length-1;
 			};
 			document.getElementById('minia-pr').src="/minias/pr"+minias[minia_index%(minias.length)]+".webp";
 			document.getElementById('index').innerHTML="Minia: "+minias[minia_index%minias.length];
@@ -68,7 +68,7 @@
 	<p id="index" style="text-align:center;">Minia: </p>
 	<script>document.getElementById('index').innerHTML+=minias[0];</script>
 	<p style="text-align:center;margin-bottom:30px;font-size:20px;padding:25px" class="b-out-smaller">Pour toute demande professionnelle ou collaboration commercialle, veuillez nous écrire à:<br>
-	<a href="mailto:contact.ptv@gmail.com" class="mail">contact.ptv@gmail.com</a></p>
+	<a href="mailto:contact.puteressestv@gmail.com" class="mail">contact.puteressestv@gmail.com</a></p>
 
 <p style="font-size:20px;text-align:center;margin-bottom:10px">Site réalisé par Rhubarb</p>
 </div>
