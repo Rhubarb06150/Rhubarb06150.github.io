@@ -17,12 +17,12 @@ ul{list-style:none;text-align:left;width:max-content;display:flex;flex-direction
 li{display:flex;justify-content:center;align-items:center;text-align:left;width:max-content;margin-bottom:45px;}
 header{width:100%;padding:10px;}
 .website-logo{width:70%;/*animation: color_idle 16s infinite;*/margin-top:25px;margin-bottom:50px}
-iframe{outline:none;border:none;border-radius:1rem;margin-top:10px;margin-bottom:10px;margin:0px;padding:0px;transition:250ms;filter:saturate(55%);width:100%;}
+iframe{outline:none;border:none;border-radius:1rem;transition:250ms;filter:saturate(55%);width:90%;padding-top:10px}
 iframe:hover{filter:saturate(100%);}
 @font-face{font-family:PUTE;src:url(files/Pute.ttf);}
 @font-face{font-family:YTB;src:url(files/Roboto.ttf);}
 /*@keyframes color_idle{0%,100%{filter:drop-shadow(#fff 0px 0px 20px)}50%{filter:drop-shadow(#fff 0px 0px 0px)}}*/
-.video-box{background:#0f0f0f;border-radius:1rem;width:max-content;}
+.video-box{background:#0f0f0f;border-radius:1rem;}
 .ytb-font{font-family:"YTB";padding:10px;font-size:20px;width:100%;text-align:left;}
 .stats-video{display:flex;flex-direction:row;justify-content:space-between;padding:10px;font-family:"YTB";color:#fff}
 .rows{display:flex;flex-direction:row;height:max-content;}
@@ -37,6 +37,7 @@ iframe:hover{filter:saturate(100%);}
 .minia-op{transition: opacity 500ms;}
 .exit-minia{position:absolute;top:0px;left:0px;z-index:101;}
 @keyframes bg-anim{0%{left:0px;top:-162px;}100%{left:-418px;top:0px;}}
-.rhb-bg{position:fixed;width:calc(100vw + 418px);height:calc(100vh + 162px);z-index:-99;animation:bg-anim 1s linear infinite;background:url(/files/alt-bg.webp);min-height:100vh;top:0px;}
-.car{width:80%;border:#fff 1px solid;border-radius:1rem;}
-.car-piece{width:100%;border-radius:1rem;}
+.rhb-bg{position:fixed;width:calc(100vw + 418px);height:calc(100vh + 162px);z-index:-99;animation:bg-anim 1s linear infinite;background:url(/files/alt-bg.png);min-height:100vh;top:0px;}
+.car{width:80%;border-radius:1rem;display:flex;flex-direction:row;align-items:center;}
+.car-piece{width:80%;border-radius:1rem;border:#fff 1px solid;}
+.arrow{background-image:url("/files/arrow.png");width:32px;height:32px;margin:0px;padding:0px;z-index:102;margin:16px;cursor:pointer;}
