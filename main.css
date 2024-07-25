@@ -36,3 +36,5 @@ iframe{outline:none;border:none;border-radius:1rem;transition:250ms;width:100%;h
 .car{width:80%;border-radius:1rem;display:flex;flex-direction:row;align-items:center;}
 .car-piece{width:80%;border-radius:1rem;border:#fff 1px solid;}
 .arrow{background-image:url("/files/arrow.png");width:32px;height:32px;margin:0px;padding:0px;z-index:102;margin:16px;cursor:pointer;}
+ul{margin:16px;}
+li{margin:0px;}
