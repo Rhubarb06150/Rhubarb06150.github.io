@@ -1,4 +1,5 @@
 *{font-weight:100;}
+.maite{position:absolute;margin-left:32px;top:64px;width:128px;height:128px;}
 html{padding:0px;}
 body{padding:0px;margin:0px;background:url(/files/bg.png) fixed;background-size:250;image-rendering:auto;}
 p,h1,h2,a{font-family:"PUTE";color:#fff;margin:0px;/*filter:drop-shadow(#000 0px 0px 4px)*/}

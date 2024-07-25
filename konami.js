@@ -7,6 +7,8 @@ document.addEventListener('keydown',function(e){
 	if (key==requiredKey){
 	konamiCodePosition++;
 	if (konamiCodePosition==konamiCode.length){
+		bonus=new Audio("/files/rhb.mp3");
+		bonus.play();
 		console.log("Salut Rhubarb :D");
 		document.getElementById('rhb-bg').removeAttribute("hidden");
 		konamiCodePosition=0;
