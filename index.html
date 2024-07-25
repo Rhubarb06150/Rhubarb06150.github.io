@@ -15,9 +15,9 @@
 </header> -->
 <body>
 	<center>
-	<div class="content">
-	<img src="/logo.png" class="website-logo">
-	<img src="/files/maite.png" class="maite">
+	<div class="content" id=box>
+	<img src="/logo.webp" class="website-logo">
+	<img id=maite src="/files/maite.png" class="maite">
 	<h1 class="b-out" style="margin-bottom:25px">Notre dernière vidéo:</h1>
 	<div class="video-box" width="80%">
 	<iframe src="https://www.youtube.com/embed/t7kN87RrJVc"> <!-- LIEN DE LA VIDÉO DANS SRC -->
@@ -25,7 +25,7 @@
 	<p id="video-name" style="width:max-content;" class="ytb-font">ON FAIT LE BUZZ, OBJECTIF 3000 VUES - [Content Warning]<!-- NOM DE LA VID2O --></p>
 	</div>
 	<h1 style="margin:45px;" class="b-out">Nos réseaux:</h1>
-	<div id="main" style="padding-bottom:30px;">
+	<div id="main">
 	<script>
 	aB("files/icons/dis.png","https://discord.gg/DqV3RGjtTe","#5865f2","#1d458d","Discord");
 	aB("files/icons/tik.png","https://www.tiktok.com/@puteressestv_off","#433","#000","TikTok");
@@ -40,7 +40,8 @@
 		<img id="exit-minia" class="exit-minia" src="/exit.png" hidden="">
 		<script>
 			minia_index=0;
-			minias=["GangBeast2","ContentWarning1","Worms1","TrickyTower1","ChainedTogether1"];/* NOM DE LA MINIA SANS LE CHEMIN ET SANS LE .WEBP */
+			minias_names=["Gang Beasts #2","Content Warning #1"];
+			minias=["GangBeast2","ContentWarning1"];/* NOM DE LA MINIA SANS LE CHEMIN ET SANS LE .WEBP */
 		</script>
 	</div>
 	<div class=car style="margin-bottom:30px;">
@@ -57,21 +58,23 @@
 				minia_index=minias.length-1;
 			};
 			document.getElementById('minia-pr').src="/minias/pr"+minias[minia_index%(minias.length)]+".webp";
-			document.getElementById('index').innerHTML="Minia: "+minias[minia_index%minias.length];
+			document.getElementById('index').innerHTML="Miniature "+minias_names[minia_index%minias.length];
 		});	
 		document.getElementById('arr-right').addEventListener("click",function(){
 			minia_index++;
 			document.getElementById('minia-pr').src="/minias/pr"+minias[minia_index%minias.length]+".webp";
-			document.getElementById('index').innerHTML="Minia: "+minias[minia_index%minias.length];
+			document.getElementById('index').innerHTML="Miniature "+minias_names[minia_index%minias.length];
 		});
 		</script>
 	</div>
-	<p id="index" style="text-align:center;">Minia: </p>
-	<script>document.getElementById('index').innerHTML+=minias[0];</script>
-	<p style="text-align:center;margin-bottom:30px;font-size:20px;padding:25px" class="b-out-smaller">Pour toute demande professionnelle ou collaboration commercialle, veuillez nous écrire à:<br>
+	<p id="index" style="text-align:center;font-size:25px;"></p>
+	<script>document.getElementById('index').innerHTML+="Miniature "+minias_names[0];</script>
+	<div style="background:#2e2e2e;margin-top:30px;">
+	<p style="text-align:center;font-size:20px;padding:25px" class="b-out-smaller">Pour toute demande professionnelle ou collaboration commercialle, veuillez nous écrire à:<br>
 	<a href="mailto:contact.puteressestv@gmail.com" class="mail">contact.puteressestv@gmail.com</a></p>
 
-<p style="font-size:20px;text-align:center;margin-bottom:10px">Site réalisé par Rhubarb</p>
+<p style="font-size:20px;text-align:center;padding-bottom:10px">Site réalisé par <a href="rhb.html" class=mail>Rhubarb</a></p>
+</div>
 </div>
 <div class="rhb-bg" id="rhb-bg" hidden=""></div>
 </center>

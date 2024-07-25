@@ -1,5 +1,6 @@
 *{font-weight:100;}
-.maite{position:absolute;margin-left:32px;top:64px;width:128px;height:128px;}
+@keyframes maite-anim{0%{transform:rotate(32deg) scale(1,1);}50%{transform:rotate(-32deg) scale(1.2,1);}100%{transform:rotate(32deg) scale(1,1)}}
+.maite{position:absolute;margin-left:48px;top:64px;width:128px;height:128px;animation: maite-anim 2s infinite}
 html{padding:0px;}
 body{padding:0px;margin:0px;background:url(/files/bg.png) fixed;background-size:250;image-rendering:auto;}
 p,h1,h2,a{font-family:"PUTE";color:#fff;margin:0px;/*filter:drop-shadow(#000 0px 0px 4px)*/}
@@ -11,15 +12,15 @@ p{font-size:30px;s}
 .b-out-smaller{text-shadow:-1px -1px 0 #000,0 -1px 0 #000,1px -1px 0 #000,1px 0 0 #000,1px 1px 0 #000,0 1px 0 #000,-1px 1px 0 #000,-1px 0 0 #000;};
 a{text-decoration:none;transition:250ms;}
 .btn-link:hover{transition:250ms;padding-left:10px;}
-.content{width:780px;background:#212121;min-height:100vh;margin-bottom:-20px;padding:0px;box-shadow:#000 0px 0px 50px;margin-bottom:-35px;z-index:99}
+.content{width:780px;background:#212121;min-height:100vh;margin-bottom:-20px;padding:0px;box-shadow:#000 0px 0px 50px;z-index:99}
 .a-link{height:100%;text-align:center;font-size:40px;margin-left:20px;}
 .a-link:hover{margin-right:-10px;}
 ul{list-style:none;text-align:left;width:max-content;display:flex;flex-direction:column;}
 li{display:flex;justify-content:center;align-items:center;text-align:left;width:max-content;margin-bottom:45px;}
 header{width:100%;padding:10px;}
 .website-logo{width:70%;/*animation: color_idle 16s infinite;*/margin-top:25px;margin-bottom:50px}
-iframe{outline:none;border:none;border-radius:1rem;transition:250ms;filter:saturate(55%);width:100%;height:400px;}
-iframe:hover{filter:saturate(100%);}
+iframe{outline:none;border:none;border-radius:1rem;transition:250ms;width:100%;height:400px;}
+/*iframe:hover{filter:saturate(100%);}*/
 @font-face{font-family:PUTE;src:url(files/Pute.ttf);}
 @font-face{font-family:YTB;src:url(files/Roboto.ttf);}
 /*@keyframes color_idle{0%,100%{filter:drop-shadow(#fff 0px 0px 20px)}50%{filter:drop-shadow(#fff 0px 0px 0px)}}*/
