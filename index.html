@@ -2,10 +2,10 @@
 <html><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<link rel="icon" href="files/icon.png">
-	<link rel="stylesheet" href="/main.css">
+	<link rel="stylesheet" href="/styles/main.css">
 	<meta charset="UTF-8">
-	<script src="/main.js"></script>
-	<script src="/konami.js"></script>
+	<script src="/scripts/main.js"></script>
+	<script src="/scripts/konami.js"></script>
 	<title>PuteressesTV</title>
 </head>
 <!--
@@ -16,8 +16,8 @@
 <body>
 	<center>
 	<div class="content" id=box>
-	<img src="/logo.webp" class="website-logo">
-	<img id=maite src="/files/maite.png" class="maite">
+	<img src="/files/logos/logo.webp" class="website-logo">
+	<img id=maite src="/files/objs/maite.png" class="maite">
 	<h1 class="b-out" style="margin-bottom:25px">Notre dernière vidéo:</h1>
 	<div class="video-box" width="80%">
 	<iframe src="https://www.youtube.com/embed/t7kN87RrJVc"> <!-- LIEN DE LA VIDÉO DANS SRC -->
@@ -34,22 +34,18 @@
 	aB("files/icons/twi.png","https://twitter.com/PuteressesTv","#58def2","#569be1","Twitter");
 	</script>
 	<h1 class="b-out" style="margin-bottom:15px">Minia gallery:</h1>
-	<div id="gallery" class="gallery">
-		<div id="minia_bg" class="minia-bg" hidden=""></div>
-		<div class="minia-op" id="minia-op"><img id="minia" class="minia"></div>
-		<img id="exit-minia" class="exit-minia" src="/exit.png" hidden="">
-		<script>
-			minia_index=0;
-			minias_names=["Gang Beasts #2","Content Warning #1"];
-			minias=["GangBeast2","ContentWarning1"];/* NOM DE LA MINIA SANS LE CHEMIN ET SANS LE .WEBP */
-		</script>
+	<script>
+		minia_index=0;
+		minias_names=["Gang Beasts #2","Content Warning #1"];
+		minias=["GangBeast2","ContentWarning1"];/* NOM DE LA MINIA SANS LE CHEMIN ET SANS LE .WEBP */
+	</script>
 	</div>
 	<div class=car style="margin-bottom:30px;">
-		<div id=arr-left class=arrow style="background:url(/files/arrow_l.png)"></div>
+		<div id=arr-left class=arrow style="background:url(/files/objs/arrow_l.png)"></div>
 		<img id=minia-tr class=minia-tr>
 		<img class=car-piece id=minia-pr>
 		<script>document.getElementById('minia-pr').src="/minias/pr"+minias[0]+".webp";</script>
-		<div id=arr-right class=arrow style="background:url(/files/arrow_r.png)"></div>
+		<div id=arr-right class=arrow style="background:url(/files/objs/arrow_r.png)"></div>
 		<script>
 		document.getElementById('arr-left').addEventListener("click",function(){
 			if(minia_index>0){
@@ -72,7 +68,6 @@
 	<div style="background:#2e2e2e;margin-top:30px;">
 	<p style="text-align:center;font-size:20px;padding:25px" class="b-out-smaller">Pour toute demande professionnelle ou collaboration commercialle, veuillez nous écrire à:<br>
 	<a href="mailto:contact.puteressestv@gmail.com" class="mail">contact.puteressestv@gmail.com</a></p>
-
 <p style="font-size:20px;text-align:center;padding-bottom:10px">Site réalisé par <a href="rhb.html" class=mail>Rhubarb</a></p>
 </div>
 </div>
