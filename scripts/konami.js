@@ -13,7 +13,7 @@ bonus.play();
 console.log("Salut Rhubarb :D");
 document.getElementById('rhb-bg').removeAttribute("hidden");
 konamiCodePosition=0;
-divs=document.querySelectorAll("p,h1");
+divs=document.querySelectorAll("p,h1,.win");
 for(const div of divs){
 if(div.id!="rhb-bg"&&div.id!="box"){
 div.style.animation="maite-anim "+Math.floor(Math.random()*30)/10+"s infinite";
