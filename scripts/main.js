@@ -1,6 +1,6 @@
 function aB(img,link,color_t,color_b,text){
 let button=document.createElement('div');
-button.addEventListener("click",function(){open(link)});
+button.addEventListener("click",function(){open(link,"_blank")});
 button.classList="button";
 button.style.background="linear-gradient(180deg, "+color_t+" 0%,"+color_b+" 100%)";
 button.style.width="256px";
