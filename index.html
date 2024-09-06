@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr"><head>
 <title>PuteressesTV</title>
+<meta name="description" content="Le site inter-webs de PuteressesTV">
+<meta name="author" content="PuteressesTV">
 <meta name="theme-color" content="#FFCA41" />
 <meta name="google-site-verification" content="5-cwlBU9GJzUKu6Kz-Bp8Mss24uiIzvZ75Lq1vpYKN4" />
 <meta charset="UTF-8">
@@ -11,13 +13,56 @@
 <link rel="icon" type="image/png" sizes="32x32" href="/files/s-icons/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/files/s-icons/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
+<script>
+
+const SchemaORG = () => {
+const Schema = {
+	"@context": "https://schema.org",
+	"@graph": [
+		{
+			"@type": "Organization",
+			"@id": "https://puteressestv.fr/#logo",
+			"url": "https://puteressestv.fr",
+			"name": "PuteressesTV",
+			"logo": {
+				"@type": "ImageObject",
+				"@id": "https://puteressestv.fr/#logo",
+				"url": "https://puteressestv.fr/files/logos/logo.png",
+			},
+			"sameAs": [
+				"https://www.youtube.com/@PuteressesTV",
+				"https://www.tiktok.com/@puteressestv_off",
+				"https://www.instagram.com/puteressestv_off",
+				"https://www.twitter.com/PuteressesTV"
+			]
+		},
+		{
+			"@type": "WebSite",
+			"@id": "https://puteressestv.fr/#website",
+			"url": "https://puteressestv.fr/",
+			"name": "PuteressesTV",
+			"publisher": {
+				"@id": "https://puteressestv.fr/#logo",
+			},
+		}
+	]
+}
+return (
+<script
+type="application/ld+json"
+dangerouslySetInnerHTML={{ __html: JSON.stringify(Schema, null, 2) }}
+>
+</script>
+)
+}
+</script>
 <script src="/scripts/main.js"></script>
 <script src="/scripts/konami.js"></script>
 </head>
 <body>
 	<center>
 	<div class="content" id=box>
-	<img src="/files/logos/logo.webp" class="website-logo">
+	<img src="/files/logos/logo.webp" class="website-logo" id=logo>
 	<img id=maite src="/files/objs/maite.png" class="maite">
 	<h1 class="b-out" style="margin-bottom:25px">Notre dernière vidéo:</h1>
 	<div class="video-box" width="80%">
