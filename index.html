@@ -14,7 +14,6 @@
 <link rel="icon" type="image/png" sizes="16x16" href="/files/s-icons/favicon-16x16.png">
 <link rel="manifest" href="/site.webmanifest">
 <script>
-
 const SchemaORG = () => {
 const Schema = {
 	"@context": "https://schema.org",
@@ -46,16 +45,11 @@ const Schema = {
 			},
 		}
 	]
-}
-return (
-<script
-type="application/ld+json"
-dangerouslySetInnerHTML={{ __html: JSON.stringify(Schema, null, 2) }}
->
-</script>
-)
+	}
+	return (<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(Schema, null, 2) }}></script>)
 }
 </script>
+
 <script src="/scripts/main.js"></script>
 <script src="/scripts/konami.js"></script>
 </head>
