@@ -3,7 +3,7 @@
 .maite{position:absolute;margin-left:48px;top:64px;width:128px;height:128px;animation: maite-anim 2s infinite}
 html{padding:0px;}
 body{padding:0px;margin:0px;background:url(/files/bgs/bg.png) fixed;background-size:250;image-rendering:auto;}
-p,h1,h2,a{font-family:"PUTE";color:#fff;margin:0px;/*filter:drop-shadow(#000 0px 0px 4px)*/}
+p,h1,h2,a,ul,li,span{font-family:"PUTE";color:#fff;margin:0px;/*filter:drop-shadow(#000 0px 0px 4px)*/}
 p,a{transition:250ms;text-align:left;}/* radial-gradient(circle, #ffdd59 50%, #ffc443 100%) */
 p{font-size:30px;s}
 .mail{font-size:20px;text-decoration:none;color:#ffd100}
