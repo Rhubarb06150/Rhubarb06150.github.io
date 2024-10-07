@@ -97,7 +97,7 @@ const Schema = {
 			document.getElementById('index').innerHTML="Miniature "+minias_names[minia_index];
 		});	
 		document.getElementById('arr-right').addEventListener("click",function(){
-			if(minia_index<minias.length){
+			if(minia_index<(minias.length-1)){
 				minia_index++;
 			}else{
 				minia_index=0;
