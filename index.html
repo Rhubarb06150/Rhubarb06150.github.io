@@ -91,14 +91,14 @@ const Schema = {
 			if(minia_index>0){
 				minia_index--;
 			}else{
-				minia_index=minias.length-1;
+				minia_index=(minias.length-1);
 			};
 			document.getElementById('minia-pr').src="/minias/pr"+minias[minia_index]+".webp";
 			document.getElementById('index').innerHTML="Miniature "+minias_names[minia_index];
 		});	
 		document.getElementById('arr-right').addEventListener("click",function(){
 			minia_index++;
-			if(minia_index<=minias.length){
+			if(minia_index<minias.length){
 				minia_index++;
 			}else{
 				minia_index=0;
